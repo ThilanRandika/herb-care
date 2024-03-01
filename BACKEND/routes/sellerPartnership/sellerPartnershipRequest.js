@@ -1,6 +1,6 @@
-const PartnershipRequest = require('../../models/SellerPartnershipRequest.js');
-const Seller = require('../../models/Seller.js');
-const SellerProducts = require('../../models/SellerProducts.js');
+const PartnershipRequest = require('../../models/sellerPartnership/SellerPartnershipRequest.js');
+const Seller = require('../../models/sellerPartnership/Seller.js');
+const SellerProducts = require('../../models/sellerPartnership/SellerProducts.js');
 const router = require('express').Router();
 
 //CREATE - partnership request
