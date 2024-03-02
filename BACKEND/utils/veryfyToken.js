@@ -1,4 +1,4 @@
-const jwt  = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 module.exports.verifyToken = (req, res, next, callback) => {
   const token = req.cookies.access_token;
@@ -7,7 +7,7 @@ module.exports.verifyToken = (req, res, next, callback) => {
   }
 
   jwt.verify(token, process.env.JWT, (err, person) => {
-    if (err) return res.status(500).json("You are not authorized") 
+    if (err) return res.status(500).json("You are not authorized");
     req.person = person;
     if (callback) {
       callback();
@@ -18,17 +18,24 @@ module.exports.verifyToken = (req, res, next, callback) => {
   });
 };
 
-
 // for profile edit
 module.exports.verifySeller = (req, res, next) => {
   module.exports.verifyToken(req, res, next, () => {
-    if (req.person.sellerId === req.params.id ) {
+    if (req.person.sellerId === req.params.id) {
       next();
-      } else {
-      return res.status(500).json("You are not authorized to do this")
-      }
-  });  
+    } else {
+      return res.status(500).json("You are not authorized to do this");
+    }
+  });
 };
 
-
-
+// for get sellerID
+module.exports.verifySellerToOther = (req, res, next) => {
+  module.exports.verifyToken(req, res, next, () => {
+    if (req.person.sellerId) {
+      next();
+    } else {
+      return res.status(500).json("You are not authorized to do this");
+    }
+  });
+};
