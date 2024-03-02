@@ -3,6 +3,7 @@ const SellerProducts = require("../../models/sellerPartnership/SellerProducts.js
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const { verifySeller } = require("../../utils/veryfyToken.js");
+const emailSender = require('../../emailSender');
 
 //CREATE - Add new seller seller
 router.route("/addSeller").post(async (req, res) => {
@@ -18,6 +19,22 @@ router.route("/addSeller").post(async (req, res) => {
       sellerId: savedSeller.sellerId,
     }));
     const savedSellerProducts = await SellerProducts.insertMany(sellerProducts);
+
+    async function sendCustomEmail() {
+      const receiver = savedSeller.toJSON().email;
+      const html =  `
+      <PASSWORD> USERNAME - ${savedSeller.toJSON().sellerId}, PASSWORD - ${savedSeller.toJSON().password},</b> 
+      <p>This is your username and password please use them to log in to our web application and you can change your password your own</p>`;
+      const subject = "To inform registration - HerbCare";
+    
+      try {
+        await emailSender.sendEmail(receiver, html, subject );
+      } catch (error) {
+        console.error("Error sending email:", error);
+      }
+    }
+    
+    sendCustomEmail();
 
     res
       .status(200)

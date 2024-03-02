@@ -2,6 +2,7 @@ const PartnershipRequest = require('../../models/sellerPartnership/SellerPartner
 const Seller = require('../../models/sellerPartnership/Seller.js');
 const SellerProducts = require('../../models/sellerPartnership/SellerProducts.js');
 const router = require('express').Router();
+const emailSender = require('../../emailSender');
 
 //CREATE - partnership request
 router.route('/add').post(async (req,res) => {
@@ -64,6 +65,23 @@ router.route('/reqAprove/:id').put(async (req, res) => {
             {$set: {'status': 'discussion_state'}}, 
             {new: true} 
         );
+        const requestSeller =  await PartnershipRequest.findById(requestId);
+
+        async function sendCustomEmail() {
+            const receiver = requestSeller.toJSON().email;
+            const html =  `
+            <b>Congratulations ${requestSeller.toJSON().seller_name}</b> 
+            <p>We are happy to be a partner with your company. <p>this is ouer contact details: Contact Number -  071256389, Email - herncare@gmail.com</p> <p>We contact you to discuss the futher details.</p><p>Thank You!</p>`;
+            const subject = "To inform approvel of Partnership Request - HerbCare";
+          
+            try {
+              await emailSender.sendEmail(receiver, html, subject );
+            } catch (error) {
+              console.error("Error sending email:", error);
+            }
+          }
+          sendCustomEmail();
+
         res.status(200).json(updatedRequest);
     }catch(err){
         console.log(err)
