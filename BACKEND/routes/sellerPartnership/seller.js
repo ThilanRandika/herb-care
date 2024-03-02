@@ -1,12 +1,14 @@
-const PartnershipRequest = require('../../models/sellerPartnership/SellerPartnershipRequest.js');
 const Seller = require('../../models/sellerPartnership/Seller.js');
 const SellerProducts = require('../../models/sellerPartnership/SellerProducts.js');
 const router = require('express').Router();
+const bcrypt = require ('bcryptjs');
+const { verifyToken, verifySeller } = require('../../utils/veryfyToken.js');
 
 //CREATE - Add new seller seller
 router.route('/addSeller').post(async (req,res) => {
     try{
         //save seller details to seller collection
+        
         const newSeller = new Seller(req.body.seller);
         const savedSeller = await newSeller.save();
 
@@ -17,7 +19,7 @@ router.route('/addSeller').post(async (req,res) => {
         }));
         const savedSellerProducts = await SellerProducts.insertMany(sellerProducts);
 
-        res.status(200).json({seller : savedSeller.toJSON().sellerId,  savedProducts : savedSellerProducts});
+        res.status(200).json({sellerId : savedSeller.toJSON().sellerId, sellerPassword : savedSeller.toJSON().password,  savedProducts : savedSellerProducts});
     } catch(err){
         console.log(err);
     }
@@ -45,7 +47,7 @@ router.route('/all').get(async (req, res) => {
 });
 
 //READ - get one seller detail
-router.route('/oneSeller/:sellerId').get(async (req, res) => {
+router.route('/oneSeller/:sellerId').get( verifySeller,async (req, res) => {
     try{
         const sellerId = req.params.sellerId;
         //get seler details
@@ -67,12 +69,13 @@ router.route('/oneSeller/:sellerId').get(async (req, res) => {
 //UPDATE - update seller details
 router.route('/updateSeller/:id').put(async (req, res) => {
     try{
-        const sellerId = req.params.id;
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(req.body.seller.password, salt);
 
          // Update seller details
          const updatedSeller = await Seller.findOneAndUpdate(
-            { sellerId : sellerId },
-            { $set: req.body.seller }, // Assuming req.body.seller contains the updated seller details
+            { sellerId : req.params.id },
+            { $set: {...req.body.seller, password : hash} }, // Assuming req.body.seller contains the updated seller details
             { new: true }
         );
 
@@ -88,7 +91,7 @@ router.route('/updateSeller/:id').put(async (req, res) => {
                 const productId = updatedProduct.product_id;
         
                 const updatedProductDetails = await SellerProducts.findOneAndUpdate(
-                    { sellerId: sellerId, product_id: productId },
+                    { sellerId: req.params.id, product_id: productId },
                     { $set: updatedProduct },
                     { new: true }
                 );

@@ -10,7 +10,7 @@ const sellerSchema = new mongoose.Schema(
         const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
         //include date
         const timestamp = currentDate.getTime();
-        return `HCSE-${year}${month}-${timestamp}`;
+        return `HCSE-${year}${month}${timestamp}`;
       },
       unique: true,
       required: true,
@@ -26,7 +26,11 @@ const sellerSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: false,
+      default : function () {
+        const randomString = Math.random().toString(36).slice(-8);
+        return "Password" + randomString;
+      },
+      required: true,
     },
     seller_name: {
       type: String,

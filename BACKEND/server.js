@@ -14,6 +14,10 @@ app.use(bodyParser.json());
 
 const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
 const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
+const authRouter = require( "./routes/auth.js" );
+
+
+const cookieParser = require("cookie-parser");
 
 const URL = process.env.MONGODB_URL;
 
@@ -24,8 +28,13 @@ mongoose.connect(URL, {
     // useFindAndModify: false
 });
 
+app.use(cookieParser());
+
+
+
 app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
+app.use("/auth", authRouter);
 
 const connection = mongoose.connection;
 connection.once("open", ()=> {
