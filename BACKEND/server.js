@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 const app = express(); 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 8070;
+const PORT = process.env.PORT || 8027;
 
 app.use(cors());
 app.use(bodyParser.json()); 
@@ -28,6 +28,11 @@ connection.once("open", ()=> {
     console.log("Mongodb Connection Success!");
 
 })
+//Inventory manager product addition
+const productRouter = require("./routes/inventoryManagers.js");
+app.use("/product", productRouter);
+
+
 
 app.listen(PORT,() =>{
 
