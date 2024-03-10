@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const ConsultAppointmentSchema = new Schema(
   {
@@ -21,7 +21,6 @@ const ConsultAppointmentSchema = new Schema(
       type: String,
       enum: [
         "Pending",
-        "Accepted",
         "Rejected",
         "Cancelled",
         "Completed",
@@ -46,4 +45,4 @@ const ConsultAppointment = mongoose.model(
   ConsultAppointmentSchema
 );
 
-export default ConsultAppointment;
+module.exports = ConsultAppointment;

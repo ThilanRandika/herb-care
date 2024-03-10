@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const RefundSchema = new Schema(
   {
@@ -31,4 +31,4 @@ const RefundSchema = new Schema(
 
 const Refund = mongoose.model("Refund", RefundSchema);
 
-export default Refund;
+module.exports = Refund;

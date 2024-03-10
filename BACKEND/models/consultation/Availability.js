@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const AvailabilitySchema = new Schema(
   {
@@ -35,4 +35,4 @@ const AvailabilitySchema = new Schema(
 
 const Availability = mongoose.model("Availability", AvailabilitySchema);
 
-export default Availability;
+module.exports = Availability;
