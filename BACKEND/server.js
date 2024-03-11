@@ -10,7 +10,9 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 
 app.use(cors());
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
+
+const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
 
 const URL = process.env.MONGODB_URL;
 
@@ -21,7 +23,7 @@ mongoose.connect(URL, {
     // useFindAndModify: false
 });
 
-
+app.use("/consultAppointment", ConsultAppointmentsRouter);
 
 const connection = mongoose.connection;
 connection.once("open", ()=> {
