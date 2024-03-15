@@ -36,6 +36,9 @@ const ConsultAppointmentSchema = new Schema(
     notesBySpecialist: {
       type: String,
     },
+    appointmentAmount: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

@@ -13,6 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
+const RefundRouter = require("./routes/consultation/refunds.js");
 
 const URL = process.env.MONGODB_URL;
 
@@ -24,6 +25,7 @@ mongoose.connect(URL, {
 });
 
 app.use("/consultAppointment", ConsultAppointmentsRouter);
+app.use("/refund", RefundRouter);
 
 const connection = mongoose.connection;
 connection.once("open", ()=> {

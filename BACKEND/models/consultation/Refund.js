@@ -8,6 +8,11 @@ const RefundSchema = new Schema(
       ref: "Appointment",
       required: true,
     },
+    refundType:{
+      type: String,
+      required: true,
+      enum: ["Full", "Partial"],
+    },
     refundAmount: {
       type: Number,
       required: true,
