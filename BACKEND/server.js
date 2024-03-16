@@ -16,6 +16,7 @@ const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointm
 const RefundRouter = require("./routes/consultation/refunds.js");
 const AvailabilityRouter = require("./routes/consultation/availabilities.js");
 const SpecialistRouter = require("./routes/consultation/specialists.js");
+const CenterRouter = require("./routes/consultation/centers.js");
 
 const URL = process.env.MONGODB_URL;
 
@@ -30,6 +31,7 @@ app.use("/consultAppointment", ConsultAppointmentsRouter);
 app.use("/refund", RefundRouter);
 app.use("/availability", AvailabilityRouter);
 app.use("/specialist", SpecialistRouter);
+app.use("/center", CenterRouter);
 
 const connection = mongoose.connection;
 connection.once("open", ()=> {
