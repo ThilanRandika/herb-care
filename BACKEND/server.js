@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 
 const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
 const RefundRouter = require("./routes/consultation/refunds.js");
+const AvailabilityRouter = require("./routes/consultation/availabilities.js");
+const SpecialistRouter = require("./routes/consultation/specialists.js");
 
 const URL = process.env.MONGODB_URL;
 
@@ -26,6 +28,8 @@ mongoose.connect(URL, {
 
 app.use("/consultAppointment", ConsultAppointmentsRouter);
 app.use("/refund", RefundRouter);
+app.use("/availability", AvailabilityRouter);
+app.use("/specialist", SpecialistRouter);
 
 const connection = mongoose.connection;
 connection.once("open", ()=> {
