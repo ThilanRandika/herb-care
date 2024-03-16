@@ -3,51 +3,50 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const feedbackSchema = new Schema({
+  userId: {
+    type: String,
+    //type: Schema.Types.ObjectId,
+    //ref: "Customer",
+    required: true
+  },
+  orderId: {
+    type: String,
+    //type: Schema.Types.ObjectId,
+    //ref: "order",
+    required: true
+  },
+  productId: {
+    type: String,
+    //type: Schema.Types.ObjectId,
+    //ref: "product",
+    required: false
+  },
+  customizeGiftId: {
+    type: String,
+    //type: Schema.Types.ObjectId,
+    //ref: "customizeGift",
+    required: false
+  },
+  defaultGiftId: {
+    type: String,
+    //type: Schema.Types.ObjectId,
+    //ref: "DefaultGift",
+    required: false
+  },
+  ratings: {
+    type: Number,
+    required: true
+  },
+  message: {
+    type: String,
+    required: true
+  },
+  image: {
+    type: String,
+    required: false 
+  }
+}, { timestamps: true });
 
-    userId: {
-        type: Schema.type.ObjectId,
-        ref: "Customer",
-        required: true
-    },
-    orderId: {
-        type: Schema.type.ObjectId,
-        ref: "order",
-        required: true
-    },
-    productId: {
-        type: Schema.type.ObjectId,
-        ref: "product",
-        required: true
-    },
-    customizeGiftId: {
-        type: Schema.type.ObjectId,
-        ref: "customizeGift",
-        required: true
-    },
-    defaultGiftId: {
-        type: Schema.type.ObjectId,
-        ref: "defaultGift",
-        required: true
-    },
-    retings: {
-        type: Number,
-        required: true
-    },
-    message: {
-        type: String,
-        required: true
-    },
-    Date$Time: {
-        type: Date,
-        required: true 
-    },
+const Feedback = mongoose.model('Feedback', feedbackSchema);
 
-},
-  
-{ timestamps: true }  
-
-);
-
-const feedback = mongoose.model("feedback", feedbackSchema);
-
-module.exports = feedback;
+module.exports = Feedback;

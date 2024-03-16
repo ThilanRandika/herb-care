@@ -29,6 +29,12 @@ connection.once("open", ()=> {
 
 })
 
+const feedbackRouter = require("./routes/feedbacks.js");
+
+//http://localhost:8070/feedback
+app.use("/feedback",feedbackRouter);
+
+
 app.listen(PORT,() =>{
 
     console.log(`Server is up and running on port number : ${PORT}`);
