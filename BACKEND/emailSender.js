@@ -1,5 +1,4 @@
-const nodemailer = require( 'nodemailer' );
-
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
     service:  "gmail",
@@ -12,27 +11,25 @@ const transporter = nodemailer.createTransport({
     },
   });
 
-
-  async function sendEmail(receiver, html, subject ) {
-
-    try {
-        const info = await transporter.sendMail({
+async function sendEmail(receiver, html, subject) {
+  try {
+    const info = await transporter.sendMail({
       from: {
         name: "Herb Care",
-        address: process.env.EMAIL
+        address: process.env.EMAIL,
       },
       to: receiver,
       subject: subject,
       text: "",
-      html:html,
+      html: html,
     });
-  
+
     console.log("Message sent: %s", info.messageId);
-    }catch(err){
-        console.log(err);
-    }
+  } catch (err) {
+    console.log(err);
   }
-  
-  module.exports = {
-    sendEmail,
-  };
+}
+
+module.exports = {
+  sendEmail,
+};
