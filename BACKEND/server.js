@@ -16,6 +16,7 @@ const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
 const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
 const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" );
 const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
+const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
 const authRouter = require( "./routes/auth.js" );
 
 
@@ -38,6 +39,7 @@ app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
 app.use("/sellerProducts",  sellerProducts);
 app.use("/sellerBag",  sellerBag);
+app.use("/sellerOrder",  sellerOrder);
 app.use("/auth", authRouter);
 
 const connection = mongoose.connection;
