@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 import './App.css';
 import AddProduct from './components/AddProduct';
@@ -22,24 +21,6 @@ function App() {
         
       </div>
     </Router>
-=======
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-
-import './App.css';
-import Home from "./pages/common/home/Home";
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home/>}></Route>
-      </Routes>
-    </BrowserRouter>
->>>>>>> a0aa077d9382182e9faae63443aebbbf3789b720
   );
 }
 
