@@ -30,9 +30,12 @@ connection.once("open", ()=> {
 })
 
 const feedbackRouter = require("./routes/feedbacks.js");
-
 //http://localhost:8070/feedback
 app.use("/feedback",feedbackRouter);
+
+const complaintsRouter = require("./routes/complaintses.js");
+//http://localhost:8070/complaints
+app.use("/complaints",complaintsRouter);
 
 
 app.listen(PORT,() =>{

@@ -4,33 +4,27 @@ const Schema = mongoose.Schema;
 
 const feedbackSchema = new Schema({
   userId: {
-    type: String,
-    //type: Schema.Types.ObjectId,
-    //ref: "Customer",
+    type : String,
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "Customer",
     required: true
   },
   orderId: {
-    type: String,
-    //type: Schema.Types.ObjectId,
-    //ref: "order",
+    type : String,
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "order",
     required: true
   },
   productId: {
-    type: String,
-    //type: Schema.Types.ObjectId,
-    //ref: "product",
+    type : String,
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "product",
     required: false
   },
-  customizeGiftId: {
-    type: String,
-    //type: Schema.Types.ObjectId,
-    //ref: "customizeGift",
-    required: false
-  },
-  defaultGiftId: {
-    type: String,
-    //type: Schema.Types.ObjectId,
-    //ref: "DefaultGift",
+  giftPackageId: {
+    type : String,
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "customizeGift",
     required: false
   },
   ratings: {
@@ -43,7 +37,7 @@ const feedbackSchema = new Schema({
   },
   image: {
     type: String,
-    required: false 
+    required: false
   }
 }, { timestamps: true });
 
