@@ -17,8 +17,8 @@ const URL = process.env.MONGODB_URL;
 mongoose.connect(URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true, // Use this option
-    // useFindAndModify: false
+    //useCreateIndex: true, 
+    //useFindAndModify: false
 });
 
 
@@ -31,5 +31,5 @@ connection.once("open", ()=> {
 
 app.listen(PORT,() =>{
 
-    console.log(`Server is up and running on port number : ${PORT}`);
+    console.log(`Server is up and running on port number: ${PORT}`);
 })
