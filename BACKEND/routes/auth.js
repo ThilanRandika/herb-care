@@ -6,7 +6,6 @@ const jwt  = require("jsonwebtoken");
 const Customer = require('../models/user/Customer');
 
 /*
-
 //Seller Login
 router.route('/login').post(async (req, res) => {
     try {
@@ -38,14 +37,8 @@ router.route('/login').post(async (req, res) => {
         console.log(err);
     }
   });
-
-
-  */
-
-
-
-
-
+ 
+ */
   router.route('/login').post(async (req, res) => {
     try {
       // Find the user based on the username (assuming unique usernames across different user types)
@@ -134,8 +127,6 @@ router.route('/login').post(async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-
-
 
 
 module.exports = router;
