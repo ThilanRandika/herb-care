@@ -18,6 +18,16 @@ const AvailabilityRouter = require("./routes/consultation/availabilities.js");
 const SpecialistRouter = require("./routes/consultation/specialists.js");
 const CenterRouter = require("./routes/consultation/centers.js");
 
+
+const customerRouter = require( "./routes/user/customer.js" );
+
+
+const authRouter = require( "./routes/auth.js" );
+
+
+const cookieParser = require("cookie-parser");
+
+
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
@@ -32,6 +42,12 @@ app.use("/refund", RefundRouter);
 app.use("/availability", AvailabilityRouter);
 app.use("/specialist", SpecialistRouter);
 app.use("/center", CenterRouter);
+
+app.use("/customer", customerRouter);
+
+
+app.use("/auth", authRouter);
+
 
 const connection = mongoose.connection;
 connection.once("open", ()=> {
