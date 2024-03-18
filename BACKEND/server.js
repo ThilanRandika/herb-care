@@ -12,11 +12,12 @@ const PORT = process.env.PORT || 8070;
 app.use(cors());
 app.use(bodyParser.json()); 
 
+const customerRouter = require( "./routes/user/customer.js" );
+
 const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
 const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
 const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
 const authRouter = require( "./routes/auth.js" );
-
 
 const cookieParser = require("cookie-parser");
 
@@ -37,6 +38,12 @@ app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
 app.use("/sellerProducts",  sellerProducts);
 app.use("/auth", authRouter);
+
+app.use("/customer", customerRouter);
+
+
+app.use("/auth", authRouter);
+
 
 const connection = mongoose.connection;
 connection.once("open", ()=> {

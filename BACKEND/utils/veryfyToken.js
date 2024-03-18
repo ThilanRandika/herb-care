@@ -39,3 +39,15 @@ module.exports.verifySellerToOther = (req, res, next) => {
     }
   });
 };
+
+// for Others
+module.exports.verifyToOther = (req, res, next) => {
+  module.exports.verifyToken(req, res, next, () => {
+    if (req.person.userId) {
+      next();
+    } else {
+      return res.status(500).json("You are not authorized to do this");
+    }
+  });
+};
+
