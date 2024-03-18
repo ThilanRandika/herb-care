@@ -18,6 +18,15 @@ const AvailabilityRouter = require("./routes/consultation/availabilities.js");
 const SpecialistRouter = require("./routes/consultation/specialists.js");
 const CenterRouter = require("./routes/consultation/centers.js");
 
+const customerRouter = require( "./routes/user/customer.js" );
+
+const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
+const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
+const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
+const authRouter = require( "./routes/auth.js" );
+
+const cookieParser = require("cookie-parser");
+
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
@@ -27,11 +36,27 @@ mongoose.connect(URL, {
     // useFindAndModify: false
 });
 
+app.use(cookieParser());
+
+
 app.use("/consultAppointment", ConsultAppointmentsRouter);
 app.use("/refund", RefundRouter);
 app.use("/availability", AvailabilityRouter);
 app.use("/specialist", SpecialistRouter);
 app.use("/center", CenterRouter);
+
+
+
+app.use("/seller", sellerRouter);
+app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
+app.use("/sellerProducts",  sellerProducts);
+app.use("/auth", authRouter);
+
+app.use("/customer", customerRouter);
+
+
+app.use("/auth", authRouter);
+
 
 const connection = mongoose.connection;
 connection.once("open", ()=> {
