@@ -12,6 +12,16 @@ const PORT = process.env.PORT || 8070;
 app.use(cors());
 app.use(bodyParser.json()); 
 
+
+const customerRouter = require( "./routes/user/customer.js" );
+
+
+const authRouter = require( "./routes/auth.js" );
+
+
+const cookieParser = require("cookie-parser");
+
+
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
@@ -21,6 +31,12 @@ mongoose.connect(URL, {
     // useFindAndModify: false
 });
 
+
+
+app.use("/customer", customerRouter);
+
+
+app.use("/auth", authRouter);
 
 
 const connection = mongoose.connection;
