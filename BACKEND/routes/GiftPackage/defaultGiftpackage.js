@@ -15,7 +15,7 @@ router.route("/addDefault-gift-package").post(async (req,res)=>{
 
       try {
         const newDefaultGiftPack = await defaultGiftPack.save();
-        res.status(201).json(newDefaultGiftPack);
+        res.status(201).json({ message: "Default gift package Added!"});
       } catch (err) {
         res.status(400).json({ message: err.message });
       }
@@ -97,7 +97,7 @@ router.route("/updateDefault-gift-package/:id").put(async(req,res)=>{
     
     try {
         const updatedDefaultGiftPack = await DefaultGiftPack.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(updatedDefaultGiftPack);
+        res.json({ message: "Package updated successfully"});
       } catch (err) {
         return res.status(400).json({ message: err.message });
       }
@@ -117,7 +117,7 @@ router.route("/updateDefault-gift-package/:id").put(async(req,res)=>{
     }
 
     const update = await DefaultGiftPack.findByIdAndUpdate(packageId, updatedDefaultGiftPack).then(()=>{
-        res.status(200).send({status: "Package Updated", package:update});
+        res.status(200).send({status: "Package Updated"});
     }).catch((err)=>{
         console.log(err);
         res.status(200).send({status: "Error witg updating data"});
