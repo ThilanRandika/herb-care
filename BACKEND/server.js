@@ -10,17 +10,72 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 
 app.use(cors());
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
+
+const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
+const RefundRouter = require("./routes/consultation/refunds.js");
+const AvailabilityRouter = require("./routes/consultation/availabilities.js");
+const SpecialistRouter = require("./routes/consultation/specialists.js");
+const CenterRouter = require("./routes/consultation/centers.js");
+
+const customerRouter = require( "./routes/user/customer.js" );
+
+const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
+const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
+const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
+const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
+const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
+
+const productRouter = require("./routes/inventory/inventoryManagers.js");
+
+const customizeGiftPackageRouter = require("./routes/GiftPackage/customizeGiftPackage.js");
+const defaultGiftpackageRouter = require("./routes/GiftPackage/defaultGiftpackage.js");
+const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js");
+
+const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
+const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
+
+const authRouter = require( "./routes/auth.js" );
+
+const cookieParser = require("cookie-parser");
 
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true, // Use this option
-    // useFindAndModify: false
+    //useCreateIndex: true, 
+    //useFindAndModify: false
 });
 
+
+app.use(cookieParser());
+
+
+app.use("/consultAppointment", ConsultAppointmentsRouter);
+app.use("/refund", RefundRouter);
+app.use("/availability", AvailabilityRouter);
+app.use("/specialist", SpecialistRouter);
+app.use("/center", CenterRouter);
+
+app.use("/seller", sellerRouter);
+app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
+app.use("/sellerProducts",  sellerProducts);
+app.use("/sellerBag",  sellerBag);
+app.use("/sellerOrder",  sellerOrder);
+
+app.use("/product", productRouter);
+
+app.use("/customizeGiftPackage",customizeGiftPackageRouter);
+app.use("/defaultGiftpackage",defaultGiftpackageRouter);
+app.use("/giftPackageOrder",giftPackageOrderRouter);
+
+app.use("/feedback",feedbackRouter);
+app.use("/complaints",complaintsRouter);
+
+app.use("/auth", authRouter);
+
+app.use("/customer", customerRouter);
 
 
 const connection = mongoose.connection;
@@ -29,16 +84,9 @@ connection.once("open", ()=> {
 
 })
 
-const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
-//http://localhost:8070/feedback
-app.use("/feedback",feedbackRouter);
-
-const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
-//http://localhost:8070/complaints
-app.use("/complaints",complaintsRouter);
 
 
 app.listen(PORT,() =>{
 
-    console.log(`Server is up and running on port number : ${PORT}`);
+    console.log(`Server is up and running on port number: ${PORT}`);
 })
