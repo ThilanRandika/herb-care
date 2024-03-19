@@ -23,6 +23,8 @@ const customerRouter = require( "./routes/user/customer.js" );
 const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
 const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
 const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
+const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
+const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
 
 const productRouter = require("./routes/inventory/inventoryManagers.js");
 
@@ -53,11 +55,11 @@ app.use("/availability", AvailabilityRouter);
 app.use("/specialist", SpecialistRouter);
 app.use("/center", CenterRouter);
 
-
-
 app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
 app.use("/sellerProducts",  sellerProducts);
+app.use("/sellerBag",  sellerBag);
+app.use("/sellerOrder",  sellerOrder);
 
 app.use("/product", productRouter);
 
@@ -68,10 +70,6 @@ app.use("/giftPackageOrder",giftPackageOrderRouter);
 app.use("/auth", authRouter);
 
 app.use("/customer", customerRouter);
-
-
-app.use("/auth", authRouter);
-
 
 
 const connection = mongoose.connection;
