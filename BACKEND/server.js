@@ -21,6 +21,13 @@ mongoose.connect(URL, {
     //useFindAndModify: false
 });
 
+const customizeGiftPackageRouter = require("./routes/GiftPackage/customizeGiftPackage.js");
+const defaultGiftpackageRouter = require("./routes/GiftPackage/defaultGiftpackage.js");
+const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js");
+
+app.use("/customizeGiftPackage",customizeGiftPackageRouter);
+app.use("/defaultGiftpackage",defaultGiftpackageRouter);
+app.use("/giftPackageOrder",giftPackageOrderRouter);
 
 
 const connection = mongoose.connection;
@@ -28,6 +35,8 @@ connection.once("open", ()=> {
     console.log("Mongodb Connection Success!");
 
 })
+
+
 
 app.listen(PORT,() =>{
 
