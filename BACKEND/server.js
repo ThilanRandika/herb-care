@@ -24,7 +24,7 @@ const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
 const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
 const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
 
-const productRouter = require("./routes/inventoryManagers.js");
+const productRouter = require("./routes/inventory/inventoryManagers.js");
 const authRouter = require( "./routes/auth.js" );
 
 const cookieParser = require("cookie-parser");
