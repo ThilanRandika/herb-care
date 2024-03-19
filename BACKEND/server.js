@@ -32,6 +32,9 @@ const customizeGiftPackageRouter = require("./routes/GiftPackage/customizeGiftPa
 const defaultGiftpackageRouter = require("./routes/GiftPackage/defaultGiftpackage.js");
 const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js");
 
+const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
+const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
+
 const authRouter = require( "./routes/auth.js" );
 
 const cookieParser = require("cookie-parser");
@@ -66,6 +69,9 @@ app.use("/product", productRouter);
 app.use("/customizeGiftPackage",customizeGiftPackageRouter);
 app.use("/defaultGiftpackage",defaultGiftpackageRouter);
 app.use("/giftPackageOrder",giftPackageOrderRouter);
+
+app.use("/feedback",feedbackRouter);
+app.use("/complaints",complaintsRouter);
 
 app.use("/auth", authRouter);
 
