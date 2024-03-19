@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let GiftPackageOrder = require("../../modles/GiftPackage/giftPackageOrder")
+let GiftPackageOrder = require("../../models/GiftPackage/giftPackageOrder")
 
 
 module.exports = router;
