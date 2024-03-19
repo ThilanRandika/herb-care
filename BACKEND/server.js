@@ -23,6 +23,8 @@ const customerRouter = require( "./routes/user/customer.js" );
 const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
 const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
 const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
+
+const productRouter = require("./routes/inventoryManagers.js");
 const authRouter = require( "./routes/auth.js" );
 
 const cookieParser = require("cookie-parser");
@@ -50,6 +52,7 @@ app.use("/center", CenterRouter);
 app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
 app.use("/sellerProducts",  sellerProducts);
+app.use("/product", productRouter);
 app.use("/auth", authRouter);
 
 app.use("/customer", customerRouter);
