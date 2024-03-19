@@ -3,7 +3,7 @@ const SellerProducts = require("../../models/sellerPartnership/SellerProducts.js
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const { verifySeller } = require("../../utils/veryfyToken.js");
-const emailSender = require('../../emailSender');
+const emailSender = require('../../emailSender.js');
 
 //CREATE - Add new seller seller
 router.route("/addSeller").post(async (req, res) => {
