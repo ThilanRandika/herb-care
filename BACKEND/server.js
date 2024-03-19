@@ -10,13 +10,21 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 
 app.use(cors());
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
+
+const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
+const RefundRouter = require("./routes/consultation/refunds.js");
+const AvailabilityRouter = require("./routes/consultation/availabilities.js");
+const SpecialistRouter = require("./routes/consultation/specialists.js");
+const CenterRouter = require("./routes/consultation/centers.js");
 
 const customerRouter = require( "./routes/user/customer.js" );
 
 const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
 const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
 const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
+
+const productRouter = require("./routes/inventory/inventoryManagers.js");
 const authRouter = require( "./routes/auth.js" );
 
 const cookieParser = require("cookie-parser");
@@ -33,10 +41,18 @@ mongoose.connect(URL, {
 app.use(cookieParser());
 
 
+app.use("/consultAppointment", ConsultAppointmentsRouter);
+app.use("/refund", RefundRouter);
+app.use("/availability", AvailabilityRouter);
+app.use("/specialist", SpecialistRouter);
+app.use("/center", CenterRouter);
+
+
 
 app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
 app.use("/sellerProducts",  sellerProducts);
+app.use("/product", productRouter);
 app.use("/auth", authRouter);
 
 app.use("/customer", customerRouter);
