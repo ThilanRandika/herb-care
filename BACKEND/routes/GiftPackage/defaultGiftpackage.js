@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let DefaultGiftPack = require("../../modles/GiftPackage/defaultGiftpackage");
+let DefaultGiftPack = require("../../models/GiftPackage/defaultGiftpackage");
 
 // From gift package adding form, by Staff
 // Create default gift packagesand add them
