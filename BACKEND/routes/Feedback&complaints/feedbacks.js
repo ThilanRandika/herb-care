@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Feedback = require("../models/feedback");
+const Feedback = require("../../models/Feedback&Complaints/feedback");
 const multer = require('multer');
 const path = require('path');
 
@@ -25,7 +25,7 @@ const upload = multer({ storage });
 // http://localhost:8070/feedback/add
 router.route('/add').post(upload.single('image'), async (req, res) => {
   try {
-    const { userId, orderId, productId, giftPackageId, ratings, message } = req.body;
+    const { Customer, Order, Product, giftPackageOrder, ratings, message } = req.body;
 
     // Check if an image was uploaded
     const image = req.file ? req.file.filename : null;
@@ -39,10 +39,10 @@ router.route('/add').post(upload.single('image'), async (req, res) => {
     
     // Insert feedback
     const feedback = new Feedback({
-      userId,
-      orderId,
-      productId,
-      giftPackageId,
+      Customer,
+      Order,
+      Product,
+      giftPackageOrder,
       ratings,
       message,
       image
@@ -98,9 +98,9 @@ router.route('/add').post(upload.single('image'), async (req, res) => {
 
 //Read - Display user dashboard
 // http://localhost:8070/feedback/get/:id
-router.get('/get/:userId', async (req, res) => {
+router.get('/get/:Customer', async (req, res) => {
   try {
-    const feedback = await Feedback.find({ userId: req.params.userId });
+    const feedback = await Feedback.find({ Customer: req.params.Customer });
     res.status(200).json(feedback);
   } catch (error) {
     console.error(error);
@@ -110,9 +110,9 @@ router.get('/get/:userId', async (req, res) => {
 
 //Read - Display under the product
 //http://localhost:8070/feedback/get/:productId
-router.get('/product/:productId', async (req, res) => {
+router.get('/product/:Product', async (req, res) => {
   try {
-    const feedback = await Feedback.find({ productId: req.params.productId });
+    const feedback = await Feedback.find({ Product: req.params.Product });
     res.status(200).json(feedback);
   } catch (error) {
     console.error(error);
@@ -122,9 +122,9 @@ router.get('/product/:productId', async (req, res) => {
 
 //Read - Display under the product
 //http://localhost:8070/feedback/
-router.get('/gift/:giftPackageId', async (req, res) => {
+router.get('/gift/:giftPackageOrder', async (req, res) => {
   try {
-    const feedback = await Feedback.find({ giftPackageId: req.params.giftPackageId });
+    const feedback = await Feedback.find({ giftPackageOrder: req.params.giftPackageOrder });
     res.status(200).json(feedback);
   } catch (error) {
     console.error(error);
@@ -168,14 +168,14 @@ router.route('/delete/:id').delete(async (req, res) => {
 router.route('/update/:id').put(async (req, res) => {
   try {
     const feedbackId = req.params.id;
-    const { userId, orderId, productId, giftPackageId, ratings, message, image } = req.body;
+    const { Customer, Order, Product, giftPackageOrder, ratings, message, image } = req.body;
 
     // Update feedback entry
     await Feedback.findByIdAndUpdate(feedbackId, {
-      userId,
-      orderId,
-      productId,
-      giftPackageId,
+      Customer,
+      Order,
+      Product,
+      giftPackageOrder,
       ratings,
       message,
       image

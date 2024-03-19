@@ -3,25 +3,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const feedbackSchema = new Schema({
-  userId: {
+  Customer: {
     type : String,
     // type: mongoose.Schema.Types.ObjectId,
     // ref: "Customer",
     required: true
   },
-  orderId: {
+  Order: {
     type : String,
     // type: mongoose.Schema.Types.ObjectId,
     // ref: "order",
     required: true
   },
-  productId: {
+  Product: {
     type : String,
     // type: mongoose.Schema.Types.ObjectId,
     // ref: "product",
     required: false
   },
-  giftPackageId: {
+  giftPackageOrder: {
     type : String,
     // type: mongoose.Schema.Types.ObjectId,
     // ref: "customizeGift",

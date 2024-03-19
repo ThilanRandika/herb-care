@@ -29,11 +29,11 @@ connection.once("open", ()=> {
 
 })
 
-const feedbackRouter = require("./routes/feedbacks.js");
+const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
 //http://localhost:8070/feedback
 app.use("/feedback",feedbackRouter);
 
-const complaintsRouter = require("./routes/complaintses.js");
+const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
 //http://localhost:8070/complaints
 app.use("/complaints",complaintsRouter);
 

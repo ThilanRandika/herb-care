@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Complaints = require('../models/complaints');
+const Complaints = require('../../models/Feedback&Complaints/complaints');
 //const Order = require('../models/order');
 
 // http://localhost:8070/feedback/add
