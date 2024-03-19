@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Seller = require("../../models/sellerPartnership/Seller.js");
-const Product = require("../../models/Product.js");
+const Product = require("../../models/inventory/Product.js");
 const SellerBag = require("../../models/sellerPartnership/SellerBag.js");
 const { verifySellerToOther } = require("../../utils/veryfyToken.js");
 
