@@ -1,4 +1,4 @@
-//const Product = require("../../models/Product.js");
+const Product = require("../../models/inventory/Product.js");
 const SellerProducts = require("../../models/sellerPartnership/SellerProducts.js");
 const { verifySellerToOther } = require("../../utils/veryfyToken.js");
 
