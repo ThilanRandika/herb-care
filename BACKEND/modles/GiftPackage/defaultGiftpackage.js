@@ -14,14 +14,16 @@ const defaultGiftPackSchema = new mongoose.Schema(
             required: true
         },
 
-        //products selected by customer
+        /*
+        //products in the package
         products: [
             {
               product: { type: mongoose.Types.ObjectId, ref: "Product" },
-              Name: String,
+              quantity: Number,
               pricePerItem: Number,
             },
         ],
+        */
 
         //total price of the package
         totalPrice: {
