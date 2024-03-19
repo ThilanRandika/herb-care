@@ -3,28 +3,28 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const complaintsSchema = new Schema({
-    userId: {
-        type : String,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "Customer",
+    Customer: {
+        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Customer",
         required: true
       },
-      orderId: {
-        type : String,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "order",
+      Oreder: {
+        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order",
         required: true
       },
-      productId: {
-        type : String,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "product",
+      Product: {
+        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
         required: false
       },
-      giftPackageId: {
-        type : String,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "customizeGift",
+      giftPackageOrder: {
+        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "giftPackageOrder",
         required: false
       },
       complaintsName: {
