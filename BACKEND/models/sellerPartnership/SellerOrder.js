@@ -3,13 +3,13 @@ const mongoose = require("mongoose");
 const sellerOrderSchema = new mongoose.Schema(
   {
     sellerId: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       ref: "seller",
     },
     //quantity,  product, price per item
     products: [
       {
-        product: { type: mongoose.Types.ObjectId, ref: "product" },
+        product: { type: mongoose.Types.ObjectId, ref: "Product" },
         quantity: Number,
         pricePerItem: Number,
       },
@@ -34,7 +34,7 @@ const sellerOrderSchema = new mongoose.Schema(
     },
     returnProducts: [
       {
-        product: { type: mongoose.Types.ObjectId, ref: "product" },
+        product: { type: mongoose.Types.ObjectId, ref: "Product" },
         quantity: Number,
       }
     ],
