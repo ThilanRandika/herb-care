@@ -1,23 +1,19 @@
 import "./specialistList.css";
 import SpecialistCard from "../../../components/consultation/specialistCard/SpecialistCard";
 import { useEffect, useState } from "react";
+import axios from 'axios';
 
 function SpecialistList() {
 
   const [specialists, setSpecialists] = useState([]);
 
   useEffect(()=>{
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8070/specialist/all');
-        const data = await response.json();
-        setSpecialists(data);
-      } catch (error) {
-        console.error('Error in etching data', error);
-      }
-    };
-
-    fetchData();
+    
+    axios.get('http://localhost:8070/specialist/all')
+    .then((res) => {
+      setSpecialists(res.data);
+    })
+    .catch((error) => console.error(error));
 
 
   }, []);
