@@ -9,6 +9,7 @@ import Home from "./pages/common/home/Home";
 import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory_Dashboard";
 import Dashboard from "./pages/sellerPartnership/Home/Dashboard";
 import HomeConsultation from "./pages/consultation/home-consultation/HomeConsultation";
+import DashboardSpecialist from "./pages/consultation/dashboardSpecialist/DashboardSpecialist";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
         <Route path="/" element={<Home/>}></Route>
         <Route path="/Inventory_Dashboard" element={<Inventory_Dashboard/>}></Route>
         <Route path="/sellerPartnership" element={<Dashboard/>}></Route>
+        
         <Route path="/consultation" element={<HomeConsultation/>}></Route>
+        <Route path="/dashboardSpecialist/*" element={<DashboardSpecialist/>}></Route>
       </Routes>
 
     </BrowserRouter>
