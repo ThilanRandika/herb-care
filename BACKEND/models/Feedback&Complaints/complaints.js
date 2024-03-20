@@ -3,28 +3,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const complaintsSchema = new Schema({
-    Customer: {
-        
+      Customer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Customer",
         required: true
       },
-      Oreder: {
-        
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Order",
+      Order: {
+        type:String,
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "Order",
         required: true
       },
       Product: {
-        
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
+        type:String,
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "Product",
         required: false
       },
       giftPackageOrder: {
-        
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "giftPackageOrder",
+        type : String,
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "giftPackageOrder",
         required: false
       },
       complaintsName: {
@@ -42,7 +41,7 @@ const complaintsSchema = new Schema({
       status: {
         type: String,
         required: true,
-        enum: ["pending", "accepted", "rejected"],
+        enum: ["pending", "accepted"],
         default: "pending"
       },
 },

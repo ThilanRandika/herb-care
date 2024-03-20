@@ -4,9 +4,8 @@ const Schema = mongoose.Schema;
 
 const feedbackSchema = new Schema({
   Customer: {
-    type : String,
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: "Customer",
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Customer",
     required: true
   },
   Order: {
