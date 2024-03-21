@@ -81,6 +81,23 @@ const router = require("express").Router();
       res.status(500).json({ message: "Failed to retrieve appointments" });
     }
   });
+
+
+    // Get all incomplete appointments for a specific specialist
+  router.route("/getIncompleteAppointments/:specialistId").get(async (req, res) => {
+    try {
+      const appointments = await ConsultAppointment.find({
+        specialist: req.params.specialistId,
+        status: { $ne: "completed" }, // Excludes appointments with status "completed"
+      });
+      res.status(200).json(appointments);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Failed to retrieve incomplete appointments" });
+    }
+  });
+
+
   
   // Get a specific appointment by ID
   router.route("/getAppointment/:id").get(async (req, res) => {

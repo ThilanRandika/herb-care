@@ -4,11 +4,35 @@ import './navBarSpecialistDashBoard.css';
 function NavBarSpecialistDashBoard() {
   return (
     <>
-    <div className="navBar">
-      <Link to="/dashboardSpecialist/" >dashboard</Link><br />
-      <Link to="/dashboardSpecialist/appointmentRequests" >appointment requests</Link><br />
-      <Link to="/dashboardSpecialist/appointmentsHistory" >History</Link>
-    </div>
+      <div className="col-lg-3 left-column">
+        <ul className="nav flex-column">
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              to={"/dashboardSpecialist/"}
+              aria-current="page"
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              to={"/dashboardSpecialist/appointmentRequests"}
+            >
+              appointment requests
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              to={"/dashboardSpecialist/appointments"}
+            >
+              Appointments
+            </Link>
+          </li>
+        </ul>
+      </div>
     </>
   )
 }
