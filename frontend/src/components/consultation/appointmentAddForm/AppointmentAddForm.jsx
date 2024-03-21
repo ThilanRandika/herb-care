@@ -8,6 +8,7 @@ function AppointmentAddForm() {
   const [date, setDate] = useState("");
   const [specialist, setSpecialist] = useState("");
   const [patient, setPatient] = useState("");
+  const [center, setCenter] = useState("");
   const navigator = useNavigate();
 
   const submit = (e) => {
@@ -15,7 +16,8 @@ function AppointmentAddForm() {
     const newAppointment = {
       date: date,
       specialist: specialist,
-      patient: patient
+      patient: patient,
+      center: center
     }
     console.log(newAppointment)
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
@@ -29,7 +31,7 @@ function AppointmentAddForm() {
     <div className='AppointmentAddForm'>
         <form onSubmit={submit}>
             <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
+                <label for="date" className="form-label">Date</label>
                 <input type="date" class="form-control" id="date" onChange={(e)=> setDate(e.target.value) } />
             </div>
             <div class="mb-3">
@@ -37,8 +39,12 @@ function AppointmentAddForm() {
                 <input type="text" class="form-control" id="specialist" onChange={(e)=> setSpecialist(e.target.value) } />
             </div>
             <div class="mb-3">
-                <label for="patient" class="form-label">Patient</label>
-                <input type="text" class="form-control" id="patient" onChange={(e)=>  setPatient(e.target.value) } />
+                <label for="patient" class="form-label">patient</label>
+                <input type="text" class="form-control" id="patient" onChange={(e)=> setPatient(e.target.value) } />
+            </div>
+            <div class="mb-3">
+                <label for="center" class="form-label">center</label>
+                <input type="text" class="form-control" id="center" onChange={(e)=> setCenter(e.target.value) } />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             </form>

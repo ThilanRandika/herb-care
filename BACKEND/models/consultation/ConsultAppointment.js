@@ -19,7 +19,6 @@ const ConsultAppointmentSchema = new Schema(
     center: {
       type: Schema.Types.ObjectId,
       ref: "Center",
-      required: true,
     },
     status: {
       type: String,

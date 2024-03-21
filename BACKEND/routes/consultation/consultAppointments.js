@@ -3,11 +3,15 @@ const { verifyToOther } = require("../../utils/veryfyToken.js");
 const router = require("express").Router();
 
 // CREATE - Consultation Appointment
-router.route("/add").post(verifyToOther, async (req, res) => {
-  try {
-    const userId = req.person.userId;
-    const newConsultAppointment = new ConsultAppointment({...req.body, patient: userId});
-      const savedConsultAppointment = await newConsultAppointment.save();
+// router.route("/add").post(verifyToOther, async (req, res) => {
+//   try {
+//     const userId = req.person.userId;
+//     const newConsultAppointment = new ConsultAppointment({...req.body, patient: userId});
+//       const savedConsultAppointment = await newConsultAppointment.save();
+  router.route("/add").post(async (req, res) => {
+    const newconsultAppointment = new ConsultAppointment(req.body);
+    try {
+      const savedConsultAppointment = await newconsultAppointment.save();
       res.status(200).json(savedConsultAppointment);
     } catch (err) {
       console.log(err);
