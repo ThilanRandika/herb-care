@@ -9,12 +9,14 @@ function HomeConsultation() {
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
 
   return (
-    <div className="homeConsultation">
-      <Header />
-      <SpecialistList setSelectedSpecialist={setSelectedSpecialist} />
-      <AppointmentAddForm selectedSpecialist={selectedSpecialist} />
 
-    </div>
+    <>
+      <div className="homeConsultation">
+        <Header />
+        <SpecialistList setSelectedSpecialist={setSelectedSpecialist} />
+        <AppointmentAddForm selectedSpecialist={selectedSpecialist} />
+      </div>
+    </>
   )
 }
 

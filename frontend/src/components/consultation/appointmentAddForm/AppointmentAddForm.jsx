@@ -21,7 +21,7 @@ function AppointmentAddForm(props) {
     }
     console.log(newAppointment)
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
-      navigator('../');
+      navigator('../myConsultations');
     }).catch((err)=>{
       console.error(err);
     })
