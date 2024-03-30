@@ -3,7 +3,7 @@ import SpecialistCard from "../../../components/consultation/specialistCard/Spec
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
-function SpecialistList() {
+function SpecialistList(props) {
 
   const [specialists, setSpecialists] = useState([]);
 
@@ -18,7 +18,9 @@ function SpecialistList() {
 
   }, []);
 
-
+  const handleSelectSpecialist = (specialist) => {
+    props.setSelectedSpecialist(specialist); // Update selected specialist ID state when a specialist is selected
+  };
 
   return (
     <div className="specialistList">
@@ -28,7 +30,10 @@ function SpecialistList() {
       </header>
         <div className="horizontalSpecialistList">
           {specialists.map((specialist)=>(
-            <SpecialistCard name={specialist.specialistName} speciality={specialist.speciality} ratings={specialist.rating}/>
+            <SpecialistCard 
+              key={specialist._id} 
+              specialist={specialist}
+              onSelect={handleSelectSpecialist} />
           ))}
         </div>
     </div>

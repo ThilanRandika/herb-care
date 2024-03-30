@@ -3,10 +3,10 @@ import './appointmentAddForm.css'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 
-function AppointmentAddForm() {
+
+function AppointmentAddForm(props) {
 
   const [date, setDate] = useState("");
-  const [specialist, setSpecialist] = useState("");
   const [patient, setPatient] = useState("");
   const [center, setCenter] = useState("");
   const navigator = useNavigate();
@@ -15,7 +15,7 @@ function AppointmentAddForm() {
     e.preventDefault();
     const newAppointment = {
       date: date,
-      specialist: specialist,
+      specialist: props.selectedSpecialist._id,
       patient: patient,
       center: center
     }
@@ -30,24 +30,36 @@ function AppointmentAddForm() {
   return (
     <div className='AppointmentAddForm'>
         <form onSubmit={submit}>
-            <div class="mb-3">
-                <label for="date" className="form-label">Date</label>
-                <input type="date" class="form-control" id="date" onChange={(e)=> setDate(e.target.value) } />
+          {props.selectedSpecialist && (
+            <div className="selectedSpecialistDetails">
+              <div className="mb-3">
+                <label htmlFor="specialist" className="form-label">Specialist</label>
+                <input type="text" className="form-control" id="specialist" value={props.selectedSpecialist.specialistName} readOnly />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="specialist_speciality" className="form-label">Speciality</label>
+                <input type="text" className="form-control" id="specialist_speciality" value={props.selectedSpecialist.speciality} readOnly />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="specialist_ratings" className="form-label">Ratings</label>
+                <input type="text" className="form-control" id="specialist_ratings" value={props.selectedSpecialist.rating} readOnly />
+              </div>
             </div>
-            <div class="mb-3">
-                <label for="specialist" class="form-label">Specialist</label>
-                <input type="text" class="form-control" id="specialist" onChange={(e)=> setSpecialist(e.target.value) } />
-            </div>
-            <div class="mb-3">
-                <label for="patient" class="form-label">patient</label>
-                <input type="text" class="form-control" id="patient" onChange={(e)=> setPatient(e.target.value) } />
-            </div>
-            <div class="mb-3">
-                <label for="center" class="form-label">center</label>
-                <input type="text" class="form-control" id="center" onChange={(e)=> setCenter(e.target.value) } />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+          )}  
+          <div className="mb-3">
+              <label htmlFor="date" className="form-label">Date</label>
+              <input type="date" className="form-control" id="date" onChange={(e)=> setDate(e.target.value) } />
+          </div>
+          <div className="mb-3">
+              <label htmlFor="patient" className="form-label">patient</label>
+              <input type="text" className="form-control" id="patient" onChange={(e)=> setPatient(e.target.value) } />
+          </div>
+          <div className="mb-3">
+              <label htmlFor="center" className="form-label">center</label>
+              <input type="text" className="form-control" id="center" onChange={(e)=> setCenter(e.target.value) } />
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
     </div>
   )
 }
