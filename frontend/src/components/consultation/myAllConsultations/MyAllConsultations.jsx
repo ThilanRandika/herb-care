@@ -29,6 +29,7 @@ function MyAllConsultations(props) {
                 <th scope="col">Date</th>
                 <th scope="col">Center</th>
                 <th scope="col">Specialist</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@ function MyAllConsultations(props) {
                   <td>{appointment.date}</td>
                   <td>{appointment.center}</td>
                   <td>{appointment.specialist}</td>
+                  <td>{appointment.status}</td>
                 </tr>
               ))}
             </tbody>

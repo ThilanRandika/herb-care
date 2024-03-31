@@ -32,6 +32,7 @@ function Appointments(props) {
             <th scope="col">No.</th>
             <th scope="col">Date</th>
             <th scope="col">Center</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@ function Appointments(props) {
               <td>{index + 1}</td>
               <td>{appointment.date}</td>
               <td>{appointment.center}</td>
+              <td>{appointment.status}</td>
             </tr>
           ))}
         </tbody>

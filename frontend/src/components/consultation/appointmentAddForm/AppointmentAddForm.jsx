@@ -7,7 +7,6 @@ import {useNavigate} from 'react-router-dom'
 function AppointmentAddForm(props) {
 
   const [date, setDate] = useState("");
-  const [patient, setPatient] = useState("");
   const [center, setCenter] = useState("");
   const navigator = useNavigate();
 

@@ -13,9 +13,30 @@ function MyOngoingConsultations(props) {
                 setonGoingAppointments(res.data);
             })
             .catch((err) => {
-                console.log('Error getting pending appointments', err);
+                console.log('Error getting ongoing appointments', err);
             });
     }, []);
+
+
+    const handleCancel = (id) => {
+      axios.put(`http://localhost:8070/consultAppointment/cancelAppointment/${id}`)
+          .then((res) => {
+              console.log("Request cancelled successfully", res.data);
+              axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${props.customerID}`)
+                .then((res) => {
+                    console.log("Got data: ", res.data);
+                    setonGoingAppointments(res.data);
+                })
+                .catch((err) => {
+                    console.log('Error getting ongoing appointments', err);
+                });
+          })
+          .catch((err) => {
+              // Handle error, show error message, etc.
+              console.error('Error cancelling appointment', err);
+          });
+    };
+
 
   return (
     <>
@@ -29,6 +50,7 @@ function MyOngoingConsultations(props) {
                 <th scope="col">Date</th>
                 <th scope="col">Center</th>
                 <th scope="col">Specialist</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -38,8 +60,11 @@ function MyOngoingConsultations(props) {
                   <td>{appointment.date}</td>
                   <td>{appointment.center}</td>
                   <td>{appointment.specialist}</td>
+                  <td>{appointment.status}</td>
                   <td>
-                    <button variant="primary">Cancel</button>
+                    {appointment.status === "Pending" && (
+                      <button variant="primary" onClick={ () => handleCancel(appointment._id) } >Cancel</button>
+                    )}
                   </td>
                 </tr>
               ))}

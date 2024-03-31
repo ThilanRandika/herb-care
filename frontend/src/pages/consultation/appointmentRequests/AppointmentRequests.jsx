@@ -61,6 +61,7 @@ function AppointmentRequests(props) {
                         <th scope="col">No.</th>
                         <th scope="col">Date</th>
                         <th scope="col">Center</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +70,7 @@ function AppointmentRequests(props) {
                             <td>{index + 1}</td>
                             <td>{request.date}</td>
                             <td>{request.center}</td>
+                            <td>{request.status}</td>
                           
                             <td>
                                 <button variant="primary" onClick={() => handleReject(request._id)}>Reject</button>
