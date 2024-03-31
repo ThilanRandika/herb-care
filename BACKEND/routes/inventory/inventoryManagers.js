@@ -1,30 +1,47 @@
 const router = require("express").Router();
+const multer = require('multer');
 const Product = require("../../models/inventory/Product");
 
 
 
-// Route to add a product
-router.post('/add', async (req, res) => {
-    try {
-        // Extract product data from request body
-        const { name, category,description,price,Manufactured_price,discount,quantity,image_url,expireDate,manufactureDate,ingredients} = req.body;
-
-        // Create a new product instance
-        const newProduct = new Product({
-            name, category,description,price,Manufactured_price,discount,quantity,image_url,expireDate,manufactureDate,ingredients
-        });
-
-        // Save the new product to the database
-        await newProduct.save();
-
-        // Respond with success message
-        res.json({ message: 'Product added successfully' });
-    } catch (error) {
-        // Handle errors
-        console.error('Error adding product:', error);
-        res.status(500).json({ error: 'Internal server error' });
+// Multer configuration
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/') // Specify the folder where you want to save the uploaded files
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname) // Keep the original file name
     }
-});
+  });
+  
+  const upload = multer({ storage: storage });
+  
+  // Route to add a product
+  router.post('/add', upload.single('image_url'), async (req, res) => {
+      try {
+          // Extract product data from request body
+          const { name, category, description, price, Manufactured_price, discount, quantity, expireDate, manufactureDate, ingredients } = req.body;
+  
+          // Get the file path
+          const image_url = req.file.path;
+  
+          // Create a new product instance
+          const newProduct = new Product({
+              name, category, description, price, Manufactured_price, discount, quantity, image_url, expireDate, manufactureDate, ingredients
+          });
+  
+          // Save the new product to the database
+          await newProduct.save();
+  
+          // Respond with success message
+          res.json({ message: 'Product added successfully' });
+      } catch (error) {
+          // Handle errors
+          console.error('Error adding product:', error);
+          res.status(500).json({ error: 'Internal server error' });
+      }
+  });
+  
 
 //Get all products
 router.route("/").get(async (req, res) => {

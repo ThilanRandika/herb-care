@@ -1,6 +1,26 @@
 .container {
-    margin-top: 20px;
-  }
-  
-  /* Add more styling as needed */
-  
+  width: 50%;
+  margin: auto;
+  margin-top: 50px; /* Adjust the top margin as needed */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.col-form-label {
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}

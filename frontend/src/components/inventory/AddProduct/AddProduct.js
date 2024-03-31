@@ -39,7 +39,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   try {
     // Post the form data to the backend
-    await axios.post("http://localhost:8027/Product/add", formData);
+    await axios.post("http://localhost:8070/Product/add", formData);
 
     // If successful, display a success message
     alert("Product Added Successfully");
