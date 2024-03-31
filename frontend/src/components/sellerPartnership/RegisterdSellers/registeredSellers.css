@@ -1,0 +1,42 @@
+/* RegisteredSellers.css */
+
+.registered-sellers-container {
+    margin-top: 5%;
+}
+
+.registered-sellers-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.registered-sellers-table th,
+.registered-sellers-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.registered-sellers-table th {
+    background-color: #f2f2f2;
+}
+
+.registered-sellers-table td {
+    background-color: #fff;
+}
+
+.registered-sellers-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.registered-sellers-table tr:hover {
+    background-color: #ddd;
+}
+
+.registered-sellers-table a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.registered-sellers-table a:hover {
+    text-decoration: underline;
+}

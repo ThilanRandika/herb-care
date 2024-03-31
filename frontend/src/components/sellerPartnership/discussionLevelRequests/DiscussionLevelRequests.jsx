@@ -1,17 +1,16 @@
+// DiscussionLevelRequests.jsx
+
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './discussionLevelRequests.css'; // Import the CSS file for styling
 
 function DiscussionLevelRequests() {
-
-    const  [discussions, setDiscussions] = useState([]);
-    
-    // Fetches the requests
+    const [discussions, setDiscussions] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8070/sellerPartnershipRequest/allSellerReqDis')
             .then((res) => {
-                console.log("Got data: ", res.data);
                 setDiscussions(res.data);
             })
             .catch((err) => {
@@ -19,26 +18,22 @@ function DiscussionLevelRequests() {
             });
     }, []);
 
-
-  return (
-    <>
-        <div className="container">
+    return (
+        <div className="discussion-level-requests-container">
             <h1>Discussion Level Partnership Requests</h1>
-            
-            <table class="table table-striped" style={{marginTop:"5%"}}>
-                <thead> 
+            <table className="discussion-level-requests-table">
+                <thead>
                     <tr>
                         <th scope="col">No.</th>
                         <th scope="col">Seller Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Contact NUmber</th>
+                        <th scope="col">Contact Number</th>
                         <th scope="col">Company Name</th>
                         <th scope="col">Company Description</th>
-                        <th scope="col"></th>
                         <th scope="col">Company Website</th>
                         <th scope="col">Tax Id</th>
-                        <th scope="col"></th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,23 +46,18 @@ function DiscussionLevelRequests() {
                             <td>{discussion.contact_num}</td>
                             <td>{discussion.company}</td>
                             <td>{discussion.company_discription ? discussion.company_discription : "N/A"}</td>
-                            <td><a href={discussion.website} rel="noreferrer" target='_blank' >Visit Site</a></td>
-                            <td>{discussion.website ? discussion.website : "N/A"}</td>
+                            <td><a href={discussion.website} rel="noreferrer" target='_blank'>Visit Site</a></td>
                             <td>{discussion.taxId ? discussion.taxId : "N/A"}</td>
                             <td>
-                            <Link to={`/SellerManagerDashboard/sellerRegisterForm/${discussion._id}`}>Approve</Link>
-                                <button variant="primary" /*onClick={() => handleApprove(discussion._id)}*/>Reject</button>
-                                {/* Show button only if the user is an admin */}
-                                {//props.userType === 'admin' && 
-                                    }
+                                <Link to={`/SellerManagerDashboard/sellerRegisterForm/${discussion._id}`} className="approve-link">Approve</Link>
+                                <button className="reject-btn" /*onClick={() => handleReject(discussion._id)}*/>Reject</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
         </div>
-    </>
-  )
+    );
 }
 
-export default DiscussionLevelRequests
+export default DiscussionLevelRequests;
