@@ -4,7 +4,7 @@ import SpecialistList from "../../../components/consultation/specialistList/Spec
 import AppointmentAddForm from "../../../components/consultation/appointmentAddForm/AppointmentAddForm";
 import { useState } from "react";
 
-function HomeConsultation() {
+function HomeConsultation(props) {
 
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
 
@@ -14,7 +14,7 @@ function HomeConsultation() {
       <div className="homeConsultation">
         <Header />
         <SpecialistList setSelectedSpecialist={setSelectedSpecialist} />
-        <AppointmentAddForm selectedSpecialist={selectedSpecialist} />
+        <AppointmentAddForm selectedSpecialist={selectedSpecialist} customerID={props.customerID} />
       </div>
     </>
   )

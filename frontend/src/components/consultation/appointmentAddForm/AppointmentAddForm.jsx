@@ -16,7 +16,7 @@ function AppointmentAddForm(props) {
     const newAppointment = {
       date: date,
       specialist: props.selectedSpecialist._id,
-      patient: patient,
+      patient: props.customerID,
       center: center
     }
     console.log(newAppointment)
@@ -26,6 +26,7 @@ function AppointmentAddForm(props) {
       console.error(err);
     })
   };
+
 
   return (
     <div className='AppointmentAddForm'>
@@ -52,7 +53,7 @@ function AppointmentAddForm(props) {
           </div>
           <div className="mb-3">
               <label htmlFor="patient" className="form-label">patient</label>
-              <input type="text" className="form-control" id="patient" onChange={(e)=> setPatient(e.target.value) } />
+              <input type="text" className="form-control" id="patient" value={props.customerID} readOnly/>
           </div>
           <div className="mb-3">
               <label htmlFor="center" className="form-label">center</label>
