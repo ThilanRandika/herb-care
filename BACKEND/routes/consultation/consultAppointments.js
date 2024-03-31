@@ -56,11 +56,12 @@ const router = require("express").Router();
   });
   
   // Get all appointments for a specific customer
-  router.route("/getAppointments/:customerId").get(async (req, res) => {
+  router.route("/getAppointmentsForCus/:customerId").get(async (req, res) => {
     try {
       const appointments = await ConsultAppointment.find({
         patient: req.params.customerId,
       });
+      console.log("patient : ", req.params.customerId);
       res.status(200).json(appointments);
     } catch (err) {
       console.log(err);
