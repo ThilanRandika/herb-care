@@ -25,8 +25,9 @@ function PartnershipRequest(props) {
     try {
       await axios.post("http://localhost:8070/sellerPartnershipRequest/add", sellerRequest);
       console.log(sellerRequest)
-      alert("Requst Added Successfully");
+      // alert("Requst Added Successfully");
       setSellerRequest("");
+      props.setPopupVisible(false);
     } catch (error) {
       alert(error.message);
     }

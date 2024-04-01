@@ -4,6 +4,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const { verifySeller } = require("../../utils/veryfyToken.js");
 const emailSender = require('../../emailSender.js');
+const PartnershipRequest = require("../../models/sellerPartnership/SellerPartnershipRequest.js");
 
 //CREATE - Add new seller seller
 router.route("/addSeller").post(async (req, res) => {
@@ -19,6 +20,15 @@ router.route("/addSeller").post(async (req, res) => {
       sellerId: savedSeller.sellerId,
     }));
     const savedSellerProducts = await SellerProducts.insertMany(sellerProducts);
+
+    // Remove from partnership request table
+    const requestId = req.body.seller.requestId;
+    try{
+      await PartnershipRequest.findByIdAndDelete(requestId);
+    }catch(err){
+      console.log(err)
+    }
+    
 
     async function sendCustomEmail() {
       const receiver = savedSeller.toJSON().email;
