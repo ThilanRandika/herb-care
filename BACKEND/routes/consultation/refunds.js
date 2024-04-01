@@ -84,6 +84,30 @@ router.put("/completeRefund/:id", async (req, res) => {
 
 
 
+// Check if there is any existing refund for a specific appointment ID
+router.get("/checkExistingRefund/:appointmentId", async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+
+    // Check if the appointment exists
+    const appointment = await ConsultAppointment.findById(appointmentId);
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    // Check if there are any existing refunds for this appointment
+    const existingRefunds = await Refund.find({ appointment: appointmentId });
+    if (existingRefunds.length > 0) {
+      return res.status(200).json({ hasRefund: true, refunds: existingRefunds });
+    } else {
+      return res.status(200).json({ hasRefund: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to check existing refund" });
+  }
+});
+
 
 
 module.exports = router;

@@ -83,6 +83,34 @@ const router = require("express").Router();
     }
   });
 
+  // Get all cancelled appointments for a specific customer
+  router.route("/cancelledAppointments/:customerId").get(async (req, res) => {
+    try {
+      const appointments = await ConsultAppointment.find({
+        patient: req.params.customerId,
+        status: "Cancelled",
+      });
+      res.status(200).json(appointments);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve appointments" });
+    }
+  });
+
+  // Get all rejected appointments for a specific customer
+  router.route("/rejectedAppointments/:customerId").get(async (req, res) => {
+    try {
+      const appointments = await ConsultAppointment.find({
+        patient: req.params.customerId,
+        status: "Rejected",
+      });
+      res.status(200).json(appointments);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve appointments" });
+    }
+  });
+
 
     // Get all incomplete appointments for a specific specialist
   router.route("/getIncompleteAppointments/:specialistId").get(async (req, res) => {
