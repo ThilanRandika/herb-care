@@ -5,6 +5,7 @@ import PendingSellerRequests from "../../../components/sellerPartnership/pending
 import DiscussionLevelRequests from "../../../components/sellerPartnership/discussionLevelRequests/DiscussionLevelRequests";
 import RegisteredSellers from "../../../components/sellerPartnership/RegisterdSellers/RegisteredSellers";
 import SellerRegisterForm from "../../../components/sellerPartnership/sellerRegisterForm/SellerRegisterForm";
+import SellerDetailEdit from "../../../components/sellerPartnership/sellerDetailEdit/SellerDetailEdit";
 
 function SellerManagerDashboard() {
   return (
@@ -28,6 +29,7 @@ function SellerManagerDashboard() {
               />
               <Route exact path="/registeredSellers" element={<RegisteredSellers />} />
               <Route exact path="/sellerRegisterForm/:id" element={<SellerRegisterForm />} />
+              <Route exact path="/sellerUpdateForm/:id" element={<SellerDetailEdit />} />
             </Routes>
           </div>
         </div>

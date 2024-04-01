@@ -18,6 +18,16 @@ function DiscussionLevelRequests() {
             });
     }, []);
 
+    const handleReject = (id) => {
+        axios.delete(`http://localhost:8070/sellerPartnershipRequest/rejectReq/${id}`)
+            .then((res) => {
+                setDiscussions(prevRequests => prevRequests.filter(request => request._id !== id));
+            })
+            .catch((err) => {
+                console.error('Error rejecting seller request', err);
+            });
+    };
+
     return (
         <div className="discussion-level-requests-container">
             <h1>Discussion Level Partnership Requests</h1>
@@ -50,7 +60,7 @@ function DiscussionLevelRequests() {
                             <td>{discussion.taxId ? discussion.taxId : "N/A"}</td>
                             <td>
                                 <Link to={`/SellerManagerDashboard/sellerRegisterForm/${discussion._id}`} className="approve-link">Approve</Link>
-                                <button className="reject-btn" /*onClick={() => handleReject(discussion._id)}*/>Reject</button>
+                                <button className="reject-btn" onClick={() => handleReject(discussion._id)}>Reject</button>
                             </td>
                         </tr>
                     ))}

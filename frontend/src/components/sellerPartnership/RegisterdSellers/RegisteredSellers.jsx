@@ -3,6 +3,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './registeredSellers.css'; // Import the CSS file for styling
+import { Link } from 'react-router-dom';
 
 function RegisteredSellers() {
     const [sellers, setSellers] = useState([]);
@@ -16,6 +17,18 @@ function RegisteredSellers() {
                 console.log('Error getting registered sellers', err);
             });
     }, []);
+
+
+    const handleReject = (id) => {
+        axios.delete(`http://localhost:8070/seller/deleteSeller/${id}`)
+            .then((res) => {
+                setSellers(prevSellers => prevSellers.filter(seller => seller.sellerId !== id));
+            })
+            .catch((err) => {
+                console.error('Error rejecting seller request', err);
+            });
+    };
+
 
     return (
         <div className="registered-sellers-container">
@@ -46,6 +59,10 @@ function RegisteredSellers() {
                             <td>{seller.company_discription ? seller.company_discription : "N/A"}</td>
                             <td><a href={seller.website} rel="noreferrer" target='_blank'>Visit Site</a></td>
                             <td>{seller.taxId ? seller.taxId : "N/A"}</td>
+                            <td>
+                                <Link to={`/SellerManagerDashboard/sellerUpdateForm/${seller.sellerId}`} className="approve-link"> Edit</Link>
+                                <button className="reject-btn" onClick={() => handleReject(seller.sellerId)}>Remove</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
