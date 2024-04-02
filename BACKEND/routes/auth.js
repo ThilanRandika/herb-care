@@ -121,7 +121,7 @@ router.route('/login').post(async (req, res) => {
             httpOnly: true,
         })
         .status(200)
-        .json({ /*redirect: redirectURL*/  userType });
+        .json({ /*redirect: redirectURL*/  userDetails });
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: 'Internal server error' });
