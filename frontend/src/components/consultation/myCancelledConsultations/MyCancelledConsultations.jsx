@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './myCancelledConsultations.css';
 import axios from 'axios';
+import RefundAddForm from '../refundAddForm/RefundAddForm';
+import { Link } from 'react-router-dom';
 
 function MyCancelledConsultations(props) {
 
@@ -52,6 +54,7 @@ function MyCancelledConsultations(props) {
             <thead>
               <tr>
                 <th scope="col">No.</th>
+                <th scope="col">ID</th>
                 <th scope="col">Date</th>
                 <th scope="col">Center</th>
                 <th scope="col">Specialist</th>
@@ -62,6 +65,7 @@ function MyCancelledConsultations(props) {
               {cancelledAppointments.map((appointment, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
+                  <td>{appointment._id}</td>
                   <td>{appointment.date}</td>
                   <td>{appointment.center}</td>
                   <td>{appointment.specialist}</td>
@@ -70,7 +74,9 @@ function MyCancelledConsultations(props) {
                     {dataFetched && refundStatuses[index] !== undefined && (
                       <>
                         {!refundStatuses[index] && (
-                          <button variant="primary">Apply refund</button>
+                        <>
+                        <Link to={`../refunds/addForm/${appointment._id}`} className="btn btn-primary" >Apply refund</Link>
+                        </>
                         )}
                         {refundStatuses[index] && (
                           <span>Refund already requested</span>

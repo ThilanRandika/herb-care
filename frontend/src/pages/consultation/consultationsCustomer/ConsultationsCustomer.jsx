@@ -24,7 +24,7 @@ function ConsultationsCustomer() {
         <Routes>
             <Route path="/" element={<HomeConsultation customerID={customerID} />}></Route>
             <Route path="/myConsultations" element={<MyConsultations customerID={customerID} />}></Route>
-            <Route path="/refunds" element={<RefundsCustomer customerID={customerID}/>}></Route>
+            <Route path="/refunds/*" element={<RefundsCustomer customerID={customerID}/>}></Route>
         </Routes>
     </>
   )
