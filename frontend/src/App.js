@@ -9,6 +9,7 @@ import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory
 import SellerHome from "./pages/sellerPartnership/Home/SellerHome";
 import SellerManagerDashboard from "./pages/sellerPartnership/managerDashboard/SellerManagerDashboard";
 import LoginPage from "./pages/common/login/LoginPage";
+import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/SellerStaffDashboard";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/Inventory_Dashboard" element={<Inventory_Dashboard/>}></Route>
         <Route path="/sellerHome/*" element={<SellerHome/>}></Route>
         <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard/>}></Route>
+        <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard/>}></Route>
         <Route path="/login" element={<LoginPage/>}></Route>
       </Routes>
     </BrowserRouter>

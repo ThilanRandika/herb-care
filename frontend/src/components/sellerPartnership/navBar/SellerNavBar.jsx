@@ -35,7 +35,7 @@ function SellerNavBar() {
                 </Link>
                 <Link
                 className="nav-link"
-                to={""}
+                to={"/sellerHome/orders"}
                 aria-current="page"
                 >
                 Orders
