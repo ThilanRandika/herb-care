@@ -1,3 +1,4 @@
+const Product = require("../../models/inventory/Product.js");
 const SellerBag = require("../../models/sellerPartnership/SellerBag.js");
 const { verifySellerToOther } = require("../../utils/veryfyToken.js");
 const router = require("express").Router();
@@ -27,7 +28,35 @@ router.route('/allBag').get(verifySellerToOther, async (req, res) => {
 
         const bagItems = await SellerBag.find({sellerId: sellerId});
 
-        res.status(200).json(bagItems);
+    const productIds = bagItems.map((product) => product.product_id);
+
+    const mergedItems = [];
+
+    for (const productId of productIds) {
+      const product = await Product.findById(productId);
+
+      console.log(productId);
+
+      if (product) {
+        const bagItem = await SellerBag.findOne({
+          product_id: productId,
+          sellerId: sellerId,
+        });
+
+        mergedItems.push({
+          ...product._doc,
+          item_id: bagItem._id,
+          quantity: bagItem.quantity,
+          price: bagItem.price,
+          totalPrice: bagItem.totalPrice,
+        });
+
+      } else {
+        console.log(`Product with ID ${productId} not found.`);
+      }
+    }
+
+        res.status(200).json(mergedItems);
     }catch(err){
         console.log(err);
     }

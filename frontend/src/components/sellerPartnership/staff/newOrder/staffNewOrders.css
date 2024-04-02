@@ -1,0 +1,45 @@
+/* Style your table as needed */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* tr:hover {
+    background-color: #ffffff;
+  } */
+  
+  .acceptButton {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .acceptButton:hover {
+    background-color: #45a049;
+  }
+
+  .rejectButton {
+    padding: 8px 16px;
+    background-color: #ea3939;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .rejectButton:hover {
+    background-color: #df0404;
+  }
