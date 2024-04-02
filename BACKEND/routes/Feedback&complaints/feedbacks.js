@@ -3,10 +3,6 @@ const Feedback = require("../../models/Feedback&Complaints/feedback");
 const multer = require('multer');
 const path = require('path');
 const { verifyToOther } = require("../../utils/veryfyToken");
-const upload = multer({ dest: 'uploads/' });
-
-//Create - Feedback submition
-// http://localhost:8070/feedback/add
 
 // Image uploading
 const storage = multer.diskStorage({
@@ -17,19 +13,23 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });
+ 
+const upload = multer({ storage: storage });
 
-router.route('/add/:productId').post(verifyToOther,upload.single('image'), async (req, res) => {
+router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (req, res) => {
   try {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
 
     const feedback = new Feedback({
       Customer: req.person.userId, // Assuming you have user authentication middleware
       Order: req.body.Order,
       Product: req.params.productId,
-      giftPackageOrder: req.params.giftPackageOrderId,
+      //giftPackageOrder: req.params.giftPackageOrderId,
       ratings: req.body.ratings,
       message: req.body.message,
-      image: req.file.path,
-  
+      image: req.files.map(file => file.path) // Save multiple file paths in an array
     });
     
     await feedback.save();
@@ -66,17 +66,17 @@ router.get('/product/:Product', async (req, res) => {
   }
 });
 
-//Read - Display under the product
-//http://localhost:8070/feedback/
-router.get('/gift/:giftPackageOrder', async (req, res) => {
-  try {
-    const feedback = await Feedback.find({ giftPackageOrder: req.params.giftPackageOrder });
-    res.status(200).json(feedback);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Server Error');
-  }
-});
+// //Read - Display under the giftPackage
+// //http://localhost:8070/feedback/
+// router.get('/gift/:giftPackageOrder', async (req, res) => {
+//   try {
+//     const feedback = await Feedback.find({ giftPackageOrder: req.params.giftPackageOrder });
+//     res.status(200).json(feedback);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Server Error');
+//   }
+// });
 
 //Read - Display staff & manager dashbord
 // http://localhost:8070/feedback/get

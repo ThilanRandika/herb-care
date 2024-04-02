@@ -4,7 +4,7 @@ const Complaints = require('../../models/Feedback&Complaints/complaints');
 const { verifyToOther } = require("../../utils/veryfyToken");
 
 
-// http://localhost:8070/feedback/add/productId
+// http://localhost:8070/complaints/add/productId
 router.route('/add/:productId').post(verifyToOther, async (req, res) => {
     try {
 
@@ -12,7 +12,7 @@ router.route('/add/:productId').post(verifyToOther, async (req, res) => {
             Customer: req.person.userId,
             Order: req.body.Order,
             Product: req.params.productId,
-            giftPackageOrder: req.params.giftPackageOrder,
+            //giftPackageOrder: req.params.giftPackageOrder,
             complaintsName: req.body.complaintsName,
             email: req.body.email,
             description: req.body.description

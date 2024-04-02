@@ -12,7 +12,7 @@ const complaintsSchema = new Schema({
         type:String,
         // type: mongoose.Schema.Types.ObjectId,
         // ref: "Order",
-        required: true
+        required: false
       },
       Product: {
         type:String,
@@ -20,12 +20,12 @@ const complaintsSchema = new Schema({
         // ref: "Product",
         required: false
       },
-      giftPackageOrder: {
-        type : String,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "giftPackageOrder",
-        required: false
-      },
+      // giftPackageOrder: {
+      //   type : String,
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   ref: "giftPackageOrder",
+      //   required: false
+      // },
       complaintsName: {
         type: String,
         required: true

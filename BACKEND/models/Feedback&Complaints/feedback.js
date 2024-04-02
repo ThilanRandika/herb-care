@@ -20,14 +20,15 @@ const feedbackSchema = new Schema({
     // ref: "product",
     required: false
   },
-  giftPackageOrder: {
-    type : String,
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: "customizeGift",
-    required: false
-  },
+  //giftPackageOrder: {
+  //  type : String,
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "customizeGift",
+  //  required: false
+  //},
   ratings: {
     type: Number,
+    default: 0,
     required: true
   },
   message: {
@@ -35,7 +36,7 @@ const feedbackSchema = new Schema({
     required: true
   },
   image: {
-    type: String,
+    type: [String],
     required: false
   }
 }, { timestamps: true });
