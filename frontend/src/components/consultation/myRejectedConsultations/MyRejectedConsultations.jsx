@@ -1,6 +1,7 @@
 import './myRejectedConsultations.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function MyRejectedConsultations(props) {
   const  [rejectedAppointments, setRejectedAppointments] = useState([]);
@@ -69,7 +70,9 @@ function MyRejectedConsultations(props) {
                     {dataFetched && refundStatuses[index] !== undefined && (
                       <>
                         {!refundStatuses[index] && (
-                          <button variant="primary">Apply refund</button>
+                          <>
+                          <Link to={`../refunds/addForm/${appointment._id}`} className="custom-link" >Apply refund</Link>
+                          </>
                         )}
                         {refundStatuses[index] && (
                           <span>Refund already requested</span>
