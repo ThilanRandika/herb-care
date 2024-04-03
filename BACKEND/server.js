@@ -8,8 +8,13 @@ const app = express();
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8070;
-
-app.use(cors());
+// Allow requests from the specified origin
+const corsOptions = {
+    origin: 'http://localhost:3000', // Change this to your frontend URL
+    credentials: true, // Include credentials (cookies, authorization headers, etc.)
+  };
+  
+  app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
