@@ -27,6 +27,8 @@ function MyRefunds(props) {
                 <th scope="col">No.</th>
                 <th scope="col">appointment</th>
                 <th scope="col">Refund Date</th>
+                <th scope="col">Refund Type</th>
+                <th scope="col">Refund Amount</th>
                 <th scope="col">bank Account Details</th>
                 <th scope="col">Status</th>
               </tr>
@@ -37,6 +39,8 @@ function MyRefunds(props) {
                   <td>{index + 1}</td>
                   <td>{refund.appointment}</td>
                   <td>{refund.refundDateTime}</td>
+                  <td>{refund.refundType}</td>
+                  <td>{refund.refundAmount}</td>
                   <td>{refund.bankAccountDetails}</td>
                   <td>{refund.refundStatus}</td>
                 </tr>

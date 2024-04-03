@@ -10,6 +10,7 @@ import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory
 import Dashboard from "./pages/sellerPartnership/Home/Dashboard";
 import ConsultationsCustomer from "./pages/consultation/consultationsCustomer/ConsultationsCustomer";
 import DashboardSpecialist from "./pages/consultation/dashboardSpecialist/DashboardSpecialist";
+import ConsultationStaff from "./pages/consultation/consultationStaff/ConsultationStaff";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         
         <Route path="/consultation/*" element={<ConsultationsCustomer/>}></Route>
         <Route path="/dashboardSpecialist/*" element={<DashboardSpecialist/>}></Route>
+        <Route path="/consultationStaff/*" element={<ConsultationStaff/>}></Route>
       </Routes>
 
     </BrowserRouter>
