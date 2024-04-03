@@ -12,10 +12,9 @@ import SellerManagerDashboard from "./pages/sellerPartnership/managerDashboard/S
 import LoginPage from "./pages/common/login/LoginPage";
 import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/SellerStaffDashboard";
 
-
-import Complaints_Dashboard from "./pages/Feedback&complaints/Complaints";
-import Display_user from "./pages/Feedback&complaints/DisplayUser";
-import Display_Staff from "./pages/Feedback&complaints/DisplayStaff";
+import Complaints_Dashboard from "./pages/Feedback&complaints/Complaints/Complaints";
+import Display_user from "./pages/Feedback&complaints/Complaints/DisplayUser";
+import Display_Staff from "./pages/Feedback&complaints/Complaints/DisplayStaff";
 
 
 function App() {
@@ -34,8 +33,6 @@ function App() {
         <Route path="/DisplayUser" element={<Display_user/>}></Route>
         <Route path="/DisplayStaff" element={<Display_Staff/>}></Route>
       </Routes>
-      
-      
       
     </BrowserRouter>
   );
