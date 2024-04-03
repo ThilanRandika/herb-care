@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PartnershipRequest from "../../../components/sellerPartnership/partnershipRequest/PartnershipRequest";
 import ComplaintForm from '../../../components/Feedback&Complaints/Complaints/Add/AddComplaints';
 import UserDashboard from '../../../components/Feedback&Complaints/Complaints/Display/DisplayUser/UserDisplay';
+import StaffDashboard from '../../../components/Feedback&Complaints/Complaints/Display/DisplayStaff/StaffDisplay'
 import "./home.css";
 import Navbar from '../../../components/common/navbar/navBar';
 
@@ -10,6 +11,7 @@ function Home() {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [isComplaintPopupVisible, setComplaintPopupVisible] = useState(false);
   const [isComplaintPopupDisplayUser, setComplaintPopupDisplayUser] = useState(false);
+  const [isComplaintPopupDisplayStaff, setComplaintPopupDisplayStaff] = useState(false);
 
   const togglePopup = () => {
     setPopupVisible(!isPopupVisible);
@@ -19,6 +21,9 @@ function Home() {
   };
   const toggleComplaintUserDisplay = () => {
     setComplaintPopupDisplayUser(!isComplaintPopupDisplayUser);
+  };
+  const toggleComplaintStaffDisplay = () => {
+    setComplaintPopupDisplayStaff(!isComplaintPopupDisplayStaff);
   };
 
   return (
@@ -37,8 +42,13 @@ function Home() {
 
       <br></br>
 
-      <button onClick={toggleComplaintUserDisplay}>DisplayUser</button>
+      <button onClick={toggleComplaintUserDisplay}>Display User</button>
       {isComplaintPopupDisplayUser && (<UserDashboard  trigger={isComplaintPopupDisplayUser} setPopupVisible={setComplaintPopupDisplayUser}></UserDashboard>)}
+
+      <br></br>
+
+      <button onClick={toggleComplaintStaffDisplay}>Display Staff</button>
+      {isComplaintPopupDisplayStaff && (<StaffDashboard trigger={isComplaintPopupDisplayStaff} setPopupVisible={setComplaintPopupDisplayStaff}></StaffDashboard>)}
     </>
   )
 }

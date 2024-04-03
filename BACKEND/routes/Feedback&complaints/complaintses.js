@@ -56,27 +56,33 @@ router.route('/add/:productId').post(verifyToOther, async (req, res) => {
 
 
 // Update the status of a complaint by ID
-// PUT http://localhost:8070/complaints/update/:id
-router.put('/update/:id', verifyToOther, async (req, res) => {
-    try {
-        const { id } = req.params;
-        const updatedComplaint = await Complaints.findByIdAndUpdate(id, { status: 'accepted' }, { new: true });
+// PUT http://localhost:8070/complaints/:id
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
 
-        if (!updatedComplaint) {
-            return res.status(404).json({ message: 'Complaint not found' });
-        }
+    // Find the complaint by ID and update its status
+    const updatedComplaint = await Complaints.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true } // Return the updated complaint
+    );
 
-        res.json({ message: 'Complaint status updated successfully', complaint: updatedComplaint });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+    if (!updatedComplaint) {
+      return res.status(404).json({ message: 'Complaint not found' });
     }
+
+    res.json(updatedComplaint);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 
 
 //Read - Display user dashboard
-// http://localhost:8070/complaints/get/:id
+// http://localhost:8070/complaints/get
 router.route("/get").get(verifyToOther, async (req, res) => {
   try {
 
@@ -91,15 +97,16 @@ router.route("/get").get(verifyToOther, async (req, res) => {
 
 //Read - Display staff & manager dashbord
 // http://localhost:8070/complaints/get
-router.route('/get').get(async (req, res) => {
-    try {
-      const complaints = await Complaints.find();//.populate('userId orderId productId customizeGiftId defaultGiftId');
-      res.status(200).json({ complaints });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
+router.route('/').get((req, res) => {
+  Complaints.find().then((complaints) => {
+    res.json(complaints);
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json({ message: 'Internal server error' });
   });
+});
+
+
 
 
 
