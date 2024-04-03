@@ -190,4 +190,17 @@ router.get("/customerRefunds/:customerID", async (req, res) => {
 
 
 
+// Get all refunds with refundStatus "Pending"
+router.get("/pendingRefunds", async (req, res) => {
+  try {
+    const pendingRefunds = await Refund.find({ refundStatus: "Pending" });
+    res.status(200).json(pendingRefunds);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch pending refunds" });
+  }
+});
+
+
+
 module.exports = router;
