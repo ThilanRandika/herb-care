@@ -14,6 +14,7 @@ import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/Selle
 
 
 import Complaints_Dashboard from "./pages/Feedback&complaints/Complaints";
+import Display_user from "./pages/Feedback&complaints/DisplayUser";
 
 
 function App() {
@@ -29,8 +30,11 @@ function App() {
         <Route path="/login" element={<LoginPage/>}></Route>
 
         <Route path="/Complaints" element={<Complaints_Dashboard/>}></Route>
-
+        <Route path="/DisplayUser" element={<Display_user/>}></Route>
       </Routes>
+      
+      
+      
     </BrowserRouter>
   );
 }

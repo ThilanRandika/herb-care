@@ -1,0 +1,39 @@
+.com_containor {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.com_containor h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.com_input1,
+.com_input2,
+.com_input3,
+.com_textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #0e7014;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.com_inputbttn {
+    padding: 10px 20px;
+    background-color: #1c912e;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.com_inputbttn:hover {
+    background-color: #02fe23;
+}

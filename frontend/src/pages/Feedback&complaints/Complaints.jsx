@@ -1,5 +1,5 @@
 import React from 'react'
-import AddComplaints from '../../components/Feedback&Complaints/Complaints/AddComplaints'
+import AddComplaints from '../../components/Feedback&Complaints/Complaints/Add/AddComplaints'
 
 function Complaints_Dashboard() {
   return (

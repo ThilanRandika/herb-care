@@ -77,15 +77,17 @@ router.put('/update/:id', verifyToOther, async (req, res) => {
 
 //Read - Display user dashboard
 // http://localhost:8070/complaints/get/:id
-router.get('/get/:Customer', async (req, res) => {
-    try {
-      const complaints = await Complaints.find({ Customer: req.params.Customer });
-      res.status(200).json(complaints);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Server Error');
-    }
-  });
+router.route("/get").get(verifyToOther, async (req, res) => {
+  try {
+
+    const complaints = await Complaints.find({ Customer: req.person.userId });
+    res.status(200).json(complaints);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+
 
 //Read - Display staff & manager dashbord
 // http://localhost:8070/complaints/get
