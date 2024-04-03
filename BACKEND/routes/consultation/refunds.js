@@ -163,4 +163,31 @@ router.route("/refundInfo/:appointmentId").get(async (req, res) => {
 
 
 
+// Get all refunds for a specific customer
+router.get("/customerRefunds/:customerID", async (req, res) => {
+  try {
+    const { customerID } = req.params;
+
+    // Find all appointments for the customer
+    const appointments = await ConsultAppointment.find({ patient: customerID });
+
+    if (appointments.length === 0) {
+      return res.status(404).json({ message: "No appointments found for the customer" });
+    }
+
+    // Extract appointment IDs
+    const appointmentIds = appointments.map(appointment => appointment._id);
+
+    // Find all refunds for the customer's appointments
+    const refunds = await Refund.find({ appointment: { $in: appointmentIds } });
+
+    res.status(200).json(refunds);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to retrieve refunds for the customer" });
+  }
+});
+
+
+
 module.exports = router;
