@@ -100,12 +100,12 @@ router.route('/rejectReq/:id').delete(async(req, res) => {
 });
 
 //READ - get all details from PartnershipRequest to register form
-router.route('/add/:id').post(async (req,res) => {
+router.route('/add/:id').get(async (req,res) => {
     const requestId = req.params.id;
     try{
         // get request table detals and delete it and save it to seller table
         const requestDetails = await PartnershipRequest.findById(requestId);
-        await PartnershipRequest.findByIdAndDelete(requestId);
+        //await PartnershipRequest.findByIdAndDelete(requestId);
         res.status(200).json(requestDetails);
     } catch(err){
         console.log(err);
