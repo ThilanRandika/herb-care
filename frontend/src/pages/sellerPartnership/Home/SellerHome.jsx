@@ -6,6 +6,7 @@ import SellerNavBar from '../../../components/sellerPartnership/navBar/SellerNav
 import SellerBagPage from '../sellerBag/SellerBagPage'
 import SellerCheckoutPage from '../chekeckout/SellerCheckoutPage'
 import SellerOrdersPage from '../orders/SellerOrdersPage'
+import SellerSingleOrderPage from '../singleOrder/SellerSingleOrderPage'
 
 function SellerHome() {
   return (
@@ -18,6 +19,7 @@ function SellerHome() {
       <Route path="/bag" element={<SellerBagPage/>}/>
       <Route path="/checkout" element={<SellerCheckoutPage/>}/>
       <Route path="/orders" element={<SellerOrdersPage/>}/>
+      <Route path="/singleOrder/:orderId" element={<SellerSingleOrderPage/>}/>
     </Routes>
     </>
   )

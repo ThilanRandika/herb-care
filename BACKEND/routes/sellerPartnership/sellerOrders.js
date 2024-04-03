@@ -422,4 +422,126 @@ router.route('/completedOrders').get( async (req, res) => {
 });
 
 
+router.route("/sellerPendingOrders").get(verifySellerToOther, async(req, res) => {
+    try{
+        const sellerId = req.person.sellerId;
+
+        const orders = await SellerOrder.find({sellerId: sellerId, status:"pending"}); 
+        
+        if(!orders){ throw new Error("No Pending Orders Found");}
+
+            const formattedOrders = orders.map(order => {
+                return {
+                    id: order._id, // Assuming shipping address is customer name
+                    price: `$${order.totalPrice}`, // Formatting price
+                    paymentMethod: order.payment,
+                    status: order.status,
+                    date: order.createdAt.toISOString(), // Using createdAt timestamp
+                };
+            });
+          
+
+          res.status(201).send(formattedOrders);
+    }catch(err) {
+        console.log(err);
+    }
+});
+
+
+//get one order detail
+router.route('/getOneOrder/:orderId').get(verifySellerToOther, async (req, res) => {
+    try {
+        // Find pending orders from SellerOrder model
+        const sellerId = req.person.sellerId;
+        const orderId = req.params.orderId;
+        console.log(orderId)
+        const singleOrder = await SellerOrder.findById(orderId).populate('products.product');
+        const seller = await Seller.findOne({sellerId: sellerId});
+        console.log(singleOrder)
+
+        // Format the data according to the provided format
+        const formattedOrder = {
+            
+                id: singleOrder._id, // Assuming MongoDB automatically generates IDs for SellersingleOrder
+                customer: singleOrder.sellerId,
+                emial: seller.email,
+                address: singleOrder.shippingAddress, // Assuming sellerId represents the customer in this context
+                date: singleOrder.createdAt, // Assuming createdAt represents the singleOrder date
+                price: singleOrder.totalPrice.toFixed(2), // Assuming totalPrice is a number
+                status: singleOrder.status,
+                orderDetails: singleOrder.products.map(product => ({
+                    productName: product.product.name,
+                    quantity: product.quantity,
+                    price: product.pricePerItem.toFixed(2),
+                    totalPrice: (product.quantity * product.pricePerItem).toFixed(2)
+                }))
+           
+        }
+
+        res.status(200).json(formattedOrder);
+    } catch (error) {
+        console.error('Error fetching single orders:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+router.route("/ongoingOrders").get(verifySellerToOther, async (req, res) => {
+    try {
+        const sellerId = req.person.sellerId;
+
+        const orders = await SellerOrder.find({
+            sellerId: sellerId,
+            status: { $in: ["processing", "readyToDelivery", "onDelivery"] }
+        });
+
+        if (!orders || orders.length === 0) {
+            return res.status(404).json({ message: "No pending orders found" });
+        }
+
+        const formattedOrders = orders.map(order => {
+            return {
+                id: order._id, // Assuming shipping address is customer name
+                price: `$${order.totalPrice}`, // Formatting price
+                paymentMethod: order.payment,
+                status: order.status,
+                date: order.createdAt.toISOString(), // Using createdAt timestamp
+            };
+        });
+
+        res.status(200).json(formattedOrders);
+    } catch (err) {
+        console.error("Error fetching pending orders:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
+router.route("/sellerCompletedOrders").get(verifySellerToOther, async(req, res) => {
+    try{
+        const sellerId = req.person.sellerId;
+
+        const orders = await SellerOrder.find({sellerId: sellerId, status:"completed"}); 
+        
+        if(!orders){ throw new Error("No Completed Orders Found");}
+
+            const formattedOrders = orders.map(order => {
+                return {
+                    id: order._id, // Assuming shipping address is customer name
+                    price: `$${order.totalPrice}`, // Formatting price
+                    paymentMethod: order.payment,
+                    status: order.status,
+                    date: order.createdAt.toISOString(), // Using createdAt timestamp
+                };
+            });
+          
+
+          res.status(201).send(formattedOrders);
+    }catch(err) {
+        console.log(err);
+    }
+});
+
+
+
 module.exports = router;
