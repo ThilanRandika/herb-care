@@ -45,9 +45,9 @@ function MyRejectedConsultations(props) {
   return (
     <>
     
-        <div className="container">
+        <div>
             <h3>Rejected Consultations</h3>
-            <table className="table table-striped" style={{ marginTop: "5%" }}>
+            <table style={{ marginTop: "5%" }}>
             <thead>
               <tr>
                 <th scope="col">No.</th>

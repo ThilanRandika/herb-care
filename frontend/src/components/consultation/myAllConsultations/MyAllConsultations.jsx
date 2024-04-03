@@ -19,34 +19,33 @@ function MyAllConsultations(props) {
 
   return (
     <>
-
-        <div className="container">
+      <div>
         <h3>All Consultations</h3>
-          <table className="table table-striped" style={{ marginTop: "5%" }}>
-            <thead>
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Date</th>
-                <th scope="col">Center</th>
-                <th scope="col">Specialist</th>
-                <th scope="col">Status</th>
+        <table style={{ marginTop: "5%" }}>
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Date</th>
+              <th scope="col">Center</th>
+              <th scope="col">Specialist</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Appointments.map((appointment, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{appointment.date}</td>
+                <td>{appointment.center}</td>
+                <td>{appointment.specialist}</td>
+                <td>{appointment.status}</td>
               </tr>
-            </thead>
-            <tbody>
-              {Appointments.map((appointment, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{appointment.date}</td>
-                  <td>{appointment.center}</td>
-                  <td>{appointment.specialist}</td>
-                  <td>{appointment.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
+
   )
 }
 

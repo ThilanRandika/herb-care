@@ -36,9 +36,9 @@ function StaffRefundRequests() {
 
     return (
         <>
-            <div className="container">
+            <div>
                 <h3>Refund Requests</h3>
-                <table className="table table-striped" style={{ marginTop: "5%" }}>
+                <table style={{ marginTop: "5%" }}>
                     <thead>
                         <tr>
                             <th scope="col">No.</th>

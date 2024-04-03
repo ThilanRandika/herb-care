@@ -82,27 +82,27 @@ function RefundAddForm() {
 
       <form onSubmit={Submit}>
           <div className="mb-3">
-            <label htmlFor="appointmentID" className="form-label">Appointment ID</label>
+            <label htmlFor="appointmentID" >Appointment ID</label>
             <input type="text" className="form-control" id="appointmentID" value={appointment._id} readOnly name="appointment" />
           </div>
           <div className="mb-3">
-            <label htmlFor="appointmentAmount" className="form-label">Appointment Amount</label>
+            <label htmlFor="appointmentAmount" >Appointment Amount</label>
             <input type="text" className="form-control" id="appointmentAmount" value={appointment.appointmentAmount} readOnly name="appointmentAmount" />
           </div>
           <div className="mb-3">
-            <label htmlFor="bankAccountDetails" className="form-label">Bank Account Details</label>
+            <label htmlFor="bankAccountDetails" >Bank Account Details</label>
             <textarea type="text" className="form-control" id="bankAccountDetails" onChange={addChange} name="bankAccountDetails" />
           </div>
 
           <div className="refundInfo">
-            <label htmlFor="refundAmount" className="form-label">Refund Amount</label>
+            <label htmlFor="refundAmount" >Refund Amount</label>
             <input type="text" className="form-control" id="refundAmount" value={refundInfo.refundAmount} readOnly name="refundAmount" />
 
-            <label htmlFor="refundType" className="form-label">Refund Type</label>
+            <label htmlFor="refundType" >Refund Type</label>
             <input type="text" className="form-control" id="refundType" value={refundInfo.refundType} readOnly name="refundType" />
           </div>
 
-          <button type="submit" className="btn btn-primary"> Submit </button>
+          <button type="submit"> Submit </button>
       </form>
     
     </>

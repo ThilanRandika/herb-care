@@ -52,10 +52,10 @@ function AppointmentRequests(props) {
   return (
     <>
 
-      <div className="container" >
+      <div>
             <h1>Pending Consultation Appointments</h1>
             
-            <table class="table table-striped" style={{marginTop:"5%"}}>
+            <table style={{marginTop:"5%"}}>
                 <thead> 
                     <tr>
                         <th scope="col">No.</th>

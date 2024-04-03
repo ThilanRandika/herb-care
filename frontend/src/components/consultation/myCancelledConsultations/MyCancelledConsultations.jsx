@@ -48,9 +48,9 @@ function MyCancelledConsultations(props) {
   return (
     <>
     
-        <div className="container">
+        <div>
             <h3>Cancelled Consultations</h3>
-            <table className="table table-striped" style={{ marginTop: "5%" }}>
+            <table style={{ marginTop: "5%" }}>
             <thead>
               <tr>
                 <th scope="col">No.</th>
@@ -75,7 +75,7 @@ function MyCancelledConsultations(props) {
                       <>
                         {!refundStatuses[index] && (
                         <>
-                        <Link to={`../refunds/addForm/${appointment._id}`} className="btn btn-primary" >Apply refund</Link>
+                        <Link to={`../refunds/addForm/${appointment._id}`} className="custom-link" >Apply refund</Link>
                         </>
                         )}
                         {refundStatuses[index] && (
