@@ -1,0 +1,12 @@
+.specialist {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 20%;
+  }
+  
+  .specialistImg {
+    width: 100%;
+    object-fit: cover;
+  }
+  

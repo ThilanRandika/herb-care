@@ -1,8 +1,14 @@
 const ConsultAppointment = require("../../models/consultation/ConsultAppointment.js");
+const { verifyToOther } = require("../../utils/veryfyToken.js");
 const router = require("express").Router();
 
 // CREATE - Consultation Appointment
-router.route("/add").post(async (req, res) => {
+// router.route("/add").post(verifyToOther, async (req, res) => {
+//   try {
+//     const userId = req.person.userId;
+//     const newConsultAppointment = new ConsultAppointment({...req.body, patient: userId});
+//       const savedConsultAppointment = await newConsultAppointment.save();
+  router.route("/add").post(async (req, res) => {
     const newconsultAppointment = new ConsultAppointment(req.body);
     try {
       const savedConsultAppointment = await newconsultAppointment.save();
@@ -50,11 +56,12 @@ router.route("/add").post(async (req, res) => {
   });
   
   // Get all appointments for a specific customer
-  router.route("/getAppointments/:customerId").get(async (req, res) => {
+  router.route("/getAppointmentsForCus/:customerId").get(async (req, res) => {
     try {
       const appointments = await ConsultAppointment.find({
         patient: req.params.customerId,
       });
+      console.log("patient : ", req.params.customerId);
       res.status(200).json(appointments);
     } catch (err) {
       console.log(err);
@@ -75,6 +82,51 @@ router.route("/add").post(async (req, res) => {
       res.status(500).json({ message: "Failed to retrieve appointments" });
     }
   });
+
+  // Get all cancelled appointments for a specific customer
+  router.route("/cancelledAppointments/:customerId").get(async (req, res) => {
+    try {
+      const appointments = await ConsultAppointment.find({
+        patient: req.params.customerId,
+        status: "Cancelled",
+      });
+      res.status(200).json(appointments);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve appointments" });
+    }
+  });
+
+  // Get all rejected appointments for a specific customer
+  router.route("/rejectedAppointments/:customerId").get(async (req, res) => {
+    try {
+      const appointments = await ConsultAppointment.find({
+        patient: req.params.customerId,
+        status: "Rejected",
+      });
+      res.status(200).json(appointments);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve appointments" });
+    }
+  });
+
+
+    // Get all incomplete appointments for a specific specialist
+  router.route("/getIncompleteAppointments/:specialistId").get(async (req, res) => {
+    try {
+      const appointments = await ConsultAppointment.find({
+        specialist: req.params.specialistId,
+        status: { $ne: "completed" }, // Excludes appointments with status "completed"
+      });
+      res.status(200).json(appointments);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Failed to retrieve incomplete appointments" });
+    }
+  });
+
+
   
   // Get a specific appointment by ID
   router.route("/getAppointment/:id").get(async (req, res) => {
