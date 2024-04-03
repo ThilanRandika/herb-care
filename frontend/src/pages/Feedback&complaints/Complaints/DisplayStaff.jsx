@@ -1,5 +1,5 @@
 import React from 'react'
-import StaffDisplay from '../../components/Feedback&Complaints/Complaints/Display/DisplayStaff/StaffDisplay'
+import StaffDisplay from '../../../components/Feedback&Complaints/Complaints/Display/DisplayStaff/StaffDisplay'
 
 function Display_Staff() {
   return (
