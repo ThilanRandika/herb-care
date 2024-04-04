@@ -65,7 +65,7 @@ function RefundAddForm() {
     }
     console.log(newRefund);
     axios.post('http://localhost:8070/refund/add', newRefund).then((res)=>{
-      navigator('../');
+      navigator('../../myConsultations');
     }).catch((err)=>{
       console.error(err);
     })

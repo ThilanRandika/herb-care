@@ -20,7 +20,8 @@ function AppointmentAddForm(props) {
       date: date,
       specialist: props.selectedSpecialist._id,
       patient: user.userDetails,
-      center: center
+      center: center,
+      appointmentAmount: props.selectedSpecialist.consultationFee
     }
     console.log(newAppointment)
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
@@ -47,6 +48,10 @@ function AppointmentAddForm(props) {
               <div className="mb-3">
                 <label htmlFor="specialist_ratings" className="form-label">Ratings</label>
                 <input type="text" className="form-control" id="specialist_ratings" value={props.selectedSpecialist.rating} readOnly />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="consultationFee" className="form-label">Consultation Fee</label>
+                <input type="text" className="form-control" id="consultationFee" value={props.selectedSpecialist.consultationFee} readOnly />
               </div>
             </div>
           )}  
