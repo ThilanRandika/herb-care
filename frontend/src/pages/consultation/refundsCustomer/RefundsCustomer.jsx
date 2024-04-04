@@ -3,7 +3,8 @@ import './refundsCustomer.css';
 import RefundAddForm from '../../../components/consultation/refundAddForm/RefundAddForm';
 import MyRefunds from '../../../components/consultation/myRefunds/MyRefunds';
 
-function RefundsCustomer(props) {
+
+function RefundsCustomer() {
   return (
     <>
     

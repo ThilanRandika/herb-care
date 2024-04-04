@@ -2,11 +2,13 @@ import "./homeConsultation.css";
 import Header from "../../../components/consultation/header/Header";
 import SpecialistList from "../../../components/consultation/specialistList/SpecialistList";
 import AppointmentAddForm from "../../../components/consultation/appointmentAddForm/AppointmentAddForm";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from '../../../context/AuthContext';
 
-function HomeConsultation(props) {
+function HomeConsultation() {
 
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
+  // const { user } = useContext(AuthContext); // get the customer ID from authentication context
 
   return (
 
@@ -14,7 +16,7 @@ function HomeConsultation(props) {
       <div className="homeConsultation">
         <Header />
         <SpecialistList setSelectedSpecialist={setSelectedSpecialist} />
-        <AppointmentAddForm selectedSpecialist={selectedSpecialist} customerID={props.customerID} />
+        <AppointmentAddForm selectedSpecialist={selectedSpecialist} />
       </div>
     </>
   )

@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './myRefunds.css';
 import axios from 'axios';
+import { AuthContext } from '../../../context/AuthContext';
 
 function MyRefunds(props) {
 
     const  [Refunds, setRefunds] = useState([]);
+    const { user } = useContext(AuthContext); // get the customer ID from authentication context
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/refund/customerRefunds/${props.customerID}`)
+        axios.get(`http://localhost:8070/refund/customerRefunds/${user.userDetails._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRefunds(res.data);

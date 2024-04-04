@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './myCancelledConsultations.css';
 import axios from 'axios';
 import RefundAddForm from '../refundAddForm/RefundAddForm';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext';
 
 function MyCancelledConsultations(props) {
 
   const  [cancelledAppointments, setCancelledAppointments] = useState([]);
   const [dataFetched, setDataFetched] = useState(false); // Track whether data has been fetched
   const [refundStatuses, setRefundStatuses] = useState([]); // Store refund statuses
+  const { user } = useContext(AuthContext); // get the customer ID from authentication context
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/cancelledAppointments/${props.customerID}`)
+        axios.get(`http://localhost:8070/consultAppointment/cancelledAppointments/${user.userDetails._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setCancelledAppointments(res.data);
@@ -20,7 +22,7 @@ function MyCancelledConsultations(props) {
             .catch((err) => {
                 console.log('Error getting cancelled appointments', err);
             });
-    }, [props.customerID]);
+    }, [user.userDetails._id]);
 
     useEffect(() => {
       const fetchRefundStatuses = async () => {

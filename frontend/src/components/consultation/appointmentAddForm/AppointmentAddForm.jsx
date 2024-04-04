@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useContext, useState } from "react";
+import { AuthContext } from '../../../context/AuthContext';
 import './appointmentAddForm.css'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
@@ -9,13 +10,16 @@ function AppointmentAddForm(props) {
   const [date, setDate] = useState("");
   const [center, setCenter] = useState("");
   const navigator = useNavigate();
+  const { user } = useContext(AuthContext); // get the customer ID from authentication context
+
+  console.log(user.userDetails);
 
   const submit = (e) => {
     e.preventDefault();
     const newAppointment = {
       date: date,
       specialist: props.selectedSpecialist._id,
-      patient: props.customerID,
+      patient: user.userDetails,
       center: center
     }
     console.log(newAppointment)
@@ -52,7 +56,7 @@ function AppointmentAddForm(props) {
           </div>
           <div className="mb-3">
               <label htmlFor="patient" className="form-label">patient</label>
-              <input type="text" className="form-control" id="patient" value={props.customerID} readOnly/>
+              <input type="text" className="form-control" id="patient" value={user.userDetails.customer_name} readOnly/>
           </div>
           <div className="mb-3">
               <label htmlFor="center" className="form-label">center</label>

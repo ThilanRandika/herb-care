@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './myOngoingConsultations.css'
 import axios from 'axios';
+import { AuthContext } from '../../../context/AuthContext';
 
-function MyOngoingConsultations(props) {
+function MyOngoingConsultations() {
 
     const  [onGoingAppointments, setonGoingAppointments] = useState([]);
+    const { user } = useContext(AuthContext); // get the customer ID from authentication context
+
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${props.customerID}`)
+        axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user.userDetails._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setonGoingAppointments(res.data);
@@ -22,7 +25,7 @@ function MyOngoingConsultations(props) {
       axios.put(`http://localhost:8070/consultAppointment/cancelAppointment/${id}`)
           .then((res) => {
               console.log("Request cancelled successfully", res.data);
-              axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${props.customerID}`)
+              axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user.userDetails._id}`)
                 .then((res) => {
                     console.log("Got data: ", res.data);
                     setonGoingAppointments(res.data);
