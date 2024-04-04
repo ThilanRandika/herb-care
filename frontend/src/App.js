@@ -15,6 +15,7 @@ import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/Selle
 import Complaints_Dashboard from "./pages/Feedback&complaints/Complaints/Complaints";
 import Display_user from "./pages/Feedback&complaints/Complaints/DisplayUser";
 import Display_Staff from "./pages/Feedback&complaints/Complaints/DisplayStaff";
+import Feedback_Dashboard from "./pages/Feedback&complaints/Feedback/Feedback";
 
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
         <Route path="/Complaints" element={<Complaints_Dashboard/>}></Route>
         <Route path="/DisplayUser" element={<Display_user/>}></Route>
         <Route path="/DisplayStaff" element={<Display_Staff/>}></Route>
+
+        <Route path="/Feedback" element={<Feedback_Dashboard/>}></Route>
       </Routes>
       
     </BrowserRouter>

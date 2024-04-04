@@ -3,6 +3,7 @@ import PartnershipRequest from "../../../components/sellerPartnership/partnershi
 import ComplaintForm from '../../../components/Feedback&Complaints/Complaints/Add/AddComplaints';
 import UserDashboard from '../../../components/Feedback&Complaints/Complaints/Display/DisplayUser/UserDisplay';
 import StaffDashboard from '../../../components/Feedback&Complaints/Complaints/Display/DisplayStaff/StaffDisplay'
+import FeedbackForm from '../../../components/Feedback&Complaints/Feedback/Add/AddFeedback';
 import "./home.css";
 import Navbar from '../../../components/common/navbar/navBar';
 
@@ -12,6 +13,7 @@ function Home() {
   const [isComplaintPopupVisible, setComplaintPopupVisible] = useState(false);
   const [isComplaintPopupDisplayUser, setComplaintPopupDisplayUser] = useState(false);
   const [isComplaintPopupDisplayStaff, setComplaintPopupDisplayStaff] = useState(false);
+  const [isFeedbackPopupVisible, setFeedbackPopupVisible] = useState(false);
 
   const togglePopup = () => {
     setPopupVisible(!isPopupVisible);
@@ -25,7 +27,9 @@ function Home() {
   const toggleComplaintStaffDisplay = () => {
     setComplaintPopupDisplayStaff(!isComplaintPopupDisplayStaff);
   };
-
+  const toggleFeedbackPopup = () => {
+    setFeedbackPopupVisible(!isFeedbackPopupVisible);
+  }
   return (
     <>
       <Navbar></Navbar>
@@ -49,6 +53,12 @@ function Home() {
 
       <button onClick={toggleComplaintStaffDisplay}>Display Staff</button>
       {isComplaintPopupDisplayStaff && (<StaffDashboard trigger={isComplaintPopupDisplayStaff} setPopupVisible={setComplaintPopupDisplayStaff}></StaffDashboard>)}
+
+      <br></br>
+
+      <button onClick={toggleFeedbackPopup}>Feedback</button>
+      {isFeedbackPopupVisible && (<FeedbackForm trigger={isFeedbackPopupVisible} setPopupVisible={setFeedbackPopupVisible}></FeedbackForm>)}  
+
     </>
   )
 }
