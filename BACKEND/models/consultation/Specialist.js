@@ -16,6 +16,9 @@ const SpecialistSchema = new Schema(
       min: 0,
       max: 5,
     },
+    consultationFee: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

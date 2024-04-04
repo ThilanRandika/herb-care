@@ -22,6 +22,7 @@ function SpecialistCard(props) {
         <div className="specialistInfo">
             <div className="specialistName">{ props.specialist.specialistName }</div>
             <div className="speciality">{ props.specialist.speciality }</div>
+            <div className="consultation Fee">Rs.{ props.specialist.consultationFee }</div>
             <div className="specialistRating">
                 { props.specialist.rating }/5
             </div>

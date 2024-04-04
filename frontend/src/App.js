@@ -13,8 +13,8 @@ import LoginPage from "./pages/common/login/LoginPage";
 import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/SellerStaffDashboard";
 
 import ConsultationsCustomer from "./pages/consultation/consultationsCustomer/ConsultationsCustomer";
-import DashboardSpecialist from "./pages/consultation/dashboardSpecialist/DashboardSpecialist";
-import ConsultationStaff from "./pages/consultation/consultationStaff/ConsultationStaff";
+import SpecialistInterface from "./pages/consultation/specialist/specialistInterface/SpecialistInterface";
+import ConsultationStaff from "./pages/consultation/staff/consultationStaff/ConsultationStaff";
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
         <Route path="/login" element={<LoginPage/>}></Route>
         
         <Route path="/consultation/*" element={<ConsultationsCustomer/>}></Route>
-        <Route path="/dashboardSpecialist/*" element={<DashboardSpecialist/>}></Route>
+        <Route path="/specialistInterface/*" element={<SpecialistInterface/>}></Route>
         <Route path="/consultationStaff/*" element={<ConsultationStaff/>}></Route>
       </Routes>
     </BrowserRouter>

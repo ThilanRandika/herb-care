@@ -1,14 +1,17 @@
 import './myRejectedConsultations.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext';
 
 function MyRejectedConsultations(props) {
   const  [rejectedAppointments, setRejectedAppointments] = useState([]);
   const [dataFetched, setDataFetched] = useState(false); // Track whether data has been fetched
   const [refundStatuses, setRefundStatuses] = useState([]); // Store refund statuses
+  const { user } = useContext(AuthContext); // get the customer ID from authentication context
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/rejectedAppointments/${props.customerID}`)
+        axios.get(`http://localhost:8070/consultAppointment/rejectedAppointments/${user.userDetails._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRejectedAppointments(res.data);
@@ -17,7 +20,7 @@ function MyRejectedConsultations(props) {
             .catch((err) => {
                 console.log('Error getting cancelled appointments', err);
             });
-    }, [props.customerID]);
+    }, [user.userDetails._id]);
 
     useEffect(() => {
       const fetchRefundStatuses = async () => {
@@ -45,9 +48,9 @@ function MyRejectedConsultations(props) {
   return (
     <>
     
-        <div className="container">
+        <div>
             <h3>Rejected Consultations</h3>
-            <table className="table table-striped" style={{ marginTop: "5%" }}>
+            <table style={{ marginTop: "5%" }}>
             <thead>
               <tr>
                 <th scope="col">No.</th>
@@ -69,7 +72,9 @@ function MyRejectedConsultations(props) {
                     {dataFetched && refundStatuses[index] !== undefined && (
                       <>
                         {!refundStatuses[index] && (
-                          <button variant="primary">Apply refund</button>
+                          <>
+                          <Link to={`../refunds/addForm/${appointment._id}`} className="custom-link" >Apply refund</Link>
+                          </>
                         )}
                         {refundStatuses[index] && (
                           <span>Refund already requested</span>

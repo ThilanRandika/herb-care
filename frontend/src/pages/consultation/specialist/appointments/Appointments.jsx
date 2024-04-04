@@ -24,9 +24,9 @@ function Appointments(props) {
   }, []);
 
   return (
-    <div className="container">
+    <div>
       <h1>Appointment History</h1>
-      <table className="table table-striped" style={{ marginTop: "5%" }}>
+      <table style={{ marginTop: "5%" }}>
         <thead>
           <tr>
             <th scope="col">No.</th>

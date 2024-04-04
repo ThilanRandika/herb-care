@@ -4,15 +4,15 @@ import MyAllConsultations from '../../../components/consultation/myAllConsultati
 import MyCancelledConsultations from '../../../components/consultation/myCancelledConsultations/MyCancelledConsultations';
 import MyRejectedConsultations from '../../../components/consultation/myRejectedConsultations/MyRejectedConsultations';
 
-function MyConsultations(props) {
+function MyConsultations() {
 
   return (
     <>
 
-      <MyOngoingConsultations customerID= {props.customerID}/>
-      <MyAllConsultations customerID= {props.customerID}/>
-      <MyCancelledConsultations customerID= {props.customerID} />
-      <MyRejectedConsultations  customerID ={props.customerID}/>
+      <MyOngoingConsultations />
+      <MyAllConsultations />
+      <MyCancelledConsultations />
+      <MyRejectedConsultations />
 
     </>
   )

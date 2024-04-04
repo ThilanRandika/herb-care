@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import './consultationStaff.css';
-import ConsultationStaffDashboard from '../consultationStaffDashboard/ConsultationStaffDashboard';
+import ConsultationStaffDashboard from '../../consultationStaffDashboard/ConsultationStaffDashboard';
 import StaffRefundRequests from '../staffRefundRequests/StaffRefundRequests';
 
 function ConsultationStaff() {

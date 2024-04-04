@@ -3,15 +3,16 @@ import './refundsCustomer.css';
 import RefundAddForm from '../../../components/consultation/refundAddForm/RefundAddForm';
 import MyRefunds from '../../../components/consultation/myRefunds/MyRefunds';
 
-function RefundsCustomer(props) {
+
+function RefundsCustomer() {
   return (
     <>
     
       <h3>Refunds page</h3>
 
-      <MyRefunds customerID={props.customerID} />
 
       <Routes>
+        <Route path="/myRefunds" element={<MyRefunds />} ></Route>
         <Route path="/addForm/:appointmentId" element={<RefundAddForm />} ></Route>
       </Routes>
 
