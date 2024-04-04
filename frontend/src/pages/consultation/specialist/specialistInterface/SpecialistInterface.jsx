@@ -1,8 +1,10 @@
+import './specialistInterface.css';
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppointmentRequests from '../appointmentRequests/AppointmentRequests';
 import Appointments from '../appointments/Appointments';
-import NavBarSpecialistDashBoard from '../../../components/consultation/navBarSpecialistDashBoard/NavBarSpecialistDashBoard';
+import NavBarSpecialistDashBoard from '../../../../components/consultation/specialist/navBarSpecialistDashBoard/NavBarSpecialistDashBoard';
+import SpecialistDashboard from '../specialistDashboard/SpecialistDashboard';
 
 function DashboardSpecialist() {
 
@@ -20,6 +22,7 @@ function DashboardSpecialist() {
       </div>
 
       <Routes>
+        <Route path="/" element={<SpecialistDashboard specialistID={specialistID}/>}></Route>
         <Route path="/appointmentRequests" element={<AppointmentRequests specialistID={specialistID}/>}></Route>
         <Route path="/appointments" element={<Appointments specialistID={specialistID}/>}></Route>
       </Routes>

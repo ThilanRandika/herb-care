@@ -9,7 +9,7 @@ function NavBarSpecialistDashBoard() {
           <li className="nav-item">
             <Link
               className="nav-link"
-              to={"/dashboardSpecialist/"}
+              to={"/specialistInterface/"}
               aria-current="page"
             >
               Dashboard
@@ -18,7 +18,7 @@ function NavBarSpecialistDashBoard() {
           <li className="nav-item">
             <Link
               className="nav-link"
-              to={"/dashboardSpecialist/appointmentRequests"}
+              to={"/specialistInterface/appointmentRequests"}
             >
               appointment requests
             </Link>
@@ -26,7 +26,7 @@ function NavBarSpecialistDashBoard() {
           <li className="nav-item">
             <Link
               className="nav-link"
-              to={"/dashboardSpecialist/appointments"}
+              to={"/specialistInterface/appointments"}
             >
               Appointments
             </Link>
