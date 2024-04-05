@@ -18,9 +18,9 @@ const customGiftPackSchema = new mongoose.Schema(
         //products selected by customer
         products: [
             {
-              product: { type: mongoose.Types.ObjectId, ref: "Product" },
-              Name: String,
-              pricePerItem: Number,
+              type: mongoose.Types.ObjectId, 
+              ref: "Product" ,
+              required: true
             },
         ],
 
@@ -33,19 +33,30 @@ const customGiftPackSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-// Calculate the total price before saving the document
-customGiftPackSchema.pre('save', function(next) {
+// Method to calculate total price
+customGiftPackSchema.methods.calculateTotalPrice = async function() {
     let totalPrice = 0;
 
     // Loop through the products array and sum up the prices
-    this.products.forEach(product => {
-        totalPrice += product.pricePerItem;
-    });
+    for (const productId of this.products) {
+        const product = await mongoose.model('Product').findById(productId);
+        if (product) {
+            totalPrice += product.price;
+        }
+    }
 
-    // Assign the total price to the totalPrice field
+    // Update the total price field
     this.totalPrice = totalPrice;
+};
 
-    next();
+// Calculate the total price before saving the document
+customGiftPackSchema.pre('save', async function(next) {
+    try {
+        await this.calculateTotalPrice();
+        next();
+    } catch (error) {
+        next(error);
+    }
 });
 
 const customGiftPack = mongoose.model("customizeGiftPackage",customGiftPackSchema)

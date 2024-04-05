@@ -1,52 +1,68 @@
+// http://localhost:8070/defaultGiftpackage
+
 const router = require("express").Router();
-let DefaultGiftPack = require("../../models/GiftPackage/defaultGiftpackage");
+const DefaultGiftPack = require("../../models/GiftPackage/defaultGiftpackage");
+const Product = require("../../models/inventory/Product")
+const multer = require('multer');
+const path = require('path');
+
+
+// Image uploading
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+ 
+const upload = multer({ storage: storage });
+
+
+// Fetch available products
+router.get('/products', async (req, res) => {
+  try {
+      const products = await Product.find();
+      res.status(200).json(products);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 // From gift package adding form, by Staff
 // Create default gift packagesand add them
-router.route("/addDefault-gift-package").post(async (req,res)=>{
+router.route("/addDefault-gift-package").post(upload.array('images', 10), async (req,res)=>{
 
-    //requesting body data contaning value creating
-    const defaultGiftPack = new DefaultGiftPack({
-        packageName: req.body.packageName,
-        description: req.body.description,
-        products: req.body.products,
-        totalPrice: req.body.totalPrice
-      });
+  try {
+    const { packageName, description, productIds} = req.body;
+    const images = req.files.map(file => file.path); // Get the image URLs
 
-      try {
-        const newDefaultGiftPack = await defaultGiftPack.save();
-        res.status(201).json({ message: "Default gift package Added!"});
-      } catch (err) {
-        res.status(400).json({ message: err.message });
-      }
-     
-    /*
-    //requesting body data contaning value creating
-    const packageName = req.body.packageName;
-    const description = req.body.description;
-    const products = req.body.products;
-    const totalPrice = Number(req.body.totalPrice);
-    
+    // Fetch products by IDs
+    const products = await Product.find({ _id: { $in: productIds } });
+
     const newDefaultGiftPack = new DefaultGiftPack({
         packageName,
         description,
-        products,
-        totalPrice
-      });
-    
-    //Display adding process is success or not
-    DefaultGiftPack.save().then(()=>{
-        //process is success
-        res.json("Package added")
-    }).catch((err)=>{
-        console.log(err); // if process is unsuccessful
-    })*/
+        products, // Assign selected products directly
+        images
+    });
 
-})
+    const savedDefaultGiftPack = await newDefaultGiftPack.save();
+
+    res.status(201).json({ message: "Package added successfully" });
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+}
+        
+});
 
 
-// Display added all default gift packages
-router.route("/default-gift-package").get(async(req,res)=>{
+// Display added all default gift packages to staff
+// Display all default gift packages to customer
+router.route("/default-gift-packages").get(async(req,res)=>{
 
     try {
         const defaultGiftPackages = await DefaultGiftPack.find();
@@ -55,21 +71,14 @@ router.route("/default-gift-package").get(async(req,res)=>{
         res.status(500).json({ message: err.message });
       }
 
-    /*
-    DefaultGiftPack.find().then((defaultGiftPackages)=>{
-        //Successfully display default gift packages
-        res.json(defaultGiftPackages)
-    }).catch((err)=>{
-        console.log(err) //display error msg if the process is unsuccessful
-    })
-    */
+    
 })
 
 //After select a package system will display package details
 // Display a single default gift package
-router.route("/default-gift-packages/:id").get(async (req, res) => {
+router.route("/default-gift-package/:id").get(async (req, res) => {
     try {
-      const defaultGiftPack = await DefaultGiftPack.findById(req.params.id);
+      const defaultGiftPack = await DefaultGiftPack.findById(req.params.id).populate('products');
       if (defaultGiftPack == null) {
         return res.status(404).json({ message: "Default gift package not found"});
       }
@@ -78,51 +87,43 @@ router.route("/default-gift-packages/:id").get(async (req, res) => {
       return res.status(500).json({ message: err.message });
     }
 
-    /*
-    let packageId = req.params.id; //get id value from the parameter
-
-    const package = await DefaultGiftPack.findById(packageId).then(()=>{
-        res.status(200).send({status: "Package Found", package: package});
-    }).catch((err)=>{
-        res.status(500).send({status: "Error with Finding package", error: err.message});
-    })
-    */
-
 });
 
 
 // Staff can update default package details
 // Update added default gift packages
 router.route("/updateDefault-gift-package/:id").put(async(req,res)=>{
+
+  try {
+    const { packageName, description, productIds} = req.body;
+    const images = req.files.map(file => file.path);
+
+    const updatedDefaultGiftPack = await DefaultGiftPack.findById(req.params.id);
+
+    if (!updatedDefaultGiftPack) {
+      return res.status(404).json({ message: "Custom gift package not found" });
+    }
+
+    updatedDefaultGiftPack.packageName = packageName;
+    updatedDefaultGiftPack.description = description;
+    updatedDefaultGiftPack.products = productIds;
+    updatedDefaultGiftPack.images = images;
+
+    await updatedDefaultGiftPack.save();
+
+    res.status(200).json({message: "Package updated" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
     
-    try {
+    /*try {
         const updatedDefaultGiftPack = await DefaultGiftPack.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json({ message: "Package updated successfully"});
       } catch (err) {
         return res.status(400).json({ message: err.message });
-      }
+      }*/
 
-    /*
-    let packageId = req.params.id; //get id value from the parameter
-
-    //body data
-    const{packageName, description, products, totalPrice} = req.body;
-
-    //updadted values
-    const updatedDefaultGiftPack = {
-        packageName, 
-        description, 
-        products, 
-        totalPrice
-    }
-
-    const update = await DefaultGiftPack.findByIdAndUpdate(packageId, updatedDefaultGiftPack).then(()=>{
-        res.status(200).send({status: "Package Updated"});
-    }).catch((err)=>{
-        console.log(err);
-        res.status(200).send({status: "Error witg updating data"});
-    })
-    */
     
 }) 
 
@@ -136,16 +137,7 @@ router.route("/deleteDefault-gift-packages/:id").delete(async (req, res) => {
     } catch (err) {
       return res.status(500).json({ message: err.message });
     }
-
-    /*
-    let packageId = req.params.id; //get id value from the parameter
-    
-    await DefaultGiftPack.findByIdAndDelete(packageId).then(()=>{
-        res.status(200).send({status: "Package Deleted! "});
-    }).catch((err)=>{
-        res.status(500).send({status: "Error with deleting package", error: err.message});
-    })
-    */
+  
 });
 
 module.exports = router;
