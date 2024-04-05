@@ -31,6 +31,14 @@ function NavBarSpecialistDashBoard() {
               Appointments
             </Link>
           </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              to={"/specialistInterface/availability"}
+            >
+              Availability
+            </Link>
+          </li>
         </ul>
       </div>
     </>

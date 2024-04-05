@@ -5,6 +5,7 @@ import AppointmentRequests from '../appointmentRequests/AppointmentRequests';
 import Appointments from '../appointments/Appointments';
 import NavBarSpecialistDashBoard from '../../../../components/consultation/specialist/navBarSpecialistDashBoard/NavBarSpecialistDashBoard';
 import SpecialistDashboard from '../specialistDashboard/SpecialistDashboard';
+import Availability from '../availability/Availability';
 
 function DashboardSpecialist() {
 
@@ -25,6 +26,7 @@ function DashboardSpecialist() {
         <Route path="/" element={<SpecialistDashboard specialistID={specialistID}/>}></Route>
         <Route path="/appointmentRequests" element={<AppointmentRequests specialistID={specialistID}/>}></Route>
         <Route path="/appointments" element={<Appointments specialistID={specialistID}/>}></Route>
+        <Route path="/availability" element={<Availability specialistID={specialistID}/>}></Route>
       </Routes>
     </>
   );
