@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import './availabilities.css';
 import axios from 'axios';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 function Availabilities(props) {
-  const [selectedDate, setSelectedDate] = useState('');
   const [availabilities, setAvailabilities] = useState([]);
+  const [value, onChange] = useState(new Date());
+  const [formattedDate, setFormattedDate] = useState('');
 
-  const handleDateChange = (e) => {
-    setSelectedDate(e.target.value);
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if needed
+    const day = date.getDate().toString().padStart(2, '0'); // Add leading zero if needed
+    const final = `${year}-${month}-${day}`;
+    setFormattedDate(final);
   };
 
   const fetchAvailabilities = async () => {
     try {
+      await formatDate(value); // Format the date before fetching availabilities
       const response = await axios.get(`http://localhost:8070/availability/getAvailabilitiesByDateAndSpecialist`, {
         params: {
-          date: selectedDate,
+          date: formattedDate,
           specialistId: props.specialistID
         }
       });
@@ -27,27 +35,25 @@ function Availabilities(props) {
 
   return (
     <>
-      <h3>Availabilities</h3>
+      <h2>Availabilities</h2>
       <div className="date-picker">
         <label htmlFor="date">Select Date:</label>
-        <input type="date" id="date" value={selectedDate} onChange={handleDateChange} />
+          <div>
+            <Calendar onChange={(date) => { onChange(date); formatDate(date); }} value={value} />
+          </div>
         <button onClick={fetchAvailabilities}>Fetch Availabilities</button>
       </div>
       <div className="availabilities-list">
-        <h4>Availabilities for {selectedDate}</h4>
+        <h4>Availabilities for {formattedDate}</h4>
         <ul>
           {availabilities.map((availability, index) => (
-            <>
-                <li key={index}>
-                {availability.startTime} - {availability.endTime}
-                </li>
-                <li>
-                {availability.type}
-                </li>
-                <li>
-                {availability.center}
-                </li>
-            </>
+            <li key={index}>
+              {availability.startTime} - {availability.endTime}
+              <br />
+              {availability.type}
+              <br />
+              {availability.center}
+            </li>
           ))}
         </ul>
       </div>
