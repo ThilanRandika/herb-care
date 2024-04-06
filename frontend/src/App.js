@@ -34,7 +34,6 @@ function App() {
         <Route path="/User_searching/*" element={<User_searching/>}></Route>
         <Route path="/Producttesting/*" element={<Producttesting/>}></Route>
         <Route path="/Product/:id" element={<Product/>}></Route>
-      </Routes>
 
 
         <Route path="/sellerHome/*" element={<SellerHome/>}></Route>
