@@ -46,6 +46,9 @@ const ConsultAppointmentSchema = new Schema(
     appointmentAmount: {
       type: Number,
     },
+    timeSlot: {
+      type: String,
+    }
   },
   { timestamps: true }
 );
