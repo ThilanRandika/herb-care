@@ -16,7 +16,7 @@ function DashboardSpecialist() {
       <div className="specialist-container">
         <div className="specialist-nav-bar">
           <NavBarSpecialistDashBoard/>
-          <div className="specialist">
+          <div className="specialist-id-input">
             <label> enter specialistID</label>
             <input type="text" value={specialistID} onChange={(e)=> setSpecialistID(e.target.value) }/>
           </div>
