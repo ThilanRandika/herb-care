@@ -4,6 +4,8 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const { verifySeller } = require("../../utils/veryfyToken.js");
 const emailSender = require('../../emailSender.js');
+const PartnershipRequest = require("../../models/sellerPartnership/SellerPartnershipRequest.js");
+const Product = require("../../models/inventory/Product.js");
 
 //CREATE - Add new seller seller
 router.route("/addSeller").post(async (req, res) => {
@@ -19,6 +21,15 @@ router.route("/addSeller").post(async (req, res) => {
       sellerId: savedSeller.sellerId,
     }));
     const savedSellerProducts = await SellerProducts.insertMany(sellerProducts);
+
+    // Remove from partnership request table
+    const requestId = req.body.seller.requestId;
+    try{
+      await PartnershipRequest.findByIdAndDelete(requestId);
+    }catch(err){
+      console.log(err)
+    }
+    
 
     async function sendCustomEmail() {
       const receiver = savedSeller.toJSON().email;
@@ -72,6 +83,48 @@ router.route("/all").get(async (req, res) => {
 });
 
 //READ - get one seller detail
+router.route("/oneSeller/:sellerId").get( async (req, res) => {
+  try {
+    const sellerId = req.params.sellerId;
+    //get seler details
+    const seller = await Seller.findOne({ sellerId: sellerId });
+    //get prouct details related to seller
+    const Products = await SellerProducts.find({ sellerId: sellerId });
+
+
+    const productIds = Products.map((product) => product.product_id);
+
+    const mergedProducts = [];
+
+    for (const productId of productIds) {
+      const product = await Product.findById(productId);
+
+      if (product) {
+        const sellerProduct = await SellerProducts.findOne({
+          product_id: productId,sellerId: sellerId,
+        });
+
+        mergedProducts.push({
+          productDetail : product,
+          Products: sellerProduct,
+        });
+      } else {
+        console.log(`Product with ID ${productId} not found.`);
+      }
+    }
+
+    //populate seller with product details
+    //(const productss = await SellerProducts.find({sellerId: sellerId}).populate('productId',['name','price']);)
+
+    const sellerWithProducts = { seller, mergedProducts };
+
+    res.status(200).json(sellerWithProducts);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//READ - get one seller detail FOR Profile edit
 router.route("/oneSeller/:sellerId").get(verifySeller, async (req, res) => {
   try {
     const sellerId = req.params.sellerId;
@@ -80,10 +133,12 @@ router.route("/oneSeller/:sellerId").get(verifySeller, async (req, res) => {
     //get prouct details related to seller
     const Products = await SellerProducts.find({ sellerId: sellerId });
 
+    
+
     //populate seller with product details
     //(const productss = await SellerProducts.find({sellerId: sellerId}).populate('productId',['name','price']);)
 
-    const sellerWithProducts = { ...seller._doc, Products };
+    const sellerWithProducts = { seller, Products };
 
     res.status(200).json(sellerWithProducts);
   } catch (err) {
@@ -112,7 +167,7 @@ router.route("/updateSeller/:id").put(async (req, res) => {
 
     // Update associated products
     const updatedProducts = await Promise.all(
-      req.body.products.map(async (updatedProduct) => {
+      req.body.Products.map(async (updatedProduct) => {
         const productId = updatedProduct.product_id;
 
         const updatedProductDetails = await SellerProducts.findOneAndUpdate(
