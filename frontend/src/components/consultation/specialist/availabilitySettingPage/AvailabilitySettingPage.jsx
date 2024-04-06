@@ -12,6 +12,16 @@ function AvailabilitySettingPage(props) {
     endTime: ''
   });
 
+  // Generate time options in 30-minute intervals
+  const timeOptions = [];
+  for (let hour = 0; hour < 24; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const formattedHour = hour.toString().padStart(2, '0');
+      const formattedMinute = minute.toString().padStart(2, '0');
+      timeOptions.push(`${formattedHour}:${formattedMinute}`);
+    }
+  }
+
   const handleChange = (e) => {
     const { id, value } = e.target;
 
@@ -61,11 +71,21 @@ function AvailabilitySettingPage(props) {
         </div>
         <div>
           <label htmlFor="startTime">Start Time</label>
-          <input type="time" id="startTime" required onChange={handleChange} />
+          <select id="startTime" onChange={handleChange} required>
+            <option value="">Select Start Time</option>
+            {timeOptions.map((time, index) => (
+              <option key={index} value={time}>{time}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="endTime">End Time</label>
-          <input type="time" id="endTime" required onChange={handleChange} />
+          <select id="endTime" onChange={handleChange} required>
+            <option value="">Select End Time</option>
+            {timeOptions.map((time, index) => (
+              <option key={index} value={time}>{time}</option>
+            ))}
+          </select>
         </div>
         <button type="submit">Submit</button>
       </form>

@@ -4,36 +4,36 @@ import './navBarSpecialistDashBoard.css';
 function NavBarSpecialistDashBoard() {
   return (
     <>
-      <div className="col-lg-3 left-column">
-        <ul className="nav flex-column">
-          <li className="nav-item">
+      <div>
+        <ul className="specialist-nav-list" >
+          <li>
             <Link
-              className="nav-link"
+              className="specialist-nav-item"
               to={"/specialistInterface/"}
               aria-current="page"
             >
               Dashboard
             </Link>
           </li>
-          <li className="nav-item">
+          <li>
             <Link
-              className="nav-link"
+              className="specialist-nav-item"
               to={"/specialistInterface/appointmentRequests"}
             >
               appointment requests
             </Link>
           </li>
-          <li className="nav-item">
+          <li>
             <Link
-              className="nav-link"
+              className="specialist-nav-item"
               to={"/specialistInterface/appointments"}
             >
               Appointments
             </Link>
           </li>
-          <li className="nav-item">
+          <li>
             <Link
-              className="nav-link"
+              className="specialist-nav-item"
               to={"/specialistInterface/availability"}
             >
               Availability

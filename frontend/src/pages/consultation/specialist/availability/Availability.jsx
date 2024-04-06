@@ -6,8 +6,14 @@ function Availability(props) {
   return (
     <>
         <h2>Availability page</h2>
-        <Availabilities specialistID={props.specialistID} />
-        <AvailabilitySettingPage specialistID={props.specialistID} />
+        <div className="availability-page-contents">
+          <div className="availabilities">
+            <Availabilities specialistID={props.specialistID} />
+          </div>
+          <div className="availability-add-form">
+            <AvailabilitySettingPage specialistID={props.specialistID} />
+          </div>
+        </div>
     </>
   )
 }

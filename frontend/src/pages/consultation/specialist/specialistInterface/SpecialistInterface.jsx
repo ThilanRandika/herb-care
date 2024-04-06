@@ -13,21 +13,24 @@ function DashboardSpecialist() {
 
   return (
     <>
-      <div>
-        <h1>DashboardSpecialist</h1>
-      </div>
-      <NavBarSpecialistDashBoard/>
-      <div className="specialist">
-        <label> enter specialistID</label>
-        <input type="text" value={specialistID} onChange={(e)=> setSpecialistID(e.target.value) }/>
-      </div>
+      <div className="specialist-container">
+        <div className="specialist-nav-bar">
+          <NavBarSpecialistDashBoard/>
+          <div className="specialist">
+            <label> enter specialistID</label>
+            <input type="text" value={specialistID} onChange={(e)=> setSpecialistID(e.target.value) }/>
+          </div>
+        </div>
 
-      <Routes>
-        <Route path="/" element={<SpecialistDashboard specialistID={specialistID}/>}></Route>
-        <Route path="/appointmentRequests" element={<AppointmentRequests specialistID={specialistID}/>}></Route>
-        <Route path="/appointments" element={<Appointments specialistID={specialistID}/>}></Route>
-        <Route path="/availability" element={<Availability specialistID={specialistID}/>}></Route>
-      </Routes>
+        <div className="pages">
+          <Routes>
+            <Route path="/" element={<SpecialistDashboard specialistID={specialistID}/>}></Route>
+            <Route path="/appointmentRequests" element={<AppointmentRequests specialistID={specialistID}/>}></Route>
+            <Route path="/appointments" element={<Appointments specialistID={specialistID}/>}></Route>
+            <Route path="/availability" element={<Availability specialistID={specialistID}/>}></Route>
+          </Routes>
+        </div>
+      </div>
     </>
   );
 }
