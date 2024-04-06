@@ -1,26 +1,32 @@
 .container {
-  width: 50%;
-  margin: auto;
-  margin-top: 50px; /* Adjust the top margin as needed */
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    background-color: aliceblue;
+}
+
+.form{
+  width: 100%;
 }
 
 .form-group {
   margin-bottom: 20px;
 }
 
-.col-form-label {
-  font-weight: bold;
+.col-sm-2 {
+  display: flex;
+  align-items: flex-start;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
+.col-sm-10 {
+  width: 100%;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
+.form-control {
+  width: 100%;
+}
+
+.btn-block {
+  width: 100%;
 }

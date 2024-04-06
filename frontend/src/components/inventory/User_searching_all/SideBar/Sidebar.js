@@ -18,4 +18,4 @@ const Sidebar = ({ handleChange }) => {
   );
 };
 
-export default Sidebar;
+export default Sidebar; 
