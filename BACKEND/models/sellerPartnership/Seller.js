@@ -70,10 +70,10 @@ const sellerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    price_margine: {
-      type: Number,
-      required: true,
-    },
+    // price_margine: {
+    //   type: Number,
+    //   required: true,
+    // },
   },
   { timestamps: true }
 );

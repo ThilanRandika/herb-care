@@ -1,57 +1,43 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import './productList.css'
+import React, { useEffect, useState } from 'react';
+import './productList.css';
 import { Link } from 'react-router-dom';
 
 function ProductList() {
-
   const [productList, setProductList] = useState([]);
 
-
-  //get product details
-
-  useEffect(() =>{
+  useEffect(() => {
     axios.get('http://localhost:8070/sellerProducts/products')
-    .then((res) => {
-      console.log( res.data);
-      setProductList(res.data);
-    })
-    .catch((err) => {
-      console.log('Error getting pending seller sellers', err);
-    })
-  },[]);
+      .then((res) => {
+        console.log(res.data);
+        setProductList(res.data);
+      })
+      .catch((err) => {
+        console.log('Error getting pending seller sellers', err);
+      });
+  }, []);
 
   return (
-    <>
-
-      <h1>ProductList</h1>
-      {/* map through the array of products and display them */}
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <>
-          {productList.map((product,index) => (
-            <div class="col" key={index}>
-                <Link to={`/sellerMainHome/product/${product._id}`}>
-                  {console.log(product._id)}
-              <div class="card">
-                <img src="https://cdn.photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg" class="card-img-top" alt="..."/>
-                <div class="card-body">
-                  <h5 class="card-title">{product.name}</h5>
-                  <p class="card-text">{product.description}</p>
-                  <p class="card-text">{product.ingredients}</p>
-                  <p class="card-text">{product.mini_quantity}</p>
-                  <p class="card-text">{product.calculatedPrice}</p>
-                </div>
+    <div className="product-list-container">
+      <h1>Product List</h1>
+      <div className="product-grid">
+        {productList.map((product, index) => (
+          <div className="product-card" key={index}>
+            <Link to={`/sellerMainHome/product/${product._id}`}>
+              <img src="https://cdn.photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg" className="product-image" alt="Product" />
+              <div className="product-details">
+                <h2 className="product-name">{product.name}</h2>
+                <p className="product-description">{product.description}</p>
+                <p className="product-ingredients">{product.ingredients}</p>
+                <p className="product-quantity">Quantity: {product.mini_quantity}</p>
+                <p className="product-price">Price: {product.calculatedPrice}</p>
               </div>
             </Link>
-            </div>
-            ))}
-        </>
+          </div>
+        ))}
+      </div>
     </div>
-    </>
-    
-
-
-  )
+  );
 }
 
-export default ProductList
+export default ProductList;
