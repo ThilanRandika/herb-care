@@ -18,6 +18,16 @@ router.route("/addSeller").post(async (req, res) => {
     const newSeller = new Seller(req.body.seller);
     const savedSeller = await newSeller.save();
 
+    const password = savedSeller.toJSON().password;
+
+    // Hash the password after saving the seller data
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(savedSeller.password, salt);
+
+    // Update the seller document with the hashed password
+    savedSeller.password = hash;
+    await savedSeller.save();
+
     //save related product details to sellerproduct collection
     const sellerProducts = req.body.products.map((productData) => ({
       ...productData,
@@ -37,7 +47,7 @@ router.route("/addSeller").post(async (req, res) => {
     async function sendCustomEmail() {
       const receiver = savedSeller.toJSON().email;
       const html =  `
-      <PASSWORD> USERNAME - ${savedSeller.toJSON().sellerId}, PASSWORD - ${savedSeller.toJSON().password},</b> 
+      <PASSWORD> USERNAME - ${savedSeller.toJSON().sellerId}, PASSWORD - ${password},</b> 
       <p>This is your username and password please use them to log in to our web application and you can change your password your own</p>`;
       const subject = "To inform registration - HerbCare";
     

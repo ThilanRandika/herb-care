@@ -23,9 +23,10 @@ router.route("/products").get(verifySellerToOther, async (req, res) => {
 
       if (product) {
         const sellerProduct = await SellerProducts.findOne({
+          sellerId: sellerId,
           product_id: productId,
         });
-
+        console.log(product)
         const calculatedPrice =
           ((100 - sellerProduct.price_margine) * product.price) /
           100;

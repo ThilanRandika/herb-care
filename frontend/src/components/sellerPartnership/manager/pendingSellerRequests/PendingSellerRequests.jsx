@@ -1,11 +1,10 @@
-// PendingSellerRequests.jsx
-
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './pendingSellerRequests.css'; // Import the CSS file for styling
 
 function PendingSellerRequests() {
     const [requests, setRequests] = useState([]);
+    const [openOrder, setOpenOrder] = useState(null);
 
     useEffect(() => {
         axios.get('http://localhost:8070/sellerPartnershipRequest/allSellerReq')
@@ -16,6 +15,10 @@ function PendingSellerRequests() {
                 console.log('Error getting pending seller requests', err);
             });
     }, []);
+
+    const toggleOrderDetails = (request) => {
+        setOpenOrder(openOrder === request ? null : request);
+    };
 
     const handleApprove = (id) => {
         axios.put(`http://localhost:8070/sellerPartnershipRequest/reqAprove/${id}`)
@@ -57,22 +60,39 @@ function PendingSellerRequests() {
                 </thead>
                 <tbody>
                     {requests.map((request, index) => (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{request.seller_name}</td>
-                            <td><a href={`mailto:${request.email}`} target='_blank'>{request.email}</a></td>
-                            <td>{request.address}</td>
-                            <td>{request.contact_num}</td>
-                            <td>{request.company}</td>
-                            <td>{request.company_discription ? request.company_discription : "N/A"}</td>
-                            <td><a href={request.website} rel="noreferrer" target='_blank'>Visit Site</a></td>
-                            <td>{request.website ? request.website : "N/A"}</td>
-                            <td>{request.taxId ? request.taxId : "N/A"}</td>
-                            <td>
-                                <button className="approve-btn" onClick={() => handleApprove(request._id)}>Approve</button>
-                                <button className="reject-btn" onClick={() => handleReject(request._id)}>Reject</button>
-                            </td>
-                        </tr>
+                        <React.Fragment key={index}>
+                            <tr onClick={() => toggleOrderDetails(request)} >
+                                <td>{index + 1}</td>
+                                <td>{request.seller_name}</td>
+                                <td><a href={`mailto:${request.email}`} target='_blank'>{request.email}</a></td>
+                                <td>{request.address}</td>
+                                <td>{request.contact_num}</td>
+                                <td>{request.company}</td>
+                                <td>{request.company_discription ? request.company_discription : "N/A"}</td>
+                                <td>{request.website ? request.website : "N/A"}</td>
+                                <td>{request.taxId ? request.taxId : "N/A"}</td>
+                                <td>
+                                    <button className="approve-btn" onClick={() => handleApprove(request._id)}>Approve</button>
+                                    <button className="reject-btn" onClick={() => handleReject(request._id)}>Reject</button>
+                                </td>
+                            </tr>
+                            {openOrder === request && (
+                                <tr className={`details-row ${openOrder === request ? 'open' : ''}`}>
+                                    <td colSpan="10">
+                                        <div className="seller-details">
+                                            <p><strong>Seller Name:</strong> {request.seller_name}</p>
+                                            <p><strong>Email:</strong> <a href={`mailto:${request.email}`} target="_blank" rel="noopener noreferrer">{request.email}</a></p>
+                                            <p><strong>Address:</strong> {request.address}</p>
+                                            <p><strong>Contact Number:</strong> {request.contact_num}</p>
+                                            <p><strong>Company Name:</strong> {request.company}</p>
+                                            <p><strong>Company Description:</strong> {request.company_discription ? request.company_discription : "N/A"}</p>
+                                            <p><strong>Company Website:</strong> <a href={request.website} target="_blank" rel="noopener noreferrer">{request.website}</a></p>
+                                            <p><strong>Tax ID:</strong> {request.taxId ? request.taxId : "N/A"}</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )}
+                        </React.Fragment>
                     ))}
                 </tbody>
             </table>
