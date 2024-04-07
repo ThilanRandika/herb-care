@@ -15,8 +15,10 @@ function HomeConsultation() {
     <>
       <div className="homeConsultation">
         <Header />
-        <SpecialistList setSelectedSpecialist={setSelectedSpecialist} />
-        <AppointmentAddForm selectedSpecialist={selectedSpecialist} />
+        <div className="consultation-home-contents">
+          <SpecialistList setSelectedSpecialist={setSelectedSpecialist} />
+          <AppointmentAddForm selectedSpecialist={selectedSpecialist} />
+        </div>
       </div>
     </>
   )

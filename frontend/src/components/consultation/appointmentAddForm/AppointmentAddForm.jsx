@@ -202,10 +202,10 @@ function AppointmentAddForm(props) {
       return;
     }
 
-    // if (!selectedTimeSlot) {
-    //   console.error("No time slot selected");
-    //   return;
-    // }
+    if (!selectedTimeSlot) {
+      console.error("No time slot selected");
+      return;
+    }
 
     const newAppointment = {
       date: date,
@@ -224,110 +224,123 @@ function AppointmentAddForm(props) {
     })
   };
 
-
+  console.log("teme slot is", selectedTimeSlot);
 
   return (
     <div className='AppointmentAddForm'>
         <form onSubmit={submit}>
           {props.selectedSpecialist && (
-            <div className="selectedSpecialistDetails">
-              <div className="mb-3">
-                <label htmlFor="specialist" className="form-label">Specialist</label>
-                <input type="text" className="form-control" id="specialist" value={props.selectedSpecialist.specialistName} readOnly />
+
+            <>
+              <div className="selectedSpecialistDetails">
+                <div className="mb-3">
+                  <label htmlFor="specialist" className="form-label">Specialist</label>
+                  <input type="text" className="form-control" id="specialist" value={props.selectedSpecialist.specialistName} readOnly />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="specialist_speciality" className="form-label">Speciality</label>
+                  <input type="text" className="form-control" id="specialist_speciality" value={props.selectedSpecialist.speciality} readOnly />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="specialist_ratings" className="form-label">Ratings</label>
+                  <input type="text" className="form-control" id="specialist_ratings" value={props.selectedSpecialist.rating} readOnly />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="consultationFee" className="form-label">Consultation Fee</label>
+                  <input type="text" className="form-control" id="consultationFee" value={props.selectedSpecialist.consultationFee} readOnly />
+                </div>
               </div>
+
               <div className="mb-3">
-                <label htmlFor="specialist_speciality" className="form-label">Speciality</label>
-                <input type="text" className="form-control" id="specialist_speciality" value={props.selectedSpecialist.speciality} readOnly />
+                <label htmlFor="date" className="form-label">Date</label>
+                <div>
+                  <Calendar onChange={handleDateChange} value={date} tileDisabled={isDateDisabled} />
+                </div>
+                <button type="button" onClick={handleShowTimeSlots}>Show Time Slots</button> 
               </div>
+
+              {showTimeSlots && availabilitiesForSelectedDate.length > 0 && (
+                <div className="availableTimeSlots">
+                  <h3>Session</h3>
+                  <>
+                    <span>{availabilitiesForSelectedDate[0].startTime} - {availabilitiesForSelectedDate[0].endTime}</span>
+                  </>
+                </div>
+              )}
+
               <div className="mb-3">
-                <label htmlFor="specialist_ratings" className="form-label">Ratings</label>
-                <input type="text" className="form-control" id="specialist_ratings" value={props.selectedSpecialist.rating} readOnly />
+                <label htmlFor="patient" className="form-label">Patient</label>
+                <input type="text" className="form-control" id="patient" value={user.userDetails.customer_name} readOnly/>
               </div>
-              <div className="mb-3">
-                <label htmlFor="consultationFee" className="form-label">Consultation Fee</label>
-                <input type="text" className="form-control" id="consultationFee" value={props.selectedSpecialist.consultationFee} readOnly />
+              <div>
+                <label htmlFor="type">Select the appointment type:</label><br/>
+                {type !== "virtual" && (
+                  <>
+                    <input
+                      type="radio"
+                      id="physical"
+                      name="type"
+                      value="physical"
+                      onChange={handleTypeChange}
+                      checked={type === "physical"}
+                    />
+                    <label htmlFor="physical">Physical</label><br/>
+                  </>
+                )}
+                {type !== "physical" && (
+                  <>
+                    <input
+                      type="radio"
+                      id="virtual"
+                      name="type"
+                      value="virtual"
+                      onChange={handleTypeChange}
+                      checked={type === "virtual"}
+                    />
+                    <label htmlFor="virtual">Virtual</label><br/>
+                  </>
+                )}
               </div>
-            </div>
+
+
+
+              {type !== "virtual" && (
+                <div className="mb-3">
+                  <label htmlFor="center" className="form-label">Center</label>
+                  <input type="text" className="form-control" id="center" value={center || ''} onChange={(e)=> setCenter(e.target.value) } />
+                </div>
+              )}
+
+
+              {/* Time slots */}
+              {timeSlots.length > 0 && (
+                <div className="timeSlots">
+                  <h3>Time Slots</h3>
+                  <ul>
+                    {timeSlots.map((slot, index) => (
+                      <li key={index}>
+                        <input
+                          type="radio"
+                          id={`slot-${index}`}
+                          name="timeSlot"
+                          value={slot}
+                          onChange={(e) => setSelectedTimeSlot(e.target.value)}
+                          checked={selectedTimeSlot === slot}
+                        />
+                        <label htmlFor={`slot-${index}`}>{slot}</label>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+
+              <button type="submit" className="btn btn-primary">Submit</button>
+            </>
+
+            
           )}  
-          <div className="mb-3">
-          <label htmlFor="date" className="form-label">Date</label>
-          <div>
-            <Calendar onChange={handleDateChange} value={date} tileDisabled={isDateDisabled} />
-          </div>
-          <button type="button" onClick={handleShowTimeSlots}>Show Time Slots</button> 
-        </div>
-
-        {showTimeSlots && availabilitiesForSelectedDate.length > 0 && (
-          <div className="availableTimeSlots">
-            <h3>Available Time Slots</h3>
-            <ul>
-              {availabilitiesForSelectedDate.map((availability, index) => (
-                <li key={index}>
-                  {availability.startTime} - {availability.endTime}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <div className="mb-3">
-          <label htmlFor="patient" className="form-label">Patient</label>
-          <input type="text" className="form-control" id="patient" value={user.userDetails.customer_name} readOnly/>
-        </div>
-        <div>
-          <label htmlFor="type">Select the appointment type:</label><br/>
-          {type !== "virtual" && (
-            <>
-              <input
-                type="radio"
-                id="physical"
-                name="type"
-                value="physical"
-                onChange={handleTypeChange}
-                checked={type === "physical"}
-              />
-              <label htmlFor="physical">Physical</label><br/>
-            </>
-          )}
-          {type !== "physical" && (
-            <>
-              <input
-                type="radio"
-                id="virtual"
-                name="type"
-                value="virtual"
-                onChange={handleTypeChange}
-                checked={type === "virtual"}
-              />
-              <label htmlFor="virtual">Virtual</label><br/>
-            </>
-          )}
-        </div>
-
-
-
-        {type !== "virtual" && (
-          <div className="mb-3">
-            <label htmlFor="center" className="form-label">Center</label>
-            <input type="text" className="form-control" id="center" value={center || ''} onChange={(e)=> setCenter(e.target.value) } />
-          </div>
-        )}
-
-
-        {/* Time slots */}
-        {timeSlots.length > 0 && (
-          <div className="timeSlots">
-            <h3>Time Slots</h3>
-            <ul>
-              {timeSlots.map((slot, index) => (
-                <li key={index}>{slot}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-
-        <button type="submit" className="btn btn-primary">Submit</button>
+          
         </form>
 
         
