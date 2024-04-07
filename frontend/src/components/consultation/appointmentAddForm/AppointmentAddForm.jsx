@@ -175,6 +175,15 @@ function AppointmentAddForm(props) {
              date.getFullYear() === availabilityDate.getFullYear();
     });
   };
+
+
+
+  const isTimeSlotBooked = (slot) => {
+    // Check if the selected time slot matches any of the booked time slots
+    return availabilitiesForSelectedDate.some(availability => {
+      return availability.bookedTimeSlots.includes(slot);
+    });
+  };
   
   
 
@@ -214,7 +223,8 @@ function AppointmentAddForm(props) {
       center: center,
       type: type,
       appointmentAmount: props.selectedSpecialist.consultationFee,
-      timeSlot: selectedTimeSlot
+      timeSlot: selectedTimeSlot,
+      availabilityId: availabilitiesForSelectedDate[0]._id,
     }
     console.log("new appointment is",  newAppointment);
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
@@ -223,8 +233,7 @@ function AppointmentAddForm(props) {
       console.error(err);
     })
   };
-
-  console.log("teme slot is", selectedTimeSlot);
+  
 
   return (
     <div className='AppointmentAddForm'>
@@ -326,6 +335,7 @@ function AppointmentAddForm(props) {
                           value={slot}
                           onChange={(e) => setSelectedTimeSlot(e.target.value)}
                           checked={selectedTimeSlot === slot}
+                          disabled={isTimeSlotBooked(slot)} // Check if the time slot is booked
                         />
                         <label htmlFor={`slot-${index}`}>{slot}</label>
                       </li>
