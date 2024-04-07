@@ -7,6 +7,9 @@ const emailSender = require('../../emailSender.js');
 const PartnershipRequest = require("../../models/sellerPartnership/SellerPartnershipRequest.js");
 const Product = require("../../models/inventory/Product.js");
 
+const PDFDocument = require('pdfkit-table');
+const fs = require('fs');
+
 //CREATE - Add new seller seller
 router.route("/addSeller").post(async (req, res) => {
   try {
@@ -76,7 +79,52 @@ router.route("/all").get(async (req, res) => {
         };
       })
     );
-    res.status(200).json(sellersWithProducts);
+
+    if (req.query.format && req.query.format === 'pdf') {
+      const doc = new PDFDocument({ margin: 30, size: 'A4' });
+
+      // Pipe the PDF document directly to the response
+      doc.pipe(res);
+
+      // Set document title
+      doc.fontSize(20).text('Registered Sellers Report', { align: 'center' }).moveDown();
+
+      // Set up table headers
+      const tableData = sellersWithProducts.map((seller) => [
+        seller.seller_name,
+        seller.email,
+        seller.address,
+        seller.contact_num,
+        seller.company,
+        seller.company_discription ? seller.company_discription : 'N/A',
+        seller.website,
+        seller.taxId ? seller.taxId : 'N/A'
+      ]);
+      
+      // Set up the table object with headers and data
+      const table = {
+        headers: ['Seller Name', 'Email', 'Address', 'Contact Number', 'Company Name', 'Company Description', 'Company Website', 'Tax ID'],
+        rows: tableData
+      };
+      console.log(table)
+
+      // Set table options
+      const tableOptions = {
+        prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+  prepareRow: (row, indexColumn, indexRow, rectRow) => {
+  doc.font("Helvetica").fontSize(8);
+  indexColumn === 0 && doc.addBackground(rectRow, (indexRow % 2 ? 'blue' : 'green'), 0.15);
+},
+      };
+
+      // Draw the table
+      doc.table(table, tableOptions);
+
+      // End the document
+      doc.end();
+    } else {
+      res.status(200).json(sellersWithProducts);
+    }
   } catch (err) {
     console.log(err);
   }

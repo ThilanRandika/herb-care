@@ -30,7 +30,7 @@ function ProductList() {
         <>
           {productList.map((product,index) => (
             <div class="col" key={index}>
-                <Link to={`/sellerHome/product/${product._id}`}>
+                <Link to={`/sellerMainHome/product/${product._id}`}>
                   {console.log(product._id)}
               <div class="card">
                 <img src="https://cdn.photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg" class="card-img-top" alt="..."/>

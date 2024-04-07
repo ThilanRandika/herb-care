@@ -42,7 +42,7 @@ function SellerApprovelPendingOrders() {
                             <td>{order.date}</td>
                             <td>
                                 {console.log(order.id)}
-                                <Link to={`/sellerHome/singleOrder/${order.id}`} className="view-order-link">
+                                <Link to={`/sellerMainHome/singleOrder/${order.id}`} className="view-order-link">
                                     View Order
                                 </Link>
                             </td>

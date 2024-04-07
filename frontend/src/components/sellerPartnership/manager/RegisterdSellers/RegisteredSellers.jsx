@@ -18,6 +18,10 @@ function RegisteredSellers() {
             });
     }, []);
 
+    const handleDownloadPDF = () => {
+        window.open('http://localhost:8070/seller/all?format=pdf');
+      };
+
 
     const handleReject = (id) => {
         axios.delete(`http://localhost:8070/seller/deleteSeller/${id}`)
@@ -33,6 +37,7 @@ function RegisteredSellers() {
     return (
         <div className="registered-sellers-container">
             <h1>Registered Sellers</h1>
+            <button onClick={handleDownloadPDF}>Download PDF Report</button>
             <table className="registered-sellers-table">
                 <thead>
                     <tr>

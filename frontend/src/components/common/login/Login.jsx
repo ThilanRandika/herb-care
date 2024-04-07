@@ -26,7 +26,7 @@ const Login = () => {
     try {
       const res = await axios.post("http://localhost:8070/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      navigate("/sellerHome")
+      navigate("/sellerMainHome/sellerHome")
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response });
     }
