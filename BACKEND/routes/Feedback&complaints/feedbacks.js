@@ -4,8 +4,6 @@ const multer = require('multer');
 const path = require('path');
 const { verifyToOther } = require("../../utils/veryfyToken");
 
-
-
 // Image uploading
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -62,15 +60,16 @@ router.route("/get").get(verifyToOther, async (req, res) => {
 
 //Read - Display under the product
 //http://localhost:8070/feedback/get/:productId
-router.get('/product/:Product', async (req, res) => {
+router.get('/product/:productId', async (req, res) => {
   try {
-    const feedback = await Feedback.find({ Product: req.params.Product });
+    const feedback = await Feedback.find({ Product: req.params.productId });
     res.status(200).json(feedback);
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
   }
 });
+
 
 // //Read - Display under the giftPackage
 // //http://localhost:8070/feedback/
@@ -88,13 +87,14 @@ router.get('/product/:Product', async (req, res) => {
 // http://localhost:8070/feedback/get
 router.route('/').get(async (req, res) => {
   try {
-    const feedbacks = await Feedback.find();//.populate('Customer');
+    const feedbacks = await Feedback.find().populate('Customer');
     res.status(200).json({ feedbacks });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+//Read- feedback count
 router.get('/count', async (req, res) => {
   try {
     const count = await Feedback.countDocuments();
@@ -103,6 +103,7 @@ router.get('/count', async (req, res) => {
     res.status(500).json({ message: 'Failed to get feedback count' });
   }
 });
+
 
 
 //Delete - delete feedback
@@ -151,10 +152,6 @@ router.put('/update/:id', upload.array('images', 5), async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
-
-
-
 
 module.exports = router;
 

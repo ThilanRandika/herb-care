@@ -3,7 +3,7 @@ import AddComplaints from '../../../components/Feedback&Complaints/Complaints/Ad
 
 function Complaints_Dashboard() {
   return (
-    <div>Complaints_Dashboard
+    <div>
         <AddComplaints/>
     </div>
   )

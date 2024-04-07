@@ -3,7 +3,7 @@ import StaffDisplay from '../../../components/Feedback&Complaints/Complaints/Dis
 
 function Display_Staff() {
   return (
-    <div>Complaints_Dashboard
+    <div>
         <StaffDisplay/>
     </div>
   )

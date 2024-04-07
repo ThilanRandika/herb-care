@@ -54,6 +54,7 @@ const StaffDashboard = () => {
 
   return (
     <div>
+      <br></br>
       <h1 className='FSD_title'>Feedbacks Lists</h1>
       <div>
         <h1 className='FSD_count'>Total Feedbacks: {count}</h1>
@@ -61,7 +62,7 @@ const StaffDashboard = () => {
       <div className='FSD_containor1'>
         {feedbacks.map((feedback) => (
           <div key={feedback._id} style={{ marginBottom: '20px' }} className='FSD_comntainor2'>
-            <h3 className='FSD_cusName'>Customer: {feedback.Customer.name}</h3>
+            <h3 className='FSD_cusName'>Customer: {feedback.Customer.customer_name}</h3>
             <p className='FSD_ratings'>Ratings: <StarRating rating={feedback.ratings} /></p>
             <p className='FSD_message'>Message: {feedback.message}</p>
             <p className='FSD_image'>

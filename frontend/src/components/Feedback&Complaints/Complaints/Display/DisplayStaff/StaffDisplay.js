@@ -55,7 +55,8 @@ const ComplaintsList = () => {
 
   return (
     <div>
-      <h2>Complaints List</h2>
+      <br></br>
+      <h2 className='CSD_title'>Complaints List</h2>
       <p className='CSD_count'>Total Complaints: {totalCount}</p>
       <div className='SD_containor'>
         <ul className='sd_UL'>

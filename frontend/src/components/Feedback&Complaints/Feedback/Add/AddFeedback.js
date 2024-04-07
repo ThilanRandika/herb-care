@@ -60,8 +60,9 @@ const FeedbackForm = () => {
   };
 
   return (
+    <div className='F_conCenter'>
     <div className='F_containor1'>
-      <h2>Leave a Feedback</h2><br/>
+      <h2 className='F_title'>Leave a Feedback</h2><br/>
         <form onSubmit={handleSubmit}>
           <div className='F_containor2'>
             <label className='F_ratings'>Click stars to rate a product: <br/>{renderStars()}</label>
@@ -78,6 +79,7 @@ const FeedbackForm = () => {
         <br />
           <button className="Feedbackbtn" type="submit">Submit Review</button>
         </form>
+    </div>
     </div>
   );
 };

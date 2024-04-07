@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const feedbackSchema = new Schema({
   Customer: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Customer",
+    ref: "customer",
     required: true
   },
   Order: {

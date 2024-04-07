@@ -3,7 +3,7 @@ import AddFeedback from '../../../components/Feedback&Complaints/Feedback/Add/Ad
 
 function Feedback_Dashboard() {
   return (
-    <div>Complaints_Dashboard
+    <div>
         <AddFeedback/>
     </div>
   )

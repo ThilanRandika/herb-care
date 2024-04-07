@@ -26,26 +26,26 @@ const ComplaintForm = ({ productId }) => {
     };
 
     return (
+        <div className="page_center">
         <div className='com_containor'>
             <h1 align="center">Customer Complaints</h1>
                 <form onSubmit={handleSubmit}>
-                    <label for="orderId">Order:</label>
-                    <input className="com_input1" type="text" value={order} onChange={(e) => setOrder(e.target.value)} />
 
                     <br></br>
-                    <label for="name">Complainant Name:</label>
+                    <label for="name" className="com_name">Complainant Name:</label>
                     <input className="com_input2" type="text" value={complaintsName} onChange={(e) => setComplaintsName(e.target.value)} />
             
                     <br></br>
-                    <label for="email">Complainant Email:</label>    
+                    <label for="email" className="com_email">Complainant Email:</label>    
                     <input className="com_input3" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             
                     <br></br>
-                    <label for="description">Description:</label>
+                    <label for="description" className="com_description">Description:</label>
                     <textarea className="com_textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
             
                     <button className="com_inputbttn" type="submit">Submit</button>
                 </form>
+        </div>
         </div>
     );
 };

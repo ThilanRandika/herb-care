@@ -3,7 +3,7 @@ import UserDisplay from '../../../components/Feedback&Complaints/Complaints/Disp
 
 function Display_user() {
   return (
-    <div>Complaints_Dashboard
+    <div>
         <UserDisplay/>
     </div>
   )

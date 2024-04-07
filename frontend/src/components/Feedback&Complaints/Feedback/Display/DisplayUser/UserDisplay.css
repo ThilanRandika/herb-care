@@ -41,6 +41,7 @@
 .FUD_history {
     font-size: 24px;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 /* Feedback item styles */
