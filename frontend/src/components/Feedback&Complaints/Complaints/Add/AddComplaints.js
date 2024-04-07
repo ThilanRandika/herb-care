@@ -27,17 +27,17 @@ const ComplaintForm = ({ productId }) => {
 
     return (
         <div className='com_containor'>
-            <h1 align="center">Drop Complaints</h1>
+            <h1 align="center">Customer Complaints</h1>
                 <form onSubmit={handleSubmit}>
                     <label for="orderId">Order:</label>
                     <input className="com_input1" type="text" value={order} onChange={(e) => setOrder(e.target.value)} />
 
                     <br></br>
-                    <label for="name">Complaints Name:</label>
+                    <label for="name">Complainant Name:</label>
                     <input className="com_input2" type="text" value={complaintsName} onChange={(e) => setComplaintsName(e.target.value)} />
             
                     <br></br>
-                    <label for="email">Email:</label>    
+                    <label for="email">Complainant Email:</label>    
                     <input className="com_input3" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             
                     <br></br>

@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const app = express(); 
 require("dotenv").config();
 
+
 const PORT = process.env.PORT || 8070;
 // Allow requests from the specified origin
 const corsOptions = {
@@ -88,7 +89,6 @@ connection.once("open", ()=> {
     console.log("Mongodb Connection Success!");
 
 })
-
 
 
 app.listen(PORT,() =>{

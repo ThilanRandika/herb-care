@@ -1,4 +1,9 @@
 /* StaffDisplay.css */
+.CSD_count{
+  font-size: 18px;
+    margin-bottom: 20px;
+    margin-left: 140px;
+}
 .SD_containor {
     margin: 20px auto;
     padding: 20px;
@@ -46,7 +51,9 @@
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 960px;
+    margin-left: 980px;
+    width: 70px;
+    height: 45px;
   }
   
   .btnDel:hover {

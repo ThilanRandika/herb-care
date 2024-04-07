@@ -1,0 +1,56 @@
+/* StaffDisplay.css */
+
+.FSD_title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .FSD_count {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+  }
+  
+  .FSD_containor1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative; /* Position the container relative */
+    padding-bottom: 40px; /* Add padding to make space for the delete button */
+  }
+  
+  .FSD_comntainor2 {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 100px;
+    margin-right: 100px;
+    position: relative; /* Position the container relative */
+  }
+  
+  .FSD_deletebtn {
+    position: absolute;
+    bottom: 10px; /* Position at the bottom */
+    right: 10px; /* Position at the right */
+    padding: 5px 10px;
+    background-color: #1f8b33;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 75px;
+    height: 45px;
+  }
+  
+  .FSD_deletebtn:hover {
+    background-color: #15e63b;
+  }
+
+  .gold {
+    color: gold;
+    font-size: 25px;
+  }
+  
+  

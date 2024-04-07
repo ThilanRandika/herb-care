@@ -4,18 +4,27 @@ import './StaffDisplay.css';
 
 const ComplaintsList = () => {
   const [complaints, setComplaints] = useState([]);
-
+  const [totalCount, setTotalCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
-    const getComplaints = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8070/complaints/");
-        setComplaints(response.data);
+        const [complaintsResponse, totalCountResponse] = await Promise.all([
+          axios.get("http://localhost:8070/complaints/"),
+          axios.get("http://localhost:8070/complaints/count")
+        ]);
+
+        setComplaints(complaintsResponse.data);
+        setTotalCount(totalCountResponse.data.count);
       } catch (error) {
         alert(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    getComplaints();
+    fetchData();
   }, []);
 
   const handleStatusChange = async (complaintId, newStatus) => {
@@ -40,9 +49,14 @@ const ComplaintsList = () => {
     }
   };
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
       <h2>Complaints List</h2>
+      <p className='CSD_count'>Total Complaints: {totalCount}</p>
       <div className='SD_containor'>
         <ul className='sd_UL'>
           {complaints.map((complaint) => (
@@ -54,20 +68,25 @@ const ComplaintsList = () => {
 
               <p className='UD_date'>
                 Date: {new Date(complaint.createdAt).toLocaleDateString()} <br/>
-                Time: {new Date(complaint.createdAt).toLocaleTimeString()}
-            </p>
+                Time: {new Date(complaint.createdAt).toLocaleTimeString()}<br/><br></br>
+                {complaint.updatedAt && (
+                    <>
+                      Updated Date: {new Date(complaint.updatedAt).toLocaleDateString()} <br/>
+                      Updated Time: {new Date(complaint.updatedAt).toLocaleTimeString()}
+                    </>
+                  )}
+              </p>
               <p className='SD_change'>Change status: 
-              <select
-                value={complaint.status}
-                onChange={(e) => handleStatusChange(complaint._id, e.target.value)} className='SD_status'>
-                
-                <option value="In Progress">In Progress</option>
-                <option value="Resolved">Resolved</option>
-                <option value="Removed">Removed</option>
-                
-              </select>
-
-              <button type="button" className="btnDel" onClick={() => handleDelete(complaint._id)}>Delete</button>
+                <select
+                  value={complaint.status}
+                  onChange={(e) => handleStatusChange(complaint._id, e.target.value)} className='SD_status'>
+                  
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                  <option value="Removed">Removed</option>
+                  
+                </select>
+                <button type="button" className="btnDel" onClick={() => handleDelete(complaint._id)}>Delete</button>
               </p>
             </li>
           ))}

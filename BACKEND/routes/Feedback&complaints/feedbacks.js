@@ -4,6 +4,8 @@ const multer = require('multer');
 const path = require('path');
 const { verifyToOther } = require("../../utils/veryfyToken");
 
+
+
 // Image uploading
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -43,16 +45,20 @@ router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (
 
 
 //Read - Display user dashboard
-// http://localhost:8070/feedback/get/:id
-router.get('/get/:Customer', async (req, res) => {
+// http://localhost:8070/feedback/get
+router.route("/get").get(verifyToOther, async (req, res) => {
   try {
-    const feedback = await Feedback.find({ Customer: req.params.Customer });
-    res.status(200).json(feedback);
+
+    const feedbacks = await Feedback.find({ Customer: req.person.userId });
+    res.status(200).json(feedbacks);
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
   }
 });
+
+
+
 
 //Read - Display under the product
 //http://localhost:8070/feedback/get/:productId
@@ -80,16 +86,23 @@ router.get('/product/:Product', async (req, res) => {
 
 //Read - Display staff & manager dashbord
 // http://localhost:8070/feedback/get
-router.route('/get').get(async (req, res) => {
+router.route('/').get(async (req, res) => {
   try {
-    const feedbacks = await Feedback.find();//.populate('userId orderId productId customizeGiftId defaultGiftId');
+    const feedbacks = await Feedback.find();//.populate('Customer');
     res.status(200).json({ feedbacks });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
+router.get('/count', async (req, res) => {
+  try {
+    const count = await Feedback.countDocuments();
+    res.json({ count });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get feedback count' });
+  }
+});
 
 
 //Delete - delete feedback
@@ -111,16 +124,25 @@ router.route('/delete/:id').delete(async (req, res) => {
 
 //Update - update feedback
 // http://localhost:8070/feedback/update/:id
-router.route('/update/:id').put(async (req, res) => {
+router.put('/update/:id', upload.array('images', 5), async (req, res) => {
   try {
+    console.log('Received files:', req.files);
+
     const feedbackId = req.params.id;
-    const {ratings, message, image } = req.body;
+    const { ratings, message } = req.body;
+
+    let newImages = [];
+    if (req.files) {
+      newImages = req.files.map(file => file.filename);
+    }
+
+    console.log('New images:', newImages);
 
     // Update feedback entry
     await Feedback.findByIdAndUpdate(feedbackId, {
       ratings,
       message,
-      image
+      $push: { image: { $each: newImages } }, // Add new images to existing array
     });
 
     res.status(200).json({ message: 'Feedback updated successfully' });
@@ -129,6 +151,10 @@ router.route('/update/:id').put(async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+
+
 
 module.exports = router;
 

@@ -37,25 +37,31 @@
     padding: 5px;
   }
   
-  .btnDel {
+  .CUS_btnDel {
+    position: absolute;
+    top: 0;
+    right: 0;
     background-color: #15783b;
     border: none;
     color: white;
     padding: 5px 10px;
-    padding-right: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-top: 10px;
     cursor: pointer;
     border-radius: 5px;
     width: 70px;
     height: 40px;
-  }
-  
-  .btnDel:hover {
-    background-color: #0caa2e;
-    
-  }
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.CUS_btnDel:hover {
+  background-color: #1bd844; /* Green color on hover */
+}
+
+.UD_containor {
+    position: relative;
+}
   

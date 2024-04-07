@@ -61,24 +61,23 @@ const FeedbackForm = () => {
 
   return (
     <div className='F_containor1'>
-      <h2>Feedback Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div className='F_containor2'>
-          <label className='F_ratings'>Ratings: {renderStars()}</label>
-        </div>
+      <h2>Leave a Feedback</h2><br/>
+        <form onSubmit={handleSubmit}>
+          <div className='F_containor2'>
+            <label className='F_ratings'>Click stars to rate a product: <br/>{renderStars()}</label>
+          </div>
+         <label className='F_message'>
+            Share your review about recently purchased product:
+            <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+          </label>
         <br />
-        <label className='F_message'>
-          Message:
-          <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
-        </label>
+          <label className='F_image'>
+            Upload Images: <br/>
+            <input type="file" multiple onChange={handleImageChange} accept="image/*" />
+          </label>
         <br />
-        <label className='F_image'>
-          Upload Images:
-          <input type="file" multiple onChange={handleImageChange} accept="image/*" />
-        </label>
-        <br />
-        <button className="Feedbackbtn" type="submit">Submit Feedback</button>
-      </form>
+          <button className="Feedbackbtn" type="submit">Submit Review</button>
+        </form>
     </div>
   );
 };

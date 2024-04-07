@@ -44,7 +44,7 @@ const UserDisplay = () => {
                 Date: {new Date(complaint.createdAt).toLocaleDateString()} <br/>
                 Time: {new Date(complaint.createdAt).toLocaleTimeString()}
             </p>
-            <button type="button" className="btnDel" onClick={() => handleDelete(complaint._id)}>Delete</button>
+            <button type="button" className="CUS_btnDel" onClick={() => handleDelete(complaint._id)}>Delete</button>
           </div>
           </li>
           </div>  

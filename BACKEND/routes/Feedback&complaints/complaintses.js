@@ -106,8 +106,17 @@ router.route('/').get((req, res) => {
   });
 });
 
-
-
+// Get total count of all complaints
+// GET http://localhost:8070/complaints/count
+router.get('/count', async (req, res) => {
+  try {
+    const count = await Complaints.countDocuments();
+    res.json({ count });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 
 //Delete - delete complaints
@@ -124,5 +133,7 @@ router.route('/delete/:id').delete(async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
 
 module.exports = router;
