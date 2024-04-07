@@ -11,6 +11,7 @@ function AppointmentAddForm(props) {
 
   const [date, setDate] = useState("");
   const [center, setCenter] = useState(null);
+  const [centerInfo, setCenterInfo] = useState(null);
   const [type, setType] = useState("");
   const [availabilities, setAvailabilities] = useState([]);
   const [availabilitiesForSelectedDate, setAvailabilitiesForSelectedDate] = useState([]);
@@ -21,11 +22,22 @@ function AppointmentAddForm(props) {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
+  const [patientInfo, setPatientInfo] = useState({
+    patientName: "",
+    patientAge: "",
+    patientGender: "",
+    patientPhone: "",
+  });
 
   useEffect(() => {
     if (props.selectedSpecialist) {
       fetchAvailabilities();
     }
+  }, [props.selectedSpecialist]);
+
+  useEffect(() => {
+    // Reset date state to null when props.selectedSpecialist changes
+    setDate(null);
   }, [props.selectedSpecialist]);
   
   useEffect(() => {
@@ -39,6 +51,11 @@ function AppointmentAddForm(props) {
       fetchAvailabilitiesForSelectedDate();
     }
   }, [date, props.selectedSpecialist, showTimeSlots]);
+
+  useEffect(() => {
+    setSelectedTimeSlot(null); // Reset selected time slot when date changes
+  }, [date]);
+  
   
   useEffect(() => {
     // Check if there are availabilities for the selected date
@@ -84,6 +101,25 @@ function AppointmentAddForm(props) {
   }, [startTime, endTime]);
   
   
+
+  useEffect(() => {
+    const fetchCenterInfo = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8070/center/${center}`);
+        setCenterInfo(response.data);
+      } catch (error) {
+        console.error("Error fetching center information:", error);
+      }
+    };
+
+    if (type !== "virtual" && center) {
+      fetchCenterInfo();
+    } else {
+      setCenterInfo(null); // Reset centerInfo when conditions are not met
+    }
+  }, [type, center, showTimeSlots])
+
+
   
   
 
@@ -164,6 +200,37 @@ function AppointmentAddForm(props) {
     }
   };
 
+
+
+
+  const handlePatientInfoChange = (e) => {
+    const { id, value } = e.target;
+    setPatientInfo((prevPatientInfo) => ({
+      ...prevPatientInfo,
+      [id]: value,
+    }));
+  };
+
+
+
+  const handlePatientGenderChange = (e) => {
+    setPatientInfo((prevPatientInfo) => ({
+      ...prevPatientInfo,
+      patientGender: e.target.value,
+    }));
+  };
+
+
+
+
+  const handleTimeSlotClick = (slot) => {
+    setSelectedTimeSlot((prevSlot) => (prevSlot === slot ? null : slot));
+  };
+  
+
+
+
+
   
 
   const isDateDisabled = ({ date }) => {
@@ -225,6 +292,7 @@ function AppointmentAddForm(props) {
       appointmentAmount: props.selectedSpecialist.consultationFee,
       timeSlot: selectedTimeSlot,
       availabilityId: availabilitiesForSelectedDate[0]._id,
+      patientInfo: patientInfo
     }
     console.log("new appointment is",  newAppointment);
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
@@ -233,117 +301,178 @@ function AppointmentAddForm(props) {
       console.error(err);
     })
   };
+
+
   
 
   return (
     <div className='AppointmentAddForm'>
-        <form onSubmit={submit}>
+        <form className="AppointmentAddForm-form" onSubmit={submit}>
           {props.selectedSpecialist && (
 
             <>
-              <div className="selectedSpecialistDetails">
-                <div className="mb-3">
-                  <label htmlFor="specialist" className="form-label">Specialist</label>
-                  <input type="text" className="form-control" id="specialist" value={props.selectedSpecialist.specialistName} readOnly />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="specialist_speciality" className="form-label">Speciality</label>
-                  <input type="text" className="form-control" id="specialist_speciality" value={props.selectedSpecialist.speciality} readOnly />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="specialist_ratings" className="form-label">Ratings</label>
-                  <input type="text" className="form-control" id="specialist_ratings" value={props.selectedSpecialist.rating} readOnly />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="consultationFee" className="form-label">Consultation Fee</label>
-                  <input type="text" className="form-control" id="consultationFee" value={props.selectedSpecialist.consultationFee} readOnly />
-                </div>
+
+              <div className="selected-specialist-card">
+                  <img src="https://www.shutterstock.com/image-vector/vector-medical-icon-doctor-image-600nw-1170228883.jpg" alt="SampleSpecialistImage" className="selected-specialistImg" />
+                  <div className="specialistInfo">
+                      <div className="selected-specialistName">{ props.selectedSpecialist.specialistName }</div>
+                      <div className="selected-speciality">{ props.selectedSpecialist.speciality }</div>
+                      <div className="selected-specialistRating">
+                          { props.selectedSpecialist.rating }/5
+                      </div>
+                      <div className="selected-consultation Fee">Consultation fee : Rs.{ props.selectedSpecialist.consultationFee }</div>
+                  </div>
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="date" className="form-label">Date</label>
-                <div>
-                  <Calendar onChange={handleDateChange} value={date} tileDisabled={isDateDisabled} />
-                </div>
-                <button type="button" onClick={handleShowTimeSlots}>Show Time Slots</button> 
-              </div>
+              
 
-              {showTimeSlots && availabilitiesForSelectedDate.length > 0 && (
-                <div className="availableTimeSlots">
-                  <h3>Session</h3>
-                  <>
-                    <span>{availabilitiesForSelectedDate[0].startTime} - {availabilitiesForSelectedDate[0].endTime}</span>
-                  </>
-                </div>
-              )}
+              <div className="specialist-list-calendarAndPatientInfo">
 
-              <div className="mb-3">
-                <label htmlFor="patient" className="form-label">Patient</label>
-                <input type="text" className="form-control" id="patient" value={user.userDetails.customer_name} readOnly/>
-              </div>
-              <div>
-                <label htmlFor="type">Select the appointment type:</label><br/>
-                {type !== "virtual" && (
-                  <>
+                <div className="specialist-list-date">
+                  <label htmlFor="date" className="form-label">Select a Date</label>
+                  <div className="specialist-list-date-cal">
+                    <Calendar onChange={handleDateChange} value={date} tileDisabled={isDateDisabled} />
+                  </div>
+                  <button type="button" onClick={handleShowTimeSlots}>Search Available Time Slots</button> 
+                </div>
+
+
+                <div className="specialistList-cusInfo">
+                  <h4>Patient Info</h4>
+                  <div className="specialistList-patientName">
+                    <label htmlFor="patientName" className="form-label">
+                      Patient Name
+                    </label>
                     <input
-                      type="radio"
-                      id="physical"
-                      name="type"
-                      value="physical"
-                      onChange={handleTypeChange}
-                      checked={type === "physical"}
+                      type="text"
+                      className="form-control"
+                      id="patientName"
+                      value={patientInfo.patientName}
+                      onChange={handlePatientInfoChange}
                     />
-                    <label htmlFor="physical">Physical</label><br/>
-                  </>
-                )}
-                {type !== "physical" && (
-                  <>
+                  </div>
+                  <div className="specialistList-patientPhone">
+                    <label htmlFor="patientPhone" className="form-label">
+                      Phone
+                    </label>
                     <input
-                      type="radio"
-                      id="virtual"
-                      name="type"
-                      value="virtual"
-                      onChange={handleTypeChange}
-                      checked={type === "virtual"}
+                      type="text"
+                      className="form-control"
+                      id="patientPhone"
+                      value={patientInfo.patientPhone}
+                      onChange={handlePatientInfoChange}
                     />
-                    <label htmlFor="virtual">Virtual</label><br/>
-                  </>
-                )}
+                  </div>
+                  <div className="specialistList-patientAge">
+                    <label htmlFor="patientAge" className="form-label">
+                      Age
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="patientAge"
+                      value={patientInfo.patientAge}
+                      onChange={handlePatientInfoChange}
+                    />
+                  </div>
+                  <div className="specialistList-patientGender">
+                    <label className="form-label">Gender</label>
+                    <div>
+                      <input
+                        type="radio"
+                        id="male"
+                        name="gender"
+                        value="male"
+                        checked={patientInfo.patientGender === 'male'}
+                        onChange={handlePatientGenderChange}
+                      />
+                      <label htmlFor="male">Male</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="female"
+                        name="gender"
+                        value="female"
+                        checked={patientInfo.patientGender === 'female'}
+                        onChange={handlePatientGenderChange}
+                      />
+                      <label htmlFor="female">Female</label>
+                    </div>
+                  </div>
+
+                </div>
+
               </div>
 
 
 
-              {type !== "virtual" && (
-                <div className="mb-3">
-                  <label htmlFor="center" className="form-label">Center</label>
-                  <input type="text" className="form-control" id="center" value={center || ''} onChange={(e)=> setCenter(e.target.value) } />
-                </div>
-              )}
+                {date && (
+                  <>
+                
+              <div className="specialistList-sessionInfo">
+
+                    <div>
+                      {type !== "virtual" && (
+                        <>
+                          <span>Physical</span><br/>
+                        </>
+                      )}
+                      {type !== "physical" && (
+                        <>
+                          <span>Virtual</span><br/>
+                        </>
+                      )}
+                    </div>
+
+                    {type !== "virtual" && centerInfo && (
+                      <div className="center-info">
+                        <span>Center Name: {centerInfo ? centerInfo.name : 'Loading...'}</span><br />
+                        <span>Location: {centerInfo ? centerInfo.location : 'Loading...'}</span>
+                      </div>
+                    )}
+                  
+                  
+
+                  
 
 
-              {/* Time slots */}
-              {showTimeSlots && timeSlots.length > 0 && (
-                <div className="timeSlots">
-                  <h3>Time Slots</h3>
-                  <ul>
-                    {timeSlots.map((slot, index) => (
-                      <li key={index}>
-                        <input
-                          type="radio"
-                          id={`slot-${index}`}
-                          name="timeSlot"
-                          value={slot}
-                          onChange={(e) => setSelectedTimeSlot(e.target.value)}
-                          checked={selectedTimeSlot === slot}
-                          disabled={isTimeSlotBooked(slot)} // Check if the time slot is booked
-                        />
-                        <label htmlFor={`slot-${index}`}>{slot}</label>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                  {showTimeSlots && availabilitiesForSelectedDate.length > 0 && (
+                    <div className="specialistList-doctorSession">
+                      <span>Session time: {availabilitiesForSelectedDate[0].startTime} - {availabilitiesForSelectedDate[0].endTime}</span>
+                    </div>
+                  )}
 
+
+                  {/* Time slots */}
+                  {showTimeSlots && timeSlots.length > 0 && (
+                    <div className="timeSlots">
+                    <h4>Available Time Slots</h4>
+                    <div className="timeSlotButtons">
+                      {timeSlots.map((slot, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          className={`timeSlotButton ${selectedTimeSlot === slot ? 'selected' : ''} ${
+                            isTimeSlotBooked(slot) ? 'disabled' : ''
+                          }`}
+                          onClick={() => handleTimeSlotClick(slot)}
+                          disabled={isTimeSlotBooked(slot)}
+                        >
+                          {slot}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  )}
+
+              </div>
+
+              </>
+
+                )}
+              
 
               <button type="submit" className="btn btn-primary">Submit</button>
             </>

@@ -48,7 +48,22 @@ const ConsultAppointmentSchema = new Schema(
     },
     timeSlot: {
       type: String,
-    }
+    },
+    patientInfo: {
+      patientName: {
+        type: String,
+      },
+      patientAge: {
+        type: String,
+      },
+      patientGender: {
+        type: String,
+        enum: ["male", "female"], // If gender is limited to male and female
+      },
+      patientPhone: {
+        type: String,
+      },
+    },
   },
   { timestamps: true }
 );

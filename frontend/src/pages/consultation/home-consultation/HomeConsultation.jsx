@@ -15,8 +15,8 @@ function HomeConsultation() {
     <>
       <div className="homeConsultation">
         <Header />
-        <div className="consultation-home-contents">
-          <SpecialistList setSelectedSpecialist={setSelectedSpecialist} />
+          <div className={`consultation-home-contents${selectedSpecialist ? ' consultation-home-contents-flex-display' : ''}`}>
+          <SpecialistList selectedSpecialist={selectedSpecialist} setSelectedSpecialist={setSelectedSpecialist} />
           <AppointmentAddForm selectedSpecialist={selectedSpecialist} />
         </div>
       </div>

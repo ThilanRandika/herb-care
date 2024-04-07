@@ -44,15 +44,18 @@ function SpecialistList(props) {
 
   return (
     <div className="specialistList">
-      <header>
-        <h2>Doctors and Therapists</h2>
+      <header className="specialist-list-header">
+          <h2>Doctors and Therapists</h2>
         <p>Find your healthcare provider below.</p>
-        <input
-          type="text"
-          placeholder="Search for a specialist"
-          value={searchQuery}
-          onChange={handleSearchInputChange}
-        />
+        <div className="specialist-search-bar">
+          <input
+            type="text"
+            placeholder="Search for a specialist"
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            className="specialist-search-input"
+          />
+        </div>
       </header>
       <div className="horizontalSpecialistList">
         {filteredSpecialists.map((specialist) => (
@@ -60,6 +63,7 @@ function SpecialistList(props) {
             key={specialist._id}
             specialist={specialist}
             onSelect={handleSelectSpecialist}
+            isSelected={props.selectedSpecialist && props.selectedSpecialist._id === specialist._id}
           />
         ))}
       </div>
