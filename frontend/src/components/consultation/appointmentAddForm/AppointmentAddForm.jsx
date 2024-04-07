@@ -322,7 +322,7 @@ function AppointmentAddForm(props) {
 
 
               {/* Time slots */}
-              {timeSlots.length > 0 && (
+              {showTimeSlots && timeSlots.length > 0 && (
                 <div className="timeSlots">
                   <h3>Time Slots</h3>
                   <ul>
