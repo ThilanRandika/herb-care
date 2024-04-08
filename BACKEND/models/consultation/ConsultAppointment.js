@@ -11,11 +11,14 @@ const ConsultAppointmentSchema = new Schema(
     patient: {
       type: Schema.Types.ObjectId,
       ref: "Customer",
-      required: true,
     },
     date: {
       type: Date,
       required: true,
+    },
+    center: {
+      type: Schema.Types.ObjectId,
+      ref: "Center",
     },
     status: {
       type: String,
