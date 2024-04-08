@@ -28,25 +28,24 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/Inventory_Dashboard" element={<Inventory_Dashboard/>}></Route>
-        <Route path="/User_searching/*" element={<User_searching/>}></Route>
-        <Route path="/Producttesting/*" element={<Producttesting/>}></Route>
-        <Route path="/Product/:id" element={<Product/>}></Route>
-      </Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Inventory_Dashboard/*" element={<Inventory_Dashboard />} />
+        <Route path="/User_searching/*" element={<User_searching />} />
+        <Route path="/Producttesting/*" element={<Producttesting />} />
+        <Route path="/Product/:id" element={<Product />} />
 
-
-        <Route path="/sellerHome/*" element={<SellerHome/>}></Route>
-        <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard/>}></Route>
-        <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard/>}></Route>
-        <Route path="/login" element={<LoginPage/>}></Route>
+        <Route path="/sellerHome/*" element={<SellerHome />} />
+        <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
+        <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard />} />
         
-        <Route path="/consultation/*" element={<ConsultationsCustomer/>}></Route>
-        <Route path="/specialistInterface/*" element={<SpecialistInterface/>}></Route>
-        <Route path="/consultationStaff/*" element={<ConsultationStaff/>}></Route>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/consultation/*" element={<ConsultationsCustomer />} />
+        <Route path="/specialistInterface/*" element={<SpecialistInterface />} />
+        <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
 
 export default App;
