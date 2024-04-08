@@ -12,14 +12,14 @@ function AppointmentAddForm(props) {
   const navigator = useNavigate();
   const { user } = useContext(AuthContext); // get the customer ID from authentication context
 
-  console.log(user.userDetails);
+  console.log(user);
 
   const submit = (e) => {
     e.preventDefault();
     const newAppointment = {
       date: date,
       specialist: props.selectedSpecialist._id,
-      patient: user.userDetails,
+      patient: user,
       center: center,
       appointmentAmount: props.selectedSpecialist.consultationFee
     }
@@ -61,7 +61,7 @@ function AppointmentAddForm(props) {
           </div>
           <div className="mb-3">
               <label htmlFor="patient" className="form-label">patient</label>
-              <input type="text" className="form-control" id="patient" value={user.userDetails.customer_name} readOnly/>
+              <input type="text" className="form-control" id="patient" value={user.customer_name} readOnly/>
           </div>
           <div className="mb-3">
               <label htmlFor="center" className="form-label">center</label>

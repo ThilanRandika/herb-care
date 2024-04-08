@@ -49,3 +49,23 @@
     background-color: #f44336;
     color: white;
 }
+
+
+
+.details-row {
+    background-color: #f9f9f9;
+}
+
+.seller-details {
+    padding: 10px;
+}
+
+/* Hide the seller details by default */
+.details-row .seller-details {
+    display: none;
+}
+
+/* Show the seller details when the row is open */
+.details-row.open .seller-details {
+    display: block;
+}
