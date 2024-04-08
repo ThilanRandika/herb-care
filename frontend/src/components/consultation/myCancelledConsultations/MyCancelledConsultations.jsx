@@ -13,7 +13,7 @@ function MyCancelledConsultations(props) {
   const { user } = useContext(AuthContext); // get the customer ID from authentication context
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/cancelledAppointments/${user.userDetails._id}`)
+        axios.get(`http://localhost:8070/consultAppointment/cancelledAppointments/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setCancelledAppointments(res.data);
@@ -22,7 +22,7 @@ function MyCancelledConsultations(props) {
             .catch((err) => {
                 console.log('Error getting cancelled appointments', err);
             });
-    }, [user.userDetails._id]);
+    }, [user._id]);
 
     useEffect(() => {
       const fetchRefundStatuses = async () => {
