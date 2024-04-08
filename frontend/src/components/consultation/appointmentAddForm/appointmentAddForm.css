@@ -1,7 +1,90 @@
-.AppointmentAddForm{
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    background-color: aliceblue;
+.AppointmentAddForm {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.specialist-list-date {
+  width: 100%; /* Make the date selection section span the entire width */
+  margin-bottom: 20px; /* Add some space at the bottom */
+}
+
+.specialistList-sessionInfo {
+  width: 100%; /* Make the session info section span the entire width */
+}
+
+.specialistList-cusInfo {
+  width: 100%; /* Make the customer info section span the entire width */
+}
+
+.selected-specialist-card {
+  width: 100%; /* Make the specialist card span the entire width */
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #ccc; /* Add a bottom border for separation */
+  padding: 20px;
+}
+
+.selected-specialistImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* Make the image round */
+  margin-right: 20px;
+}
+
+.specialistInfo {
+  flex-grow: 1;
+}
+
+.selected-specialistName {
+  font-size: 1.5em; /* Larger font size for the name */
+  font-weight: bold;
+}
+
+.selected-speciality,
+.selected-consultation-Fee,
+.selected-specialistRating {
+  margin-top: 5px;
+}
+
+.selected-specialistRating {
+  font-weight: bold;
+  color: #888; /* Dim the color for the rating */
+}
+
+.AppointmentAddForm-form {
+  width: 100%; /* Make the form span the entire width */
+
+}
+
+.specialist-list-calendarAndPatientInfo{
+  display: flex;
+}
+
+.timeSlotButton {
+  /* Add your button styling here */
+  padding: 8px 16px;
+  margin: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.timeSlotButton:hover {
+  background-color: #f0f0f0;
+}
+
+.timeSlotButton.selected {
+  /* Style for selected button */
+  background-color: #007bff; /* Change to your desired selected color */
+  color: #fff;
+}
+
+.timeSlotButton.disabled {
+  /* Style for disabled button */
+  opacity: 0.6;
+  cursor: not-allowed;
 }

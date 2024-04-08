@@ -1,0 +1,20 @@
+.specialist-nav-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .specialist-nav-item {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .specialist-nav-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .specialist-nav-item.active {
+    background-color: #ddd;
+  }
+  

@@ -1,17 +1,25 @@
 const ConsultAppointment = require("../../models/consultation/ConsultAppointment.js");
+const Availability = require("../../models/consultation/Availability.js");
 const { verifyToOther } = require("../../utils/veryfyToken.js");
 const router = require("express").Router();
 
-// CREATE - Consultation Appointment
 // router.route("/add").post(verifyToOther, async (req, res) => {
-//   try {
-//     const userId = req.person.userId;
-//     const newConsultAppointment = new ConsultAppointment({...req.body, patient: userId});
-//       const savedConsultAppointment = await newConsultAppointment.save();
+  //   try {
+    //     const userId = req.person.userId;
+    //     const newConsultAppointment = new ConsultAppointment({...req.body, patient: userId});
+    //       const savedConsultAppointment = await newConsultAppointment.save();
+
+  // CREATE - Consultation Appointment
   router.route("/add").post(async (req, res) => {
     const newconsultAppointment = new ConsultAppointment(req.body);
     try {
       const savedConsultAppointment = await newconsultAppointment.save();
+
+      // Update Availability model
+      const availabilityId = req.body.availabilityId;
+      const bookedTimeSlot = req.body.timeSlot;
+      await Availability.findByIdAndUpdate(availabilityId, { $push: { bookedTimeSlots: bookedTimeSlot } });
+
       res.status(200).json(savedConsultAppointment);
     } catch (err) {
       console.log(err);

@@ -29,6 +29,10 @@ const AvailabilitySchema = new Schema(
       type: String,
       required: true,
     },
+    bookedTimeSlots: [{
+      type: String,
+      required: true
+    }]
   },
   { timestamps: true }
 );
