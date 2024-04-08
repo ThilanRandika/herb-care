@@ -262,7 +262,7 @@ function AppointmentAddForm(props) {
       console.error("Selected specialist is null");
       return;
     }
-    else if (!user.userDetails){
+    else if (!user){
       console.error("Selected patient is null");
       return;
     }
