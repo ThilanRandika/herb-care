@@ -1,56 +1,55 @@
-.card {
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-  height: 300px; /* Adjust the height of the card */
-  cursor: pointer;
+.product-list-container {
+  padding: 20px;
 }
 
-.card:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.card-img-top {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  height: 50%; /* Adjust the height of the image */
-}
-
-.card-body {
-  padding: 1rem;
-}
-
-.card-title {
-  font-size: 1rem; /* Reduce the font size of the title */
-  font-weight: bold;
-}
-
-.card-text {
-  font-size: 0.875rem; /* Reduce the font size of the text */
-  margin-bottom: 0.5rem;
-}
-
-.row-cols-1 {
+.product-grid {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.row-cols-md-3 {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.col {
-  flex: 1;
-  max-width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 800px; /* Limiting the maximum width to prevent too many products in a row */
+  margin: 0 auto; /* Centering the grid */
 }
 
 @media (min-width: 768px) {
-  .col {
-    flex: 0 0 auto;
-    width: 100%;
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr); /* Displaying maximum four products per row on larger screens */
+    max-width: none; /* Resetting the maximum width */
   }
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-details {
+  padding: 20px;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.product-ingredients {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.product-quantity,
+.product-price {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
 }
