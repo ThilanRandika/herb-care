@@ -13,16 +13,16 @@ function DashboardSpecialist() {
 
   return (
     <>
-      <div className="specialist-container">
-        <div className="specialist-nav-bar">
+      <div className="specialistInterface-specialist-container">
+        <div className="specialistInterface-specialist-nav-bar">
           <NavBarSpecialistDashBoard/>
-          <div className="specialist-id-input">
+          <div className="specialistInterface-specialist-id-input">
             <label> enter specialistID</label>
             <input type="text" value={specialistID} onChange={(e)=> setSpecialistID(e.target.value) }/>
           </div>
         </div>
 
-        <div className="pages">
+        <div className="specialistInterface-pages">
           <Routes>
             <Route path="/" element={<SpecialistDashboard specialistID={specialistID}/>}></Route>
             <Route path="/appointmentRequests" element={<AppointmentRequests specialistID={specialistID}/>}></Route>
