@@ -1,11 +1,11 @@
 import React from "react";
 import ManagerSideBar from "../../../components/sellerPartnership/managerSideBar/ManagerSideBar";
 import { Routes, Route } from "react-router-dom";
-import PendingSellerRequests from "../../../components/sellerPartnership/pendingSellerRequests/PendingSellerRequests";
-import DiscussionLevelRequests from "../../../components/sellerPartnership/discussionLevelRequests/DiscussionLevelRequests";
-import RegisteredSellers from "../../../components/sellerPartnership/RegisterdSellers/RegisteredSellers";
-import SellerRegisterForm from "../../../components/sellerPartnership/sellerRegisterForm/SellerRegisterForm";
-import SellerDetailEdit from "../../../components/sellerPartnership/sellerDetailEdit/SellerDetailEdit";
+import PendingSellerRequests from "../../../components/sellerPartnership/manager/pendingSellerRequests/PendingSellerRequests";
+import DiscussionLevelRequests from "../../../components/sellerPartnership/manager/discussionLevelRequests/DiscussionLevelRequests";
+import RegisteredSellers from "../../../components/sellerPartnership/manager/RegisterdSellers/RegisteredSellers";
+import SellerRegisterForm from "../../../components/sellerPartnership/manager/sellerRegisterForm/SellerRegisterForm";
+import SellerDetailEdit from "../../../components/sellerPartnership/manager/sellerDetailEdit/SellerDetailEdit";
 
 function SellerManagerDashboard() {
   return (

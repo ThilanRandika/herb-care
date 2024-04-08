@@ -21,12 +21,86 @@
     max-width: 100%;
 }
 
-/* Responsive layout for smaller screens */
-@media (max-width: 768px) {
-    .product-image-container,
-    .product-details-container {
-        flex: 0 0 100%;
-        max-width: 100%;
-        padding: 0;
-    }
+.product-details-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.product-category,
+.product-description,
+.product-ingredients,
+.product-min-quantity,
+.product-price {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.quantity-selection {
+    margin-top: 10px;
+}
+
+.quantity-selection label {
+    margin-right: 10px;
+}
+
+.quantity-selection input {
+    width: 70px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-to-bag-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #205621;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-to-bag-button:hover {
+    background-color: #45a049;
+}
+
+
+.product-tab-links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.product-tab-links button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-tab-links button.active {
+    background-color: #ccc;
+}
+
+.product-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.product-details p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: center;
 }

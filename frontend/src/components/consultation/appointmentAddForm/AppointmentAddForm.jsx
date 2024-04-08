@@ -223,6 +223,7 @@ function AppointmentAddForm(props) {
 
 
 
+
   const handleTimeSlotClick = (slot) => {
     setSelectedTimeSlot((prevSlot) => (prevSlot === slot ? null : slot));
   };
@@ -286,7 +287,7 @@ function AppointmentAddForm(props) {
     const newAppointment = {
       date: date,
       specialist: props.selectedSpecialist._id,
-      patient: user.userDetails,
+      patient: user,
       center: center,
       type: type,
       appointmentAmount: props.selectedSpecialist.consultationFee,
@@ -479,7 +480,7 @@ function AppointmentAddForm(props) {
 
             
           )}  
-          
+
         </form>
 
         
