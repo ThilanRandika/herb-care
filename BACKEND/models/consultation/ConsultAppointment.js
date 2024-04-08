@@ -8,6 +8,9 @@ const ConsultAppointmentSchema = new Schema(
       ref: "Specialist",
       required: true,
     },
+    specialistName: {
+      type: String,
+    },
     patient: {
       type: Schema.Types.ObjectId,
       ref: "Customer",
@@ -23,6 +26,12 @@ const ConsultAppointmentSchema = new Schema(
     center: {
       type: Schema.Types.ObjectId,
       ref: "Center",
+    },
+    centerName: {
+      type: String,
+    },
+    centerLocation: {
+      type: String,
     },
     status: {
       type: String,

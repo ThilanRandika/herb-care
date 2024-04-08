@@ -287,8 +287,11 @@ function AppointmentAddForm(props) {
     const newAppointment = {
       date: date,
       specialist: props.selectedSpecialist._id,
+      specialistName: props.selectedSpecialist.specialistName,
       patient: user,
       center: center,
+      centerName: centerInfo ? centerInfo.name : null,
+      centerLocation: centerInfo ? centerInfo.location : null,
       type: type,
       appointmentAmount: props.selectedSpecialist.consultationFee,
       timeSlot: selectedTimeSlot,
@@ -304,7 +307,8 @@ function AppointmentAddForm(props) {
   };
 
 
-  
+  console.log("center location ", centerInfo ? centerInfo.location : null,);
+
 
   return (
     <div className='AppointmentAddForm'>

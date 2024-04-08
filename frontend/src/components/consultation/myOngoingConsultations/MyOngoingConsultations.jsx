@@ -1,82 +1,109 @@
-import { useContext, useEffect, useState } from 'react';
-import './myOngoingConsultations.css'
+// MyOngoingConsultations.js
+
+import React, { useContext, useEffect, useState } from 'react';
+import './myOngoingConsultations.css';
 import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
 
 function MyOngoingConsultations() {
+  const [onGoingAppointments, setOnGoingAppointments] = useState([]);
+  const { user } = useContext(AuthContext);
+  const [expandedAppointment, setExpandedAppointment] = useState(null);
 
-    const  [onGoingAppointments, setonGoingAppointments] = useState([]);
-    const { user } = useContext(AuthContext); // get the customer ID from authentication context
+  useEffect(() => {
+    axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
+      .then((res) => {
+        console.log("Got data: ", res.data);
+        setOnGoingAppointments(res.data);
+      })
+      .catch((err) => {
+        console.log('Error getting ongoing appointments', err);
+      });
+  }, []);
 
-
-    useEffect(() => {
+  const handleCancel = (id) => {
+    axios.put(`http://localhost:8070/consultAppointment/cancelAppointment/${id}`)
+      .then((res) => {
+        console.log("Request cancelled successfully", res.data);
         axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
-            .then((res) => {
-                console.log("Got data: ", res.data);
-                setonGoingAppointments(res.data);
-            })
-            .catch((err) => {
-                console.log('Error getting ongoing appointments', err);
-            });
-    }, []);
-
-
-    const handleCancel = (id) => {
-      axios.put(`http://localhost:8070/consultAppointment/cancelAppointment/${id}`)
           .then((res) => {
-              console.log("Request cancelled successfully", res.data);
-              axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
-                .then((res) => {
-                    console.log("Got data: ", res.data);
-                    setonGoingAppointments(res.data);
-                })
-                .catch((err) => {
-                    console.log('Error getting ongoing appointments', err);
-                });
+            console.log("Got data: ", res.data);
+            setOnGoingAppointments(res.data);
           })
           .catch((err) => {
-              // Handle error, show error message, etc.
-              console.error('Error cancelling appointment', err);
+            console.log('Error getting ongoing appointments', err);
           });
-    };
+      })
+      .catch((err) => {
+        console.error('Error cancelling appointment', err);
+      });
+  };
 
+
+  
+  
+
+  
+
+  const toggleExpandedDetails = (index) => {
+    setExpandedAppointment(expandedAppointment === index ? null : index);
+  };
 
   return (
-    <>
-
-        <div>
-        <h3>Ongoing Consultations</h3>
-          <table style={{ marginTop: "5%" }}>
-            <thead>
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Date</th>
-                <th scope="col">Center</th>
-                <th scope="col">Specialist</th>
-                <th scope="col">Status</th>
+    <div className='ongoingConsultations-allContents'>
+      <h3 className='ongoingConsultations-header'>Ongoing Consultations</h3>
+      <table className='ongoingConsultations-table'>
+        <thead className='ongoingConsultations-thead'>
+          <tr>
+            <th>No.</th>
+            <th>Date</th>
+            <th>Specialist</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody className='ongoingConsultations-tbody'>
+          {onGoingAppointments.map((appointment, index) => (
+            <React.Fragment key={index}>
+              <tr onClick={() => toggleExpandedDetails(index)}>
+                <td>{index + 1}</td>
+                <td>{new Date(appointment.date).toLocaleDateString()}</td>
+                <td>{appointment.specialistName}</td>
+                <td>{appointment.status}</td>
               </tr>
-            </thead>
-            <tbody>
-              {onGoingAppointments.map((appointment, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{appointment.date}</td>
-                  <td>{appointment.center}</td>
-                  <td>{appointment.specialist}</td>
-                  <td>{appointment.status}</td>
-                  <td>
-                    {appointment.status === "Pending" && (
-                      <button variant="primary" onClick={ () => handleCancel(appointment._id) } >Cancel</button>
-                    )}
+              {expandedAppointment === index && (
+                <tr className="ongoingConsultations-expanded-details active">
+                  <td colSpan="5">
+                    <div className='ongoingConsultations-expanded-details-innerContainer'>
+                      <div className="ongoingConsultations-expanded-details-innerContainer-left">
+                        <p><strong>Center:</strong> {appointment.centerName}</p>
+                        <p><strong>Center Location:</strong> {appointment.centerLocation}</p>
+                        <p><strong>Type:</strong> {appointment.type}</p>
+                        <p><strong>Appointment Amount:</strong> {appointment.appointmentAmount}</p>
+                        <p><strong>Time Slot:</strong> {appointment.timeSlot}</p>
+                        {appointment.status === "Pending" && (
+                          <div className="ongoingAppointments-onlyPending">
+                            <button className='ongoingConsultations-tbody-cancel-btn' onClick={() => handleCancel(appointment._id)}>Cancel</button>
+                            <button className='ongoingConsultations-tbody-invoice-btn' >Invoice</button>
+                          </div>
+                        )}
+                      </div>
+                      <div className="ongoingConsultations-expanded-details-innerContainer-right">
+                        <h5>Patient Info:</h5>
+                          <p><strong>patientName:</strong> {appointment.patientInfo.patientName}</p>
+                          <p><strong>patientAge:</strong> {appointment.patientInfo.patientAge}</p>
+                          <p><strong>patientGender:</strong> {appointment.patientInfo.patientGender}</p>
+                          <p><strong>patientName:</strong> {appointment.patientInfo.patientPhone}</p>                          
+                      </div>
+                    </div>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-    </>
-  )
+              )}
+            </React.Fragment>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
-export default MyOngoingConsultations
+export default MyOngoingConsultations;
