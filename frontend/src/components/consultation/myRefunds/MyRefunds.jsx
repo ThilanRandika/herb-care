@@ -9,7 +9,7 @@ function MyRefunds(props) {
     const { user } = useContext(AuthContext); // get the customer ID from authentication context
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/refund/customerRefunds/${user.userDetails._id}`)
+        axios.get(`http://localhost:8070/refund/customerRefunds/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRefunds(res.data);
