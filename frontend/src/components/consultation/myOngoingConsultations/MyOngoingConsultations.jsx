@@ -10,7 +10,7 @@ function MyOngoingConsultations() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user.userDetails._id}`)
+        axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setonGoingAppointments(res.data);
@@ -25,7 +25,7 @@ function MyOngoingConsultations() {
       axios.put(`http://localhost:8070/consultAppointment/cancelAppointment/${id}`)
           .then((res) => {
               console.log("Request cancelled successfully", res.data);
-              axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user.userDetails._id}`)
+              axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
                 .then((res) => {
                     console.log("Got data: ", res.data);
                     setonGoingAppointments(res.data);

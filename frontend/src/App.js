@@ -12,8 +12,6 @@ import Producttesting from "./pages/inventory/Inventory_Dashboard/Producttesting
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from "./pages/user_searching/Product";
 
-
-import SellerHome from "./pages/sellerPartnership/Home/SellerHome";
 import SellerManagerDashboard from "./pages/sellerPartnership/managerDashboard/SellerManagerDashboard";
 import LoginPage from "./pages/common/login/LoginPage";
 import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/SellerStaffDashboard";
