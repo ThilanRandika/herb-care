@@ -5,10 +5,10 @@ function NavBarSpecialistDashBoard() {
   return (
     <>
       <div>
-        <ul className="specialist-nav-list" >
+        <ul className="navBarSpecialistDashboard-specialist-nav-list" >
           <li>
             <Link
-              className="specialist-nav-item"
+              className="navBarSpecialistDashboard-specialist-nav-item"
               to={"/specialistInterface/"}
               aria-current="page"
             >
@@ -17,7 +17,7 @@ function NavBarSpecialistDashBoard() {
           </li>
           <li>
             <Link
-              className="specialist-nav-item"
+              className="navBarSpecialistDashboard-specialist-nav-item"
               to={"/specialistInterface/appointmentRequests"}
             >
               appointment requests
@@ -25,7 +25,7 @@ function NavBarSpecialistDashBoard() {
           </li>
           <li>
             <Link
-              className="specialist-nav-item"
+              className="navBarSpecialistDashboard-specialist-nav-item"
               to={"/specialistInterface/appointments"}
             >
               Appointments
@@ -33,7 +33,7 @@ function NavBarSpecialistDashBoard() {
           </li>
           <li>
             <Link
-              className="specialist-nav-item"
+              className="navBarSpecialistDashboard-specialist-nav-item"
               to={"/specialistInterface/availability"}
             >
               Availability

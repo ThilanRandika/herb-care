@@ -1,8 +1,8 @@
-.specialist-container {
+.specialistInterface-specialist-container {
   display: flex;
 }
 
-.specialist-nav-bar {
+.specialistInterface-specialist-nav-bar {
   flex: 0 0 200px; /* Set the width of the navbar */
   background-color: #f0f0f0; /* Background color of the navbar */
   padding: 20px; /* Add some padding for better appearance */
@@ -12,11 +12,11 @@
   justify-content: space-between; /* Align items vertically */
 }
 
-.pages {
+.specialistInterface-pages {
   flex: 1; /* Allow the content to take up the remaining space */
   padding: 20px; /* Add padding for better appearance */
 }
 
-.specialist-id-input {
+.specialistInterface-specialist-id-input {
   width: 100%;
 }
