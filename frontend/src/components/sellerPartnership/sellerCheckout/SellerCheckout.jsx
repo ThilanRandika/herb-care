@@ -7,6 +7,7 @@ function SellerCheckout() {
   const [products, setProduct] = useState([]);
   const [sellers, setSeller] = useState({});
   const [paymentMethod, setPaymentMethod] = useState("credit");
+  const [address, setAddress] = useState("");
 
   const navigator = useNavigate();
 
@@ -20,6 +21,7 @@ function SellerCheckout() {
       .then((res) => {
         console.log(res.data);
         setSeller(res.data.seller);
+        setAddress(res.data.seller.address || "");
         setProduct(res.data.products);
         console.log(sellers);
         console.log(products);
@@ -41,6 +43,7 @@ function SellerCheckout() {
     const newOrder = {
       seller: {
         ...sellers,
+        address:address,
         payment: paymentMethod,
       },
       products: formattedProducts,
@@ -122,15 +125,15 @@ function SellerCheckout() {
                     ))}
                     <br />
                     <li class="list-group-item d-flex justify-content-between">
-                      <span class="total-label">Total (USD)</span>
-                      <strong class="total-amount">{sellers.totalprice}</strong>
+                      <span class="total-label">Total (LKR)</span>
+                      <strong class="total-amount">Rs.{sellers.totalPrice}</strong>
                     </li>
                   </ul>
                 </ul>
               </div>
 
               <div className="col-md-7 col-lg-8">
-                <h4 className="mb-3">Billing address</h4>
+                <h4 className="mb-3">Company Details</h4>
                 <form
                   className="needs-validation seller-checkout-form"
                   noValidate
@@ -141,7 +144,7 @@ function SellerCheckout() {
                     <div className="billing-address-form row g-3">
                       <div className="col-12">
                         <label htmlFor="firstName" className="billing-label">
-                          First Name
+                          Company Name :
                         </label>
                         <input
                           type="text"
@@ -158,7 +161,7 @@ function SellerCheckout() {
 
                       <div className="col-12">
                         <label htmlFor="email" className="billing-label">
-                          Email <span className="text-muted">(optional)</span>
+                          Email : <span className="text-muted"></span>
                         </label>
                         <input
                           type="email"
@@ -175,7 +178,7 @@ function SellerCheckout() {
 
                       <div className="col-12">
                         <label htmlFor="address" className="billing-label">
-                          Address
+                          Address :
                         </label>
                         <input
                           type="text"
@@ -192,15 +195,16 @@ function SellerCheckout() {
 
                       <div className="col-12">
                         <label htmlFor="address2" className="billing-label">
-                          Address 2{" "}
-                          <span className="text-muted">(optional)</span>
+                          Shipping Address :{" "}
+                          <span className="text-muted">(If want to change address)</span>
                         </label>
                         <input
                           type="text"
                           className="billing-input form-control"
                           id="address2"
                           placeholder="Apartment 24"
-                          value={sellers.address}
+                          value={address}
+                        onChange={(e) => setAddress(e.target.value)}
                         />
                       </div>
                     </div>
