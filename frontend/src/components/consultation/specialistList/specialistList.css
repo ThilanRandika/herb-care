@@ -1,0 +1,26 @@
+.specialistList {
+  background-color: #f7f7f7;
+  justify-content: center;
+  padding-left: auto;
+  padding-right: auto;
+  width: 80%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.horizontalSpecialistList {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+
+
