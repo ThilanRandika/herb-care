@@ -23,11 +23,12 @@ router.route("/products").get(verifySellerToOther, async (req, res) => {
 
       if (product) {
         const sellerProduct = await SellerProducts.findOne({
+          sellerId: sellerId,
           product_id: productId,
         });
-
+        console.log(product)
         const calculatedPrice =
-          ((100 + sellerProduct.price_margine) * product.Manufactured_price) /
+          ((100 - sellerProduct.price_margine) * product.price) /
           100;
 
         mergedProducts.push({
@@ -77,7 +78,7 @@ router
       const product = await Product.findById(productId);
 
       const calculatedPrice =
-        ((100 + sellerProduct.price_margine) * product.Manufactured_price) /
+        ((100 - sellerProduct.price_margine) * product.price) /
         100;
 
       //merge product details

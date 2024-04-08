@@ -9,7 +9,7 @@ function SellerNavBar() {
             <div class="container-fluid">
             <Link
               className="nav-link"
-              to={"/sellerHome"}
+              to={"/sellerMainHome/sellerHome"}
               aria-current="page"
             >
               Home
@@ -21,21 +21,21 @@ function SellerNavBar() {
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <Link
                 className="nav-link"
-                to={"/sellerHome/allproduct"}
+                to={"/sellerMainHome/allproduct"}
                 aria-current="page"
                 >
                 All Products
                 </Link>
                 <Link
                 className="nav-link"
-                to={"/sellerHome/bag"}
+                to={"/sellerMainHome/bag"}
                 aria-current="page"
                 >
                 Bag
                 </Link>
                 <Link
                 className="nav-link"
-                to={"/sellerHome/orders"}
+                to={"/sellerMainHome/orders"}
                 aria-current="page"
                 >
                 Orders
