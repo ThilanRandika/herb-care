@@ -2,6 +2,7 @@ const ConsultAppointment = require("../../models/consultation/ConsultAppointment
 const Availability = require("../../models/consultation/Availability.js");
 const { verifyToOther } = require("../../utils/veryfyToken.js");
 const router = require("express").Router();
+const PDFDocument = require('pdfkit');
 
 // router.route("/add").post(verifyToOther, async (req, res) => {
   //   try {
@@ -229,6 +230,81 @@ router.route("/rejectAppointment/:id").put(async (req, res) => {
         res.status(500).json({ message: "Failed to cancel appointment" });
         }
     });
+
+
+
+
+    // Route to generate PDF invoice
+    router.get('/generateInvoice/:id', async (req, res) => {
+      try {
+        // Fetch appointment details from the database
+        const appointment = await ConsultAppointment.findById(req.params.id);
+        if (!appointment) {
+          return res.status(404).json({ message: 'Appointment not found' });
+        }
+
+        // Create a new PDF document
+        const doc = new PDFDocument();
+
+        // Pipe the PDF output to the response
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="consultation_invoice_appointmentID-${appointment._id}.pdf"`);
+        doc.pipe(res);
+
+        // Set theme color
+        const themeColor = '#0B4F30';
+
+        // Add company name and title
+        doc.font('Helvetica-Bold').fontSize(24).fillColor(themeColor).text('Herbcare', { align: 'center' }).moveDown();
+        doc.font('Helvetica-Bold').fontSize(20).fillColor(themeColor).text('Invoice', { align: 'center' }).moveDown();
+
+        // Define function to create table rows
+        function createRow(doc, label, value, options = {}) {
+          doc.font('Helvetica-Bold').fontSize(12).fillColor(themeColor).text(label, { width: 350, continued: true, ...options }).fillColor('#000000').text(value, { width: 400, align: 'right', ...options }).moveDown();
+        }
+
+        // Add appointment information
+        doc.fontSize(16).fillColor(themeColor).text('Appointment Information').moveDown();
+        createRow(doc, 'Appointment ID:', appointment._id);
+        createRow(doc, 'Date:', new Date(appointment.date).toLocaleDateString());
+        createRow(doc, 'Time:', appointment.timeSlot);
+        createRow(doc, 'Status:', appointment.status);
+        doc.moveDown();
+
+        // Add patient information
+        doc.fontSize(16).fillColor(themeColor).text('Patient Information').moveDown();
+        createRow(doc, 'Name:', appointment.patientInfo.patientName);
+        createRow(doc, 'Age:', appointment.patientInfo.patientAge);
+        createRow(doc, 'Gender:', appointment.patientInfo.patientGender);
+        createRow(doc, 'Phone:', appointment.patientInfo.patientPhone);
+        doc.moveDown();
+
+        // Add specialist information
+        doc.fontSize(16).fillColor(themeColor).text('Specialist Information').moveDown();
+        createRow(doc, 'Specialist Name:', appointment.specialistName);
+        doc.moveDown();
+
+        // Conditionally add center information if appointment type is not "virtual"
+        if (appointment.type !== "virtual") {
+          doc.fontSize(16).fillColor(themeColor).text('Center Information').moveDown();
+          createRow(doc, 'Center Name:', appointment.centerName);
+          createRow(doc, 'Location:', appointment.centerLocation);
+          doc.moveDown();
+        }
+
+        // Add additional details
+        doc.fontSize(16).fillColor(themeColor).text('Additional Details').moveDown();
+        createRow(doc, 'Type:', appointment.type);
+        createRow(doc, 'Amount:', appointment.appointmentAmount);
+
+        // Finalize the PDF document
+        doc.end();
+      } catch (error) {
+        console.error('Error generating PDF invoice:', error);
+        res.status(500).json({ message: 'Failed to generate PDF invoice' });
+      }
+    });
+
 
 
     module.exports = router;

@@ -42,6 +42,30 @@ function MyOngoingConsultations() {
 
   
   
+  const handleGenerateInvoice = async (appointmentId) => {
+    try {
+      const response = await axios.get(`http://localhost:8070/consultAppointment/generateInvoice/${appointmentId}`, {
+        responseType: 'blob', // Receive response as Blob (binary data)
+      });
+  
+      // Create a blob URL for the PDF
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+  
+      // Create a link element to trigger the download
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `invoice_${appointmentId}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+  
+      // Clean up
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error generating invoice:', error);
+    }
+  };
+
 
   
 
@@ -83,7 +107,7 @@ function MyOngoingConsultations() {
                         {appointment.status === "Pending" && (
                           <div className="ongoingAppointments-onlyPending">
                             <button className='ongoingConsultations-tbody-cancel-btn' onClick={() => handleCancel(appointment._id)}>Cancel</button>
-                            <button className='ongoingConsultations-tbody-invoice-btn' >Invoice</button>
+                            <button className='ongoingConsultations-tbody-invoice-btn' onClick={() => handleGenerateInvoice(appointment._id)}>Invoice</button>
                           </div>
                         )}
                       </div>
