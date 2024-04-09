@@ -64,7 +64,6 @@ function MyCancelledConsultations(props) {
                   <th>No.</th>
                   <th>Date</th>
                   <th>Specialist</th>
-                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -75,13 +74,12 @@ function MyCancelledConsultations(props) {
                             <td>{index + 1}</td>
                             <td>{new Date(appointment.date).toLocaleDateString()}</td>
                             <td>{appointment.specialistName}</td>
-                            <td>{appointment.status}</td>
                             <td>
                                 {dataFetched && refundStatuses[index] !== undefined && (
                                     <>
                                         {!refundStatuses[index] && (
                                             <>
-                                                <Link to={`../refunds/addForm/${appointment._id}`} className="custom-link">Apply refund</Link>
+                                                <Link to={`../refunds/addForm/${appointment._id}`} className="cancelledConsultations-link-btn">Apply refund</Link>
                                             </>
                                         )}
                                         {refundStatuses[index] && (

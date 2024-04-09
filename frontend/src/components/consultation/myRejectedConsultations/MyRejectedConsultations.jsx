@@ -60,6 +60,7 @@ function MyRejectedConsultations(props) {
             <th>No.</th>
             <th>Date</th>
             <th>Specialist</th>
+            <th>Action</th>
         </tr>          
         </thead>
         <tbody className='rejectedConsultations-tbody'>
@@ -69,6 +70,20 @@ function MyRejectedConsultations(props) {
               <td>{index + 1}</td>
               <td>{new Date(appointment.date).toLocaleDateString()}</td>
               <td>{appointment.specialistName}</td>
+              <td>
+                    {dataFetched && refundStatuses[index] !== undefined && (
+                      <>
+                        {!refundStatuses[index] && (
+                          <>
+                            <Link to={`../refunds/addForm/${appointment._id}`} className="rejectedConsultations-link-btn">Apply refund</Link>
+                          </>
+                        )}
+                        {refundStatuses[index] && (
+                          <span>Refund already requested</span>
+                        )}
+                      </>
+                    )}
+                </td>
               </tr>
               {expandedAppointment === index && (
               <tr className="rejectedConsultations-expanded-details active">

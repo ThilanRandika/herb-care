@@ -1,5 +1,8 @@
 .refunds-allContents {
     padding: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .refunds-header {
@@ -50,4 +53,3 @@
   .refunds-appointment-details p {
     margin: 5px 0;
   }
-  
