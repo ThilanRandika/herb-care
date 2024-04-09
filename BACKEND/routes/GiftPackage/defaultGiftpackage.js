@@ -5,6 +5,7 @@ const DefaultGiftPack = require("../../models/GiftPackage/defaultGiftpackage");
 const Product = require("../../models/inventory/Product")
 const multer = require('multer');
 const path = require('path');
+const mongoose = require('mongoose');
 
 
 // Image uploading
@@ -33,30 +34,30 @@ router.get('/products', async (req, res) => {
 
 // From gift package adding form, by Staff
 // Create default gift packagesand add them
-router.route("/addDefault-gift-package").post(upload.array('images', 10), async (req,res)=>{
-
+router.route("/addDefault-gift-package").post(upload.array('images', 10), async (req, res) => {
   try {
-    const { packageName, description, productIds} = req.body;
-    const images = req.files.map(file => file.path); // Get the image URLs
+      const { packageName, description } = req.body;
+      const productIds = JSON.parse(req.body.productIds)
+      const images = req.files.map(file => file.path);
 
-    // Fetch products by IDs
-    const products = await Product.find({ _id: { $in: productIds } });
+      // Fetch products by IDs
+      const productObjectIds=productIds.map(productId=>mongoose.Types.ObjectId(productId));
+      const products = await Product.find({ _id: { $in: productObjectIds } });
 
-    const newDefaultGiftPack = new DefaultGiftPack({
-        packageName,
-        description,
-        products, // Assign selected products directly
-        images
-    });
+      const newDefaultGiftPack = new DefaultGiftPack({
+          packageName,
+          description,
+          products,
+          images
+      });
 
-    const savedDefaultGiftPack = await newDefaultGiftPack.save();
+      const savedDefaultGiftPack = await newDefaultGiftPack.save();
 
-    res.status(201).json({ message: "Package added successfully" });
-} catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-}
-        
+      res.status(201).json({ message: "Package added successfully" });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
 });
 
 
@@ -64,21 +65,20 @@ router.route("/addDefault-gift-package").post(upload.array('images', 10), async 
 // Display all default gift packages to customer
 router.route("/default-gift-packages").get(async(req,res)=>{
 
-    try {
-        const defaultGiftPackages = await DefaultGiftPack.find();
-        res.json(defaultGiftPackages);
-      } catch (err) {
-        res.status(500).json({ message: err.message });
-      }
+  try {
+      const defaultGiftPackages = await DefaultGiftPack.find();
+      res.json(defaultGiftPackages);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
 
-    
+  
 })
-
 //After select a package system will display package details
 // Display a single default gift package
 router.route("/default-gift-package/:id").get(async (req, res) => {
     try {
-      const defaultGiftPack = await DefaultGiftPack.findById(req.params.id).populate('products');
+      const defaultGiftPack = await DefaultGiftPack.findById(req.params.id);
       if (defaultGiftPack == null) {
         return res.status(404).json({ message: "Default gift package not found"});
       }
