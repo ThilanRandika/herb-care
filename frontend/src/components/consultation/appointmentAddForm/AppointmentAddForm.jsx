@@ -300,7 +300,7 @@ function AppointmentAddForm(props) {
     }
     console.log("new appointment is",  newAppointment);
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
-      navigator('../myConsultations');
+      navigator('../myConsultations/myOngoingConsultations');
     }).catch((err)=>{
       console.error(err);
     })

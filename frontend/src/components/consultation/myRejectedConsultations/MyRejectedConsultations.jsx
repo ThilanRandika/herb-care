@@ -75,7 +75,7 @@ function MyRejectedConsultations(props) {
                       <>
                         {!refundStatuses[index] && (
                           <>
-                            <Link to={`../refunds/addForm/${appointment._id}`} className="rejectedConsultations-link-btn">Apply refund</Link>
+                            <Link to={`../../refunds/addForm/${appointment._id}`} className="rejectedConsultations-link-btn">Apply refund</Link>
                           </>
                         )}
                         {refundStatuses[index] && (

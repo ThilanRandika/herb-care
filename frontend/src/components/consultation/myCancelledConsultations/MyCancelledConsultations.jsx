@@ -79,7 +79,7 @@ function MyCancelledConsultations(props) {
                                     <>
                                         {!refundStatuses[index] && (
                                             <>
-                                                <Link to={`../refunds/addForm/${appointment._id}`} className="cancelledConsultations-link-btn">Apply refund</Link>
+                                                <Link to={`../../refunds/addForm/${appointment._id}`} className="cancelledConsultations-link-btn">Apply refund</Link>
                                             </>
                                         )}
                                         {refundStatuses[index] && (
