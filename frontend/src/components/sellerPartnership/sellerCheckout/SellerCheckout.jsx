@@ -3,7 +3,7 @@ import "./sellerCheckout.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function SellerCheckout() {
+function SellerCheckout({ selectedItems, onClose }) {
   const [products, setProduct] = useState([]);
   const [sellers, setSeller] = useState({});
   const [paymentMethod, setPaymentMethod] = useState("credit");
@@ -16,8 +16,14 @@ function SellerCheckout() {
   };
 
   useEffect(() => {
+
+    console.log(selectedItems)
     axios
-      .get("http://localhost:8070/sellerOrder/checkout")
+      .get("http://localhost:8070/sellerOrder/checkout",  {
+        params: {
+          selectedItems: selectedItems
+        }
+      })
       .then((res) => {
         console.log(res.data);
         setSeller(res.data.seller);
@@ -54,7 +60,7 @@ function SellerCheckout() {
       .then((res) => {
         alert("Your order has been placed successfully!");
         console.log(res.data);
-        navigator("../bag");
+        navigator('../orders');
       })
       .catch((err) => {
         console.log(err);
@@ -68,26 +74,20 @@ function SellerCheckout() {
           <main>
             <div className="seller-checkout-header py-5 text-center">
               <img
-                className="seller-checkout-logo d-block mx-auto mb-4"
+                className="checkout-logo d-block mx-auto mb-4"
                 src="https://th.bing.com/th/id/OIP.MCmM1b-hj0SntnEkvZNAnwHaHa?rs=1&pid=ImgDetMain"
                 alt=""
                 width="72"
                 height="57"
               />
-              <h2 className="seller-checkout-title">Checkout Form</h2>
-              <p className="seller-checkout-description lead">
-                Here is an example of a form created entirely using form
-                controls in Bootstrap. Each required form set has a verification
-                status that can be triggered by trying to submit the form
-                without completing it.
-              </p>
+              <h2 className="checkout-title">Checkout Form</h2>
             </div>
 
             <div className="row g-3">
-              <div className="col-md-5 col-lg-4 seller-checkout-shopping-cart">
+              <div className="col-md-5 col-lg-4 checkout-shopping-cart">
                 <h4 className="d-flex justify-content-between align-items-center mb-3">
                   <span className="text-muted">Shopping Cart</span>
-                  <span className="badge bg-secondary rounded-pill">3</span>
+                  <span className="badge bg-secondary rounded-pill">{sellers.itemCount}</span>
                 </h4>
                 <br />
 
@@ -101,32 +101,32 @@ function SellerCheckout() {
                 <ul className="list-group mb-3">
                   {/* Add list items dynamically here */}
 
-                  <ul class="cart-item-list list-group mb-3">
+                  <ul className="cart-item-list list-group mb-3">
                     {products.map((product, index) => (
                       <li
-                        class="list-group-item d-flex justify-content-between lh-sm"
+                        className="list-group-item d-flex justify-content-between lh-sm"
                         key={index}
                       >
-                        <div class="item-details">
-                          <h6 class="item-name my-0">
+                        <div className="item-details">
+                          <h6 className="item-name my-0">
                             {product.details.product_name}
                           </h6>
-                          <small class="item-description text-muted">
+                          <small className="item-description text-muted">
                             Brief description
                           </small>
                         </div>
-                        <span class="item-price text-muted">
+                        <span className="item-price text-muted">
                           {product.order.quantity}
                         </span>
-                        <span class="item-price text-muted">
+                        <span className="item-price text-muted">
                           {product.order.total_price}
                         </span>
                       </li>
                     ))}
                     <br />
-                    <li class="list-group-item d-flex justify-content-between">
-                      <span class="total-label">Total (LKR)</span>
-                      <strong class="total-amount">Rs.{sellers.totalPrice}</strong>
+                    <li className="list-group-item d-flex justify-content-between">
+                      <span className="total-label">Total (LKR)</span>
+                      <strong className="total-amount">Rs.{sellers.totalPrice}</strong>
                     </li>
                   </ul>
                 </ul>
@@ -135,7 +135,7 @@ function SellerCheckout() {
               <div className="col-md-7 col-lg-8">
                 <h4 className="mb-3">Company Details</h4>
                 <form
-                  className="needs-validation seller-checkout-form"
+                  className="needs-validation checkout-form"
                   noValidate
                 >
                   <div className="row g-3">
@@ -204,23 +204,11 @@ function SellerCheckout() {
                           id="address2"
                           placeholder="Apartment 24"
                           value={address}
-                        onChange={(e) => setAddress(e.target.value)}
+                          onChange={(e) => setAddress(e.target.value)}
                         />
                       </div>
                     </div>
                   </div>
-
-                  {/* <hr className="my-4" />
-
-            <div className="form-check">
-              <input type="checkbox" className="form-check-input" id="same-address" />
-              <label className="form-check-label" htmlFor="same-address">The shipping address is the same as my billing address</label>
-            </div>
-
-            <div className="form-check">
-              <input type="checkbox" className="form-check-input" id="save-info" />
-              <label className="form-check-label" htmlFor="save-info">Save this information next time</label>
-            </div> */}
 
                   <hr className="my-4" />
 

@@ -10,12 +10,15 @@ const emailSender = require('../../emailSender');
 router.route('/checkout').get(verifySellerToOther, async (req, res) => {
     try {
         const sellerId = req.person.sellerId;
+        const selectedItems = req.query.selectedItems;
+        console.log(selectedItems)
 
         // Get address from seller table
         const seller = await Seller.findOne({ sellerId });
 
         // Get all products in the cart for the specific seller
-        const sellerBags = await SellerBag.find({ sellerId }).populate('product_id');
+        const sellerBags = await SellerBag.find({ _id: { $in: selectedItems } }).populate('product_id');
+        const itemCount =  sellerBags.length;
 
         const totalPrice = sellerBags.reduce((total, item) => total + item.totalPrice, 0);
         
@@ -25,6 +28,7 @@ router.route('/checkout').get(verifySellerToOther, async (req, res) => {
                 companyName: seller.company,
                 email: seller.email,
                 address: seller.address,
+                itemCount: itemCount,
                 totalPrice: totalPrice
             },
             products:[]

@@ -1,5 +1,13 @@
-/* Common styles */
-table {
+.seller-approvel-pending-orders-container {
+    padding: 20px;
+}
+
+.seller-order-history-heading {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.seller-order-history-table {
     width: 100%;
     border-collapse: collapse;
     border-radius: 8px;
@@ -7,24 +15,24 @@ table {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-th,
-td {
+.seller-order-history-table th,
+.seller-order-history-table td {
     padding: 12px;
     border: none;
     text-align: left;
 }
 
-th {
+.seller-order-history-table th {
     background-color: #f2f2f2;
     font-weight: bold;
 }
 
-tr:nth-child(even) {
+.seller-order-history-table tr:nth-child(even) {
     background-color: #f8f8f8;
 }
 
-button,
-.view-order-link {
+.seller-order-actions button,
+.seller-view-order-link {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -35,32 +43,46 @@ button,
     transition: background-color 0.3s ease;
 }
 
-button:hover,
-.view-order-link:hover {
+.seller-order-actions button:hover,
+.seller-view-order-link:hover {
     background-color: #03570a;
     color: #ffffff;
 }
 
-a {
+/* a {
     text-decoration: none;
     color: inherit;
 }
 
 a:hover {
     color: #45a049;
+} */
+
+.seller-order-id,
+.seller-order-price,
+.seller-payment-method,
+.seller-order-status,
+.seller-order-date,
+.seller-order-actions {
+    width: 15%;
 }
 
-/* Specific styles for .seller-approvel-pending-orders */
-.seller-approvel-pending-orders {
-    padding: 20px;
+.seller-order-status-pending {
+    color: #ff9800; /* Orange color for pending status */
 }
 
-.seller-approvel-pending-orders h2 {
-    margin-bottom: 20px;
+.seller-order-status-processing {
+    color: #9000ff; /* Green color for confirmed status */
 }
 
-/* Adjust the width for the 7th column */
-th:nth-child(7),
-td:nth-child(7) {
-    width: 10%; /* Adjust the width as needed */
+.seller-order-status-readyToDelivery {
+    color: #2e4cf5; /* Red color for cancelled status */
+}
+
+.seller-order-status-onDelivery {
+    color: #50b0ff; /* Blue color for delivered status */
+}
+
+.seller-order-status-completed {
+    color: #4CAF50; /* Blue color for delivered status */
 }
