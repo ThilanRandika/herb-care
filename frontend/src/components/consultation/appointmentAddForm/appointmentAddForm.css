@@ -1,4 +1,7 @@
-.AppointmentAddForm {
+/* Updated CSS for AppointmentAddForm component */
+
+/* Unique class for the main container */
+.AppointmentAddForm-container {
   width: 100%;
   margin-top: 30px;
   display: flex;
@@ -6,65 +9,73 @@
   align-items: center;
 }
 
-.specialist-list-date {
-  width: 100%; /* Make the date selection section span the entire width */
-  margin-bottom: 20px; /* Add some space at the bottom */
+/* Unique class for the date selection section */
+.AppointmentAddForm-date {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.specialistList-sessionInfo {
-  width: 100%; /* Make the session info section span the entire width */
+/* Unique class for the session info section */
+.AppointmentAddForm-sessionInfo {
+  width: 100%;
 }
 
-.specialistList-cusInfo {
-  width: 100%; /* Make the customer info section span the entire width */
+/* Unique class for the customer info section */
+.AppointmentAddForm-customerInfo {
+  width: 100%;
 }
 
-.selected-specialist-card {
-  width: 100%; /* Make the specialist card span the entire width */
+/* Unique class for the specialist card */
+.AppointmentAddForm-specialistCard {
+  width: 100%;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #ccc; /* Add a bottom border for separation */
+  border-bottom: 2px solid #ccc;
   padding: 20px;
 }
 
-.selected-specialistImg {
+/* Unique class for the specialist image */
+.AppointmentAddForm-specialistImg {
   width: 100px;
   height: 100px;
-  border-radius: 50%; /* Make the image round */
+  border-radius: 50%;
   margin-right: 20px;
 }
 
-.specialistInfo {
+/* Unique class for specialist information */
+.AppointmentAddForm-specialistInfo {
   flex-grow: 1;
 }
 
-.selected-specialistName {
-  font-size: 1.5em; /* Larger font size for the name */
+/* Unique class for specialist name */
+.AppointmentAddForm-specialistName {
+  font-size: 1.5em;
   font-weight: bold;
 }
 
-.selected-speciality,
-.selected-consultation-Fee,
-.selected-specialistRating {
+/* Unique class for specialist details */
+.AppointmentAddForm-specialistDetail {
   margin-top: 5px;
 }
 
-.selected-specialistRating {
+/* Unique class for specialist rating */
+.AppointmentAddForm-specialistRating {
   font-weight: bold;
-  color: #888; /* Dim the color for the rating */
+  color: #888;
 }
 
+/* Unique class for the form */
 .AppointmentAddForm-form {
-  width: 100%; /* Make the form span the entire width */
-
+  width: 100%;
 }
 
-.specialist-list-calendarAndPatientInfo{
+/* Unique class for the calendar and patient info section */
+.AppointmentAddForm-calendarAndPatientInfo {
   display: flex;
 }
 
-.timeSlotButton {
-  /* Add your button styling here */
+/* Unique class for the time slot button */
+.AppointmentAddForm-timeSlotButton {
   padding: 8px 16px;
   margin: 4px;
   border: 1px solid #ccc;
@@ -73,18 +84,19 @@
   cursor: pointer;
 }
 
-.timeSlotButton:hover {
+/* Unique class for hover effect on time slot button */
+.AppointmentAddForm-timeSlotButton:hover {
   background-color: #f0f0f0;
 }
 
-.timeSlotButton.selected {
-  /* Style for selected button */
-  background-color: #007bff; /* Change to your desired selected color */
+/* Unique class for selected time slot button */
+.AppointmentAddForm-timeSlotButton.selected {
+  background-color: #007bff;
   color: #fff;
 }
 
-.timeSlotButton.disabled {
-  /* Style for disabled button */
+/* Unique class for disabled time slot button */
+.AppointmentAddForm-timeSlotButton.disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }

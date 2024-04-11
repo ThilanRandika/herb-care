@@ -1,0 +1,43 @@
+.specialist-availability-availabilityAddFor-all {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .specialist-availability-availabilityAddFor-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .specialist-availabilityAddForm-type {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .specialist-availabilityAddForm-type label {
+    margin-right: 10px;
+  }
+  
+  .specialist-availabilityAddForm-center,
+  .specialist-availabilityAddForm-startTime,
+  .specialist-availabilityAddForm-endTime {
+    margin-bottom: 20px;
+  }
+  
+  .specialist-availabilityAddForm-submitBtn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .specialist-availabilityAddForm-submitBtn:hover {
+    background-color: #0056b3;
+  }
+  
