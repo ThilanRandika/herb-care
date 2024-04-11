@@ -90,11 +90,15 @@ function MyRejectedConsultations(props) {
                   <td colSpan="5">
                   <div className='rejectedConsultations-expanded-details-innerContainer'>
                       <div className="rejectedConsultations-expanded-details-innerContainer-left">
-                      <p><strong>Center:</strong> {appointment.centerName}</p>
-                      <p><strong>Center Location:</strong> {appointment.centerLocation}</p>
-                      <p><strong>Type:</strong> {appointment.type}</p>
-                      <p><strong>Appointment Amount:</strong> {appointment.appointmentAmount}</p>
-                      <p><strong>Time Slot:</strong> {appointment.timeSlot}</p>
+                        {appointment.type !== 'virtual' && (
+                            <>
+                                <p><strong>Center:</strong> {appointment.centerName}</p>
+                                <p><strong>Center Location:</strong> {appointment.centerLocation}</p>
+                            </>
+                        )}
+                        <p><strong>Type:</strong> {appointment.type}</p>
+                        <p><strong>Appointment Amount:</strong> {appointment.appointmentAmount}</p>
+                        <p><strong>Time Slot:</strong> {appointment.timeSlot}</p>
                       
                       </div>
                       <div className="rejectedConsultations-expanded-details-innerContainer-right">

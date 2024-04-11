@@ -40,6 +40,9 @@
   background-color: #0056b3; /* Darker color on hover */
 }
 
+.cancelledConsultations-tbody tr{
+  cursor: pointer;
+}
 
 
 /* Expanded Details Section */

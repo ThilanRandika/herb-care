@@ -69,3 +69,6 @@
     background-color: #0056b3; /* Darker color on hover */
   }
   
+  .rejectedConsultations-tbody tr{
+    cursor: pointer;
+  }

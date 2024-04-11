@@ -69,3 +69,7 @@
 .allConsultations-tbody-cancel-btn:hover {
     background-color: #c82333;
 }
+
+.allConsultations-tbody tr{
+    cursor: pointer;
+}

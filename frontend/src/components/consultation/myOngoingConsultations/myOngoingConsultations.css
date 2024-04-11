@@ -23,19 +23,29 @@
     padding: 8px;
 }
 
-/* Cancel Button Style */
-.ongoingConsultations-tbody-cancel-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
+/* Button styles */
+.ongoingConsultations-tbody-cancel-btn,
+.ongoingConsultations-tbody-invoice-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px; /* Add margin between buttons */
 }
 
-.ongoingConsultations-tbody-cancel-btn:hover {
-    background-color: #c82333;
+/* Hover styles */
+.ongoingConsultations-tbody-cancel-btn:hover,
+.ongoingConsultations-tbody-invoice-btn:hover {
+  background-color: #c82333;
 }
+
+/* Only display the cancel and invoice buttons for pending appointments */
+.ongoingAppointments-onlyPending {
+  margin-top: 10px; /* Add margin between buttons and appointment details */
+}
+
 
 /* Expanded Details Section */
 .ongoingConsultations-expanded-details {
@@ -81,4 +91,8 @@
     display: flex;
     align-items: center;
     gap: 40px;
+}
+
+.ongoingConsultations-tbody tr{
+    cursor: pointer;
 }

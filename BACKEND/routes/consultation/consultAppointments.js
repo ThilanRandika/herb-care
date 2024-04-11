@@ -307,5 +307,31 @@ router.route("/rejectAppointment/:id").put(async (req, res) => {
 
 
 
+    // Update the appointment status to "Completed"
+    router.route("/completeAppointment/:id").put(async (req, res) => {
+      try {
+        const appointmentId = req.params.id;
+        // Check if the appointment exists
+        const appointment = await ConsultAppointment.findById(appointmentId);
+        if (!appointment) {
+          return res.status(404).json({ message: "Appointment not found" });
+        }
+        // Check if the appointment is in "Pending" status
+        if (appointment.status !== "Pending") {
+          return res.status(400).json({ message: "Appointment is not in Pending status" });
+        }
+        // Update the appointment status to "Completed"
+        appointment.status = "Completed";
+        const updatedAppointment = await appointment.save();
+        res.status(200).json(updatedAppointment);
+      } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Failed to complete appointment" });
+      }
+    });
+
+
+
+
     module.exports = router;
     
