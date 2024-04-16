@@ -7,11 +7,7 @@
     text-align: center;
   }
   
-  .FSD_count {
-    font-size: 18px;
-    margin-bottom: 20px;
-    margin-left: 100px;
-  }
+  
   
   .FSD_containor1 {
     display: flex;
@@ -51,6 +47,29 @@
   .gold {
     color: gold;
     font-size: 25px;
+  }
+  
+  .FSD_count {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    margin-top: 20px; /* Add margin to create space */
+  }
+  
+  .FSD_downloadbtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #1f8b33;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 100px;
+    margin-bottom: 20px; /* Add margin to create space */
+  }
+  
+  .FSD_downloadbtn:hover {
+    background-color: #15e63b;
   }
   
   

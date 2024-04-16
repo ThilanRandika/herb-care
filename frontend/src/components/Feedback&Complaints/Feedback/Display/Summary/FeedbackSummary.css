@@ -1,0 +1,47 @@
+.FHS_containor2 {
+    position: absolute;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000000; 
+  }
+  
+
+.FHS_feedback {
+  position: absolute;
+  width: 100%;
+  display: none;
+  transition: transform 0.5s ease;
+}
+
+.FHS_feedback.visible {
+  display: block;
+}
+
+.FHS_image {
+  width: 100%;
+  height: auto;
+}
+
+.FHS_Pname {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.FHS_ratings {
+  color: gold;
+}
+
+.FHS_message {
+  margin-top: 10px;
+}
+
+.FHS_star {
+  color: #ddd;
+  font-size: 20px;
+}
+
+.FHS_star.gold {
+  color: gold;
+}

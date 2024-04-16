@@ -18,6 +18,7 @@ import Display_Staff from "./pages/Feedback&complaints/Complaints/DisplayStaff";
 import Feedback_Dashboard from "./pages/Feedback&complaints/Feedback/Feedback";
 import DisplayFeedback_user from "./pages/Feedback&complaints/Feedback/DisplayUser";
 import DisplayFeedback_staff from "./pages/Feedback&complaints/Feedback/DisplayStaff";
+import Summary from "./pages/Feedback&complaints/Feedback/FeedbackSummary";
 
 
 
@@ -27,6 +28,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
+        <Route path="/FeedbackSummary" element={<Summary/>}></Route>
         <Route path="/Inventory_Dashboard" element={<Inventory_Dashboard/>}></Route>
         <Route path="/Login" element={<LoginPage/>}></Route>
 

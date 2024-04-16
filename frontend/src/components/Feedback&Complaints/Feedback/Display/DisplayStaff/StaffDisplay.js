@@ -15,6 +15,23 @@ const StaffDashboard = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [count, setCount] = useState(0);
 
+  const downloadFeedbacksPdf = async () => {
+    try {
+      const response = await axios.get('http://localhost:8070/feedback/download', {
+        responseType: 'blob', 
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'feedbacks.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
@@ -56,6 +73,7 @@ const StaffDashboard = () => {
     <div>
       <br></br>
       <h1 className='FSD_title'>Feedbacks Lists</h1>
+      <button className='FSD_downloadbtn' onClick={downloadFeedbacksPdf}>Download Report</button>
       <div>
         <h1 className='FSD_count'>Total Feedbacks: {count}</h1>
       </div>
@@ -96,6 +114,7 @@ const StaffDashboard = () => {
           </div>
         ))}
       </div>
+      
     </div>
   );
 };

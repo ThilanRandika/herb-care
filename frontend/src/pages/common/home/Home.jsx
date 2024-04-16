@@ -63,6 +63,13 @@ function Home() {
       <Link to="/DisplayFeedbackStaff">
         <button>Display Staff Feedback</button>
       </Link>
+
+      <br></br>
+
+      <Link to="/FeedbackSummary">
+        <button>Feedback Summary</button>
+      </Link>
+
     </>
   )
 }

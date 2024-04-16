@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Complaints = require('../../models/Feedback&Complaints/complaints');
 const { verifyToOther } = require("../../utils/veryfyToken");
+const Product = require('../../models/inventory/Product');
+const PDFDocument = require('pdfkit');
 
 
 // http://localhost:8070/complaints/add/productId
@@ -133,6 +135,37 @@ router.route('/delete/:id').delete(async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+// Route to generate and download all Complaints as PDF
+router.get('/download', async (req, res) => {
+  try {
+    const complaints = await Complaints.find();
+
+    const pdfDoc = new PDFDocument();
+    res.setHeader('Content-Disposition', 'attachment; filename="complaints.pdf"');
+    res.setHeader('Content-Type', 'application/pdf');
+
+    pdfDoc.pipe(res);
+
+    pdfDoc.fontSize(12).text('Complaints Report', { align: 'center' }).moveDown();
+
+    complaints.forEach((complaint, index) => {
+      pdfDoc.fontSize(10).text(`Complaint ${index + 1}:`);
+      pdfDoc.fontSize(8).text(`Complaint Name: ${complaint.complaintsName}`);
+      pdfDoc.fontSize(8).text(`Email: ${complaint.email}`);
+      pdfDoc.fontSize(8).text(`Description: ${complaint.description}`);
+      pdfDoc.fontSize(8).text(`Status: ${complaint.status}`);
+      pdfDoc.fontSize(8).text(`Date: ${new Date(complaint.createdAt).toLocaleString()}\n\n`);
+    });
+
+    pdfDoc.end();
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    res.status(500).json({ message: 'Failed to generate PDF' });
+  }
+});
+
 
 
 

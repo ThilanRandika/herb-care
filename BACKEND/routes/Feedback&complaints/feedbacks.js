@@ -3,6 +3,8 @@ const Feedback = require("../../models/Feedback&Complaints/feedback");
 const multer = require('multer');
 const path = require('path');
 const { verifyToOther } = require("../../utils/veryfyToken");
+const PDFDocument = require('pdfkit');
+
 
 // Image uploading
 const storage = multer.diskStorage({
@@ -152,6 +154,92 @@ router.put('/update/:id', upload.array('images', 5), async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+
+// feedback summary at home page
+// http://localhost:8070/feedback/feedback-summaries
+router.get('/feedback-summaries', async (req, res) => {
+  try {
+    const feedbackSummaries = await Feedback.aggregate([
+      {
+        $lookup: {
+          from: 'products', 
+          localField: 'Product',
+          foreignField: '_id',
+          as: 'product'
+        }
+      },
+      {
+        $unwind: '$product'
+      },
+      {
+        $project: {
+          productName: '$product.name',
+          productImage: '$product.image_url',
+          ratings: 1,
+          message: 1
+        }
+      }
+    ]);
+
+    res.status(200).json(feedbackSummaries);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+// Route to generate and download all feedback as PDF
+router.get('/download', async (req, res) => {
+  try {
+    const feedbacks = await Feedback.find().populate('Customer');
+
+    // Create a new PDF document
+    const pdfDoc = new PDFDocument();
+    const fileName = 'feedbacks.pdf';
+
+    // Set response headers for PDF download
+    res.setHeader('Content-Disposition', `attachment; filename=${fileName}`);
+    res.setHeader('Content-Type', 'application/pdf');
+
+    // Pipe the PDF document directly to the response stream
+    pdfDoc.pipe(res);
+
+    // Calculate the vertical position for centering content
+    const pageHeight = pdfDoc.page.height;
+    const contentHeight = (feedbacks.length + 1) * 50; // Assuming each feedback block is 50 units in height
+    const verticalPosition = (pageHeight - contentHeight) / 2;
+
+    // Set the initial y position for the content
+    let yPosition = verticalPosition;
+
+    // Add content to the PDF document
+    pdfDoc.fontSize(12).text('Feedbacks Report', { align: 'center' }).moveDown();
+    feedbacks.forEach((feedback, index) => {
+      pdfDoc.fontSize(10).text(`Feedback ${index + 1}:`, { y: yPosition });
+      pdfDoc.fontSize(8).text(`Customer: ${feedback.Customer.customer_name}`, { y: yPosition + 20 });
+      pdfDoc.fontSize(8).text(`Ratings: ${feedback.ratings}`, { y: yPosition + 40 });
+      pdfDoc.fontSize(8).text(`Message: ${feedback.message}`, { y: yPosition + 60 });
+      pdfDoc.fontSize(8).text(`Date: ${new Date(feedback.createdAt).toLocaleString()}\n\n`, { y: yPosition + 80 });
+
+      // Move to the next block
+      yPosition += 100;
+    });
+
+    // Finalize the PDF document
+    pdfDoc.end();
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    res.status(500).json({ message: 'Failed to generate PDF' });
+  }
+});
+
+
+
+
 
 module.exports = router;
 

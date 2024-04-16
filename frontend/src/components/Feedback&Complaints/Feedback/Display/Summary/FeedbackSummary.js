@@ -1,0 +1,58 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './FeedbackSummary.css';
+
+const FeedbackSummaries = () => {
+  const [summaries, setSummaries] = useState([]);
+  const [currentFeedback, setCurrentFeedback] = useState(0);
+
+  useEffect(() => {
+    const fetchFeedbackSummaries = async () => {
+      try {
+        const response = await axios.get('http://localhost:8070/feedback/feedback-summaries');
+        setSummaries(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchFeedbackSummaries();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentFeedback(currentFeedback => (currentFeedback + 1) % summaries.length);
+    }, 5000); // Change feedback every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [summaries.length]);
+
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className={i <= rating ? 'FHS_star gold' : 'FHS_star'}>
+          &#9733;
+        </span>
+      );
+    }
+    return stars;
+  };
+
+  return (
+    <div className='FHS_containor1'>
+      <div className='FHS_containor2'>
+        {summaries.map((summary, index) => (
+          <div key={index} className={`FHS_feedback ${currentFeedback === index ? 'visible' : ''}`}>
+            <img className='FHS_image' src={summary.productImage} alt={summary.productName} />
+            <p className='FHS_Pname'>{summary.productName}</p>
+            <div className='FHS_ratings'>{renderStars(summary.ratings)}</div>
+            <p className='FHS_message'>{summary.message}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default FeedbackSummaries;

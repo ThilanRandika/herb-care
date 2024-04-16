@@ -3,7 +3,7 @@ import axios from 'axios';
 import './AddComplaints.css'
 
 const ComplaintForm = ({ productId }) => {
-    const [order, setOrder] = useState('');
+    //const [order, setOrder] = useState('');
     const [complaintsName, setComplaintsName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
@@ -11,19 +11,25 @@ const ComplaintForm = ({ productId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`http://localhost:8070/complaints/add/PRO2323`, {
-                order,
+            const response = await axios.post(`http://localhost:8070/complaints/add/6616e9a655f4276e55708c82`, {
+                //order,
                 complaintsName,
                 email,
                 description
             });
             console.log(response.data);
             alert('Complaints Submitted Successfully');
+    
+            // Clear form fields
+            setComplaintsName('');
+            setEmail('');
+            setDescription('');
         } catch (error) {
             console.error(error);
             alert('Failed to submit complaints. Please try again.')
         }
     };
+    
 
     return (
         <div className="page_center">

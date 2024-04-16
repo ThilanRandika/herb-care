@@ -15,10 +15,9 @@ const complaintsSchema = new Schema({
         required: false
       },
       Product: {
-        type:String,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "Product",
-        required: false
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "product",
+        required: true
       },
       // giftPackageOrder: {
       //   type : String,
