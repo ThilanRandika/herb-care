@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './ProductForm.css'; // Import your CSS file
+import './ProductProposalForm.css'; 
 
-function ProductForm() {
+function ApprovalProcessForm() {
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -24,7 +24,6 @@ function ProductForm() {
 
   const handleImageChange = (e) => {
     setFormData({ ...formData, imageFile: e.target.files[0] });
-    console.log(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -43,8 +42,9 @@ function ProductForm() {
       formDataToSend.append('expireDate', formData.expireDate);
       formDataToSend.append('manufactureDate', formData.manufactureDate);
       formDataToSend.append('ingredients', formData.ingredients);
+      formDataToSend.append('action', 'Add'); // Set action to "Add"
 
-      await axios.post('http://localhost:8070/Product/add', formDataToSend, {
+      await axios.post('http://localhost:8070/ApprovalProcess/addProposal', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }
@@ -59,7 +59,7 @@ function ProductForm() {
 
   return (
     <div className="form-container">
-      <h2>Add Product</h2>
+      <h2>Add Product Proposal</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name:</label>
@@ -111,4 +111,4 @@ function ProductForm() {
   );
 }
 
-export default ProductForm;
+export default ApprovalProcessForm;

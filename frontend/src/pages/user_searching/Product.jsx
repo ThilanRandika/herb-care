@@ -28,7 +28,7 @@ function Product() {
   return (
     <div className="product-container">
       <h2>{product.name}</h2>
-      <img src={imageUrl} alt={product.name} /> {/* Display the product image */}
+      <img src={require(`../../../../BACKEND/uploads/${product.image}`)} alt={product.name} height={120} width={120}/>    
       <p>Price: {product.price}</p>
       <p>Manufactured Price: {product.Manufactured_price}</p>
       <p>Category: {product.category}</p>

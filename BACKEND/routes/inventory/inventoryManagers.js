@@ -7,7 +7,7 @@ const Product = require("../../models/inventory/Product");
 // Multer storage configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads'); // Destination folder for storing images
+    cb(null, "uploads/"); // Destination folder for storing images
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname); // Unique filename for each uploaded image
@@ -33,7 +33,7 @@ router.post('/add', upload.single('image'), async (req, res) => {
     const { name, category, description, price, Manufactured_price, discount, quantity, expireDate, manufactureDate, ingredients } = req.body;
 
     // File path of the uploaded image
-    const image = req.file.path;
+    const image = req.file.filename;
 
     // Create a new product instance
     const newProduct = new Product({

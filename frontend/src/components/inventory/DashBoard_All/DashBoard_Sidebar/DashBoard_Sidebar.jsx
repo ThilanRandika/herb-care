@@ -25,8 +25,8 @@ const DashBoard_Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link className="sidebar-link" to="/Inventory_Dashboard/">
-            Profile
+          <Link className="sidebar-link" to="/Inventory_Dashboard/Notifications">
+            Notifications
           </Link>
         </li>
       </ul>
