@@ -1,0 +1,32 @@
+.container {
+  width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    background-color: aliceblue;
+}
+
+.form{
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.col-sm-2 {
+  display: flex;
+  align-items: flex-start;
+}
+
+.col-sm-10 {
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.btn-block {
+  width: 100%;
+}

@@ -1,0 +1,55 @@
+.refunds-allContents {
+    padding: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .refunds-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .refunds-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .refunds-thead th {
+    background-color: #f2f2f2;
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .refunds-tbody td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+  }
+  
+  .refunds-appointment-details {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .refunds-appointment-details-left,
+  .refunds-appointment-details-right {
+    width: 50%;
+    float: left;
+  }
+  
+  .refunds-appointment-details-right {
+    border-left: 1px solid #dddddd;
+    padding-left: 10px;
+  }
+  
+  .refunds-appointment-details h5 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .refunds-appointment-details p {
+    margin: 5px 0;
+  }

@@ -1,0 +1,28 @@
+/* availability.css */
+
+.specialist-availabilityPage-parent-fullPage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ensure full height */
+  }
+  
+  .specialist-availabilityPage-parent-contents {
+    display: flex;
+    flex: 1; /* Fill remaining vertical space */
+    width: 100%;
+  }
+  
+  .specialist-availabilityPage-parent-availabilities {
+    /* Define styles for the availabilities container */
+    flex: 1; /* Fill half of the parent's width */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .specialist-availabilityPage-parent-availability-add-form {
+    /* Define styles for the availability add form container */
+    flex: 1; /* Fill half of the parent's width */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  

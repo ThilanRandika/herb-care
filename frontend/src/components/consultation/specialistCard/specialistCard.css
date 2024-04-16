@@ -1,0 +1,50 @@
+.specialist-card-one-specialist {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 200px; /* Adjust the width based on your design */
+  cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for a card effect */
+  transition: transform 0.3s ease-in-out; /* Add transition for smooth hover effect */
+}
+
+.specialist-card-one-specialist:hover {
+  transform: translateY(-5px); /* Move the card slightly up on hover */
+}
+
+.specialist-card-one-specialist-specialistImg {
+  width: 100%;
+  height: 200px; /* Adjust the height based on your design */
+  object-fit: cover;
+}
+
+.specialistInfo {
+  padding: 10px;
+}
+
+.specialist-card-one-specialist-specialistName {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.specialist-card-one-specialist-specialty {
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+.specialist-card-one-specialist-consultation-Fee {
+  font-weight: bold;
+}
+
+.specialist-card-one-specialist-specialistRating {
+  font-size: 14px;
+  color: #888;
+}
+
+.specialist-card-one-specialist.selected {
+  border: 2px solid #007bff; /* Add a border to indicate selection */
+  background-color: #007bff; /* Change background color to indicate selection */
+  color: #fff; /* Adjust text color for better contrast */
+}
+
+

@@ -1,0 +1,52 @@
+/* DiscussionLevelRequests.css */
+
+.discussion-level-requests-container {
+    margin-top: 5%;
+}
+
+.discussion-level-requests-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.discussion-level-requests-table th,
+.discussion-level-requests-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.discussion-level-requests-table th {
+    background-color: #f2f2f2;
+}
+
+.discussion-level-requests-table td {
+    background-color: #fff;
+}
+
+.discussion-level-requests-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.discussion-level-requests-table tr:hover {
+    background-color: #ddd;
+}
+
+.approve-link,
+.reject-btn {
+    padding: 8px 16px;
+    margin-right: 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.approve-link {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.reject-btn {
+    color: #fff;
+    background-color: #dc3545;
+}
