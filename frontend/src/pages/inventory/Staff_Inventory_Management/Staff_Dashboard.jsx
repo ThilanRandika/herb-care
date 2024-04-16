@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
-import Staff_Dashboard_Sidebar from '../../components/inventory/DashBoard_All/Staff_Dashboard/Staff_Dashboard_Sidebar'
-import ProductProposalForm from '../../components/inventory/DashBoard_All/Staff_Dashboard/ProductProposalForm';
-import ViewAllProducts from '../../components/inventory/DashBoard_All/Staff_Dashboard/ViewAllProducts';
-import Staff_Notifications from '../../components/inventory/DashBoard_All/Staff_Dashboard/Staff_Notifications';
+import Staff_Dashboard_Sidebar from '../../../components/inventory/DashBoard_All/Staff_Dashboard/Staff_Dashboard_Sidebar'
+import ProductProposalForm from '../../../components/inventory/DashBoard_All/Staff_Dashboard/ProductProposalForm';
+import ViewAllProducts from '../../../components/inventory/DashBoard_All/Staff_Dashboard/ViewAllProducts';
+import Staff_Notifications from '../../../components/inventory/DashBoard_All/Staff_Dashboard/Staff_Notifications';
 import './Staff_Dashboard.css'
 
 

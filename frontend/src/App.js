@@ -7,11 +7,11 @@ import './App.css';
 import Home from "./pages/common/home/Home";
 import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory_Dashboard";
 
-import User_searching from "./pages/user_searching/User_searching"
+import User_searching from "./pages/inventory/user_searching/User_searching"
 import Producttesting from "./pages/inventory/Inventory_Dashboard/Producttesting";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Product from "./pages/user_searching/Product";
-import Staff_Dashboard from "./pages/Staff_Inventory_Management/Staff_Dashboard";
+import Product from "./pages/inventory/user_searching/Product";
+import Staff_Dashboard from "./pages/inventory/Staff_Inventory_Management/Staff_Dashboard";
 
 import SellerManagerDashboard from "./pages/sellerPartnership/managerDashboard/SellerManagerDashboard";
 import LoginPage from "./pages/common/login/LoginPage";
