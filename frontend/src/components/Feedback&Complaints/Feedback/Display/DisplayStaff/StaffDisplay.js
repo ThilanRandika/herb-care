@@ -90,7 +90,7 @@ const StaffDashboard = () => {
                   {feedback.image.map((img, index) => (
                     <img
                       key={index}
-                      src={img}
+                      src={require(`../../../../../../../BACKEND/uploads/${img}`)}
                       alt={`Image ${index}`}
                       style={{ maxWidth: '100px', maxHeight: '100px', marginRight: '10px' }}
                     />

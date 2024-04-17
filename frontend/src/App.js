@@ -19,6 +19,7 @@ import Feedback_Dashboard from "./pages/Feedback&complaints/Feedback/Feedback";
 import DisplayFeedback_user from "./pages/Feedback&complaints/Feedback/DisplayUser";
 import DisplayFeedback_staff from "./pages/Feedback&complaints/Feedback/DisplayStaff";
 import Summary from "./pages/Feedback&complaints/Feedback/FeedbackSummary";
+import FeedbackGiftPackage_Dashboard from "./pages/Feedback&complaints/FeedbackGiftPackage/FeedbackGiftPackage";
 
 
 
@@ -44,6 +45,8 @@ function App() {
         <Route path="/Feedback" element={<Feedback_Dashboard/>}></Route>
         <Route path="/DisplayFeedbackUser" element={<DisplayFeedback_user/>}></Route>
         <Route path="/DisplayFeedbackStaff" element={<DisplayFeedback_staff/>}></Route>
+
+        <Route path="/FeedbackGiftPackage" element={<FeedbackGiftPackage_Dashboard/>}></Route>
 
       </Routes>
       

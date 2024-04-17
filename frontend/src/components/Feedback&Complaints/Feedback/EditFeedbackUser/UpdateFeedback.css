@@ -23,6 +23,10 @@
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
+  .UF_cant{
+    color: red;
+    size: 3px;
+  }
   
   .UF_upBtn {
     background-color: #238552;

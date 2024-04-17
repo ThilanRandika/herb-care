@@ -76,7 +76,7 @@ const UserFeedback = ({ customerId }) => {
                     <ul>
                       {item.image.map((image, index) => (
                         <li key={index}>
-                          <img src={`http://localhost:8070/uploads/${image}`} alt={`Image ${index}`} style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                          <img src={require(`../../../../../../../BACKEND/uploads/${image}`)} alt={`Image ${index}`} style={{ maxWidth: '200px', maxHeight: '200px' }} />
                         </li>
                       ))}
                     </ul>

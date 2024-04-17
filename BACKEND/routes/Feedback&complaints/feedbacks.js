@@ -28,10 +28,9 @@ router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (
       Customer: req.person.userId, // Assuming you have user authentication middleware
       Order: req.body.Order,
       Product: req.params.productId,
-      //giftPackageOrder: req.params.giftPackageOrderId,
       ratings: req.body.ratings,
       message: req.body.message,
-      image: req.files.map(file => file.path) // Save multiple file paths in an array
+      image: req.files.map(file => file.filename) // Save multiple file paths in an array
     });
     
     await feedback.save();

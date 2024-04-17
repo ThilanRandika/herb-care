@@ -70,6 +70,11 @@ function Home() {
         <button>Feedback Summary</button>
       </Link>
 
+      <br></br>
+      
+      <Link to="/FeedbackGiftPackage">
+        <button>FeedbackGiftPackage</button>
+      </Link>
     </>
   )
 }

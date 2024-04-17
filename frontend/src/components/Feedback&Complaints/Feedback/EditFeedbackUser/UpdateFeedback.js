@@ -9,7 +9,7 @@ const UpdateFeedback = ({ feedbackId, ratings, message, onUpdate }) => {
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    setNewImages([...newImages, ...files]);
+    setNewImages(files); // Only set the new images, replacing any previous ones
   };
 
   const handleUpdate = async (e) => {
@@ -63,6 +63,7 @@ const UpdateFeedback = ({ feedbackId, ratings, message, onUpdate }) => {
           <label className='UF_image'>Upload New Images:</label>
           <input type="file" onChange={handleImageChange} accept="image/*" multiple />
         </div>
+        <p className='UF_cant'>You can't change previous uploaded images.</p>
         <button className='UF_upBtn' type="submit">Update</button>
       </form>
     </div>
