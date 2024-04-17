@@ -41,7 +41,7 @@ function ProductList() {
 
   return (
     <div className="seller-product-list-centered-container">
-    <div className="seller-product-list-container">
+      <div className="seller-product-list-container">
         <div className="seller-product-list-header">
           <h1>Product List</h1>
           <div className="seller-product-list-searchBar">
@@ -49,58 +49,59 @@ function ProductList() {
           </div>
         </div>
         <br />
-      <div className="categories-container">
-        <ul>
-        <li>
-            <button onClick={handleAllProducts}>All</button>
-          </li>
-          {categories.map((category) => (
-            <li key={category}>
-              <button onClick={() => handleCategoryChange(category)}>
-                {category}
-              </button>
+        <div className="categories-container">
+          <ul>
+            <li>
+              <button onClick={handleAllProducts}>All</button>
             </li>
-          ))}
-        </ul>
-      </div>
-      <div className="seller-product-list-grid">
-        {filteredProductList.filter(
-            (product) =>
-              selectedCategory === "" ||
-              product.category === selectedCategory
-          ).map((product, index) => (
-          <div class="seller-product-list-card" key={index}>
-            <div class="seller-product-list-image">
-              <img
-                src="https://cdn.photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg"
-                className="seller-product-list-image"
-                alt="Product"
-              />
-            </div>
-            <div class="seller-product-list-details">
-              <div class="seller-product-list-id">Code #{product._id}</div>
-              <div class="seller-product-list-info1">
-                <div class="seller-product-list-info2">
-                  <div class="seller-product-list-name">{product.name}</div>
+            {categories.map((category) => (
+              <li key={category}>
+                <button onClick={() => handleCategoryChange(category)}>
+                  {category}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="seller-product-list-grid">
+          {filteredProductList
+            .filter(
+              (product) =>
+                selectedCategory === "" || product.category === selectedCategory
+            )
+            .map((product, index) => (
+              <div class="seller-product-list-card" key={index}>
+                <div class="seller-product-list-image">
+                  <img
+                    src="https://cdn.photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg"
+                    className="seller-product-list-image"
+                    alt="Product"
+                  />
                 </div>
-                <div class="seller-product-list-price">
-                  Rs.{product.calculatedPrice}
-                </div>
-              </div>
-              {/* <div class="seller-product-list-description">DESCRIPTION</div>
+                <div class="seller-product-list-details">
+                  <div class="seller-product-list-id">Code #{product._id}</div>
+                  <div class="seller-product-list-info1">
+                    <div class="seller-product-list-info2">
+                      <div class="seller-product-list-name">{product.name}</div>
+                    </div>
+                    <div class="seller-product-list-price">
+                      Rs.{product.calculatedPrice}
+                    </div>
+                  </div>
+                  {/* <div class="seller-product-list-description">DESCRIPTION</div>
               <div class="seller-product-list-description">
                 {product.description}
               </div> */}
-              <Link to={`/sellerMainHome/product/${product._id}`}>
-                <button class="seller-product-list-add-to-cart-button">
-                  View Product
-                </button>
-              </Link>
-            </div>
-          </div>
-        ))}
+                  <Link to={`/sellerMainHome/product/${product._id}`}>
+                    <button class="seller-product-list-add-to-cart-button">
+                      View Product
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

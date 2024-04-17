@@ -113,6 +113,49 @@ router.route('/placeOrder').post(verifySellerToOther, async (req, res) => {
     }
 });
 
+
+//Update Order
+router.route("/updateOrder/:id").put(async (req, res) => {
+    try {
+      const orderId = req.params.id;
+      const { orderDetails, customer, price, address, payment } = req.body;
+
+      console.log(orderDetails)
+    // Construct an array of updated products
+    const updatedProducts = orderDetails.map((product) => ({
+      product: product.product, // Assuming productId is present in the product object
+      quantity: product.quantity,
+      pricePerItem: product.pricePerItem,
+    }));
+
+      //console.log(updatedProducts, address , payment)
+  
+      // Update seller details
+      const updatedOrder = await SellerOrder.findByIdAndUpdate(
+        { _id: orderId },
+        { $set: { 
+            sellerId: customer,
+            products: updatedProducts,
+            totalPrice: price,
+            shippingAddress: address,
+            payment:payment,
+         } }, // Assuming req.body.seller contains the updated seller details
+        { new: true }
+      );
+  
+      /*(const updatedProducts = await SellerProducts.updateMany(
+              { sellerId: sellerId },
+              { $set: req.body.products }, // Assuming req.body.products contains the updated product details
+              { new: true }
+          );  )*/
+  
+      res.status(200).json({ updatedOrder });
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  
+
 // // 2. Display Order Details for Confirmation
 // router.route('/orderDetails').get(verifySellerToOther, async (req, res) => {
 //     try {
@@ -461,6 +504,7 @@ router.route('/getOneOrder/:orderId').get(verifySellerToOther, async (req, res) 
         console.log(orderId)
         const singleOrder = await SellerOrder.findById(orderId).populate('products.product');
         const seller = await Seller.findOne({sellerId: sellerId});
+
         console.log(singleOrder)
 
         // Format the data according to the provided format
@@ -473,7 +517,9 @@ router.route('/getOneOrder/:orderId').get(verifySellerToOther, async (req, res) 
                 date: singleOrder.createdAt, // Assuming createdAt represents the singleOrder date
                 price: singleOrder.totalPrice.toFixed(2), // Assuming totalPrice is a number
                 status: singleOrder.status,
+                paymentMethod: singleOrder.payment, 
                 orderDetails: singleOrder.products.map(product => ({
+                    productId: product.product._id,
                     productName: product.product.name,
                     quantity: product.quantity,
                     price: product.pricePerItem.toFixed(2),
