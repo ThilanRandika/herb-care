@@ -8,14 +8,30 @@ const ConsultAppointmentSchema = new Schema(
       ref: "Specialist",
       required: true,
     },
+    specialistName: {
+      type: String,
+    },
     patient: {
       type: Schema.Types.ObjectId,
       ref: "Customer",
-      required: true,
     },
     date: {
       type: Date,
       required: true,
+    },
+    type: {
+      type: String,
+      enum: ["physical", "virtual"],
+    },
+    center: {
+      type: Schema.Types.ObjectId,
+      ref: "Center",
+    },
+    centerName: {
+      type: String,
+    },
+    centerLocation: {
+      type: String,
     },
     status: {
       type: String,
@@ -38,6 +54,24 @@ const ConsultAppointmentSchema = new Schema(
     },
     appointmentAmount: {
       type: Number,
+    },
+    timeSlot: {
+      type: String,
+    },
+    patientInfo: {
+      patientName: {
+        type: String,
+      },
+      patientAge: {
+        type: String,
+      },
+      patientGender: {
+        type: String,
+        enum: ["male", "female"], // If gender is limited to male and female
+      },
+      patientPhone: {
+        type: String,
+      },
     },
   },
   { timestamps: true }

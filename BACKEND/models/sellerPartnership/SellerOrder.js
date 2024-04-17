@@ -9,7 +9,11 @@ const sellerOrderSchema = new mongoose.Schema(
     //quantity,  product, price per item
     products: [
       {
-        product: { type: mongoose.Types.ObjectId, ref: "Product" },
+        product: {
+          type: mongoose.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        },
         quantity: Number,
         pricePerItem: Number,
       },
@@ -21,7 +25,7 @@ const sellerOrderSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
-      enum: ["pending", "processing", "completed", "deliverd"],
+      enum: ["pending", "processing", "readyToDelivery" , "onDelivery" , "completed"],
       default: "pending",
     },
     shippingAddress: {

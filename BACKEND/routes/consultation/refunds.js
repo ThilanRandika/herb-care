@@ -84,6 +84,123 @@ router.put("/completeRefund/:id", async (req, res) => {
 
 
 
+// Check if there is any existing refund for a specific appointment ID
+router.get("/checkExistingRefund/:appointmentId", async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+
+    // Check if the appointment exists
+    const appointment = await ConsultAppointment.findById(appointmentId);
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    // Check if there are any existing refunds for this appointment
+    const existingRefunds = await Refund.find({ appointment: appointmentId });
+    if (existingRefunds.length > 0) {
+      return res.status(200).json({ hasRefund: true, refunds: existingRefunds });
+    } else {
+      return res.status(200).json({ hasRefund: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to check existing refund" });
+  }
+});
+
+
+
+
+
+//get refund info by appointment id
+router.route("/refundInfo/:appointmentId").get(async (req, res) => {
+  try {
+    const appointmentId = req.params.appointmentId;
+    
+    // Check if the appointment exists
+    const appointment = await ConsultAppointment.findById(appointmentId);
+    if (!appointment) {
+        return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    // Check if there are any existing refunds for this appointment
+    const existingRefunds = await Refund.find({ appointment: appointmentId });
+    if (existingRefunds.length > 0) {
+        return res.status(400).json({ message: "Refund already exists for this appointment" });
+    }
+
+    // Check if the appointment is in "Cancelled" or "Rejected" status
+    if (appointment.status !== "Cancelled" && appointment.status !== "Rejected") {
+        return res.status(400).json({ message: "Refunds can only be requested for Cancelled or Rejected appointments" });
+    }
+
+    // Determine refund type based on appointment status
+    let refundType = "";
+    if (appointment.status === "Cancelled") {
+        refundType = "Partial";
+    } else if (appointment.status === "Rejected") {
+        refundType = "Full";
+    }
+
+    // Calculate refund amount
+    const refundAmount = refundType === "Partial" ? 0.8 * appointment.appointmentAmount : appointment.appointmentAmount;
+
+    // Create new refund
+    const newRefund = new Refund({
+        appointment: appointmentId,
+        refundType,
+        refundAmount,
+        refundDateTime: new Date(),
+    });
+    res.status(200).json(newRefund);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Failed to retrieve refund info" });
+  }
+});
+
+
+
+
+// Get all refunds for a specific customer
+router.get("/customerRefunds/:customerID", async (req, res) => {
+  try {
+    const { customerID } = req.params;
+
+    // Find all appointments for the customer
+    const appointments = await ConsultAppointment.find({ patient: customerID });
+
+    if (appointments.length === 0) {
+      return res.status(404).json({ message: "No appointments found for the customer" });
+    }
+
+    // Extract appointment IDs
+    const appointmentIds = appointments.map(appointment => appointment._id);
+
+    // Find all refunds for the customer's appointments
+    const refunds = await Refund.find({ appointment: { $in: appointmentIds } });
+
+    res.status(200).json(refunds);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to retrieve refunds for the customer" });
+  }
+});
+
+
+
+// Get all refunds with refundStatus "Pending"
+router.get("/pendingRefunds", async (req, res) => {
+  try {
+    const pendingRefunds = await Refund.find({ refundStatus: "Pending" });
+    res.status(200).json(pendingRefunds);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch pending refunds" });
+  }
+});
+
 
 
 module.exports = router;

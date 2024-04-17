@@ -1,0 +1,24 @@
+.products-container {
+  margin: 0 auto; /* Center the container horizontally */
+  max-width: 800px; /* Set a maximum width for the container */
+  padding: 20px; /* Add some padding to the container */
+}
+
+table {
+  width: 100%; /* Make the table fill the container */
+  border-collapse: collapse; /* Collapse table borders */
+}
+
+th, td {
+  padding: 8px; /* Add padding to table cells */
+  border-bottom: 1px solid #ddd; /* Add bottom border to table rows */
+  text-align: left; /* Align text to the left */
+}
+
+th {
+  background-color: #f2f2f2; /* Set background color for table header */
+}
+
+.search-input {
+  margin-bottom: 10px; /* Add some space below the search input */
+}
