@@ -1,0 +1,55 @@
+.product-list-container {
+  padding: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 800px; /* Limiting the maximum width to prevent too many products in a row */
+  margin: 0 auto; /* Centering the grid */
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr); /* Displaying maximum four products per row on larger screens */
+    max-width: none; /* Resetting the maximum width */
+  }
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-details {
+  padding: 20px;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.product-ingredients {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.product-quantity,
+.product-price {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}

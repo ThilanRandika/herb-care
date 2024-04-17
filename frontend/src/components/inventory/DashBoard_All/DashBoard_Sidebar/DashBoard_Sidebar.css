@@ -1,0 +1,19 @@
+.inventory-nav-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.sidebar-link:hover {
+  background-color: #f0f0f0;
+}
+
+.sidebar-link.active {
+  background-color: #ddd;
+}

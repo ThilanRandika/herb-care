@@ -1,0 +1,66 @@
+/* Common styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    padding: 12px;
+    border: none;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+button,
+.view-order-link {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+.view-order-link:hover {
+    background-color: #03570a;
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #45a049;
+}
+
+/* Specific styles for .seller-approvel-pending-orders */
+.seller-approvel-pending-orders {
+    padding: 20px;
+}
+
+.seller-approvel-pending-orders h2 {
+    margin-bottom: 20px;
+}
+
+/* Adjust the width for the 7th column */
+th:nth-child(7),
+td:nth-child(7) {
+    width: 10%; /* Adjust the width as needed */
+}

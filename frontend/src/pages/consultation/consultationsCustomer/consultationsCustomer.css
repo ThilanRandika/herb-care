@@ -1,0 +1,5 @@
+.consultations-nav{
+    display: flex;
+    gap: 50px;
+    margin: 1%;
+}

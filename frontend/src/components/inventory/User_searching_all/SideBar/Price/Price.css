@@ -1,0 +1,27 @@
+.price-container {
+  margin-bottom: 20px;
+}
+
+.price-heading {
+  margin-bottom: 10px;
+}
+
+.price-option {
+  margin-bottom: 5px;
+}
+
+.price-option input[type="radio"] {
+  margin-right: 5px;
+}
+
+.price-option label {
+  cursor: pointer;
+}
+
+/* Styles for selected radio button */
+.price-option input[type="radio"]:checked + label {
+  font-weight: bold;
+  color: #007bff; /* Change to your desired color */
+}
+
+/* You can add more styles as needed */
