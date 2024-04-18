@@ -1,225 +1,167 @@
-.card-stepper {
-    z-index: 0
-    }
-    
-    #progressbar-2 {
-    color: #455A64;
-    width: 100%;
-    }
-    
-    #progressbar-2 li {
-    list-style-type: none;
-    font-size: 13px;
-    width: 33.33%;
-    float: left;
-    position: relative;
-    }
-    
-    #progressbar-2 #step1:before {
-    content: '\f058';
-    font-family: "Font Awesome 5 Free";
-    color: #fff;
-    width: 37px;
-    margin-left: 0px;
-    padding-left: 0px;
-    }
-    
-    #progressbar-2 #step2:before {
-    content: '\f058';
-    font-family: "Font Awesome 5 Free";
-    color: #fff;
-    width: 37px;
-    }
-    
-    #progressbar-2 #step3:before {
-    content: '\f058';
-    font-family: "Font Awesome 5 Free";
-    color: #fff;
-    width: 37px;
-    margin-right: 0;
-    text-align: center;
-    }
-
-    #progressbar-2 #step4:before {
-      content: '\f058';
-      font-family: "Font Awesome 5 Free";
-      color: #fff;
-      width: 37px;
-      margin-right: 0;
-      text-align: center;
-      }
-    
-    #progressbar-2 #step5:before {
-    content: '\f111';
-    font-family: "Font Awesome 5 Free";
-    color: #fff;
-    width: 37px;
-    margin-right: 0;
-    text-align: center;
-    }
-    
-    
-    #progressbar-2 li:before {
-    line-height: 37px;
-    display: block;
-    font-size: 12px;
-    background: #c5cae9;
-    border-radius: 50%;
-    }
-    
-    #progressbar-2 li:after {
-    content: '';
-    width: 100%;
-    height: 10px;
-    background: #c5cae9;
-    position: absolute;
-    left: 0%;
-    right: 0%;
-    top: 15px;
-    z-index: -1;
-    }
-    
-    #progressbar-2 li:nth-child(1):after {
-    left: 1%;
-    width: 100%
-    }
-    
-    #progressbar-2 li:nth-child(2):after {
-    left: 1%;
-    width: 100%;
-    }
-    
-    #progressbar-2 li:nth-child(3):after {
-    left: 1%;
-    width: 100%;
-    }
-
-    #progressbar-2 li:nth-child(4):after {
-      left: 1%;
-      width: 100%;
-      }
-    
-    #progressbar-2 li:nth-child(5) {
-    left: 0;
-    width: 37px;
-    }
-    
-    #progressbar-2 li:nth-child(5):after {
-    left: 0;
-    width: 0;
-    }
-    
-    #progressbar-2 li.active:before,
-    #progressbar-2 li.active:after {
-    background: #6520ff;
-    }
 
 
-
-    .seller-checkout-shopping-cart {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-      }
-      
-      .seller-checkout-shopping-cart h4 {
-        font-size: 18px;
-        margin-bottom: 20px;
-      }
-      
-      .seller-checkout-shopping-cart .list-group-item {
-        border: none;
-        padding: 10px 0;
-      }
-      
-      .seller-checkout-shopping-cart .list-group-item:last-child {
-        border-top: 1px solid #dee2e6;
-        font-weight: bold;
-      }
-      
-      .seller-checkout-shopping-cart .input-group {
-        margin-top: 20px;
-      }
-      
-      .seller-checkout-shopping-cart .form-control {
-        border-radius: 0;
-      }
-      
-      .seller-checkout-form {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-      }
-      
-      .seller-checkout-form h4 {
-        font-size: 18px;
-        margin-bottom: 20px;
-      }
-      
-      .seller-checkout-form .row {
-        margin-bottom: 20px;
-      }
-      
-      .seller-checkout-form .form-check-label {
-        font-size: 16px;
-      }
-      
-      .seller-checkout-form .btn-primary {
-        font-size: 18px;
-        padding: 10px 20px;
-        border-radius: 0;
-      }
-      
-      /* Unique styles for the billing address form */
     
-    .billing-address-form .billing-label {
-        text-align: left;
-        direction: ltr;
-      }
-      
-      .billing-address-form .billing-input {
-        border: 1px solid #ced4da;
-        border-radius: .25rem;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-      }
-      
-      .billing-address-form .billing-input:focus {
-        border-color: #86b7fe;
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-      }
-      
-      .billing-address-form .billing-feedback {
-        color: #dc3545;
-      }
-    
-      /* Unique styles for the cart item list */
-    .cart-item-list .item-details {
-        text-align: left;
-        direction: ltr;
-      }
-      
-      .cart-item-list .item-name {
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-      }
-      
-      .cart-item-list .item-description {
-        font-size: 0.875rem;
-      }
-      
-      .cart-item-list .item-price {
-        text-align: left;
-        direction: ltr;
-      }
-      
-      .cart-item-list .total-label {
-        text-align: left;
-        direction: ltr;
-        font-weight: bold;
-      }
-      
-      .cart-item-list .total-amount {
-        text-align: left;
-        direction: ltr;
-      }
+      #seller-tracking {
+        background: #fff
+     }
+     .seller-tracking-detail {
+       padding: 3rem 0;
+     }
+     #seller-tracking {
+       margin-bottom: 1rem;
+     }
+     [class*="seller-tracking-status-"] p {
+       margin: 0;
+       font-size: 1.1rem;
+       color: #fff;
+       text-transform: uppercase;
+       text-align: center;
+     }
+     [class*="seller-tracking-status-"] {
+       padding: 1.6rem 0;
+     }
+     .seller-tracking-list {
+       border: 1px solid #e5e5e5;
+     }
+     .seller-tracking-item {
+       border-left: 4px solid #00ba0d;
+       position: relative;
+       padding: 2rem 1.5rem 0.5rem 2.5rem;
+       font-size: 0.9rem;
+       margin-left: 3rem;
+       min-height: 5rem;
+     }
+     .seller-tracking-item:last-child {
+       padding-bottom: 4rem;
+     }
+     .seller-tracking-item .seller-tracking-date {
+       margin-bottom: 0.5rem;
+     }
+     .seller-tracking-item .seller-tracking-date span {
+       color: #888;
+       font-size: 85%;
+       padding-left: 0.4rem;
+     }
+     .seller-tracking-item .seller-tracking-content {
+       padding: 0.5rem 0.8rem;
+       background-color: #f4f4f4;
+       border-radius: 0.5rem;
+     }
+     .seller-tracking-item .seller-tracking-content span {
+       display: block;
+       color: #767676;
+       font-size: 13px;
+     }
+     .seller-tracking-item .seller-tracking-icon {
+       position: absolute;
+       left: -0.7rem;
+       width: 1.1rem;
+       height: 1.1rem;
+       text-align: center;
+       border-radius: 50%;
+       font-size: 1.1rem;
+       background-color: #fff;
+       color: #fff;
+     }
+     .seller-tracking-item-pending {
+       border-left: 4px solid #d6d6d6;
+       position: relative;
+       padding: 2rem 1.5rem 0.5rem 2.5rem;
+       font-size: 0.9rem;
+       margin-left: 3rem;
+       min-height: 5rem;
+     }
+     .seller-tracking-item-pending:last-child {
+       padding-bottom: 4rem;
+     }
+     .seller-tracking-item-pending .seller-tracking-date {
+       margin-bottom: 0.5rem;
+     }
+     .seller-tracking-item-pending .seller-tracking-date span {
+       color: #888;
+       font-size: 85%;
+       padding-left: 0.4rem;
+     }
+     .seller-tracking-item-pending .seller-tracking-content {
+       padding: 0.5rem 0.8rem;
+       background-color: #f4f4f4;
+       border-radius: 0.5rem;
+     }
+     .seller-tracking-item-pending .seller-tracking-content span {
+       display: block;
+       color: #767676;
+       font-size: 13px;
+     }
+     .seller-tracking-item-pending .seller-tracking-icon {
+       line-height: 2.6rem;
+       position: absolute;
+       left: -0.7rem;
+       width: 1.1rem;
+       height: 1.1rem;
+       text-align: center;
+       border-radius: 50%;
+       font-size: 1.1rem;
+       color: #d6d6d6;
+     }
+     .seller-tracking-item-pending .seller-tracking-content {
+       font-weight: 600;
+       font-size: 17px;
+     }
+     .seller-tracking-item .seller-tracking-icon.status-current {
+       width: 1.9rem;
+       height: 1.9rem;
+       left: -1.1rem;
+     }
+     .seller-tracking-item .seller-tracking-icon.status-intransit {
+       color: #00ba0d;
+       font-size: 0.6rem;
+     }
+     .seller-tracking-item .seller-tracking-icon.status-current {
+       color: #00ba0d;
+       font-size: 0.6rem;
+     }
+     @media (min-width: 992px) {
+       .seller-tracking-item {
+         margin-left: 10rem;
+       }
+       .seller-tracking-item .seller-tracking-date {
+         position: absolute;
+         left: -10rem;
+         width: 7.5rem;
+         text-align: right;
+       }
+       .seller-tracking-item .seller-tracking-date span {
+         display: block;
+       }
+       .seller-tracking-item .seller-tracking-content {
+         padding: 0;
+         background-color: transparent;
+       }
+       .seller-tracking-item-pending {
+         margin-left: 10rem;
+       }
+       .seller-tracking-item-pending .seller-tracking-date {
+         position: absolute;
+         left: -10rem;
+         width: 7.5rem;
+         text-align: right;
+       }
+       .seller-tracking-item-pending .seller-tracking-date span {
+         display: block;
+       }
+       .seller-tracking-item-pending .seller-tracking-content {
+         padding: 0;
+         background-color: transparent;
+       }
+     }
+     .seller-tracking-item .seller-tracking-content {
+       font-weight: 600;
+       font-size: 17px;
+     }
+     .blinker {
+       border: 7px solid #e9f8ea;
+       animation: blink 1s;
+       animation-iteration-count: infinite;
+     }
+     @keyframes blink { 50% { border-color:#fff ; }  }
+     

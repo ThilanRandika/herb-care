@@ -1,0 +1,56 @@
+.UD_title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.UD_UL {
+  list-style-type: none;
+  padding: 0;
+}
+
+.UD_containor {
+  padding: 10px;
+  margin: 20px auto; /* Center the container horizontally */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+}
+
+.UD_complaintsName {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.UD_email,
+.UD_descreiption,
+.UD_status {
+  margin-bottom: 5px;
+}
+
+.UD_DTContainor {
+  display: flex;
+  justify-content: space-between;
+}
+
+.UD_date {
+  margin-right: 10px;
+}
+
+.CUS_btnDel {
+  padding: 5px 10px;
+  background-color: #1c8c3e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 70px;
+  height: 40px;
+}
+
+.CUS_btnDel:hover {
+  background-color: #1fe630;
+  color: black;
+}

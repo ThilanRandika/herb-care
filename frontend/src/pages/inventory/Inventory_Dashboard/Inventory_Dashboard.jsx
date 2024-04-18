@@ -8,6 +8,7 @@ import MainDash from '../../../components/inventory/DashBoard_All/MainDash/MainD
 import DashBoard_Sidebar from '../../../components/inventory/DashBoard_All/DashBoard_Sidebar/DashBoard_Sidebar';
 import ProductForm from '../../../components/inventory/ProductForm/ProductForm';
 import UpdateProduct from '../../../components/inventory/UpdateProduct/UpdateProduct';
+import StaffProposalsChanges from '../../../components/inventory/DashBoard_All/Inventory_Notifications/Staff_Proposals_Changes';
 
 
 function Inventory_Dashboard() {
@@ -26,7 +27,7 @@ function Inventory_Dashboard() {
             <Route path="/" element={<MainDash/>}></Route>
             <Route path="/AddProduct" element={<ProductForm/>}></Route>
             <Route path="/AllProducts" element={<AllProducts/>}></Route>
-            <Route path="/" element={<MainDash/>}></Route>
+            <Route path="/Notifications" element={<StaffProposalsChanges/>}></Route>
             <Route path="/UpdateProduct/:id" element={<UpdateProduct/>}></Route>
           </Routes>
           </div>
