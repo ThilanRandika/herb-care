@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import SearchBar from '../../components/inventory/User_searching_all/Search_Bar/SearchBar';
-import Products from '../../components/inventory/User_searching_all/Products/Products';
-import Recommended from '../../components/inventory/User_searching_all/Recommended/Recommended';
-import Sidebar from '../../components/inventory/User_searching_all/SideBar/Sidebar';
+import SearchBar from '../../../components/inventory/User_searching_all/Search_Bar/SearchBar';
+import Products from '../../../components/inventory/User_searching_all/Products/Products';
+import Recommended from '../../../components/inventory/User_searching_all/Recommended/Recommended';
+import Sidebar from '../../../components/inventory/User_searching_all/SideBar/Sidebar';
 import { Route, Routes } from 'react-router-dom';
 import Product from './Product';
 
