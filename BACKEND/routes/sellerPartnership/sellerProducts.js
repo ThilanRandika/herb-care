@@ -14,20 +14,35 @@ router.route("/products").get(verifySellerToOther, async (req, res) => {
     //get all details about that products
     const productIds = sellerProducts.map((product) => product.product_id);
 
+    const uniqueCategories = await Product.distinct("category", {
+      _id: { $in: productIds },
+    });
+
+    // Step 3: Filter products by category when requested
+    let filter = {};
+    if (req.query.category) {
+      filter = { category: req.query.category };
+    }
+
+    const products = await Product.find({
+      _id: { $in: productIds },
+      ...filter,
+    });
+
     const mergedProducts = [];
 
-    for (const productId of productIds) {
-      const product = await Product.findById(productId);
+    for (const product of products) {
 
-      console.log(productId);
+      console.log(product);
 
       if (product) {
         const sellerProduct = await SellerProducts.findOne({
-          product_id: productId,
+          sellerId: sellerId,
+          product_id: product._id,
         });
-
+        console.log(product)
         const calculatedPrice =
-          ((100 + sellerProduct.price_margine) * product.Manufactured_price) /
+          ((100 - sellerProduct.price_margine) * product.price) /
           100;
 
         mergedProducts.push({
@@ -37,7 +52,7 @@ router.route("/products").get(verifySellerToOther, async (req, res) => {
           calculatedPrice: calculatedPrice,
         });
       } else {
-        console.log(`Product with ID ${productId} not found.`);
+        console.log(`Product with ID ${product._id} not found.`);
       }
     }
 
@@ -53,7 +68,7 @@ router.route("/products").get(verifySellerToOther, async (req, res) => {
       };
     });}*/
 
-    res.status(201).json(mergedProducts);
+    res.status(201).json({products: mergedProducts, categories: uniqueCategories});
   } catch (err) {
     console.log(err);
   }
@@ -77,7 +92,7 @@ router
       const product = await Product.findById(productId);
 
       const calculatedPrice =
-        ((100 + sellerProduct.price_margine) * product.Manufactured_price) /
+        ((100 - sellerProduct.price_margine) * product.price) /
         100;
 
       //merge product details

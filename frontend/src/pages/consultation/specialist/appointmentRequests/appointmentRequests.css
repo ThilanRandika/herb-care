@@ -1,0 +1,81 @@
+.appointmentRequests-container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .appointmentRequests-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .appointmentRequests-table th,
+  .appointmentRequests-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .appointmentRequests-reject-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .appointmentRequests-reject-btn:hover {
+    background-color: #c82333;
+  }
+  
+  .appointmentRequests-expanded-details {
+    display: none;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+  }
+  
+  .appointmentRequests-expanded-details.active {
+    display: table-row;
+  }
+  
+  .appointmentRequests-expanded-details-innerContainer {
+    display: flex;
+  }
+  
+  .appointmentRequests-expanded-details-innerContainer-left {
+    width: 50%;
+    padding: 20px;
+  }
+  
+  .appointmentRequests-expanded-details-innerContainer-right {
+    width: 50%;
+    padding: 20px;
+  }
+
+  /* Button styles */
+.appointmentRequests-reject-btn,
+.appointmentRequests-complete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px; /* Add margin between buttons */
+}
+
+/* Hover styles */
+.appointmentRequests-reject-btn:hover,
+.appointmentRequests-complete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Margin between buttons and appointment details */
+.appointmentRequest-specialist-actionButtons {
+  margin-top: 10px;
+}
+
+.appointmentRequests-table tbody tr {
+  cursor: pointer; /* Set cursor to pointer for the entire row */
+}

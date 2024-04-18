@@ -1,56 +1,148 @@
-.card {
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-  height: 300px; /* Adjust the height of the card */
+.seller-product-list-centered-container {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.seller-product-list-container {
+  padding: 20px;
+}
+
+.seller-product-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.seller-product-list-searchBar {
+  width: 500px; /* Adjust width as needed */
+}
+
+.seller-product-list-container .categories-container {
+  margin-bottom: 20px; /* Add margin bottom to create space */
+}
+
+.seller-product-list-container .categories-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seller-product-list-container .categories-container ul li {
+  display: inline;
+}
+
+.seller-product-list-container .categories-container ul li button {
+  background-color: #33333324;
+  border: 1px;
+  border-radius: 30px;
+  margin-right: 10px;
   cursor: pointer;
+  font-size: 16px;
+  color: #333; /* Adjust color as needed */
 }
 
-.card:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+.seller-product-list-container .categories-container ul li button:hover {
+  opacity: 0.75;
 }
 
-.card-img-top {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  height: 50%; /* Adjust the height of the image */
-}
-
-.card-body {
-  padding: 1rem;
-}
-
-.card-title {
-  font-size: 1rem; /* Reduce the font size of the title */
-  font-weight: bold;
-}
-
-.card-text {
-  font-size: 0.875rem; /* Reduce the font size of the text */
-  margin-bottom: 0.5rem;
-}
-
-.row-cols-1 {
+.seller-product-list-grid {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.row-cols-md-3 {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.col {
-  flex: 1;
-  max-width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 800px; /* Limiting the maximum width to prevent too many products in a row */
+  margin: 0 auto; /* Centering the grid */
 }
 
 @media (min-width: 768px) {
-  .col {
-    flex: 0 0 auto;
-    width: 100%;
+  .seller-product-list-grid {
+    grid-template-columns: repeat(
+      4,
+      1fr
+    ); /* Displaying maximum four products per row on larger screens */
+    max-width: none; /* Resetting the maximum width */
   }
+}
+
+.seller-product-list-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.seller-product-list-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.seller-product-list-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.seller-product-list-details {
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.seller-product-list-info1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.seller-product-list-info2 {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.seller-product-list-price {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: right;
+  color: #ff5733;
+}
+
+.seller-product-list-id {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.seller-product-list-name {
+  font-size: 24px; /* Decrease font size */
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.seller-product-list-description {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.seller-product-list-add-to-cart-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.seller-product-list-add-to-cart-button:hover {
+  background-color: #0056b3; /* Adjust color as needed */
 }

@@ -10,12 +10,15 @@ const emailSender = require('../../emailSender');
 router.route('/checkout').get(verifySellerToOther, async (req, res) => {
     try {
         const sellerId = req.person.sellerId;
+        const selectedItems = req.query.selectedItems;
+        console.log(selectedItems)
 
         // Get address from seller table
         const seller = await Seller.findOne({ sellerId });
 
         // Get all products in the cart for the specific seller
-        const sellerBags = await SellerBag.find({ sellerId }).populate('product_id');
+        const sellerBags = await SellerBag.find({ _id: { $in: selectedItems } }).populate('product_id');
+        const itemCount =  sellerBags.length;
 
         const totalPrice = sellerBags.reduce((total, item) => total + item.totalPrice, 0);
         
@@ -25,6 +28,7 @@ router.route('/checkout').get(verifySellerToOther, async (req, res) => {
                 companyName: seller.company,
                 email: seller.email,
                 address: seller.address,
+                itemCount: itemCount,
                 totalPrice: totalPrice
             },
             products:[]
@@ -108,6 +112,49 @@ router.route('/placeOrder').post(verifySellerToOther, async (req, res) => {
         res.status(500).json({ error: "Failed to place order" });
     }
 });
+
+
+//Update Order
+router.route("/updateOrder/:id").put(async (req, res) => {
+    try {
+      const orderId = req.params.id;
+      const { orderDetails, customer, price, address, payment } = req.body;
+
+      console.log(orderDetails)
+    // Construct an array of updated products
+    const updatedProducts = orderDetails.map((product) => ({
+      product: product.product, // Assuming productId is present in the product object
+      quantity: product.quantity,
+      pricePerItem: product.pricePerItem,
+    }));
+
+      //console.log(updatedProducts, address , payment)
+  
+      // Update seller details
+      const updatedOrder = await SellerOrder.findByIdAndUpdate(
+        { _id: orderId },
+        { $set: { 
+            sellerId: customer,
+            products: updatedProducts,
+            totalPrice: price,
+            shippingAddress: address,
+            payment:payment,
+         } }, // Assuming req.body.seller contains the updated seller details
+        { new: true }
+      );
+  
+      /*(const updatedProducts = await SellerProducts.updateMany(
+              { sellerId: sellerId },
+              { $set: req.body.products }, // Assuming req.body.products contains the updated product details
+              { new: true }
+          );  )*/
+  
+      res.status(200).json({ updatedOrder });
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  
 
 // // 2. Display Order Details for Confirmation
 // router.route('/orderDetails').get(verifySellerToOther, async (req, res) => {
@@ -420,6 +467,131 @@ router.route('/completedOrders').get( async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
+router.route("/sellerPendingOrders").get(verifySellerToOther, async(req, res) => {
+    try{
+        const sellerId = req.person.sellerId;
+
+        const orders = await SellerOrder.find({sellerId: sellerId, status:"pending"}); 
+        
+        if(!orders){ throw new Error("No Pending Orders Found");}
+
+            const formattedOrders = orders.map(order => {
+                return {
+                    id: order._id, // Assuming shipping address is customer name
+                    price: `$${order.totalPrice}`, // Formatting price
+                    paymentMethod: order.payment,
+                    status: order.status,
+                    date: order.createdAt.toISOString(), // Using createdAt timestamp
+                };
+            });
+          
+
+          res.status(201).send(formattedOrders);
+    }catch(err) {
+        console.log(err);
+    }
+});
+
+
+//get one order detail
+router.route('/getOneOrder/:orderId').get(verifySellerToOther, async (req, res) => {
+    try {
+        // Find pending orders from SellerOrder model
+        const sellerId = req.person.sellerId;
+        const orderId = req.params.orderId;
+        console.log(orderId)
+        const singleOrder = await SellerOrder.findById(orderId).populate('products.product');
+        const seller = await Seller.findOne({sellerId: sellerId});
+
+        console.log(singleOrder)
+
+        // Format the data according to the provided format
+        const formattedOrder = {
+            
+                id: singleOrder._id, // Assuming MongoDB automatically generates IDs for SellersingleOrder
+                customer: singleOrder.sellerId,
+                emial: seller.email,
+                address: singleOrder.shippingAddress, // Assuming sellerId represents the customer in this context
+                date: singleOrder.createdAt, // Assuming createdAt represents the singleOrder date
+                price: singleOrder.totalPrice.toFixed(2), // Assuming totalPrice is a number
+                status: singleOrder.status,
+                paymentMethod: singleOrder.payment, 
+                orderDetails: singleOrder.products.map(product => ({
+                    productId: product.product._id,
+                    productName: product.product.name,
+                    quantity: product.quantity,
+                    price: product.pricePerItem.toFixed(2),
+                    totalPrice: (product.quantity * product.pricePerItem).toFixed(2)
+                }))
+           
+        }
+
+        res.status(200).json(formattedOrder);
+    } catch (error) {
+        console.error('Error fetching single orders:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+router.route("/ongoingOrders").get(verifySellerToOther, async (req, res) => {
+    try {
+        const sellerId = req.person.sellerId;
+
+        const orders = await SellerOrder.find({
+            sellerId: sellerId,
+            status: { $in: ["processing", "readyToDelivery", "onDelivery"] }
+        });
+
+        if (!orders || orders.length === 0) {
+            return res.status(404).json({ message: "No pending orders found" });
+        }
+
+        const formattedOrders = orders.map(order => {
+            return {
+                id: order._id, // Assuming shipping address is customer name
+                price: `$${order.totalPrice}`, // Formatting price
+                paymentMethod: order.payment,
+                status: order.status,
+                date: order.createdAt.toISOString(), // Using createdAt timestamp
+            };
+        });
+
+        res.status(200).json(formattedOrders);
+    } catch (err) {
+        console.error("Error fetching pending orders:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
+router.route("/sellerCompletedOrders").get(verifySellerToOther, async(req, res) => {
+    try{
+        const sellerId = req.person.sellerId;
+
+        const orders = await SellerOrder.find({sellerId: sellerId, status:"completed"}); 
+        
+        if(!orders){ throw new Error("No Completed Orders Found");}
+
+            const formattedOrders = orders.map(order => {
+                return {
+                    id: order._id, // Assuming shipping address is customer name
+                    price: `$${order.totalPrice}`, // Formatting price
+                    paymentMethod: order.payment,
+                    status: order.status,
+                    date: order.createdAt.toISOString(), // Using createdAt timestamp
+                };
+            });
+          
+
+          res.status(201).send(formattedOrders);
+    }catch(err) {
+        console.log(err);
+    }
+});
+
 
 
 module.exports = router;

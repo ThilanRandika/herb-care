@@ -1,0 +1,44 @@
+/* SellerRegisterForm.css */
+
+/* Container styling */
+.seller-register-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Product list styling */
+.product-list {
+    margin-top: 20px;
+}
+
+/* Individual product item styling */
+.product-item {
+    margin-bottom: 10px;
+}
+
+/* Label for product */
+.product-item-label {
+    font-weight: bold;
+}
+
+/* Input field for product price */
+.product-price-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Input field for product quantity */
+.product-quantity-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

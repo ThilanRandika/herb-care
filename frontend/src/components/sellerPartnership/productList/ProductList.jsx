@@ -1,57 +1,109 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import './productList.css'
-import { Link } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "./productList.css";
+import { Link } from "react-router-dom";
+import SearchBar from "../searchBar/SearchBar";
 
 function ProductList() {
-
   const [productList, setProductList] = useState([]);
+  const [filteredProductList, setFilteredProductList] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8070/sellerProducts/products")
+      .then((res) => {
+        console.log(res.data);
+        setProductList(res.data.products);
+        setFilteredProductList(res.data.products);
+        setCategories(res.data.categories);
+      })
+      .catch((err) => {
+        console.log("Error getting pending seller sellers", err);
+      });
+  }, []);
 
-  //get product details
+  const handleSearch = (query) => {
+    const filteredProducts = productList.filter((product) =>
+      product.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredProductList(filteredProducts);
+  };
 
-  useEffect(() =>{
-    axios.get('http://localhost:8070/sellerProducts/products')
-    .then((res) => {
-      console.log( res.data);
-      setProductList(res.data);
-    })
-    .catch((err) => {
-      console.log('Error getting pending seller sellers', err);
-    })
-  },[]);
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleAllProducts = () => {
+    setSelectedCategory("");
+  };
 
   return (
-    <>
-
-      <h1>ProductList</h1>
-      {/* map through the array of products and display them */}
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <>
-          {productList.map((product,index) => (
-            <div class="col" key={index}>
-                <Link to={`/sellerHome/product/${product._id}`}>
-                  {console.log(product._id)}
-              <div class="card">
-                <img src="https://cdn.photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg" class="card-img-top" alt="..."/>
-                <div class="card-body">
-                  <h5 class="card-title">{product.name}</h5>
-                  <p class="card-text">{product.description}</p>
-                  <p class="card-text">{product.ingredients}</p>
-                  <p class="card-text">{product.mini_quantity}</p>
-                  <p class="card-text">{product.calculatedPrice}</p>
+    <div className="seller-product-list-centered-container">
+      <div className="seller-product-list-container">
+        <div className="seller-product-list-header">
+          <h1>Product List</h1>
+          <div className="seller-product-list-searchBar">
+            <SearchBar onSearch={handleSearch} />
+          </div>
+        </div>
+        <br />
+        <div className="categories-container">
+          <ul>
+            <li>
+              <button onClick={handleAllProducts}>All</button>
+            </li>
+            {categories.map((category) => (
+              <li key={category}>
+                <button onClick={() => handleCategoryChange(category)}>
+                  {category}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="seller-product-list-grid">
+          {filteredProductList
+            .filter(
+              (product) =>
+                selectedCategory === "" || product.category === selectedCategory
+            )
+            .map((product, index) => (
+              <div class="seller-product-list-card" key={index}>
+                <div class="seller-product-list-image">
+                  <img
+                    src="https://cdn.photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg"
+                    className="seller-product-list-image"
+                    alt="Product"
+                  />
+                </div>
+                <div class="seller-product-list-details">
+                  <div class="seller-product-list-id">Code #{product._id}</div>
+                  <div class="seller-product-list-info1">
+                    <div class="seller-product-list-info2">
+                      <div class="seller-product-list-name">{product.name}</div>
+                    </div>
+                    <div class="seller-product-list-price">
+                      Rs.{product.calculatedPrice}
+                    </div>
+                  </div>
+                  {/* <div class="seller-product-list-description">DESCRIPTION</div>
+              <div class="seller-product-list-description">
+                {product.description}
+              </div> */}
+                  <Link to={`/sellerMainHome/product/${product._id}`}>
+                    <button class="seller-product-list-add-to-cart-button">
+                      View Product
+                    </button>
+                  </Link>
                 </div>
               </div>
-            </Link>
-            </div>
             ))}
-        </>
+        </div>
+      </div>
     </div>
-    </>
-    
-
-
-  )
+  );
 }
 
-export default ProductList
+export default ProductList;
