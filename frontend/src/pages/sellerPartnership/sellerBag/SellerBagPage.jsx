@@ -6,7 +6,7 @@ function SellerBagPage() {
   return (
     <>
       <SellerBag />
-      <Link to={"/sellerHome/checkout"}>
+      <Link to={"/sellerMainHome/checkout"}>
         <button>Checkout</button>
       </Link>
     </>

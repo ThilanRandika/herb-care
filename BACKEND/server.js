@@ -33,6 +33,7 @@ const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
 const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
 
 const productRouter = require("./routes/inventory/inventoryManagers.js");
+const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
 
 const customizeGiftPackageRouter = require("./routes/GiftPackage/customizeGiftPackage.js");
 const defaultGiftpackageRouter = require("./routes/GiftPackage/defaultGiftpackage.js");
@@ -73,6 +74,11 @@ app.use("/sellerBag",  sellerBag);
 app.use("/sellerOrder",  sellerOrder);
 
 app.use("/product", productRouter);
+app.use("/approvalProcess",approvalProcessRouter);
+
+
+
+
 
 app.use("/customizeGiftPackage",customizeGiftPackageRouter);
 app.use("/defaultGiftpackage",defaultGiftpackageRouter);
