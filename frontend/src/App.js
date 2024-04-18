@@ -7,19 +7,64 @@ import {
 import './App.css';
 import Home from "./pages/common/home/Home";
 import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory_Dashboard";
-import Dashboard from "./pages/sellerPartnership/Home/Dashboard";
+
+import User_searching from "./pages/inventory/user_searching/User_searching"
+import Producttesting from "./pages/inventory/Inventory_Dashboard/Producttesting";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Product from "./pages/inventory/user_searching/Product";
+import Staff_Dashboard from "./pages/inventory/Staff_Inventory_Management/Staff_Dashboard";
+
+import SellerManagerDashboard from "./pages/sellerPartnership/managerDashboard/SellerManagerDashboard";
+import LoginPage from "./pages/common/login/LoginPage";
+import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/SellerStaffDashboard";
+import SellerMainHome from "./pages/sellerPartnership/Home/SellerMainHome";
+import SellerHome from "./pages/sellerPartnership/sellerHome/SellerHome";
+
+import ConsultationsCustomer from "./pages/consultation/consultationsCustomer/ConsultationsCustomer";
+import SpecialistInterface from "./pages/consultation/specialist/specialistInterface/SpecialistInterface";
+import ConsultationStaff from "./pages/consultation/staff/consultationStaff/ConsultationStaff";
+
+
+
+
+
+
+import FeedbackDashboard from "./pages/Feedback&complaints/FeedbackDashboard/FeedbackDashboard";
+
+
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/Inventory_Dashboard" element={<Inventory_Dashboard/>}></Route>
-        <Route path="/sellerPartnership" element={<Dashboard/>}></Route>
-      </Routes>
+        
 
+        <Route path="/Feedback&Complains/*" element={<FeedbackDashboard/>}></Route>
+
+
+        <Route path="/customer" element={<Home/>}></Route>
+        <Route path="/Inventory_Dashboard/*" element={<Inventory_Dashboard />} />
+        <Route path="/User_searching/*" element={<User_searching />} />
+        <Route path="/Producttesting/*" element={<Producttesting />} />
+        <Route path="/Product/:id" element={<Product />} />
+        <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
+
+
+        <Route path="/sellerHome/*" element={<SellerHome />} />
+        <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
+        <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard />} />
+
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/consultation/*" element={<ConsultationsCustomer />} />
+        <Route path="/specialistInterface/*" element={<SpecialistInterface />} />
+        <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
+
+      </Routes>
+      
     </BrowserRouter>
   );
 }
+
 
 export default App;

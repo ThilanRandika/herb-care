@@ -1,0 +1,302 @@
+.seller-bag-container{
+  display: flex;
+  justify-content: center;
+}
+
+ .bag-container {
+  max-width: 80%;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bag-heading {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+/*.edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.searchItem {
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.siImg {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.siDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 2;
+}
+
+.siTitle {
+  font-size: 20px;
+  color: #0071c2;
+}
+
+.siCategory {
+  font-size: 12px;
+}
+
+.siDescription {
+  font-size: 12px;
+}
+
+.siQuantity {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.siDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.siDetailTexts {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.siTotalPrice {
+  font-size: 24px;
+}
+
+.siTaxOp {
+  font-size: 12px;
+  color: gray;
+}
+
+.update-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.select-checkbox {
+  margin-top: 10px;
+} */
+
+.product-page {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.product-details {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  width: 75%;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.product-category,
+.product-quantity,
+.product-price,
+.siTaxOp,
+.siCancelOp,
+.siCancelOpSubtitle {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.siDesc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.siDetails {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  justify-content: center;
+}
+
+.siDetailTexts {
+  margin-bottom: 8px; /* Add space between buttons */
+}
+
+.siDetailTexts input[type="number"] {
+  margin-bottom: 8px; /* Move input bar up */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.select-checkbox {
+  margin-right: 8px;
+}
+
+.product-image {
+  width: 25%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image img {
+  width: 90%;
+  height: 90%;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.update-button {
+  margin-top: 8px;
+  margin-right: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.remove-button {
+  margin-top: 8px;
+  margin-right: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #ff0f0f;
+  color: white;
+  border: none;
+}
+
+.update-button:hover{
+  background-color: #007904;
+}
+
+.remove-button:hover {
+  background-color: #ab0000;
+}
+
+.product-page:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.product-page:last-child {
+  border-bottom: none;
+}
+
+.product-page:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.product-page:hover.product-image img {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.product-page:hover.update-button,
+.product-page:hover.remove-button {
+  background-color: #3e8e41;
+}
+
+.product-page:hover.update-button:hover,
+.product-page:hover.remove-button:hover {
+  background-color: #2b662b;
+}
+
+.edit-button {
+  margin-top: 8px;
+  margin-right: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+}
+
+.edit-button:hover {
+  background-color: #444;
+}
+
+.sellerCh { /* Hide the sellerCh by default */
+  position: fixed; /* Fixed position to overlay on top of the content */
+  z-index: 1; /* Ensure sellerCh appears on top of other content */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scrolling if needed */
+  background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+}
+
+.sellerCh-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* Center modal vertically and horizontally */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

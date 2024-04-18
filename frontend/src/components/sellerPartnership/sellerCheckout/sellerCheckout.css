@@ -1,0 +1,141 @@
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* SellerCheckout component styles */
+.seller-checkout {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.seller-checkout-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.checkout-header {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.checkout-logo {
+  width: 72px;
+  height: 57px;
+}
+
+.checkout-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.checkout-description {
+  font-size: 18px;
+}
+
+.checkout-shopping-cart {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.checkout-shopping-cart h4 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.checkout-shopping-cart .list-group-item {
+  border: none;
+  padding: 10px 0;
+}
+
+.checkout-shopping-cart .list-group-item:last-child {
+  border-top: 1px solid #dee2e6;
+  font-weight: bold;
+}
+
+.checkout-shopping-cart .input-group {
+  margin-top: 20px;
+}
+
+.checkout-shopping-cart .form-control {
+  border-radius: 0;
+}
+
+.checkout-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.checkout-form h4 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.checkout-form .row {
+  margin-bottom: 20px;
+}
+
+.checkout-form .form-check-label {
+  font-size: 16px;
+}
+
+.checkout-form .btn-primary {
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 0;
+}
+
+/* Unique styles for the billing address form */
+.billing-address-form .billing-label {
+  text-align: left;
+  direction: ltr;
+}
+
+.billing-address-form .billing-input {
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.billing-address-form .billing-input:focus {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.billing-address-form .billing-feedback {
+  color: #dc3545;
+}
+
+/* Unique styles for the cart item list */
+.cart-item-list .item-details {
+  text-align: left;
+  direction: ltr;
+}
+
+.cart-item-list .item-name {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-list .item-description {
+  font-size: 0.875rem;
+}
+
+.cart-item-list .item-price {
+  text-align: left;
+  direction: ltr;
+}
+
+.cart-item-list .total-label {
+  text-align: left;
+  direction: ltr;
+  font-weight: bold;
+}
+
+.cart-item-list .total-amount {
+  text-align: left;
+  direction: ltr;
+}

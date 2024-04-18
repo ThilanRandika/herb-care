@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import "./AddProduct.css";
 
-export default function AddProduct() {
+function AddProduct() {
   // State variables to hold form data and selected image
   const [formData, setFormData] = useState({
     name: "",
@@ -17,10 +18,8 @@ export default function AddProduct() {
     manufactureDate: "",
     ingredients: ""
   });
-  
-  const [selectedImage, setSelectedImage] = useState(null);
 
-  
+  const navigator = useNavigate();
 
   // Handler for form input changes
   const handleChange = (e) => {
@@ -28,28 +27,21 @@ export default function AddProduct() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handler for image file change
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedImage(file);
+  // Handler for form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Post the form data to the backend
+      await axios.post("http://localhost:8070/Product/add", formData);
+
+      // If successful, display a success message and navigate to the desired page
+      alert("Product Added Successfully");
+      navigator('/desiredPage'); // Replace '/desiredPage' with the desired URL
+    } catch (error) {
+      // If an error occurs, display the error message
+      alert(error.message);
+    }
   };
-
-// Handler for form submission
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    // Post the form data to the backend
-    await axios.post("http://localhost:8027/Product/add", formData);
-
-    // If successful, display a success message
-    alert("Product Added Successfully");
-  } catch (error) {
-    // If an error occurs, display the error message
-    alert(error.message);
-  }
-};
-
-
 
   return (
     <div className="container">
@@ -99,7 +91,7 @@ const handleSubmit = async (e) => {
         <div className="form-group row">
           <label htmlFor="image_url" className="col-sm-2 col-form-label">Image Upload:</label>
           <div className="col-sm-10">
-            <input type="file" className="form-control-file" id="image_url" name="image_url" onChange={handleImageChange} />
+            <input type="file" className="form-control-file" id="image_url" name="image_url" onChange={handleChange} />
           </div>
         </div>
         <div className="form-group row">
@@ -121,11 +113,13 @@ const handleSubmit = async (e) => {
           </div>
         </div>
         <div className="form-group row">
-          <div className="col-sm-10">
-            <button type="submit" className="btn btn-primary">Submit</button>
+          <div className="col-sm-10 offset-sm-2"> {/* Offset the column by 2 */}
+            <button type="submit" className="btn btn-primary btn-block">Submit</button> {/* Make button full-width */}
           </div>
         </div>
       </form>
     </div>
   );
 }
+
+export default AddProduct;

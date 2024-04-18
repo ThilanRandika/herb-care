@@ -1,0 +1,19 @@
+.navBarSpecialistDashboard-specialist-nav-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navBarSpecialistDashboard-specialist-nav-item {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.navBarSpecialistDashboard-specialist-nav-item:hover {
+  background-color: #f0f0f0;
+}
+
+.navBarSpecialistDashboard-specialist-nav-item.active {
+  background-color: #6ace8a;
+}

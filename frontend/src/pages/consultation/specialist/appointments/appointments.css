@@ -1,0 +1,55 @@
+.appointments-history-specialist-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .appointments-history-specialist-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .appointments-history-specialist-table th,
+  .appointments-history-specialist-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .appointments-history-specialist-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .appointments-history-specialist-table tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .appointmentRequests-expanded-details {
+    display: none;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+  }
+  
+  .appointmentRequests-expanded-details.active {
+    display: table-row;
+  }
+  
+  .appointmentRequests-expanded-details-innerContainer {
+    display: flex;
+  }
+  
+  .appointmentRequests-expanded-details-innerContainer-left,
+  .appointmentRequests-expanded-details-innerContainer-right {
+    width: 50%;
+    padding: 20px;
+  }
+  
+  .appointmentRequests-expanded-details-innerContainer-left p,
+  .appointmentRequests-expanded-details-innerContainer-right p {
+    margin: 5px 0;
+  }
+  
+  .appointmentRequests-expanded-details-innerContainer-left strong,
+  .appointmentRequests-expanded-details-innerContainer-right strong {
+    margin-right: 5px;
+  }
+  

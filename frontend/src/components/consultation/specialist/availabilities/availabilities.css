@@ -1,0 +1,46 @@
+.specialist-availabilityPage-availabilities-fullPage {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .specialist-availabilityPage-availabilities-fullPage h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .specialist-availabilityPage-availabilities-date-picker {
+    margin-bottom: 20px;
+  }
+  
+  .specialist-availabilityPage-availabilities-date-picker label {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .specialist-availabilityPage-availabilities-calendar {
+    margin-top: 10px;
+  }
+  
+  .specialist-availabilityPage-availabilities-availabilities-list {
+    margin-top: 20px;
+  }
+  
+  .specialist-availabilityPage-availabilities-availabilitiesAvailable-msg {
+    font-size: 20px;
+    color: #007bff; /* Blue color for available message */
+  }
+  
+  .specialist-availabilityPage-availabilities-noAvailabilities-msg {
+    font-size: 20px;
+    color: #dc3545; /* Red color for no availabilities message */
+  }
+  
+  .specialist-availabilityPage-availabilities-availabilities-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .specialist-availabilityPage-availabilities-availabilities-list li {
+    margin-bottom: 10px;
+  }
+  
