@@ -60,7 +60,7 @@ function UpdateDefaultGiftPackage({ packageToUpdate }) {
     };
 
     return (
-        <div className="container">
+        <div className="giftPackage-default-all-container">
             <h3>Update Default Gift Package</h3>
             <form onSubmit={handleSubmit}>
                 <div>
