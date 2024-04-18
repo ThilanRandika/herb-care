@@ -33,8 +33,7 @@ import FeedbackDashboard from "./pages/Feedback&complaints/FeedbackDashboard/Fee
 
 
 
-import Dashboard from "./pages/sellerPartnership/Home/Dashboard";
-import GiftPackage_manage from "./pages/staff/Dashboard/GiftPackage_manage";
+import GiftPackage_manage from "./pages/giftPackage/staff/Dashboard/GiftPackage_manage";
 import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/AddDefaultGiftPack";
 import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/DefaultGiftPackages";
 import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
@@ -56,7 +55,7 @@ function App() {
         <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
 
 
-        <Route path="/sellerHome/*" element={<SellerHome />} />
+        <Route path="/sellerMainHome/*" element={<SellerMainHome />} />
         <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
         <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard />} />
 
