@@ -17,21 +17,19 @@ const giftPackageOrderSchema = new mongoose.Schema(
       required: true,
     },
 
-    oderAddress: {
+    orderAddress: {
       type: String,
       required: true,
     },
 
     payment: {
       type: String,
-      required: true,
-      /*enum: ["done", "cash on delivery"],
-      default: "pending",*/
+      enum: ["pending","done", "cash on delivery"],
+      default: "pending"
     },
 
-    odersStatus: {
+    orderStatus: {
       type: String,
-      required: true,
       enum: ["pending", "processing", "completed", "deliverd"],
       default: "pending",
     }, 
