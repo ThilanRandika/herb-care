@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+
 import './App.css';
 import Home from "./pages/common/home/Home";
 import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory_Dashboard";
@@ -26,10 +27,22 @@ import ConsultationStaff from "./pages/consultation/staff/consultationStaff/Cons
 
 
 
+
+
+import FeedbackDashboard from "./pages/Feedback&complaints/FeedbackDashboard/FeedbackDashboard";
+
+
+
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        
+
+        <Route path="/Feedback&Complains/*" element={<FeedbackDashboard/>}></Route>
+
+
         <Route path="/" element={<Home />} />
         <Route path="/Inventory_Dashboard/*" element={<Inventory_Dashboard />} />
         <Route path="/User_searching/*" element={<User_searching />} />
@@ -46,7 +59,9 @@ function App() {
         <Route path="/consultation/*" element={<ConsultationsCustomer />} />
         <Route path="/specialistInterface/*" element={<SpecialistInterface />} />
         <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
+
       </Routes>
+      
     </BrowserRouter>
   );
 }
