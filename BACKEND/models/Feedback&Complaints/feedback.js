@@ -4,31 +4,24 @@ const Schema = mongoose.Schema;
 
 const feedbackSchema = new Schema({
   Customer: {
-    type : String,
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: "Customer",
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "customer",
     required: true
   },
   Order: {
     type : String,
     // type: mongoose.Schema.Types.ObjectId,
     // ref: "order",
-    required: true
+    required: false
   },
   Product: {
-    type : String,
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: "product",
-    required: false
-  },
-  giftPackageOrder: {
-    type : String,
-    // type: mongoose.Schema.Types.ObjectId,
-    // ref: "customizeGift",
-    required: false
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "products",
+    required: true
   },
   ratings: {
     type: Number,
+    default: 0,
     required: true
   },
   message: {
@@ -36,7 +29,7 @@ const feedbackSchema = new Schema({
     required: true
   },
   image: {
-    type: String,
+    type: [String],
     required: false
   }
 }, { timestamps: true });
