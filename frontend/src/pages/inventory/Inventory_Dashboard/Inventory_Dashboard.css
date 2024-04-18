@@ -1,58 +1,18 @@
-
-:root {
-  --yellow: linear-gradient(180deg, #F8D49A -146.42%, #FAD79D -46.42%);
-  --orange: #fca61f;
-  --black: #242d49;
-  --gray: #788097;
-  --purple: linear-gradient(180deg, #BB67FF 0%, #C484F3 100%);
-  --green: #042e07;
-  --glass: rgba(255, 255, 255, 0.54);
-  --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
-  --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
-  --activeItem: #08330854;
-}
-
-
-
-.App {
-  color: var(--black);
-  background: linear-gradient(
-    106.37deg,
-    #048d0f 29.63%,
-    #10e630 51.55%,
-    #cceace 90.85%
-  );
-
-  height: 100vh;
+.inventory-container {
   display: flex;
-  font-family: 'Inter', sans-serif;
 }
 
-
-.AppGlass {
-  display: grid;
-  height: 97%;
-  width: 97%;
-  background: var(--glass);
-  border-radius: 2rem;
-  gap: 16px;
-  grid-template-columns: 11rem auto 20rem;
-  overflow: hidden;
-  margin: 20px;
+.inventory-dashboard-nav-bar {
+  flex: 0 0 200px; /* Set the width of the navbar */
+  background-color: #f0f0f0; /* Background color of the navbar */
+  padding: 20px; /* Add some padding for better appearance */
+  height: 100vh; /* Set the height to 100% of the viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Align items vertically */
 }
 
-@media screen and (max-width: 1200px) {
-  .AppGlass{
-    grid-template-columns: 10% 50% auto;
-    overflow-y: scroll;
-  } 
-}
-
-@media screen and (max-width: 768px) {
-  .AppGlass{
-    grid-template-columns: 1fr;
-  } 
-}
-.sidebar {
-  width: 100%; /* Adjust as needed */
+.DashBoard-pages {
+  flex: 1; /* Allow the content to take up the remaining space */
+  padding: 60px; /* Add padding for better appearance */
 }

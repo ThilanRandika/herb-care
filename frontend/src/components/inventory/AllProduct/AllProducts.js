@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./AllProducts.css"; // Import CSS file for styling
-
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  
   useEffect(() => {
     function getProducts() {
       axios
@@ -66,7 +65,10 @@ export default function AllProducts() {
               <td>{product.quantity}</td>
               <td>{product.expireDate}</td>
               <td>
-                <button   >Update</button> {/* onClick={() => handleUpdate(product._id)}*/}
+                {/* Use Link to navigate to the update page with product id */}
+                <Link to={`/Inventory_Dashboard/UpdateProduct/${product._id}`}>
+                  <button>Update</button>
+                </Link>
               </td>
               <td>
                 <button>Delete</button> {/* onClick={() => handleDelete(product._id)} */}

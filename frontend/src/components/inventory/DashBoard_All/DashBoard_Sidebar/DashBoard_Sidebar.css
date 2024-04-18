@@ -1,49 +1,19 @@
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding-top: 4rem;
-    transition: all 300ms ease;
-  }
-  
-  .sidebar h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  .sidebar-menu {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar-menu li {
-    margin-bottom: 1rem;
-  }
-  
-  .sidebar-menu li a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-  }
-  
-  .sidebar-menu li a:hover {
-    background-color: #f0f0f0;
-  }
-  
-  /* Adjust the icons size */
-  .sidebar-menu li a svg {
-    font-size: 1.2rem;
-  }
-  
-  /* Example of active link style */
-  .sidebar-menu li a.active {
-    background-color: #f0f0f0;
-    font-weight: bold;
-  }
-  
+.inventory-nav-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.sidebar-link:hover {
+  background-color: #f0f0f0;
+}
+
+.sidebar-link.active {
+  background-color: #ddd;
+}
