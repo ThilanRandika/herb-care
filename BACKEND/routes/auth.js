@@ -97,12 +97,12 @@ router.route('/login').post(async (req, res) => {
       
       };
 
-      /*{
+      
       // Redirect logic based on user type
       let redirectURL = '/';
       switch(userType) {
         case 'customer':
-          redirectURL = '/customer/dashboard';
+          redirectURL = '/customer';
           break;
         case 'manager':
           redirectURL = '/admin/dashboard';
@@ -111,17 +111,17 @@ router.route('/login').post(async (req, res) => {
           redirectURL = '/staff/dashboard';
           break;
         case 'seller':
-          redirectURL = '/seller/dashboard';
+          redirectURL = '/sellerMainHome/sellerHome';
           break;
       }
-    }*/
+  
   
       res
         .cookie("access_token", token, {
             httpOnly: true,
         })
         .status(200)
-        .json({ /*redirect: redirectURL*/  userType });
+        .json({ redirect: redirectURL,  user:userDetails });
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: 'Internal server error' });

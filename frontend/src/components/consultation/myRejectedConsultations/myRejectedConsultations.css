@@ -1,0 +1,74 @@
+/* myRejectedConsultations.css */
+
+.rejectedConsultations-allContents {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .rejectedConsultations-header {
+    margin-bottom: 20px;
+  }
+  
+  .rejectedConsultations-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .rejectedConsultations-thead th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .rejectedConsultations-tbody td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  /* Expanded Details Section */
+  .rejectedConsultations-expanded-details {
+    display: none;
+    background-color: #f9f9f9;
+  }
+  
+  .rejectedConsultations-expanded-details.active {
+    display: table-row;
+  }
+  
+  .rejectedConsultations-expanded-details-innerContainer {
+    display: flex;
+  }
+  
+  .rejectedConsultations-expanded-details-innerContainer-left,
+  .rejectedConsultations-expanded-details-innerContainer-right {
+    width: 50%;
+    padding: 20px;
+  }
+  
+  .rejectedConsultations-expanded-details-innerContainer-left p,
+  .rejectedConsultations-expanded-details-innerContainer-right p {
+    margin: 5px 0;
+  }
+  
+  .rejectedConsultations-link-btn {
+    display: inline-block;
+    padding: 8px 16px; /* Adjust padding as needed */
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .rejectedConsultations-link-btn:hover {
+    background-color: #0056b3; /* Darker color on hover */
+  }
+  
+  .rejectedConsultations-tbody tr{
+    cursor: pointer;
+  }

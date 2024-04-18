@@ -1,0 +1,38 @@
+.specialistList {
+  background-color: #f7f7f7;
+  justify-content: center;
+  padding-left: auto;
+  padding-right: auto;
+  width: 80%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.specialist-list-header {
+  margin-bottom: 20px;
+}
+
+.specialist-search-bar {
+  margin-bottom: 20px;
+}
+
+.specialist-search-input {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.horizontalSpecialistList {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
+
+}
