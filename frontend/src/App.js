@@ -33,6 +33,10 @@ import FeedbackDashboard from "./pages/Feedback&complaints/FeedbackDashboard/Fee
 
 
 
+import GiftPackage_manage from "./pages/giftPackage/staff/Dashboard/GiftPackage_manage";
+import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/AddDefaultGiftPack";
+import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/DefaultGiftPackages";
+import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
 
 function App() {
   return (
@@ -51,7 +55,7 @@ function App() {
         <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
 
 
-        <Route path="/sellerHome/*" element={<SellerHome />} />
+        <Route path="/sellerMainHome/*" element={<SellerMainHome />} />
         <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
         <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard />} />
 
@@ -60,9 +64,14 @@ function App() {
         <Route path="/specialistInterface/*" element={<SpecialistInterface />} />
         <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
 
-      </Routes>
       
+        <Route path="/staff" element={<GiftPackage_manage/>}></Route>
+        <Route path="/add_Default_gift_pack" element={<AddDefaultGiftPack/>}></Route>
+        <Route path="/Default_gift_packages" element={<DefaultGiftpackages/>}></Route>
+        <Route path="/Update_default_gift_packages" element={<UpdateDefaultGiftPackage/>}></Route>
+      </Routes>
     </BrowserRouter>
+
   );
 }
 
