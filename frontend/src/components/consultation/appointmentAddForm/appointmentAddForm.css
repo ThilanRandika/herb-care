@@ -1,7 +1,102 @@
-.AppointmentAddForm{
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    background-color: aliceblue;
+/* Updated CSS for AppointmentAddForm component */
+
+/* Unique class for the main container */
+.AppointmentAddForm-container {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Unique class for the date selection section */
+.AppointmentAddForm-date {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Unique class for the session info section */
+.AppointmentAddForm-sessionInfo {
+  width: 100%;
+}
+
+/* Unique class for the customer info section */
+.AppointmentAddForm-customerInfo {
+  width: 100%;
+}
+
+/* Unique class for the specialist card */
+.AppointmentAddForm-specialistCard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+  padding: 20px;
+}
+
+/* Unique class for the specialist image */
+.AppointmentAddForm-specialistImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+/* Unique class for specialist information */
+.AppointmentAddForm-specialistInfo {
+  flex-grow: 1;
+}
+
+/* Unique class for specialist name */
+.AppointmentAddForm-specialistName {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Unique class for specialist details */
+.AppointmentAddForm-specialistDetail {
+  margin-top: 5px;
+}
+
+/* Unique class for specialist rating */
+.AppointmentAddForm-specialistRating {
+  font-weight: bold;
+  color: #888;
+}
+
+/* Unique class for the form */
+.AppointmentAddForm-form {
+  width: 100%;
+}
+
+/* Unique class for the calendar and patient info section */
+.AppointmentAddForm-calendarAndPatientInfo {
+  display: flex;
+}
+
+/* Unique class for the time slot button */
+.AppointmentAddForm-timeSlotButton {
+  padding: 8px 16px;
+  margin: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Unique class for hover effect on time slot button */
+.AppointmentAddForm-timeSlotButton:hover {
+  background-color: #f0f0f0;
+}
+
+/* Unique class for selected time slot button */
+.AppointmentAddForm-timeSlotButton.selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Unique class for disabled time slot button */
+.AppointmentAddForm-timeSlotButton.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

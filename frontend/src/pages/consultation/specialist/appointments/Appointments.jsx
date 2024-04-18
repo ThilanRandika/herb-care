@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './appointments.css'
 
 function Appointments(props) {
   const [appointments, setAppointments] = useState([]);
   const [specialist, setSpecialist] = useState("");
+  const [expandedAppointment, setExpandedAppointment] = useState(null);
 
   useEffect(() => {
     setSpecialist(props.specialistID);
@@ -16,33 +18,65 @@ function Appointments(props) {
     axios.get(`http://localhost:8070/consultAppointment/getIncompleteAppointments/${props.specialistID}`)
       .then((res) => {
         console.log("Got appointment history data: ", res.data);
-        setAppointments(res.data);
+        // Sort appointments by date in descending order
+        const sortedAppointments = res.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setAppointments(sortedAppointments);
       })
       .catch((err) => {
         console.error('Error getting appointment history', err);
       });
   }, []);
+  
+
+  const toggleExpandedDetails = (index) => {
+    setExpandedAppointment(expandedAppointment === index ? null : index);
+  };
 
   return (
-    <div>
-      <h1>Appointment History</h1>
-      <table style={{ marginTop: "5%" }}>
+    <div className="appointments-history-specialist-container">
+      <h1>Appointments History</h1>
+      <table className="appointments-history-specialist-table">
         <thead>
           <tr>
-            <th scope="col">No.</th>
-            <th scope="col">Date</th>
-            <th scope="col">Center</th>
-            <th scope="col">Status</th>
+            <th>No.</th>
+            <th>Date</th>
+            <th>Center</th>
+            <th>Appointment Amount</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {appointments.map((appointment, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{appointment.date}</td>
-              <td>{appointment.center}</td>
-              <td>{appointment.status}</td>
-            </tr>
+            <React.Fragment key={index}>
+              <tr onClick={() => toggleExpandedDetails(index)}>
+                <td>{index + 1}</td>
+                <td>{new Date(appointment.date).toLocaleDateString()}</td>
+                <td>{appointment.centerName ? appointment.centerName : "Virtual Session"}</td>
+                <td>Rs.{appointment.appointmentAmount}</td>
+                <td>{appointment.status}</td>
+              </tr>
+              {expandedAppointment === index && (
+                <tr className="appointmentRequests-expanded-details active">
+                  <td colSpan="5">
+                    <div className="appointmentRequests-expanded-details-innerContainer">
+                      <div className="appointmentRequests-expanded-details-innerContainer-left">
+                        <p><strong>Date: </strong> {new Date(appointment.date).toLocaleDateString()}</p>
+                        <p><strong>Time: </strong> {appointment.timeSlot}</p>
+                        <p><strong>Center: </strong> {appointment.centerName? appointment.centerName : "Virtual Session"}</p>
+                        <p><strong>Appointment Amount: Rs.</strong> {appointment.appointmentAmount}</p>
+                        </div>
+                      <div className="appointmentRequests-expanded-details-innerContainer-right">
+                        <h5>Patient Info:</h5>
+                        <p><strong>Name:</strong> {appointment.patientInfo.patientName}</p>
+                        <p><strong>Age:</strong> {appointment.patientInfo.patientAge}</p>
+                        <p><strong>Gender:</strong> {appointment.patientInfo.patientGender}</p>
+                        <p><strong>Phone:</strong> {appointment.patientInfo.patientPhone}</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
           ))}
         </tbody>
       </table>
