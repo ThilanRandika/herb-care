@@ -1,13 +1,16 @@
-.container {
+.giftPackage-default-all-container {
     margin-top: 100px;
     justify-content: center;
     background-color: #F7F7F7;
     padding: 20px 20px;
     box-shadow:0 0 2.5rem rgba(0, 0, 0,0.28);
     border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
   }
 
-.container .add{
+.giftPackage-default-all-container .add{
   padding:7px;
   font-size: 15px;
   background: #143109;
