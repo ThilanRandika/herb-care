@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 
-//import './App.css';
+import './App.css';
 import Home from "./pages/common/home/Home";
 import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory_Dashboard";
 import SellerHome from "./pages/sellerPartnership/Home/SellerHome";
