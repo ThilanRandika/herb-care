@@ -43,7 +43,7 @@ function App() {
         <Route path="/Feedback&Complains/*" element={<FeedbackDashboard/>}></Route>
 
 
-        <Route path="/" element={<Home />} />
+        <Route path="/customer" element={<Home/>}></Route>
         <Route path="/Inventory_Dashboard/*" element={<Inventory_Dashboard />} />
         <Route path="/User_searching/*" element={<User_searching />} />
         <Route path="/Producttesting/*" element={<Producttesting />} />
@@ -55,7 +55,7 @@ function App() {
         <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
         <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard />} />
 
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/consultation/*" element={<ConsultationsCustomer />} />
         <Route path="/specialistInterface/*" element={<SpecialistInterface />} />
         <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
