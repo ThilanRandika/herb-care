@@ -21,7 +21,9 @@ function Home() {
       <Link to="/Login">
         <button>Login</button>
       </Link>
+
       <br></br>
+
       <button onClick={togglePopup}>Partnership Request</button>
       {isPopupVisible && 
       (<PartnershipRequest  trigger={isPopupVisible} setPopupVisible={setPopupVisible}>
@@ -29,52 +31,11 @@ function Home() {
       
       <br></br>
 
-      <Link to="/Complaints">
-        <button>Complaints</button>
+      <Link to="/Feedback&Complains">
+        <button>Feedback&complaints</button>
       </Link>
 
-      <br></br>
       
-      <Link to="/DisplayComplaintsUser">
-        <button>Display User Complaints</button>
-      </Link>
-
-      <br></br>
-
-      <Link to="/DisplayComplaintsStaff">
-        <button>Display Staff Complaints</button>
-      </Link>
-      
-
-      <br></br>
-      
-      <Link to="/Feedback">
-        <button>Feedback</button>
-      </Link>
-
-      <br></br>  
-
-      <Link to="/DisplayFeedbackUser">
-        <button>Display User Feedback</button>
-      </Link>
-
-      <br></br>
-
-      <Link to="/DisplayFeedbackStaff">
-        <button>Display Staff Feedback</button>
-      </Link>
-
-      <br></br>
-
-      <Link to="/FeedbackSummary">
-        <button>Feedback Summary</button>
-      </Link>
-
-      <br></br>
-      
-      <Link to="/FeedbackGiftPackage">
-        <button>FeedbackGiftPackage</button>
-      </Link>
     </>
   )
 }

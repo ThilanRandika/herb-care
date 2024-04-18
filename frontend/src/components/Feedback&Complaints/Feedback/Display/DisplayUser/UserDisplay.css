@@ -77,7 +77,7 @@
 
 /* Edit button styles */
 .FUD_editBtn {
-    background-color: #3366cc; 
+    background-color: #178535; 
     color: #fff;
     padding: 8px 16px;
     border: none;
@@ -91,7 +91,7 @@
 
 .FUD_editBtn:hover {
     color: black;
-    background-color: #5599ff; 
+    background-color: #29db23; 
 }
 
 .FUD_date {

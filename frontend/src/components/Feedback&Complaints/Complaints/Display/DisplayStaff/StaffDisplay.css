@@ -1,5 +1,3 @@
-/* StaffDisplay.css */
-
 .CSD_count {
   font-size: 18px;
   margin-bottom: 20px;
@@ -27,9 +25,9 @@
 .sd_UL li {
   margin-bottom: 20px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #b3b3b3;
   border-radius: 5px;
-  background-color: #d4d4d4;
+  background-color: #dbdbdb;
 }
 
 .SD_complaintsName {

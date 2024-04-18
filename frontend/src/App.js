@@ -12,14 +12,9 @@ import SellerManagerDashboard from "./pages/sellerPartnership/managerDashboard/S
 import LoginPage from "./pages/common/login/LoginPage";
 import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/SellerStaffDashboard";
 
-import Complaints_Dashboard from "./pages/Feedback&complaints/Complaints/Complaints";
-import Display_user from "./pages/Feedback&complaints/Complaints/DisplayUser";
-import Display_Staff from "./pages/Feedback&complaints/Complaints/DisplayStaff";
-import Feedback_Dashboard from "./pages/Feedback&complaints/Feedback/Feedback";
-import DisplayFeedback_user from "./pages/Feedback&complaints/Feedback/DisplayUser";
-import DisplayFeedback_staff from "./pages/Feedback&complaints/Feedback/DisplayStaff";
-import Summary from "./pages/Feedback&complaints/Feedback/FeedbackSummary";
-import FeedbackGiftPackage_Dashboard from "./pages/Feedback&complaints/FeedbackGiftPackage/FeedbackGiftPackage";
+
+
+import FeedbackDashboard from "./pages/Feedback&complaints/FeedbackDashboard/FeedbackDashboard";
 
 
 
@@ -29,7 +24,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/FeedbackSummary" element={<Summary/>}></Route>
+        
         <Route path="/Inventory_Dashboard" element={<Inventory_Dashboard/>}></Route>
         <Route path="/Login" element={<LoginPage/>}></Route>
 
@@ -38,15 +33,7 @@ function App() {
         <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard/>}></Route>
         <Route path="/login" element={<LoginPage/>}></Route>
 
-        <Route path="/Complaints" element={<Complaints_Dashboard/>}></Route>
-        <Route path="/DisplayComplaintsUser" element={<Display_user/>}></Route>
-        <Route path="/DisplayComplaintsStaff" element={<Display_Staff/>}></Route>
-
-        <Route path="/Feedback" element={<Feedback_Dashboard/>}></Route>
-        <Route path="/DisplayFeedbackUser" element={<DisplayFeedback_user/>}></Route>
-        <Route path="/DisplayFeedbackStaff" element={<DisplayFeedback_staff/>}></Route>
-
-        <Route path="/FeedbackGiftPackage" element={<FeedbackGiftPackage_Dashboard/>}></Route>
+        <Route path="/Feedback&Complains/*" element={<FeedbackDashboard/>}></Route>
 
       </Routes>
       

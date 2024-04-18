@@ -83,10 +83,10 @@ const StaffDashboard = () => {
             <h3 className='FSD_cusName'>Customer: {feedback.Customer.customer_name}</h3>
             <p className='FSD_ratings'>Ratings: <StarRating rating={feedback.ratings} /></p>
             <p className='FSD_message'>Message: {feedback.message}</p>
-            <p className='FSD_image'>
+            <p>
               Images:{' '}
               {feedback.image ? (
-                <div>
+                <div className='FSD_image'>
                   {feedback.image.map((img, index) => (
                     <img
                       key={index}

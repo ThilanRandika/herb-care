@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const { verifyToOther } = require("../../utils/veryfyToken");
 const PDFDocument = require('pdfkit');
+const Product = require('../../models/inventory/Product');
 
 
 // Image uploading
@@ -61,28 +62,30 @@ router.route("/get").get(verifyToOther, async (req, res) => {
 
 //Read - Display under the product
 //http://localhost:8070/feedback/get/:productId
-router.get('/product/:productId', async (req, res) => {
-  try {
-    const feedback = await Feedback.find({ Product: req.params.productId });
-    res.status(200).json(feedback);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Server Error');
-  }
-});
-
-
-// //Read - Display under the giftPackage
-// //http://localhost:8070/feedback/
-// router.get('/gift/:giftPackageOrder', async (req, res) => {
+// router.get('/product/:productId', async (req, res) => {
 //   try {
-//     const feedback = await Feedback.find({ giftPackageOrder: req.params.giftPackageOrder });
+//     const feedback = await Feedback.find({ Product: req.params.productId });
 //     res.status(200).json(feedback);
 //   } catch (error) {
 //     console.error(error);
 //     res.status(500).send('Server Error');
 //   }
 // });
+
+router.get('/products/:productId', async (req, res) => {
+  const productId = req.params.productId;
+  try {
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 
 //Read - Display staff & manager dashbord
 // http://localhost:8070/feedback/get
@@ -235,8 +238,6 @@ router.get('/download', async (req, res) => {
     res.status(500).json({ message: 'Failed to generate PDF' });
   }
 });
-
-
 
 
 

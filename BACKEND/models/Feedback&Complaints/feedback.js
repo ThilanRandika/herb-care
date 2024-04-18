@@ -16,15 +16,9 @@ const feedbackSchema = new Schema({
   },
   Product: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "product",
+    ref: "products",
     required: true
   },
-  //giftPackageOrder: {
-  //  type : String,
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "customizeGift",
-  //  required: false
-  //},
   ratings: {
     type: Number,
     default: 0,
