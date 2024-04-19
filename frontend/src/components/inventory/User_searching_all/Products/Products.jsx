@@ -49,9 +49,10 @@ function Products({ searchQuery, priceRange }) {
   return (
     <div className="card-container">
       {filteredProducts.map((product, index) => (
-        <Link to={`/Product/${product._id}`} key={index}> {/* Use Link to navigate to product page */}
+        <Link to={`/Product/${product._id}`} key={index}> {/* Use Link to navigate to product  ` page */}
           <section className="card">
-            <img src={product.image} alt={product.name} />
+            <img src={require(`../../../../../../BACKEND/uploads/${product.image}`)} alt={product.name} height={120} width={120}/>
+
             <div className="card-details">
               <h3 className="card-title">{product.name}</h3>
               <section className="card-reviews">

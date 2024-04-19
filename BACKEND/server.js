@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const app = express(); 
 require("dotenv").config();
 
+
 const PORT = process.env.PORT || 8070;
 // Allow requests from the specified origin
 const corsOptions = {
@@ -32,14 +33,20 @@ const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
 const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
 
 const productRouter = require("./routes/inventory/inventoryManagers.js");
+const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
 
 const customizeGiftPackageRouter = require("./routes/GiftPackage/customizeGiftPackage.js");
 const defaultGiftpackageRouter = require("./routes/GiftPackage/defaultGiftpackage.js");
 const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js");
 
+const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
+const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
+//const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js")
+
 const authRouter = require( "./routes/auth.js" );
 
 const cookieParser = require("cookie-parser");
+
 
 const URL = process.env.MONGODB_URL;
 
@@ -67,6 +74,7 @@ app.use("/sellerBag",  sellerBag);
 app.use("/sellerOrder",  sellerOrder);
 
 app.use("/product", productRouter);
+app.use("/approvalProcess",approvalProcessRouter);
 
 
 
@@ -75,6 +83,10 @@ app.use("/product", productRouter);
 app.use("/customizeGiftPackage",customizeGiftPackageRouter);
 app.use("/defaultGiftpackage",defaultGiftpackageRouter);
 app.use("/giftPackageOrder",giftPackageOrderRouter);
+
+app.use("/feedback",feedbackRouter);
+// app.use("/feedbackGiftPackage",FeedbackGiftPackageRouter);
+app.use("/complaints",complaintsRouter);
 
 app.use("/auth", authRouter);
 
@@ -86,7 +98,6 @@ connection.once("open", ()=> {
     console.log("Mongodb Connection Success!");
 
 })
-
 
 
 app.listen(PORT,() =>{
