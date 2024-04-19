@@ -66,4 +66,27 @@ router.delete("/deleteAvailability/:id", async (req, res) => {
   }
 });
 
+
+// Get availabilities for a specific date and specialist
+router.get("/getAvailabilitiesByDateAndSpecialist", async (req, res) => {
+  try {
+    const { date, specialistId } = req.query;
+
+    // Convert date to a format compatible with MongoDB date comparison
+    const formattedDate = new Date(date);
+
+    // Find availabilities for the specified date and specialist
+    const availabilities = await Availability.find({
+      date: formattedDate,
+      specialist: specialistId
+    });
+
+    res.status(200).json(availabilities);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to retrieve availabilities" });
+  }
+});
+
+
 module.exports = router;

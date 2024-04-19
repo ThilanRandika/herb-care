@@ -1,0 +1,44 @@
+.UF_update {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .UF_containor {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .UF_ratings {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .UF_message {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .UF_image {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .UF_cant{
+    color: red;
+    size: 3px;
+  }
+  
+  .UF_upBtn {
+    background-color: #238552;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  
+  .UF_upBtn:hover {
+    background-color: #0cdb4d;
+    color: black;
+  }
+  

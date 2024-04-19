@@ -31,7 +31,7 @@ const ProductSchema = new Schema(
       type: Number,
       required: true,
     },
-    image_url: {
+    image: {
       type: String,
     },
     expireDate: {

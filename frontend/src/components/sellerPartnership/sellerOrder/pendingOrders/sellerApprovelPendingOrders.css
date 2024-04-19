@@ -1,0 +1,88 @@
+.seller-approvel-pending-orders-container {
+    padding: 20px;
+}
+
+.seller-order-history-heading {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.seller-order-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.seller-order-history-table th,
+.seller-order-history-table td {
+    padding: 12px;
+    border: none;
+    text-align: left;
+}
+
+.seller-order-history-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.seller-order-history-table tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.seller-order-actions button,
+.seller-view-order-link {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.seller-order-actions button:hover,
+.seller-view-order-link:hover {
+    background-color: #03570a;
+    color: #ffffff;
+}
+
+/* a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #45a049;
+} */
+
+.seller-order-id,
+.seller-order-price,
+.seller-payment-method,
+.seller-order-status,
+.seller-order-date,
+.seller-order-actions {
+    width: 15%;
+}
+
+.seller-order-status-pending {
+    color: #ff9800; /* Orange color for pending status */
+}
+
+.seller-order-status-processing {
+    color: #9000ff; /* Green color for confirmed status */
+}
+
+.seller-order-status-readyToDelivery {
+    color: #2e4cf5; /* Red color for cancelled status */
+}
+
+.seller-order-status-onDelivery {
+    color: #50b0ff; /* Blue color for delivered status */
+}
+
+.seller-order-status-completed {
+    color: #4CAF50; /* Blue color for delivered status */
+}
