@@ -28,6 +28,7 @@ function AppointmentAddForm(props) {
     patientGender: "",
     patientPhone: "",
   });
+  const [appointmentSubmitted, setAppointmentSubmitted] = useState(false);
 
   useEffect(() => {
     if (props.selectedSpecialist) {
@@ -300,7 +301,14 @@ function AppointmentAddForm(props) {
     }
     console.log("new appointment is",  newAppointment);
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
-      navigator('../myConsultations/myOngoingConsultations');
+      setAppointmentSubmitted(true); // Set appointmentSubmitted to true upon successful submission
+        const confirmation = window.confirm('Appointment submitted successfully! Do you want to navigate to the next screen?');
+        if (confirmation) {
+          navigator('../myConsultations/myOngoingConsultations');
+        }
+        // else {
+        //   window.location.reload(); // Reload the page if the user clicks cancel
+        // }
     }).catch((err)=>{
       console.error(err);
     })

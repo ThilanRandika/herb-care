@@ -73,7 +73,12 @@ function RefundAddForm() {
 
   // Render loading state if appointment is null
   if (appointment === null) {
-    return <p>Loading...</p>;
+    return (
+      <div className="specialistList-loading-container">
+        <div className="specialistList-loading-spinner"></div>
+        <div>Loading...</div>
+      </div>
+    );
   }
   
 

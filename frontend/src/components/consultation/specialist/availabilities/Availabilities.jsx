@@ -108,7 +108,12 @@ function Availabilities(props) {
         ) : (
           <h5 className="specialist-availabilityPage-availabilities-noAvailabilities-msg">There are no availabilities found for {isToday(new Date(formattedDate)) ? 'Today' : new Date(formattedDate).toLocaleDateString()}.</h5>
         )
-      ) : null}
+      ) : (
+        <div className="specialist-availabilities-loading-container">
+            <div className="specialist-availabilities-loading-spinner"></div>
+            <div>Loading...</div>
+        </div>
+      )}
     </div>
   );
 }

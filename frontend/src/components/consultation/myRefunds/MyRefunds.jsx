@@ -7,15 +7,18 @@ function MyRefunds(props) {
     const [refunds, setRefunds] = useState([]);
     const [selectedAppointmentDetails, setSelectedAppointmentDetails] = useState(null); // State to hold appointment details
     const { user } = useContext(AuthContext); // get the customer ID from authentication context
+    const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
         axios.get(`http://localhost:8070/refund/customerRefunds/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRefunds(res.data);
+                setLoading(false); // Set loading to false after data is fetched
             })
             .catch((err) => {
                 console.log('Error getting Refunds', err);
+                setLoading(false); // Set loading to false in case of error
             });
     }, []);
 
@@ -44,6 +47,19 @@ function MyRefunds(props) {
         }
     };
 
+
+
+    // Render loading indicator if loading is true
+    if (loading) {
+        return (
+        <div className="specialistList-loading-container">
+            <div className="specialistList-loading-spinner"></div>
+            <div>Loading...</div>
+        </div>
+        );
+    }
+
+    // If not loading, render the page
     return (
         <div className='refunds-allContents'>
             <h3 className='refunds-header'>My All Refunds</h3>
