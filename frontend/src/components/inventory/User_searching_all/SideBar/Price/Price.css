@@ -1,24 +1,27 @@
 .price-container {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  width: 200px; /* Set a fixed width */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center items horizontally */
+  margin-bottom: 20px;
 }
 
-.price-label {
-  font-size: 14px;
-  color: #666;
+.price-heading {
+  margin-bottom: 10px;
 }
 
-.price-input {
+.price-option {
+  margin-bottom: 5px;
+}
+
+.price-option input[type="radio"] {
   margin-right: 5px;
 }
 
-/* Style for the radio button when selected */
-.price-input:checked + .price-label {
-  font-weight: bold;
-  color: #333;
+.price-option label {
+  cursor: pointer;
 }
+
+/* Styles for selected radio button */
+.price-option input[type="radio"]:checked + label {
+  font-weight: bold;
+  color: #007bff; /* Change to your desired color */
+}
+
+/* You can add more styles as needed */

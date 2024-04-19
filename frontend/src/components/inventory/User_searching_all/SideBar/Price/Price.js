@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Price.css";
 
-const Price = ({ handleChange }) => {
+const Price = ({ onPriceRangeChange }) => {
+  const [selectedPriceRange, setSelectedPriceRange] = useState("");
+
+  const handleChange = (e) => {
+    const range = e.target.value;
+    setSelectedPriceRange(range);
+    onPriceRangeChange(range); // Pass the selected price range to the parent component
+  };
+
   return (
     <div className="price-container">
-      <h3>Price Range:</h3>
-      <div>
+      <h3 className="price-heading">Price Range:</h3>
+      <div className="price-option">
         <input
           type="radio"
           id="0-1000"
@@ -15,7 +23,7 @@ const Price = ({ handleChange }) => {
         />
         <label htmlFor="0-1000">Rs.0 - Rs.1000</label>
       </div>
-      <div>
+      <div className="price-option">
         <input
           type="radio"
           id="1000-2000"
@@ -25,7 +33,7 @@ const Price = ({ handleChange }) => {
         />
         <label htmlFor="1000-2000">Rs.1000 - Rs.2000</label>
       </div>
-      <div>
+      <div className="price-option">
         <input
           type="radio"
           id="2000-3000"
@@ -35,7 +43,7 @@ const Price = ({ handleChange }) => {
         />
         <label htmlFor="2000-3000">Rs.2000 - Rs.3000</label>
       </div>
-      <div>
+      <div className="price-option">
         <input
           type="radio"
           id="3000-4000"
@@ -45,7 +53,7 @@ const Price = ({ handleChange }) => {
         />
         <label htmlFor="3000-4000">Rs.3000 - Rs.4000</label>
       </div>
-      <div>
+      <div className="price-option">
         <input
           type="radio"
           id="4000-5000"
@@ -55,7 +63,7 @@ const Price = ({ handleChange }) => {
         />
         <label htmlFor="4000-5000">Rs.4000 - Rs.5000</label>
       </div>
-      <div>
+      <div className="price-option">
         <input
           type="radio"
           id="above-5000"
@@ -69,4 +77,4 @@ const Price = ({ handleChange }) => {
   );
 };
 
-export default Price
+export default Price;
