@@ -5,6 +5,7 @@ const SellerBag = require("../../models/sellerPartnership/SellerBag.js");
 const SellerOrder = require("../../models/sellerPartnership/SellerOrder.js");
 const { verifySellerToOther } = require("../../utils/veryfyToken.js");
 const emailSender = require('../../emailSender');
+const PDFDocument = require('pdfkit');
 
 //Press the place order button
 router.route('/checkout').get(verifySellerToOther, async (req, res) => {
@@ -591,6 +592,69 @@ router.route("/sellerCompletedOrders").get(verifySellerToOther, async(req, res) 
         console.log(err);
     }
 });
+
+
+router.route("/generateOrderInvoice/:id").get(verifySellerToOther, async(req, res) => {
+    try {
+        // Fetch order details from the database
+        const sellerId = req.person.sellerId;
+        const order = await SellerOrder.findById(req.params.id).populate('products.product');
+        const seller = await Seller.findOne({sellerId: sellerId});
+
+        if (!order) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
+        // Create a new PDF document
+        const doc = new PDFDocument();
+
+        // Set theme color and font
+        const themeColor = '#0B4F30';
+        const fontTitle = 'Helvetica-Bold';
+        const fontText = 'Helvetica';
+
+        // Set PDF document properties
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="order_invoice_${order._id}.pdf"`);
+        doc.pipe(res);
+
+        // Add company name and title
+        doc.font(fontTitle).fontSize(24).fillColor(themeColor).text('Herbcare', { align: 'center' }).moveDown();
+        doc.font(fontTitle).fontSize(20).fillColor(themeColor).text('Order Invoice', { align: 'center' }).moveDown();
+
+        // Add order details
+        doc.fontSize(16).fillColor(themeColor).text('Order Information').moveDown();
+        addKeyValueToPdf(doc, 'Order ID:', order._id.toString(), fontTitle, fontText);
+        addKeyValueToPdf(doc, 'Customer:', seller.company, fontTitle, fontText);
+        addKeyValueToPdf(doc, 'Date:', order.createdAt.toLocaleDateString(), fontTitle, fontText);
+        addKeyValueToPdf(doc, 'Status:', order.status, fontTitle, fontText);
+
+        // Add product details
+        doc.fontSize(16).fillColor(themeColor).text('Product Information').moveDown();
+        order.products.forEach((product) => {
+            addKeyValueToPdf(doc, 'Product Name:', product.product.name, fontTitle, fontText);
+            addKeyValueToPdf(doc, 'Quantity:', product.quantity.toString(), fontTitle, fontText);
+            addKeyValueToPdf(doc, 'Price Per Item:', product.pricePerItem.toFixed(2), fontTitle, fontText);
+            addKeyValueToPdf(doc, 'Total Price:', (product.quantity * product.pricePerItem).toFixed(2), fontTitle, fontText);
+            doc.moveDown();
+        });
+
+        // Add total price
+        doc.fontSize(16).fillColor(themeColor).text('Total Price:', { continued: true }).font(fontText).text(order.totalPrice.toFixed(2)).moveDown();
+
+        // Finalize the PDF document
+        doc.end();
+    } catch (error) {
+        console.error('Error generating PDF order invoice:', error);
+        res.status(500).json({ message: 'Failed to generate PDF order invoice' });
+    }
+});
+
+// Helper function to add key-value pairs to PDF
+function addKeyValueToPdf(doc, key, value, fontTitle, fontText) {
+    doc.font(fontTitle).text(key, { continued: true }).font(fontText).text(value).moveDown();
+}
+
 
 
 

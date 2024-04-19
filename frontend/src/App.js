@@ -18,7 +18,6 @@ import SellerManagerDashboard from "./pages/sellerPartnership/managerDashboard/S
 import LoginPage from "./pages/common/login/LoginPage";
 import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/SellerStaffDashboard";
 import SellerMainHome from "./pages/sellerPartnership/Home/SellerMainHome";
-import SellerHome from "./pages/sellerPartnership/sellerHome/SellerHome";
 
 import ConsultationsCustomer from "./pages/consultation/consultationsCustomer/ConsultationsCustomer";
 import SpecialistInterface from "./pages/consultation/specialist/specialistInterface/SpecialistInterface";
@@ -51,7 +50,7 @@ function App() {
         <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
 
 
-        <Route path="/sellerHome/*" element={<SellerHome />} />
+        <Route path="/sellerMainHome/*" element={<SellerMainHome />} />
         <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
         <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard />} />
 
