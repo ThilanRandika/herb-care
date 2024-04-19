@@ -1,0 +1,60 @@
+.page_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use 100% of the viewport height */
+    margin: 0;
+}
+
+.com_containor {
+    width: 550px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+.com_containor h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.com_name,
+.com_email,
+.com_description {
+    text-align: left;
+}
+
+.com_input2,
+.com_input3,
+.com_textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #0e7014;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.com_textarea {
+    resize: vertical;
+}
+
+.com_inputbttn {
+    padding: 10px 20px;
+    background-color: #1c912e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.com_inputbttn:hover {
+    background-color: #1bd656;
+    color: #000000;
+}

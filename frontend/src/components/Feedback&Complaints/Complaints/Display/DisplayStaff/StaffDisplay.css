@@ -1,0 +1,65 @@
+.CSD_count {
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-left: 140px;
+}
+
+.CSD_title{
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.SD_containor {
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sd_UL {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sd_UL li {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #b3b3b3;
+  border-radius: 5px;
+  background-color: #dbdbdb;
+}
+
+.SD_complaintsName {
+  font-weight: bold;
+}
+
+.SD_email,
+.SD_description,
+.SD_status {
+  margin-top: 5px;
+}
+
+.SD_change {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.SD_status select {
+  margin-left: 10px;
+}
+
+.btnDel {
+  background-color: #0f6c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+  margin-top: 5px; 
+}
+
+.btnDel:hover {
+  background-color: #0ddb3d;
+}
