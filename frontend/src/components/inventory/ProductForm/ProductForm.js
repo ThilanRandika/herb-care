@@ -24,6 +24,7 @@ function ProductForm() {
 
   const handleImageChange = (e) => {
     setFormData({ ...formData, imageFile: e.target.files[0] });
+    console.log(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {

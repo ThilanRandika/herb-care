@@ -1,0 +1,10 @@
+.giftPackage-staff-giftPackageManage-btn {
+    width: 20%;
+    padding:12px;
+    font-size: 17px;
+    background: #AAA47F;
+    color:#fff;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 30px;
+}
