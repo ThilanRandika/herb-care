@@ -287,8 +287,11 @@ function AppointmentAddForm(props) {
     const newAppointment = {
       date: date,
       specialist: props.selectedSpecialist._id,
+      specialistName: props.selectedSpecialist.specialistName,
       patient: user,
       center: center,
+      centerName: centerInfo ? centerInfo.name : null,
+      centerLocation: centerInfo ? centerInfo.location : null,
       type: type,
       appointmentAmount: props.selectedSpecialist.consultationFee,
       timeSlot: selectedTimeSlot,
@@ -297,50 +300,51 @@ function AppointmentAddForm(props) {
     }
     console.log("new appointment is",  newAppointment);
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
-      navigator('../myConsultations');
+      navigator('../myConsultations/myOngoingConsultations');
     }).catch((err)=>{
       console.error(err);
     })
   };
 
 
-  
+  console.log("center location ", centerInfo ? centerInfo.location : null,);
+
 
   return (
-    <div className='AppointmentAddForm'>
+    <div className='AppointmentAddForm-container'>
         <form className="AppointmentAddForm-form" onSubmit={submit}>
           {props.selectedSpecialist && (
 
             <>
 
-              <div className="selected-specialist-card">
-                  <img src="https://www.shutterstock.com/image-vector/vector-medical-icon-doctor-image-600nw-1170228883.jpg" alt="SampleSpecialistImage" className="selected-specialistImg" />
-                  <div className="specialistInfo">
-                      <div className="selected-specialistName">{ props.selectedSpecialist.specialistName }</div>
-                      <div className="selected-speciality">{ props.selectedSpecialist.speciality }</div>
-                      <div className="selected-specialistRating">
+              <div className="AppointmentAddForm-specialistCard">
+                  <img src="https://www.shutterstock.com/image-vector/vector-medical-icon-doctor-image-600nw-1170228883.jpg" alt="SampleSpecialistImage" className="AppointmentAddForm-specialistImg" />
+                  <div className="AppointmentAddForm-specialistInfo">
+                      <div className="AppointmentAddForm-specialistName">{ props.selectedSpecialist.specialistName }</div>
+                      <div className="AppointmentAddForm-specialistDetail">{ props.selectedSpecialist.speciality }</div>
+                      <div className="AppointmentAddForm-specialistRating">
                           { props.selectedSpecialist.rating }/5
                       </div>
-                      <div className="selected-consultation Fee">Consultation fee : Rs.{ props.selectedSpecialist.consultationFee }</div>
+                      <div className="AppointmentAddForm-specialistDetail">Consultation fee : Rs.{ props.selectedSpecialist.consultationFee }</div>
                   </div>
               </div>
 
               
 
-              <div className="specialist-list-calendarAndPatientInfo">
+              <div className="AppointmentAddForm-calendarAndPatientInfo">
 
-                <div className="specialist-list-date">
+                <div className="AppointmentAddForm-date">
                   <label htmlFor="date" className="form-label">Select a Date</label>
-                  <div className="specialist-list-date-cal">
+                  <div className="AppointmentAddForm-date-cal">
                     <Calendar onChange={handleDateChange} value={date} tileDisabled={isDateDisabled} />
                   </div>
                   <button type="button" onClick={handleShowTimeSlots}>Search Available Time Slots</button> 
                 </div>
 
 
-                <div className="specialistList-cusInfo">
+                <div className="AppointmentAddForm-customerInfo">
                   <h4>Patient Info</h4>
-                  <div className="specialistList-patientName">
+                  <div className="AppointmentAddForm-patientName">
                     <label htmlFor="patientName" className="form-label">
                       Patient Name
                     </label>
@@ -352,7 +356,7 @@ function AppointmentAddForm(props) {
                       onChange={handlePatientInfoChange}
                     />
                   </div>
-                  <div className="specialistList-patientPhone">
+                  <div className="AppointmentAddForm-patientPhone">
                     <label htmlFor="patientPhone" className="form-label">
                       Phone
                     </label>
@@ -364,7 +368,7 @@ function AppointmentAddForm(props) {
                       onChange={handlePatientInfoChange}
                     />
                   </div>
-                  <div className="specialistList-patientAge">
+                  <div className="AppointmentAddForm-patientAge">
                     <label htmlFor="patientAge" className="form-label">
                       Age
                     </label>
@@ -376,7 +380,7 @@ function AppointmentAddForm(props) {
                       onChange={handlePatientInfoChange}
                     />
                   </div>
-                  <div className="specialistList-patientGender">
+                  <div className="AppointmentAddForm-patientGender">
                     <label className="form-label">Gender</label>
                     <div>
                       <input
@@ -411,7 +415,7 @@ function AppointmentAddForm(props) {
                 {date && (
                   <>
                 
-              <div className="specialistList-sessionInfo">
+              <div className="AppointmentAddForm-sessionInfo">
 
                     <div>
                       {type !== "virtual" && (
@@ -427,7 +431,7 @@ function AppointmentAddForm(props) {
                     </div>
 
                     {type !== "virtual" && centerInfo && (
-                      <div className="center-info">
+                      <div className="AppointmentAddForm-centerInfo">
                         <span>Center Name: {centerInfo ? centerInfo.name : 'Loading...'}</span><br />
                         <span>Location: {centerInfo ? centerInfo.location : 'Loading...'}</span>
                       </div>
@@ -439,7 +443,7 @@ function AppointmentAddForm(props) {
 
 
                   {showTimeSlots && availabilitiesForSelectedDate.length > 0 && (
-                    <div className="specialistList-doctorSession">
+                    <div className="AppointmentAddForm-doctorSession">
                       <span>Session time: {availabilitiesForSelectedDate[0].startTime} - {availabilitiesForSelectedDate[0].endTime}</span>
                     </div>
                   )}
@@ -447,14 +451,14 @@ function AppointmentAddForm(props) {
 
                   {/* Time slots */}
                   {showTimeSlots && timeSlots.length > 0 && (
-                    <div className="timeSlots">
+                    <div className="AppointmentAddForm-timeSlots">
                     <h4>Available Time Slots</h4>
-                    <div className="timeSlotButtons">
+                    <div className="AppointmentAddForm-timeSlotButtons">
                       {timeSlots.map((slot, index) => (
                         <button
                           key={index}
                           type="button"
-                          className={`timeSlotButton ${selectedTimeSlot === slot ? 'selected' : ''} ${
+                          className={`AppointmentAddForm-timeSlotButton ${selectedTimeSlot === slot ? 'selected' : ''} ${
                             isTimeSlotBooked(slot) ? 'disabled' : ''
                           }`}
                           onClick={() => handleTimeSlotClick(slot)}

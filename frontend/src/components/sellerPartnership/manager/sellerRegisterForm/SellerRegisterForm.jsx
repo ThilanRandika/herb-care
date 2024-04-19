@@ -181,7 +181,7 @@ function SellerRegisterForm() {
                 </div>
 
                 {/* Product details */}
-                <div className="product-details">
+                <div className="seller-register-product-details">
                     <label>Products</label>
                     {productDetails.map((product) => (
                         <div key={product._id} className="product-item">
