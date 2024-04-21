@@ -73,7 +73,7 @@ const StaffDashboard = () => {
     <div>
       <br></br>
       <h1 className='FSD_title'>Feedbacks Lists</h1>
-      <button className='FSD_downloadbtn' onClick={downloadFeedbacksPdf}>Download Report</button>
+      <button className='FSD_download_feedback_btn' onClick={downloadFeedbacksPdf}>Download Report</button>
       <div>
         <h1 className='FSD_count'>Total Feedbacks: {count}</h1>
       </div>

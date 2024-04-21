@@ -56,7 +56,7 @@
     margin-top: 20px; /* Add margin to create space */
   }
   
-  .FSD_downloadbtn {
+  .FSD_download_feedback_btn {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #1f8b33;
@@ -68,7 +68,7 @@
     margin-bottom: 20px; /* Add margin to create space */
   }
 
-  .FSD_downloadbtn:hover {
+  .FSD_download_feedback_btn:hover {
     background-color: #15e63b;
   }
   

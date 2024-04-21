@@ -69,7 +69,7 @@ const UserFeedback = ({ customerId }) => {
             ) : (
               <>
                 <strong className='FUD_ratings'>Ratings:</strong> <StarRating rating={item.ratings} /><br />
-                <strong className='FUD_message'>Message:</strong> {item.message}<br /><br/>
+                <strong className='FUD_message'>Message:</strong> <br></br> {item.message}<br /><br/>
                 {item.image && item.image.length > 0 && (
                   <div>
                     <strong className='FUD_image'>Images:</strong>

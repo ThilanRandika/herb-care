@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './Product.css';
+import Feedback from '../../../components/Feedback&Complaints/Feedback/Display/DisplayUnderProduct/displayUnderProduct';
 
 function Product() {
   const { id } = useParams(); // Get the product id from the URL parameter
@@ -38,7 +39,11 @@ function Product() {
       <p>Ingredients: {product.ingredients}</p>
       <p>Quantity: {product.quantity}</p>
       <button className="add-to-cart-button">Add to Cart</button>
+      
+      <Feedback productid={id} />
+
     </div>
+    
   );
 }
 

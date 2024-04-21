@@ -33,15 +33,19 @@
 }
 
 /* Image styles */
-.FUD_image {
+.FUD_imageName {
     font-weight: bold;
 }
 
+.FUD_image{
+    max-width: 50px;
+}
 /* Overall container styles */
 .FUD_history {
     font-size: 24px;
     margin-bottom: 20px;
     font-weight: bold;
+    text-align: center;
 }
 
 /* Feedback item styles */
