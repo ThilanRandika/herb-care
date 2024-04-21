@@ -25,18 +25,13 @@ import SpecialistInterface from "./pages/consultation/specialist/specialistInter
 import ConsultationStaff from "./pages/consultation/staff/consultationStaff/ConsultationStaff";
 
 
-
-
-
-
 import FeedbackDashboard from "./pages/Feedback&complaints/FeedbackDashboard/FeedbackDashboard";
-
-
 
 import GiftPackage_manage from "./pages/giftPackage/staff/Dashboard/GiftPackage_manage";
 import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/AddDefaultGiftPack";
 import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/DefaultGiftPackages";
 import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
+import DisplayDefaultGiftPackages from "./components/gift package/customizeGiftPackage/DisplayDefaultGiftPackages";
 
 function App() {
   return (
@@ -68,7 +63,9 @@ function App() {
         <Route path="/staff" element={<GiftPackage_manage/>}></Route>
         <Route path="/add_Default_gift_pack" element={<AddDefaultGiftPack/>}></Route>
         <Route path="/Default_gift_packages" element={<DefaultGiftpackages/>}></Route>
-        <Route path="/Update_default_gift_packages" element={<UpdateDefaultGiftPackage/>}></Route>
+        <Route path="/Update_default_gift_packages/:id" element={<UpdateDefaultGiftPackage/>}></Route>
+        <Route path="/Gift_Packages" element={<DisplayDefaultGiftPackages/>}></Route>
+
       </Routes>
     </BrowserRouter>
 

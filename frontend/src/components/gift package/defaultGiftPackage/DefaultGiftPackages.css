@@ -1,0 +1,27 @@
+.giftPackage-default-all-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    justify-content: center;
+    background-color: #F7F7F7;
+    padding: 20px 20px;
+    box-shadow:0 0 2.5rem rgba(0, 0, 0,0.28);
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.giftPackage-default-all-container .btn {
+    padding:10px;
+    font-size: 15px;
+    background: #143109;
+    color:#fff;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Adjust the gap between buttons as needed */
+}

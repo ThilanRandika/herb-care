@@ -1,93 +1,93 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import "./UpdateDefaultGiftPackage.css"
 
-function UpdateDefaultGiftPackage({ packageToUpdate }) {
-    const [packageName, setPackageName] = useState(packageToUpdate.packageName);
-    const [description, setDescription] = useState(packageToUpdate.description);
-    const [productIds, setProductIds] = useState(packageToUpdate.products.map(product => product._id));
-    const [products, setProducts] = useState([]);
-    const [images, setImages] = useState([]);
+function UpdateDefaultGiftPackage() {
+    const { id } = useParams();
+    const [packageData, setPackageData] = useState({
+        packageName: "",
+        description: "",
+        products: "",
+        totalPrice: "",
+        images: []
+    });
 
     useEffect(() => {
-        async function fetchProducts() {
-            try {
-                const response = await axios.get("http://localhost:8070/defaultGiftpackage/products");
-                setProducts(response.data);
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            }
+        // Check if id is defined before fetching the package
+        if (id) {
+            fetchPackage();
         }
-        fetchProducts();
-    }, []);
+    }, [id]); // Re-fetch package whenever id changes
 
-    const handlePackageNameChange = (event) => {
-        setPackageName(event.target.value);
-    };
-
-    const handleDescriptionChange = (event) => {
-        setDescription(event.target.value);
-    };
-
-    const handleProductChange = (event) => {
-        const selectedProducts = Array.from(event.target.selectedOptions, (option) => option.value);
-        setProductIds(selectedProducts);
-    };
-
-    const handleImageChange = (event) => {
-        setImages(event.target.files);
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const fetchPackage = async () => {
         try {
-            const formData = new FormData();
-            formData.append("packageName", packageName);
-            formData.append("description", description);
-            formData.append("productIds", JSON.stringify(productIds));
-            images.forEach((image) => {
-                formData.append("images", image);
-            });
-            await axios.put(`http://localhost:8070/defaultGiftpackage/updateDefault-gift-package/${packageToUpdate._id}`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            const response = await axios.get(`http://localhost:8070/defaultGiftpackage/default-gift-package/${id}`);
+            setPackageData(response.data);
+        } catch (error) {
+            console.error("Error fetching default gift package:", error);
+            alert("Error fetching default gift package");
+        }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setPackageData({
+            ...packageData,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const updatedPackageData = {
+                packageName: packageData.packageName,
+                description: packageData.description,
+                products: packageData.products,
+                totalPrice: packageData.totalPrice
+            };
+
+            await axios.put(`http://localhost:8070/defaultGiftpackage/updateDefault-gift-package/${id}`, updatedPackageData);
             alert("Package updated successfully");
         } catch (error) {
-            console.error("Error updating package:", error);
-            alert("Error updating package");
+            console.error("Error updating default gift package:", error);
+            alert("Error updating default gift package");
         }
     };
 
+    // If id is undefined, display a message
+    if (!id) {
+        return <div>No package selected</div>;
+    }
+
     return (
-        <div className="giftPackage-default-all-container">
-            <h3>Update Default Gift Package</h3>
+        <div>
+            <h3>Update Default Gift Package Details</h3>
+            <div className="giftPackage-default-all-container">
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Package Name:</label>
-                    <input type="text" value={packageName} onChange={handlePackageNameChange} required />
+                    <input type="text" name="packageName" value={packageData.packageName} onChange={handleChange} required />
                 </div>
                 <div>
                     <label>Description:</label>
-                    <textarea value={description} onChange={handleDescriptionChange} required />
+                    <textarea name="description" value={packageData.description} onChange={handleChange} required />
                 </div>
                 <div>
-                    <label>Select Products:</label>
-                    <select multiple onChange={handleProductChange} value={productIds} required>
-                        {products.map((product) => (
-                            <option key={product._id} value={product._id}>{product.name}</option>
-                        ))}
-                    </select>
+                    <label>Products:</label>
+                    <input type="text" name="products" value={packageData.products} onChange={handleChange} required />
                 </div>
                 <div>
-                    <label>Upload Images:</label>
-                    <input type="file" multiple onChange={handleImageChange} />
+                    <label>Total Price:</label>
+                    <input type="number" name="totalPrice" value={packageData.totalPrice} onChange={handleChange} required />
                 </div>
-                <div>
-                    <button type="submit">Save</button>
-                </div>
+                <button type="submit" className="btn">Update Package</button>
             </form>
         </div>
+
+        </div>
+        
     );
 }
 

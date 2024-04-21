@@ -1,5 +1,6 @@
 .giftPackage-default-all-container {
     margin-top: 100px;
+    margin-bottom: 100px;
     justify-content: center;
     background-color: #F7F7F7;
     padding: 20px 20px;
@@ -11,7 +12,7 @@
   }
 
 .giftPackage-default-all-container .add{
-  padding:7px;
+  padding:10px;
   font-size: 15px;
   background: #143109;
   color:#fff;
