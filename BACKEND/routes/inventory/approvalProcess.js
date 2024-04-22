@@ -35,6 +35,7 @@ router.post('/addProposal', upload.single('image'), async (req, res) => {
     const { name, category, description, price, Manufactured_price, discount, quantity, expireDate, manufactureDate, ingredients } = req.body;
 
     // File path of the uploaded image
+    const image = req.file.filename;
 
     // Create a new product instance
     const newApprovalProcess = new ApprovalProcess({
