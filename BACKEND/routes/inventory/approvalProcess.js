@@ -35,7 +35,6 @@ router.post('/addProposal', upload.single('image'), async (req, res) => {
     const { name, category, description, price, Manufactured_price, discount, quantity, expireDate, manufactureDate, ingredients } = req.body;
 
     // File path of the uploaded image
-    const image = req.file.path;
 
     // Create a new product instance
     const newApprovalProcess = new ApprovalProcess({
@@ -71,7 +70,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-
 // Route to update the status of a proposal
 router.put('/:id', async (req, res) => {
   try {
@@ -85,7 +83,15 @@ router.put('/:id', async (req, res) => {
       { new: true } // Return the updated proposal
     );
 
-    res.json(updatedProposal);
+    // Send different response messages based on the updated status
+    let message = "";
+    if (status === "Approved") {
+      message = "Product Proposal Approved";
+    } else if (status === "Rejected") {
+      message = "Product Proposal Rejected";
+    }
+
+    res.json({ message, updatedProposal });
   } catch (error) {
     console.error('Error updating proposal status:', error);
     res.status(500).json({ error: 'Failed to update proposal status' });

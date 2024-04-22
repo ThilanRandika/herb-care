@@ -6,6 +6,7 @@ export default function StaffProposalsChanges() {
   const [proposals, setProposals] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProposals, setFilteredProposals] = useState([]);
+  const [statusChanges, setStatusChanges] = useState({});
 
   useEffect(() => {
     function getProposals() {
@@ -39,15 +40,16 @@ export default function StaffProposalsChanges() {
     try {
       await axios.put(`http://localhost:8070/ApprovalProcess/${id}`, { status: newStatus });
       // Update the status in the state
-      setProposals((prevProposals) =>
-        prevProposals.map((proposal) =>
-          proposal._id === id ? { ...proposal, status: newStatus } : proposal
-        )
-      );
+      setStatusChanges({ ...statusChanges, [id]: newStatus });
     } catch (error) {
       console.error('Error updating status:', error);
       alert('Failed to update status');
     }
+  };
+
+  // Function to extract only the date part from the datetime string
+  const extractDate = (dateTimeString) => {
+    return dateTimeString.split("T")[0];
   };
 
   return (
@@ -59,35 +61,38 @@ export default function StaffProposalsChanges() {
         onChange={handleSearchChange}
         className="search-input"
       />
-      <table>
+      <table className="proposals-table">
         <thead>
           <tr>
-            <th>Product Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Expire Date</th>
-            <th>Update</th>
-            <th>Approve</th>
-            <th>Reject</th>
+            <th className="table-header">Product Name</th>
+            <th className="table-header">Category</th>
+            <th className="table-header">Price</th>
+            <th className="table-header">Quantity</th>
+            <th className="table-header">Expire Date</th>
+            <th className="table-header">Update</th>
+            <th className="table-header">Status</th>
           </tr>
         </thead>
         <tbody>
           {filteredProposals.map((proposal, index) => (
             <tr key={index}>
-              <td>{proposal.name}</td>
-              <td>{proposal.category}</td>
-              <td>{proposal.price}</td>
-              <td>{proposal.quantity}</td>
-              <td>{proposal.expireDate}</td>
-              <td>
-                <button >Update</button>
+              <td className="table-item">{proposal.name}</td>
+              <td className="table-item">{proposal.category}</td>
+              <td className="table-item">{proposal.price}</td>
+              <td className="table-item">{proposal.quantity}</td>
+              <td className="table-item">{extractDate(proposal.expireDate)}</td> {/* Display only the date part */}
+              <td className="table-item">
+                <button className="update-button">Update</button>
               </td>
-              <td>
-                <button onClick={() => handleAction(proposal._id, "Approved")}>Approve</button>
-              </td>
-              <td>
-                <button onClick={() => handleAction(proposal._id, "Rejected")}>Reject</button>
+              <td className="table-item">
+                {proposal.status === "Pending" ? (
+                  <div className="button-container">
+                    <button onClick={() => handleAction(proposal._id, "Approved")} className="approve-button">Approve</button>
+                    <button onClick={() => handleAction(proposal._id, "Rejected")} className="reject-button">Reject</button>
+                  </div>
+                ) : (
+                  <span>{proposal.status}</span>
+                )}
               </td>
             </tr>
           ))}
