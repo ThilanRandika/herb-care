@@ -32,6 +32,9 @@ import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/Add
 import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/DefaultGiftPackages";
 import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
 import DisplayDefaultGiftPackages from "./components/gift package/customizeGiftPackage/DisplayDefaultGiftPackages";
+import PlaceOrder from "./components/gift package/giftPackageOrders/PlaceOrder";
+import DisplayGiftPackOrders from "./components/gift package/giftPackageOrders/DisplayGiftPackOrders";
+
 
 function App() {
   return (
@@ -64,7 +67,10 @@ function App() {
         <Route path="/add_Default_gift_pack" element={<AddDefaultGiftPack/>}></Route>
         <Route path="/Default_gift_packages" element={<DefaultGiftpackages/>}></Route>
         <Route path="/Update_default_gift_packages/:id" element={<UpdateDefaultGiftPackage/>}></Route>
+        <Route path="/Gift-Package-Orders" element={<DisplayGiftPackOrders/>}></Route>
         <Route path="/Gift_Packages" element={<DisplayDefaultGiftPackages/>}></Route>
+        <Route path="/Place-Order/:id" element={<PlaceOrder/>}></Route>
+        
 
       </Routes>
     </BrowserRouter>
