@@ -1,0 +1,19 @@
+.navBar-myConsultations-nav-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navBar-myConsultations-nav-item {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.navBar-myConsultations-nav-item:hover {
+  background-color: #f0f0f0;
+}
+
+.navBar-myConsultations-nav-item.active {
+  background-color: #51d86e;
+}

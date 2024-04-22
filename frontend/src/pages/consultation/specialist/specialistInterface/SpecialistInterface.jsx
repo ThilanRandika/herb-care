@@ -24,7 +24,7 @@ function DashboardSpecialist() {
 
         <div className="specialistInterface-pages">
           <Routes>
-            <Route path="/" element={<SpecialistDashboard specialistID={specialistID}/>}></Route>
+            <Route path="/dashboard" element={<SpecialistDashboard specialistID={specialistID}/>}></Route>
             <Route path="/appointmentRequests" element={<AppointmentRequests specialistID={specialistID}/>}></Route>
             <Route path="/appointments" element={<Appointments specialistID={specialistID}/>}></Route>
             <Route path="/availability" element={<Availability specialistID={specialistID}/>}></Route>
