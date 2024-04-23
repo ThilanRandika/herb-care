@@ -6,13 +6,17 @@ function Recommended() {
   return (
     <>
       <div>
-        <h2 className="recommended-title">Recommended</h2>
-        <div className="recommended-flex">
-          <Button className="recommended-button" value="" title="All Products" />
-          <Button className="recommended-button" value="Nike" title="Nike" />
-          <Button className="recommended-button" value="Adidas" title="Adidas" />
-          <Button className="recommended-button" value="Puma" title="Puma" />
-          <Button className="recommended-button" value="Vans" title="Vans" />
+        <h2 className="recommended-title-custom">Recommended</h2>
+        <div className="recommended-flex-custom">
+          <a href=" " className="recommended-link recommended-all-products">
+            <Button className="recommended-button-custom" title="All Products" />
+          </a>
+          <a href=" " className="recommended-link recommended-skin-care">
+            <Button className="recommended-button-custom" title="Skin Care" />
+          </a>
+          <a href=" " className="recommended-link recommended-face-cream">
+            <Button className="recommended-button-custom" title="Face Cream" />
+          </a>
         </div>
       </div>
     </>
