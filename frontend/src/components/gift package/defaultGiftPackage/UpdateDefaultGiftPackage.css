@@ -1,4 +1,4 @@
-.giftPackage-default-all-container {
+.giftPackage-default-update {
     margin-top: 50px;
     margin-bottom: 50px;
     justify-content: center;
@@ -11,11 +11,15 @@
     width: 80%;
 }
 
-.giftPackage-default-all-container .btn {
+.giftPackage-default-update .btn {
     padding:10px;
     font-size: 15px;
     background: #143109;
     color:#fff;
     cursor: pointer;
     border-radius: 10px;
+}
+
+.header {
+    color: #143109;
 }

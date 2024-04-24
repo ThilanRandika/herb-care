@@ -62,7 +62,7 @@ function AddDefaultGiftPack() {
     };
 
     return (
-        <div className="giftPackage-default-all-container">
+        <div className="giftPackage-default-add">
             <h3>Create Default Gift Package</h3>
             <form onSubmit={handleSubmit}>
                 <div>

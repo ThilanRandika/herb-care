@@ -37,14 +37,18 @@ function DisplayDefaultGiftPackages() {
             <div>
                 {defaultGiftPackages.map((giftPackage) => (
                     <div key={giftPackage._id} className="giftPackage-default-all-container">
-                        <h4>{giftPackage.packageName}</h4>
-                        <p>Description: {giftPackage.description}</p>
-                        <p>Products: {giftPackage.products}</p>
-                        <p>Total Price: {giftPackage.totalPrice}</p>
-                        <img src={`http://localhost:8070/${giftPackage.images[0]}`} alt="Package Image" />
-                        <div className="button-container">
-                            <Link to={`/Update_default_gift_packages/${giftPackage._id}`}><button className="btn">Update</button></Link>
-                            <button onClick={() => handleDelete(giftPackage._id)} className="btn">Delete</button>
+                        <div className="details">
+                            <img src={`http://localhost:8070/${giftPackage.images[0]}`} alt="Package Image" />
+                        </div>
+                        <div className="details">
+                            <h4>{giftPackage.packageName}</h4>
+                            <p>Description: {giftPackage.description}</p>
+                            <p>Products: {giftPackage.products}</p>
+                            <p>Total Price: {giftPackage.totalPrice}</p>
+                            <div className="button-container">
+                                <Link to={`/Update_default_gift_packages/${giftPackage._id}`}><button className="btn">Update</button></Link>
+                                <button onClick={() => handleDelete(giftPackage._id)} className="btn">Delete</button>
+                            </div>
                         </div>
                     </div>
                 ))}

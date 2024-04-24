@@ -63,8 +63,8 @@ function UpdateDefaultGiftPackage() {
 
     return (
         <div>
-            <h3>Update Default Gift Package Details</h3>
-            <div className="giftPackage-default-all-container">
+            <h3 className="header"><center>Update Default Gift Package Details</center></h3>
+            <div className="giftPackage-default-update">
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Package Name:</label>
@@ -82,6 +82,7 @@ function UpdateDefaultGiftPackage() {
                     <label>Total Price:</label>
                     <input type="number" name="totalPrice" value={packageData.totalPrice} onChange={handleChange} required />
                 </div>
+                <br></br>
                 <button type="submit" className="btn">Update Package</button>
             </form>
         </div>

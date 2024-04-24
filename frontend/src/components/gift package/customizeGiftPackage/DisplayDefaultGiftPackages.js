@@ -24,31 +24,48 @@ function DisplayDefaultGiftPackages() {
 
   return (
     <div>
-      <h3>Default Gift Packages</h3>
+
+      <h3 className="header"><center>Default Gift Packages</center></h3>
       <div>
         {defaultGiftPackages.map((giftPackage) => (
-          <div key={giftPackage._id} className="giftPackage-default-all-container">
-            <h4>{giftPackage.packageName}</h4>
-            <p>Description: {giftPackage.description}</p>
-            <p>Total Price: {giftPackage.totalPrice}</p>
-            <img src={`http://localhost:8070/${giftPackage.images[0]}`} alt="Package Image" />
-            <div className="button-container">
-              <Link to={{
-                pathname: `/Place-Order/${giftPackage._id}`,
-                state: {
-                  packageDetails: giftPackage,
-                  customerDetails: null // You can update this with actual customer details
-                }
-              }}><button className="btn">Order Package</button></Link>
+          <div key={giftPackage._id} className="giftPackage-default-container">
+            <div className="card-content">
+              <img src={`http://localhost:8070/${giftPackage.images[0]}`} alt="Package Image" />
+            </div>
+            <div className="card-content">
+                <h4>{giftPackage.packageName}</h4>
+                <p>{giftPackage.description}</p>
+                <br></br>
+                <p>Including products:</p>
+                <p>{giftPackage.products}</p>
+                <br></br>
+                <p>Total Price: {giftPackage.totalPrice}</p>
+                <div className="button-container">
+                  <Link to={{
+                    pathname: `/Place-Order/${giftPackage._id}`,
+                    state: {
+                      packageDetails: giftPackage,
+                      customerDetails: null // You can update this with actual customer details
+                    }
+                  }}><button className="btn">Order Package</button></Link>
+                </div>
             </div>
           </div>
         ))}
       </div>
+
+
       <br></br> <br></br> <br></br>
-      <h2>Customize your own gift Package with your favorite products</h2>
-      <div className="button-container">
-        <Link to=" "><button className="btn">Customize a Gift Package</button></Link>
-      </div>
+
+
+      {/* <div className="section2">
+        <h2>Customize your own gift Package with your favorite products</h2>
+        <p>If you are not staisfied with our default gift packages feel free to add your favourite products and make your own package</p>
+        <div className="button-container">
+          <Link to=" "><button className="btn">Customize a Gift Package</button></Link>
+        </div>
+      </div> */}
+
     </div>
   );
 }

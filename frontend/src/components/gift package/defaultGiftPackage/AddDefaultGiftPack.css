@@ -1,4 +1,4 @@
-.giftPackage-default-all-container {
+.giftPackage-default-add {
     margin-top: 100px;
     margin-bottom: 100px;
     justify-content: center;
@@ -11,7 +11,7 @@
     width: 80%;
   }
 
-.giftPackage-default-all-container .add{
+.giftPackage-default-add .add{
   padding:10px;
   font-size: 15px;
   background: #143109;
