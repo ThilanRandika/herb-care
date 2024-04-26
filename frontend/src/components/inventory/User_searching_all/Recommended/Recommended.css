@@ -1,17 +1,17 @@
-.recommended-flex {
-    display: flex;
-    margin-left: 5rem;
-  }
-  
-  .recommended-title {
-    margin-left: 5rem;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    font-size: 20px;
-    text-align: left;
-  }
-  
-  .recommended-button {
-    margin-right: 10px; 
-  }
-  
+.recommended-flex-custom {
+  display: flex;
+  margin-left: 5rem;
+}
+
+.recommended-title-custom {
+  margin-left: 5rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.recommended-button-custom {
+  margin-right: 10px;
+  color: grey;
+}

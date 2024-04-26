@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 function SingleProduct() {
   const { Id } = useParams();
 
+  const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
@@ -18,9 +19,11 @@ function SingleProduct() {
         console.log(res.data);
         setProduct(res.data);
         setQuantity(res.data.mini_quantity);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   }, [Id]);
 
@@ -56,10 +59,17 @@ function SingleProduct() {
 
   return (
     <>
+    
+    {loading ? ( // Conditionally render loading indicator
+        <div style={{ margin: "25px" }}>
+          Loding...
+        </div>
+      ) : (
+        <div>
       <div class="seller-single-product-page">
         <div className="seller-single-product-image">
           <img
-            src="https://th.bing.com/th/id/R.9f2917860a54b5dea2983cfb083b1bc8?rik=g0TgqaEXJtFolQ&pid=ImgRaw&r=0"
+            src={require(`../../../../../BACKEND/uploads/${product.image}`)}
             alt="{product.name}"
             className="seller-single-product-image"
           />
@@ -146,6 +156,8 @@ function SingleProduct() {
           )}
         </div>
       </div>
+      </div>
+      )};
     </>
   );
 }
