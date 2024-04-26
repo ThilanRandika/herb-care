@@ -63,7 +63,7 @@ function UpdateDefaultGiftPackage() {
 
     return (
         <div>
-            <h3 className="header"><center>Update Default Gift Package Details</center></h3>
+            <h3 className="GiftUpdate-header"><center>Update Default Gift Package Details</center></h3>
             <div className="giftPackage-default-update">
             <form onSubmit={handleSubmit}>
                 <div>

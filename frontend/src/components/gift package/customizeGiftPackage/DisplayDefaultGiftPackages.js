@@ -42,7 +42,7 @@ function DisplayDefaultGiftPackages() {
                 <p>Including products:</p>
                 <p>{giftPackage.products}</p>
                 <br></br>
-                <p>Total Price: {giftPackage.totalPrice}</p>
+                <p>Total Price: Rs.{giftPackage.totalPrice}</p>
                 <div className="button-container">
                   <Link to={{
                     pathname: `/Place-Order/${giftPackage._id}`,

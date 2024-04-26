@@ -11,14 +11,14 @@
     width: 80%;
 }
 
-.button-container {
+.ReportDownload-button-container {
     display: flex;
     justify-content: flex-end;
     margin-right: 20px;
     margin-bottom: 20px;
 }
 
-.btn {
+.ReportDownload-button-container .btn {
     padding:10px;
     font-size: 15px;
     background: #143109;
@@ -27,6 +27,6 @@
     border-radius: 10px;
 }
 
-.topic {
+.GiftOrder-topic {
     margin-top: 30px;
 }

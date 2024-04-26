@@ -35,7 +35,7 @@ function DisplayGiftPackOrders() {
 
   return (
     <div>
-      <h3 className="topic"><center>Gift Package Orders</center></h3>
+      <h3 className="GiftOrder-topic"><center>Gift Package Orders</center></h3>
       {orders.map((order) => (
         <div key={order._id} className="giftPackage-order-container">
           <p>Customer ID: {order.customerId}</p>
@@ -47,7 +47,7 @@ function DisplayGiftPackOrders() {
           <p>Order Deliver Status: {order.orderStatus}</p>
         </div>
       ))}
-      <div className="button-container">
+      <div className="ReportDownload-button-container">
         <button onClick={generateReport} className="btn">Download Report</button>
       </div> 
     </div>

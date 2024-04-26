@@ -44,7 +44,7 @@ function DisplayDefaultGiftPackages() {
                             <h4>{giftPackage.packageName}</h4>
                             <p>Description: {giftPackage.description}</p>
                             <p>Products: {giftPackage.products}</p>
-                            <p>Total Price: {giftPackage.totalPrice}</p>
+                            <p>Total Price: Rs.{giftPackage.totalPrice}</p>
                             <div className="button-container">
                                 <Link to={`/Update_default_gift_packages/${giftPackage._id}`}><button className="btn">Update</button></Link>
                                 <button onClick={() => handleDelete(giftPackage._id)} className="btn">Delete</button>
