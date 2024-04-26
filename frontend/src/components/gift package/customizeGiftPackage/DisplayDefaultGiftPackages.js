@@ -26,6 +26,9 @@ function DisplayDefaultGiftPackages() {
     <div>
 
       <h3 className="header"><center>Default Gift Packages</center></h3>
+      <h6><center>Order the special Gift packages from us with a best price.</center></h6>
+      <p><center>Quick  -  Easy  -  The best</center></p>
+      <p><center>From Us</center></p>
       <div>
         {defaultGiftPackages.map((giftPackage) => (
           <div key={giftPackage._id} className="giftPackage-default-container">

@@ -33,7 +33,7 @@ function DisplayDefaultGiftPackages() {
 
     return (
         <div >
-            <h3>Default Gift Packages</h3>
+            <h3><center>Add Default Gift Packages</center></h3>
             <div>
                 {defaultGiftPackages.map((giftPackage) => (
                     <div key={giftPackage._id} className="giftPackage-default-all-container">
