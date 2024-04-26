@@ -2,22 +2,23 @@
     margin-top: 50px;
     display: flex;
     padding: 24px;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: #F7F7F7;
     box-shadow:0 0 2.5rem rgba(0, 0, 0,0.28);
+    max-width: 80%;
     border-radius: 15px;
-    width: 80%;
+    background-color: #F7F7F7;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
 }
 
 .details img{
-    width: 80px;
+    width: 350px;
     margin-right: 24px;
+    border-radius: 12px;
 }
 
 .details h4{
+    margin-top: 30px;
     font-size: 28px;
     margin-bottom: 8px;
     font-weight: bold;

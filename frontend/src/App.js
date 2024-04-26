@@ -63,7 +63,7 @@ function App() {
         <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
 
       
-        <Route path="/staff" element={<GiftPackage_manage/>}></Route>
+        <Route path="/staffGift" element={<GiftPackage_manage/>}></Route>
         <Route path="/add_Default_gift_pack" element={<AddDefaultGiftPack/>}></Route>
         <Route path="/Default_gift_packages" element={<DefaultGiftpackages/>}></Route>
         <Route path="/Update_default_gift_packages/:id" element={<UpdateDefaultGiftPackage/>}></Route>

@@ -30,7 +30,7 @@ function DisplayDefaultGiftPackages() {
         {defaultGiftPackages.map((giftPackage) => (
           <div key={giftPackage._id} className="giftPackage-default-container">
             <div className="card-content">
-              <img src={`http://localhost:8070/${giftPackage.images[0]}`} alt="Package Image" />
+              <img src={require(`../../../../../BACKEND/uploads/${giftPackage.images}`)} alt="Package Image" />
             </div>
             <div className="card-content">
                 <h4>{giftPackage.packageName}</h4>

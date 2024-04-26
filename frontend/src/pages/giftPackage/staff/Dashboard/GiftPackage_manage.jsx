@@ -12,8 +12,8 @@ function GiftPackage_manage(){
             <br></br> <br></br>
             <Link to="/add_Default_gift_pack"><button className="giftPackage-staff-giftPackageManage-btn">Add default gift packages</button> </Link> {/*Add default gift packages*/}   
             <br></br> <br></br>
-            <Link><button className="giftPackage-staff-giftPackageManage-btn">Customize gift packages</button> </Link> {/*Display customise gift packages made by customers*/}
-            <br></br> <br></br>
+            {/* <Link><button className="giftPackage-staff-giftPackageManage-btn">Customize gift packages</button> </Link> {/*Display customise gift packages made by customers}
+            <br></br> <br></br> */}
             <Link to="/Gift-Package-Orders"><button className="giftPackage-staff-giftPackageManage-btn">Gift package orders</button> </Link> {/*Display gift package oders done by customers*/}
             <br></br> <br></br>  
 

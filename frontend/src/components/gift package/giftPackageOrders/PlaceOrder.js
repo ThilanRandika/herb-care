@@ -1,52 +1,56 @@
-// PlaceOrder.js
+import React, { useState } from 'react';
+import axios from 'axios';
 
-import React, { useState } from "react";
-import axios from "axios";
+const GiftPackageOrderForm = () => {
+  const [customerId, setCustomerId] = useState('');
+  const [packageId, setPackageId] = useState('');
+  const [orderAddress, setOrderAddress] = useState('');
+  const [response, setResponse] = useState(null);
 
-function PlaceOrder({ packageDetails, customerDetails }) {
-  const [orderAddress, setOrderAddress] = useState("");
-
-  const handleAddressChange = (e) => {
-    setOrderAddress(e.target.value);
-  };
-
-  const handleCheckout = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8070/giftPackageOrder/addGiftPackageOrders", {
-        customerId: customerDetails._id,
-        packageId: packageDetails._id,
-        orderAddress: orderAddress
+      const res = await axios.post('http://localhost:8070/giftPackageOrder/addGiftPackageOrders', {
+        customerId,
+        packageId,
+        orderAddress
       });
-      alert("Your order has been created!");
-      // Redirect to payment page or display payment modal
+      setResponse(res.data);
     } catch (error) {
-      console.error("Error placing order:", error);
-      alert("Error placing order");
+      console.error(error);
+      setResponse({ message: 'Error: Please try again later.' });
     }
   };
 
   return (
     <div>
-      <h3>Place Order</h3>
-      <div>
-        <h4>Package Details</h4>
-        <p>Package Name: {packageDetails.packageName}</p>
-        <p>Description: {packageDetails.description}</p>
-        <p>Total Price: {packageDetails.totalPrice}</p>
-        {/* Add more package details here */}
-      </div>
-      <div>
-        <h4>Customer Details</h4>
-        <p>Customer Name: {customerDetails.name}</p>
-        {/* Add more customer details here */}
-      </div>
-      <div>
-        <h4>Delivery Address</h4>
-        <input type="text" value={orderAddress} onChange={handleAddressChange} />
-      </div>
-      <button onClick={handleCheckout}>Checkout</button>
+      <h2>Gift Package Order Form</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="customerId">Customer ID:</label>
+          <input type="text" id="customerId" value={customerId} onChange={(e) => setCustomerId(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor="packageId">Package ID:</label>
+          <input type="text" id="packageId" value={packageId} onChange={(e) => setPackageId(e.target.value)} />
+        </div>
+        <div>
+          <label htmlFor="orderAddress">Order Address:</label>
+          <input type="text" id="orderAddress" value={orderAddress} onChange={(e) => setOrderAddress(e.target.value)} />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      {response && (
+        <div>
+          <h3>Response:</h3>
+          <p>Package Details: {JSON.stringify(response.packageDetails)}</p>
+          <p>Customer Details: {JSON.stringify(response.customerDetails)}</p>
+          <p>Total Price: {response.totalPrice}</p>
+          <p>Order Address: {response.orderAddress}</p>
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default PlaceOrder;
+export default GiftPackageOrderForm;

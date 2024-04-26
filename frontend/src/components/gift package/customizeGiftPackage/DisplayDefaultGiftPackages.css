@@ -1,8 +1,7 @@
 .giftPackage-default-container {
     margin-top: 50px;
     display: flex;
-    padding: 24px;
-    flex-wrap: wrap;
+    padding: 40px;
     justify-content: center;
     background-color: #F7F7F7;
     box-shadow:0 0 2.5rem rgba(0, 0, 0,0.28);
@@ -13,8 +12,10 @@
 }
 
 .card-content img {
-    width: 80px;
+    width: 400px;
     margin-right: 24px;
+    border-radius: 12px;  
+    padding-left: 20px;
 }
 
 .card-content h4{
@@ -37,7 +38,7 @@
     text-decoration: none;
     cursor: pointer;
     border-radius: 4px;
-    margin-top: 16px;
+    margin-top: 10px;
 }
 
 .button-container {

@@ -36,7 +36,7 @@ const upload = multer({ storage: storage });
 router.route("/addDefault-gift-package").post(upload.array('images', 10), async (req, res) => {
   try {
       const { packageName, description, products, totalPrice } = req.body;
-      const images = req.files.map(file => file.path);
+      const images = req.files.map(file => file.filename);
 
 
       // Fetch products by IDs
@@ -71,7 +71,7 @@ router.route("/default-gift-packages").get(async(req,res)=>{
       res.status(500).json({ message: err.message });
     }
 
-  
+
 })
 
 //After select a package system will display package details
