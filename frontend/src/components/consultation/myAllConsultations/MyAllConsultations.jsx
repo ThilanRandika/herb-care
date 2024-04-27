@@ -8,16 +8,19 @@ import { AuthContext } from '../../../context/AuthContext';
 function MyAllConsultations() {
     const [appointments, setAppointments] = useState([]);
     const { user } = useContext(AuthContext);
-    const [expandedAppointment, setExpandedAppointment] = useState(null);    
+    const [expandedAppointment, setExpandedAppointment] = useState(null);
+    const [loading, setLoading] = useState(true); // State to track loading status 
 
     useEffect(() => {
         axios.get(`http://localhost:8070/consultAppointment/getAppointmentsForCus/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setAppointments(res.data);
+                setLoading(false); // Set loading to false after data is fetched
             })
             .catch((err) => {
                 console.log('Error getting pending appointments', err);
+                setLoading(false); // Set loading to false in case of error
             });
     }, []);
 
@@ -27,7 +30,17 @@ function MyAllConsultations() {
       };
 
       
+    // Render loading indicator if loading is true
+    if (loading) {
+        return (
+        <div className="specialistList-loading-container">
+            <div className="specialistList-loading-spinner"></div>
+            <div>Loading...</div>
+        </div>
+        );
+    }
 
+    // If not loading, render the page
     return (
         <div className='allConsultations-allContents'>
             <h3 className='allConsultations-header'>All Consultations</h3>
