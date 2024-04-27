@@ -64,12 +64,31 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 100px;
+    margin-left: 750px;
     margin-bottom: 20px; /* Add margin to create space */
   }
 
   .FSD_download_feedback_btn:hover {
     background-color: #15e63b;
   }
+  
+  .FSD_searchfeedback {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 100px;
+    max-width: 300px; /* Adjusted width */
+  }
+  
+  .FSD_searchfeedback::placeholder {
+    color: #999; /* Placeholder text color */
+  }
+  
+  .FSD_searchfeedback:focus {
+    outline: none; /* Remove focus outline */
+    border-color: #1f8b33; /* Border color when focused */
+  }
+  
   
   

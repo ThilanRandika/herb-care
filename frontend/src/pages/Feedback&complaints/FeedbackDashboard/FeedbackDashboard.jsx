@@ -12,6 +12,7 @@ import DisplayFeedback_staff from "../Feedback/DisplayStaff";
 import Summary from "../Feedback/FeedbackSummary";
 
 import FeedbackGiftPackage_Dashboard from "../FeedbackGiftPackage/FeedbackGiftPackage";
+import DisplayGiftPackage_user from "../FeedbackGiftPackage/DisplayUserGiftPackageFeedback";
 
 import { Link } from 'react-router-dom';
 
@@ -61,10 +62,15 @@ function FeedbackDashboard() {
 
  
       
-      <Link to="/Feedback&Complains/FeedbackGiftPackage">
+      {/* <Link to="/Feedback&Complains/FeedbackGiftPackage">
         <button className='FEEDandCOM_Dash8' >FeedbackGiftPackage</button>
       </Link>
       
+
+      <Link to="/Feedback&Complains/DisplayFeedbackGiftPackageUser">
+        <button className='FEEDandCOM_Dash9' >Display Gift Package User</button>
+      </Link> */}
+
     <Routes>
         <Route path="/Complaints" element={<Complaints_Dashboard/>}></Route>
         <Route path="/DisplayComplaintsUser" element={<Display_user/>}></Route>
@@ -76,7 +82,8 @@ function FeedbackDashboard() {
 
         <Route path="/FeedbackSummary" element={<Summary/>}></Route>
 
-        <Route path="/FeedbackGiftPackage" element={<FeedbackGiftPackage_Dashboard/>}></Route>
+        {/* <Route path="/FeedbackGiftPackage" element={<FeedbackGiftPackage_Dashboard/>}></Route>
+        <Route path="/DisplayFeedbackGiftPackageUser" element={<DisplayGiftPackage_user/>}></Route> */}
     </Routes>
     </>
   )

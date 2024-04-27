@@ -86,6 +86,7 @@ const ComplaintsList = () => {
     <div>
       <br></br>
       <h2 className='CcSD_title'>Complaints List</h2>
+      <br></br>
       <button className='CcSD_download_complaints_btn' onClick={downloadComplaintsPdf}>Download Report</button>
 
       <button className='FSD_ove' onClick={filterInProgressComplaints}>Filter In Progress Complaints</button>

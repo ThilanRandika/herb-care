@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (req, res) => {
+router.post('/add/:packageId', verifyToOther, upload.array('image', 10), async (req, res) => {
     try {
       const formData = new FormData(); // Create a new FormData object
       
@@ -29,10 +29,10 @@ router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (
       const feedbackGiftPackage = new FeedbackGiftPackage({
         Customer: req.person.userId, // Assuming you have user authentication middleware
         giftPackageOrder: req.body.giftPackageOrder,
-        packageId: req.params.productId,
+        packageId: req.params.packageId,
         ratings: req.body.ratings,
         message: req.body.message,
-        image: req.files.map(file => file.path) // Save multiple file paths in an array
+        image: req.files.map(file => file.filename) // Save multiple file paths in an array
       });
   
       await feedbackGiftPackage.save();
@@ -43,6 +43,32 @@ router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (
     }
   });
   
-  
+  // Route to fetch feedbacks of logged-in user
+router.get('/giftpackagefeedbacks', verifyToOther, async (req, res) => {
+  try {
+      // Fetch feedbacks for the logged-in user
+      const feedbacks = await FeedbackGiftPackage.find({ Customer: req.person.userId });
+
+      res.status(200).json({ feedbacks });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+// Route to delete a feedback
+router.delete('/delete/:feedbackId', verifyToOther, async (req, res) => {
+  try {
+    const feedback = await FeedbackGiftPackage.findOneAndDelete({ _id: req.params.feedbackId, Customer: req.person.userId });
+    if (!feedback) {
+      return res.status(404).json({ message: 'Feedback not found or you do not have permission to delete' });
+    }
+    res.status(200).json({ message: 'Feedback deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 module.exports = router;
