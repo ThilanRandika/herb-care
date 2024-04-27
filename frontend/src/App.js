@@ -37,6 +37,8 @@ import GiftPackage_manage from "./pages/giftPackage/staff/Dashboard/GiftPackage_
 import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/AddDefaultGiftPack";
 import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/DefaultGiftPackages";
 import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
+import ProductDetail from "./pages/sellerPartnership/productDetail/ProductDetail";
+
 
 function App() {
   return (
@@ -69,6 +71,8 @@ function App() {
         <Route path="/add_Default_gift_pack" element={<AddDefaultGiftPack/>}></Route>
         <Route path="/Default_gift_packages" element={<DefaultGiftpackages/>}></Route>
         <Route path="/Update_default_gift_packages" element={<UpdateDefaultGiftPackage/>}></Route>
+
+
       </Routes>
     </BrowserRouter>
 
