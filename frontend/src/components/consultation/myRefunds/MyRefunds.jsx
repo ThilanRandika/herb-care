@@ -67,8 +67,7 @@ function MyRefunds(props) {
                 <thead className='refunds-thead'>
                     <tr>
                         <th>No.</th>
-                        <th>Appointment</th>
-                        <th>Refund Date</th>
+                        <th>Refund Applied Date</th>
                         <th>Refund Type</th>
                         <th>Refund Amount</th>
                         <th>Bank Account Details</th>
@@ -80,8 +79,7 @@ function MyRefunds(props) {
                         <React.Fragment key={index}>
                             <tr>
                                 <td>{index + 1}</td>
-                                <td>{refund.appointment}</td>
-                                <td>{refund.refundDateTime}</td>
+                                <td>{new Date(refund.refundDateTime).toLocaleDateString()}</td>
                                 <td>{refund.refundType}</td>
                                 <td>{refund.refundAmount}</td>
                                 <td>{refund.bankAccountDetails}</td>
@@ -99,8 +97,12 @@ function MyRefunds(props) {
                                     <td colSpan="7">
                                     <div className='refunds-appointment-details'>
                                         <div className="refunds-appointment-details-left">
-                                          <p><strong>Center:</strong> {selectedAppointmentDetails.centerName}</p>
-                                          <p><strong>Center Location:</strong> {selectedAppointmentDetails.centerLocation}</p>
+                                        {selectedAppointmentDetails && selectedAppointmentDetails.type === "physical" && (
+                                            <div className="refunds-appointment-details-left">
+                                                    <p><strong>Center:</strong> {selectedAppointmentDetails.centerName}</p>
+                                                    <p><strong>Center Location:</strong> {selectedAppointmentDetails.centerLocation}</p>
+                                                </div>
+                                            )}
                                           <p><strong>Type:</strong> {selectedAppointmentDetails.type}</p>
                                           <p><strong>Appointment Amount:</strong> {selectedAppointmentDetails.appointmentAmount}</p>
                                           <p><strong>Time Slot:</strong> {selectedAppointmentDetails.timeSlot}</p>
