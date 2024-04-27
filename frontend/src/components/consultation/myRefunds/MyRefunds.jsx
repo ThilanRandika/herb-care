@@ -7,15 +7,18 @@ function MyRefunds(props) {
     const [refunds, setRefunds] = useState([]);
     const [selectedAppointmentDetails, setSelectedAppointmentDetails] = useState(null); // State to hold appointment details
     const { user } = useContext(AuthContext); // get the customer ID from authentication context
+    const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
         axios.get(`http://localhost:8070/refund/customerRefunds/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRefunds(res.data);
+                setLoading(false); // Set loading to false after data is fetched
             })
             .catch((err) => {
                 console.log('Error getting Refunds', err);
+                setLoading(false); // Set loading to false in case of error
             });
     }, []);
 
@@ -44,6 +47,19 @@ function MyRefunds(props) {
         }
     };
 
+
+
+    // Render loading indicator if loading is true
+    if (loading) {
+        return (
+        <div className="specialistList-loading-container">
+            <div className="specialistList-loading-spinner"></div>
+            <div>Loading...</div>
+        </div>
+        );
+    }
+
+    // If not loading, render the page
     return (
         <div className='refunds-allContents'>
             <h3 className='refunds-header'>My All Refunds</h3>
@@ -51,8 +67,7 @@ function MyRefunds(props) {
                 <thead className='refunds-thead'>
                     <tr>
                         <th>No.</th>
-                        <th>Appointment</th>
-                        <th>Refund Date</th>
+                        <th>Refund Applied Date</th>
                         <th>Refund Type</th>
                         <th>Refund Amount</th>
                         <th>Bank Account Details</th>
@@ -64,8 +79,7 @@ function MyRefunds(props) {
                         <React.Fragment key={index}>
                             <tr>
                                 <td>{index + 1}</td>
-                                <td>{refund.appointment}</td>
-                                <td>{refund.refundDateTime}</td>
+                                <td>{new Date(refund.refundDateTime).toLocaleDateString()}</td>
                                 <td>{refund.refundType}</td>
                                 <td>{refund.refundAmount}</td>
                                 <td>{refund.bankAccountDetails}</td>
@@ -83,8 +97,12 @@ function MyRefunds(props) {
                                     <td colSpan="7">
                                     <div className='refunds-appointment-details'>
                                         <div className="refunds-appointment-details-left">
-                                          <p><strong>Center:</strong> {selectedAppointmentDetails.centerName}</p>
-                                          <p><strong>Center Location:</strong> {selectedAppointmentDetails.centerLocation}</p>
+                                        {selectedAppointmentDetails && selectedAppointmentDetails.type === "physical" && (
+                                            <div className="refunds-appointment-details-left">
+                                                    <p><strong>Center:</strong> {selectedAppointmentDetails.centerName}</p>
+                                                    <p><strong>Center Location:</strong> {selectedAppointmentDetails.centerLocation}</p>
+                                                </div>
+                                            )}
                                           <p><strong>Type:</strong> {selectedAppointmentDetails.type}</p>
                                           <p><strong>Appointment Amount:</strong> {selectedAppointmentDetails.appointmentAmount}</p>
                                           <p><strong>Time Slot:</strong> {selectedAppointmentDetails.timeSlot}</p>
