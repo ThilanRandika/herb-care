@@ -43,13 +43,29 @@ function Availabilities(props) {
           specialistId: props.specialistID
         }
       });
-      setAvailabilities(response.data);
+  
+      // Map over the availabilities to fetch center object for each availability
+      const availabilitiesWithCenterNames = await Promise.all(response.data.map(async availability => {
+        // Check if availability.center is null
+        if (availability.center === null) {
+          return { ...availability, centerName: null };
+        } else {
+          // Fetch center object only if availability.center is not null
+          const centerResponse = await axios.get(`http://localhost:8070/center/${availability.center}`);
+          const centerName = centerResponse.data.name;
+          return { ...availability, centerName };
+        }
+      }));
+  
+      setAvailabilities(availabilitiesWithCenterNames);
       setShowAvailabilities(true); // Show availabilities after fetching
     } catch (error) {
       console.error('Failed to fetch availabilities:', error);
       // Optionally, display an error message to the user
     }
   };
+  
+  
 
   const isToday = (someDate) => {
     const today = new Date();
@@ -99,7 +115,7 @@ function Availabilities(props) {
                     <br />
                     {availability.type}
                     <br />
-                    {availability.center}
+                    {availability.centerName}
                   </li>
                 </ul>
               </div>
