@@ -58,13 +58,21 @@ function RefundAddForm() {
 
   const Submit = async (e) => {
     e.preventDefault();
+
+    // Check if bank account details are empty
+    if (!refund.bankAccountDetails.trim()) {
+      // Display alert if bank account details are empty
+      alert('Please fill in the bank account details.');
+      return; // Exit the function early
+    }
+
     const newRefund = {
       appointmentId: refund.appointment,
       bankAccountDetails: refund.bankAccountDetails,
     }
-    console.log(newRefund);
     axios.post('http://localhost:8070/refund/add', newRefund).then((res)=>{
-      navigator('../../myConsultations/myOngoingConsultations');
+      alert('Refund request submitted successfully!'); // Show success alert
+      navigator('../../refunds/myRefunds');
     }).catch((err)=>{
       console.error(err);
     })
