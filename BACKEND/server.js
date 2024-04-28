@@ -31,6 +31,8 @@ const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sell
 const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
 const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
 const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
+const sellerNotification = require( "./routes/sellerPartnership/sellerNotification.js" );
+const sellerAppointments = require( "./routes/sellerPartnership/sellerAppointments.js" );
 
 const productRouter = require("./routes/inventory/inventoryManagers.js");
 const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
@@ -76,6 +78,8 @@ app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
 app.use("/sellerProducts",  sellerProducts);
 app.use("/sellerBag",  sellerBag);
 app.use("/sellerOrder",  sellerOrder);
+app.use("/sellerNotification", sellerNotification);
+app.use("/sellerAppointments", sellerAppointments);
 
 app.use("/product", productRouter);
 app.use("/approvalProcess",approvalProcessRouter);
