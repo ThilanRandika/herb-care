@@ -44,6 +44,10 @@ function Home() {
       <div style={{ margin: "5%" }} className="consultationButtons">
         <Link to={`../../consultation`} className="custom-link" >Customer Consultation</Link>
       </div>
+
+      <Link to="/myOrders">
+        <button>My Orders</button>
+      </Link>
     </>
   )
 }
