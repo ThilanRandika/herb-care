@@ -12,6 +12,7 @@ function AvailabilitySettingPage(props) {
     startTime: '',
     endTime: ''
   });
+  const [endTimeError, setEndTimeError] = useState(false);
 
 
   useEffect(() => {
@@ -78,7 +79,19 @@ function AvailabilitySettingPage(props) {
     }
   };
 
-console.log("cenetrs: ", centers)
+
+  // The end time cannot be before the start time
+  const handleEndTimeChange = (e) => {
+    const { value } = e.target;
+    const { startTime } = formData;
+    if (value < startTime) {
+      setEndTimeError(true);
+    } else {
+      setEndTimeError(false);
+    }
+    handleChange(e);
+  };
+
 
   return (
     <div className='specialist-availability-availabilityAddFor-all'>
@@ -126,14 +139,15 @@ console.log("cenetrs: ", centers)
         </div>
         <div className='specialist-availabilityAddForm-endTime'>
           <label htmlFor="endTime">End Time</label>
-          <select id="endTime" onChange={handleChange} required>
+          <select id="endTime" onChange={handleEndTimeChange} required>
             <option value="">Select End Time</option>
             {timeOptions.map((time, index) => (
               <option key={index} value={time}>{time}</option>
             ))}
           </select>
+          {endTimeError && <span className="error-message">End time must be after start time</span>}
         </div>
-        <button className='specialist-availabilityAddForm-submitBtn' type="submit">Submit</button>
+        <button className='specialist-availabilityAddForm-submitBtn' type="submit" disabled={endTimeError}>Submit</button>
       </form>
     </div>
   );
