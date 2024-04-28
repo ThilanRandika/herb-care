@@ -43,4 +43,29 @@
   .specialist-availabilityPage-availabilities-availabilities-list li {
     margin-bottom: 10px;
   }
+
+  .specialist-availabilities-loading-container {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    height: 10vh;
+    margin-left: 100px;
+    margin-top: 50px;
+  }
+  
+  .specialist-availabilities-loading-spinner {
+    border: 5px solid rgba(184, 238, 157, 0.3);
+    border-top: 5px solid #0aa639; /* Change color as needed */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
   

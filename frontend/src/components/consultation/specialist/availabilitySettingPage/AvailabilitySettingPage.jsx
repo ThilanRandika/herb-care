@@ -3,6 +3,7 @@ import './availabilitySettingPage.css';
 import axios from 'axios';
 
 function AvailabilitySettingPage(props) {
+  const [centers, setCenters] = useState([]);
   const [formData, setFormData] = useState({
     specialist: props.specialistID,
     type: '',
@@ -22,6 +23,24 @@ function AvailabilitySettingPage(props) {
 
 
 
+
+  useEffect(() => {
+    // Fetch all center names when the component mounts
+    const fetchCenters = async () => {
+      try {
+        const response = await axios.get('http://localhost:8070/center/all');
+        setCenters(response.data);
+      } catch (error) {
+        console.error('Failed to fetch centers:', error);
+      }
+    };
+  
+    fetchCenters();
+  }, []);
+  
+
+
+
   // Generate time options in 30-minute intervals
   const timeOptions = [];
   for (let hour = 0; hour < 24; hour++) {
@@ -34,18 +53,19 @@ function AvailabilitySettingPage(props) {
 
   const handleChange = (e) => {
     const { id, value, name } = e.target;
-    //name attribute is only available for type
+    // If the appointment type is "virtual", hide the center input field and set its value to null
     if (name === "type") {
-      // If the appointment type is "virtual", hide the center input field and set its value to null
-      if (value === "virtual") {
-        setFormData({ ...formData, type: value, center: null });
-      } else {
-        setFormData({ ...formData, [name]: value });
-      }
-    }else{
+      setFormData({ ...formData, type: value, center: value === "virtual" ? null : "" });
+    } else if (id === "center") {
+      // If the user selects a center from the dropdown list, save its ID in the formData state
+      setFormData({ ...formData, center: value });
+    } else {
       setFormData({ ...formData, [id]: value });
     }
   };
+  
+
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,7 +78,7 @@ function AvailabilitySettingPage(props) {
     }
   };
 
-
+console.log("cenetrs: ", centers)
 
   return (
     <div className='specialist-availability-availabilityAddFor-all'>
@@ -68,11 +88,11 @@ function AvailabilitySettingPage(props) {
           <label htmlFor="type">Select the appointment type:</label><br/>
           <div className="specialist-availabilityAddForm-type">
             <div className="specialist-availabilityAddForm-type-physical">
-              <input type="radio" className="btn-check" name="type" id="physical" value="physical" autoComplete="off" onChange={handleChange} />
+              <input required type="radio" className="btn-check" name="type" id="physical" value="physical" autoComplete="off" onChange={handleChange} />
               <label className="btn btn-secondary" htmlFor="physical">physical</label>
             </div>
             <div className="specialist-availabilityAddForm-type-virtual">
-              <input type="radio" className="btn-check" name="type" id="virtual" value="virtual" autoComplete="off" onChange={handleChange} />
+              <input required type="radio" className="btn-check" name="type" id="virtual" value="virtual" autoComplete="off" onChange={handleChange} />
               <label className="btn btn-secondary" htmlFor="virtual">virtual</label>
             </div>
           </div>
@@ -80,10 +100,20 @@ function AvailabilitySettingPage(props) {
         {/* Conditional rendering for the center input field */}
         {formData.type !== "virtual" && (
           <div>
-            <label className="specialist-availabilityAddForm-center" htmlFor="center">Center</label>
-            <input type="text" id="center" onChange={handleChange} />
+            <label className="specialist-availabilityAddForm-center" htmlFor="center">
+              Center
+            </label>
+            <select id="center" onChange={handleChange} required>
+              <option value="">Select a Center</option>
+              {centers.map((center, index) => (
+                <option key={index} value={center._id}>
+                  {center.name}
+                </option>
+              ))}
+            </select>
           </div>
         )}
+
         
         <div className='specialist-availabilityAddForm-startTime' >
           <label htmlFor="startTime">Start Time</label>
