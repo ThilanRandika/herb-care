@@ -4,18 +4,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
-const app = express(); 
+const app = express();
 require("dotenv").config();
-
 
 const PORT = process.env.PORT || 8070;
 // Allow requests from the specified origin
 const corsOptions = {
-    origin: 'http://localhost:3000', // Change this to your frontend URL
-    credentials: true, // Include credentials (cookies, authorization headers, etc.)
-  };
-  
-  app.use(cors(corsOptions));
+  origin: "http://localhost:3000", // Change this to your frontend URL
+  credentials: true, // Include credentials (cookies, authorization headers, etc.)
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
@@ -24,13 +23,13 @@ const AvailabilityRouter = require("./routes/consultation/availabilities.js");
 const SpecialistRouter = require("./routes/consultation/specialists.js");
 const CenterRouter = require("./routes/consultation/centers.js");
 
-const customerRouter = require( "./routes/user/customer.js" );
+const customerRouter = require("./routes/user/customer.js");
 
-const sellerRouter = require( "./routes/sellerPartnership/seller.js" );
-const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sellerPartnershipRequest.js" );
-const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
-const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
-const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
+const sellerRouter = require("./routes/sellerPartnership/seller.js");
+const sellerPartnershipRequestRouter = require("./routes/sellerPartnership/sellerPartnershipRequest.js");
+const sellerProducts = require("./routes/sellerPartnership/sellerProducts.js");
+const sellerBag = require("./routes/sellerPartnership/sellerBag.js");
+const sellerOrder = require("./routes/sellerPartnership/sellerOrders.js");
 
 const productRouter = require("./routes/inventory/inventoryManagers.js");
 const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
@@ -43,23 +42,24 @@ const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
 const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
 //const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js")
 
-const authRouter = require( "./routes/auth.js" );
+const packageRoutes = require("./routes/HolidayPackage/package.js");
+const serviceRoutes = require("./routes/HolidayPackage/service.js");
+const bookingRoutes = require("./routes/HolidayPackage/booking.js");
+
+const authRouter = require("./routes/auth.js");
 
 const cookieParser = require("cookie-parser");
-
 
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    //useCreateIndex: true, 
-    //useFindAndModify: false
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  //useCreateIndex: true,
+  //useFindAndModify: false
 });
 
-
 app.use(cookieParser());
-
 
 app.use("/consultAppointment", ConsultAppointmentsRouter);
 app.use("/refund", RefundRouter);
@@ -69,38 +69,35 @@ app.use("/center", CenterRouter);
 
 app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
-app.use("/sellerProducts",  sellerProducts);
-app.use("/sellerBag",  sellerBag);
-app.use("/sellerOrder",  sellerOrder);
+app.use("/sellerProducts", sellerProducts);
+app.use("/sellerBag", sellerBag);
+app.use("/sellerOrder", sellerOrder);
 
 app.use("/product", productRouter);
-app.use("/approvalProcess",approvalProcessRouter);
+app.use("/approvalProcess", approvalProcessRouter);
 
+app.use("/customizeGiftPackage", customizeGiftPackageRouter);
+app.use("/defaultGiftpackage", defaultGiftpackageRouter);
+app.use("/giftPackageOrder", giftPackageOrderRouter);
 
+// Routes
+app.use("/packages", packageRoutes);
+app.use("/services", serviceRoutes);
+app.use("/bookings", bookingRoutes);
 
-
-
-app.use("/customizeGiftPackage",customizeGiftPackageRouter);
-app.use("/defaultGiftpackage",defaultGiftpackageRouter);
-app.use("/giftPackageOrder",giftPackageOrderRouter);
-
-app.use("/feedback",feedbackRouter);
+app.use("/feedback", feedbackRouter);
 // app.use("/feedbackGiftPackage",FeedbackGiftPackageRouter);
-app.use("/complaints",complaintsRouter);
+app.use("/complaints", complaintsRouter);
 
 app.use("/auth", authRouter);
 
 app.use("/customer", customerRouter);
 
-
 const connection = mongoose.connection;
-connection.once("open", ()=> {
-    console.log("Mongodb Connection Success!");
+connection.once("open", () => {
+  console.log("Mongodb Connection Success!");
+});
 
-})
-
-
-app.listen(PORT,() =>{
-
-    console.log(`Server is up and running on port number: ${PORT}`);
-})
+app.listen(PORT, () => {
+  console.log(`Server is up and running on port number: ${PORT}`);
+});

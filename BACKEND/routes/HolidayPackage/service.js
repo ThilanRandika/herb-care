@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const Service = require("../models/HolidayPackage/service");
+const Service = require("../../models/HolidayPackage/service");
 
 // Create a new service
-router.post("/services", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const service = await Service.create(req.body);
     res.status(201).json(service);
@@ -13,7 +13,7 @@ router.post("/services", async (req, res) => {
 });
 
 // Get all services
-router.get("/services", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const services = await Service.find();
     res.json(services);
@@ -23,12 +23,12 @@ router.get("/services", async (req, res) => {
 });
 
 // Get a single service by ID
-router.get("/services/:id", getService, (req, res) => {
+router.get("/:id", getService, (req, res) => {
   res.json(res.service);
 });
 
 // Update a service by ID
-router.patch("/services/:id", getService, async (req, res) => {
+router.patch("/:id", getService, async (req, res) => {
   if (req.body.name != null) {
     res.service.name = req.body.name;
   }
@@ -42,7 +42,7 @@ router.patch("/services/:id", getService, async (req, res) => {
 });
 
 // Delete a service by ID
-router.delete("/services/:id", getService, async (req, res) => {
+router.delete("/:id", getService, async (req, res) => {
   try {
     await res.service.remove();
     res.json({ message: "Service deleted" });

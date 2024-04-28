@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const Package = require("../models/HolidayPackage/package");
+const Package = require("../../models/HolidayPackage/package");
 
 // Create a new package
-router.post("/packages", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const package = await Package.create(req.body);
     res.status(201).json(package);
@@ -13,7 +13,7 @@ router.post("/packages", async (req, res) => {
 });
 
 // Get all packages
-router.get("/packages", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const packages = await Package.find();
     res.json(packages);
@@ -23,12 +23,12 @@ router.get("/packages", async (req, res) => {
 });
 
 // Get a single package by ID
-router.get("/packages/:id", getPackage, (req, res) => {
+router.get("/:id", getPackage, (req, res) => {
   res.json(res.package);
 });
 
 // Update a package by ID
-router.patch("/packages/:id", getPackage, async (req, res) => {
+router.patch("/:id", getPackage, async (req, res) => {
   if (req.body.name != null) {
     res.package.name = req.body.name;
   }
@@ -42,7 +42,7 @@ router.patch("/packages/:id", getPackage, async (req, res) => {
 });
 
 // Delete a package by ID
-router.delete("/packages/:id", getPackage, async (req, res) => {
+router.delete("/:id", getPackage, async (req, res) => {
   try {
     await res.package.remove();
     res.json({ message: "Package deleted" });
