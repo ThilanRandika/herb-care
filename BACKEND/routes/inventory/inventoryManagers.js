@@ -52,21 +52,36 @@ router.post('/add', upload.single('image'), async (req, res) => {
   }
 });
 
+
+
+
+
+
 // Update a product with image upload
 router.put("/update/:id", upload.single('image'), async (req, res) => {
   try {
     const productId = req.params.id;
     const { name, category, description, price, Manufactured_price, discount, quantity, expireDate, manufactureDate, ingredients } = req.body;
 
+    // Find the product by ID
+    const product = await Product.findById(productId);
+
+    // Delete the previous image file if it exists
+    if (product.image) {
+      fs.unlinkSync(`uploads/${product.image}`); // Delete previous image file
+    }
+
+    // Prepare the updated product data
     let updateProduct = {
       name, category, description, price, Manufactured_price, discount, quantity, expireDate, manufactureDate, ingredients
     };
 
     // Update image if a new image is uploaded
     if (req.file) {
-      updateProduct.image = req.file.path;
+      updateProduct.image = req.file.filename;
     }
 
+    // Update the product in the database
     await Product.findByIdAndUpdate(productId, updateProduct);
     res.status(200).send({ status: "Product updated" });
   } catch (err) {
@@ -74,6 +89,10 @@ router.put("/update/:id", upload.single('image'), async (req, res) => {
     res.status(500).send({ status: "Error with updating data", error: err.message });
   }
 });
+
+
+
+
 
 // Remove product and associated image file
 router.delete("/delete/:id", async (req, res) => {
@@ -83,7 +102,7 @@ router.delete("/delete/:id", async (req, res) => {
 
     // Delete associated image file
     if (product.image) {
-      fs.unlinkSync(product.image); // Delete image file
+      fs.unlinkSync(`uploads/${product.image}`); // Delete image file
     }
 
     await Product.findByIdAndDelete(productId);
@@ -93,6 +112,8 @@ router.delete("/delete/:id", async (req, res) => {
     res.status(500).send({ status: "Error with delete product" });
   }
 });
+
+
 // Route to get all products with file paths
 router.get("/", async (req, res) => {
   try {

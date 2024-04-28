@@ -45,8 +45,14 @@ function Home() {
         <Link to={`../../consultation`} className="custom-link" >Customer Consultation</Link>
       </div>
 
+
       <Link to="/myOrders">
         <button>My Orders</button>
+      </Link>
+
+
+      <Link to="/Gift_Packages">
+        <button>Gift Packages </button>
       </Link>
     </>
   )
