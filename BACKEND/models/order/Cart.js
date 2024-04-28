@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // Define the schema for Cart
-const CartSchema = new mongoose.Schema({
+/*const CartSchema = new mongoose.Schema({
     cartId: {
         type: String,
         unique: true,
@@ -30,7 +30,45 @@ const CartSchema = new mongoose.Schema({
     password: {
         type: String // Assuming there is a password field in the Cart table
     }
-});
+});*/
+
+
+const CartSchema = new mongoose.Schema(
+    {
+      UserId: {
+        type: String,
+        ref: "customer",
+        required: true,
+      },
+      product_id: {
+        type: mongoose.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      totalPrice: {
+        type: Number,
+        required: true,
+      },
+      status: {
+        type: String,
+        required: true,
+        enum: ["inBag", "removed", "add To Order"],
+        default: "inBag",
+      }
+    },
+    { timestamps: true }
+  );
+
+
+
 
 // Hash the password before saving
 CartSchema.pre('save', async function(next) {

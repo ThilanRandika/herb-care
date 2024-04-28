@@ -23,12 +23,12 @@ function Product() {
   }
 
   // Construct the image URL using the relative path
-  const imageUrl = `http://localhost:8070/${product.image}`;
+  //const imageUrl = `http://localhost:8070/${product.image}`;
 
   return (
     <div className="product-container">
       <h2>{product.name}</h2>
-      <img src={require(`../../../../../BACKEND/uploads/${product.image}`)} alt={product.name} height={120} width={120}/>    
+      <img src={require(`../../../../../BACKEND/uploads/${product.image}`)} alt={product.name} heightcdc={120} width={120}/>    
       <p>Price: {product.price}</p>
       <p>Manufactured Price: {product.Manufactured_price}</p>
       <p>Category: {product.category}</p>
