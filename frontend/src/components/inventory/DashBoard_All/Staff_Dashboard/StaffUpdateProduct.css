@@ -1,30 +1,29 @@
-.inventory-manager-update-product-container {
-    width: 80%;
+.staff-update-product-container {
+    width: 60%;
     margin: 0 auto;
-    padding: 20px;
     border-radius: 10px;
     background-color: #f2f2f2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .inventory-manager-update-product-title {
+  .staff-update-product-title {
     text-align: center;
   }
   
-  .inventory-manager-update-product-form {
+  .staff-update-product-form {
     margin-top: 20px;
   }
   
-  .inventory-manager-update-form-group {
+  .staff-form-group {
     margin-bottom: 20px;
   }
   
-  .inventory-form-label {
+  .staff-form-label {
     display: block;
     margin-bottom: 5px;
   }
   
-  .inventory-form-input {
+  .staff-form-input {
     width: 100%;
     padding: 8px;
     font-size: 16px;
@@ -32,7 +31,7 @@
     border-radius: 4px;
   }
   
-  .inventory-manager-update-form-button {
+  .staff-submit-btn {
     padding: 0.5rem 1rem;
     background-color: #129a10;
     color: #fff;
@@ -40,17 +39,17 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    margin-left: 20px;
     margin-bottom: 20px;
   }
   
-  .inventory-manager-update-form-button:hover {
+  .staff-submit-btn:hover {
     background-color: #095a07;
   }
   
-  .inventory-product-image {
+  .staff-product-image {
     width: 200px; /* Set the width to 200 pixels */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Ensure the image is displayed as a block element */
     margin-bottom: 10px;
   }
-
