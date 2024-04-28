@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './UpdateProduct.css';
+import './StaffUpdateProduct.css';
 
-function Product() {
+function StaffUpdateProduct() {
   const { id } = useParams(); // Get the product id from the URL parameter
   const [product, setProduct] = useState(null);
   const [formData, setFormData] = useState({
@@ -91,7 +91,7 @@ function Product() {
       formDataToSend.append('action', 'Update'); // Set action to "Update"
       formDataToSend.append('ProductID', id);
       
-      await axios.put(`http://localhost:8070/Product/update/${id}`, formDataToSend, {
+      await axios.post(`http://localhost:8070/ApprovalProcess/updateProposal`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }
@@ -108,65 +108,67 @@ function Product() {
   if (!product) {
     return <div>Loading...</div>;
   }
+
   return (
-    <div className="inventory-manager-update-product-container">
-      <h2 className="inventory-manager-update-product-title">Update Product</h2>
-      <form className="inventory-manager-update-product-form" onSubmit={handleSubmit}>
-
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Image:</label>
-          <img src={require(`../../../../../BACKEND/uploads/${product.image}`)} alt={product.name} className="inventory-product-image" />
-          <input type="file" name="image" onChange={handleImageChange} className="inventory-form-input" />
-        </div>
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} className="inventory-form-input" />
+    <div className="staff-update-product-container">
+      <h2 className="staffupdate-product-title">Update Product</h2>
+      <form className="staff-update-product-form" onSubmit={handleSubmit}>
+      
+        <div className="staff-form-group">
+          <label className="staff-form-label">Image:</label>
+          <img src={require(`../../../../../../BACKEND/uploads/${product.image}`)} alt={product.name} className="staff-product-image" />
+          <input type="file" name="image" onChange={handleImageChange} className="staff-form-input" />
         </div>
 
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Price:</label>
-          <input type="text" name="price" value={formData.price} onChange={handleChange} className="inventory-form-input" />
+        <div className="staff-form-group">
+          <label className="staff-form-label">Name:</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} className="staff-form-input" />
         </div>
 
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Manufactured Price:</label>
-          <input type="text" name="Manufactured_price" value={formData.Manufactured_price} onChange={handleChange} className="inventory-form-input" />
+        <div className="staff-form-group">
+          <label className="staff-form-label">Price:</label>
+          <input type="text" name="price" value={formData.price} onChange={handleChange} className="staff-form-input" />
         </div>
 
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Category:</label>
-          <input type="text" name="category" value={formData.category} onChange={handleChange} className="inventory-form-input" />
+        <div className="staff-form-group">
+          <label className="staff-form-label">Manufactured Price:</label>
+          <input type="text" name="Manufactured_price" value={formData.Manufactured_price} onChange={handleChange} className="staff-form-input" />
         </div>
 
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Manufacture Date:</label>
-          <input type="date" name="manufactureDate" value={formData.manufactureDate} onChange={handleChange} className="inventory-form-input" />
+        <div className="staff-form-group">
+          <label className="staff-form-label">Category:</label>
+          <input type="text" name="category" value={formData.category} onChange={handleChange} className="staff-form-input" />
         </div>
 
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Expire Date:</label>
-          <input type="date" name="expireDate" value={formData.expireDate} onChange={handleChange} className="inventory-form-input" />
+        <div className="staff-form-group">
+          <label className="staff-form-label">Manufacture Date:</label>
+          <input type="date" name="manufactureDate" value={formData.manufactureDate} onChange={handleChange} className="staff-form-input" />
         </div>
 
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Description:</label>
-          <input type="text" name="description" value={formData.description} onChange={handleChange} className="inventory-form-input" />
+        <div className="staff-form-group">
+          <label className="staff-form-label">Expire Date:</label>
+          <input type="date" name="expireDate" value={formData.expireDate} onChange={handleChange} className="staff-form-input" />
         </div>
 
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Ingredients:</label>
-          <input type="text" name="ingredients" value={formData.ingredients} onChange={handleChange} className="inventory-form-input" />
+        <div className="staff-form-group">
+          <label className="staff-form-label">Description:</label>
+          <input type="text" name="description" value={formData.description} onChange={handleChange} className="staff-form-input" />
         </div>
 
-        <div className="inventory-manager-update-form-group">
-          <label className="inventory-form-label">Quantity:</label>
-          <input type="text" name="quantity" value={formData.quantity} onChange={handleChange} className="inventory-form-input" />
+        <div className="staff-form-group">
+          <label className="staff-form-label">Ingredients:</label>
+          <input type="text" name="ingredients" value={formData.ingredients} onChange={handleChange} className="staff-form-input" />
         </div>
 
-        <button type="submit" className="inventory-manager-update-form-button">Update</button>
+        <div className="staff-form-group">
+          <label className="staff-form-label">Quantity:</label>
+          <input type="text" name="quantity" value={formData.quantity} onChange={handleChange} className="staff-form-input" />
+        </div>
+
+        <button type="submit" className="staff-submit-btn">Update</button>
       </form>
     </div>
   );
 }
 
-export default Product;
+export default StaffUpdateProduct;

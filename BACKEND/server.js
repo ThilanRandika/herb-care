@@ -35,6 +35,8 @@ const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
 const productRouter = require("./routes/inventory/inventoryManagers.js");
 const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
 
+const cartRouter =require("./routes/order/Cart.js")
+
 const customizeGiftPackageRouter = require("./routes/GiftPackage/customizeGiftPackage.js");
 const defaultGiftpackageRouter = require("./routes/GiftPackage/defaultGiftpackage.js");
 const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js");
@@ -78,6 +80,8 @@ app.use("/approvalProcess",approvalProcessRouter);
 
 
 
+//Order Management
+app.use("/cart",cartRouter);
 
 
 app.use("/customizeGiftPackage",customizeGiftPackageRouter);

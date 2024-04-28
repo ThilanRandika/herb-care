@@ -47,7 +47,7 @@ export default function AllProducts() {
   };
 
   return (
-    <div className="products-container">
+    <div className="all-products-container">
       <input
         type="text"
         placeholder="Search by product name..."
@@ -55,33 +55,33 @@ export default function AllProducts() {
         onChange={handleSearchChange}
         className="search-input"
       />
-      <table>
+      <table className="product-table">
         <thead>
           <tr>
-            <th>Product Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Expire Date</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th className="product-table-header">Product Name</th>
+            <th className="product-table-header">Category</th>
+            <th className="product-table-header">Price</th>
+            <th className="product-table-header">Quantity</th>
+            <th className="product-table-header">Expire Date</th>
+            <th className="product-table-header">Update</th>
+            <th className="product-table-header">Delete</th>
           </tr>
         </thead>
         <tbody>
           {filteredProducts.map((product, index) => (
             <tr key={index}>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>{product.price}</td>
-              <td>{product.quantity}</td>
-              <td>{product.expireDate}</td>
-              <td>
+              <td className="product-table-data">{product.name}</td>
+              <td className="product-table-data">{product.category}</td>
+              <td className="product-table-data">{product.price}</td>
+              <td className="product-table-data">{product.quantity}</td>
+              <td className="product-table-data">{product.expireDate}</td>
+              <td className="product-table-data">
                 <Link to={`/Inventory_Dashboard/UpdateProduct/${product._id}`}>
-                  <button>Update</button>
+                  <button className="inventory-manager-update-btn" >Update</button>
                 </Link>
               </td>
-              <td>
-                <button onClick={() => handleDelete(product._id)}>Delete</button>
+              <td className="product-table-data">
+                <button className="inventory-manager-delete-btn" onClick={() => handleDelete(product._id)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -89,4 +89,5 @@ export default function AllProducts() {
       </table>
     </div>
   );
+  
 }
