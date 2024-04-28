@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 // Define the schema for Order
 const OrderSchema = new mongoose.Schema({
@@ -41,14 +41,14 @@ const OrderSchema = new mongoose.Schema({
         required: true
     }
 });
-OrderSchema.pre('save', async function(next) {
-    // Hash the username if it exists
-    if (this.username) {
-        const salt = await bcrypt.genSalt(10);
-        this.hashedUsername = await bcrypt.hash(this.username, salt);
-    }
-    next();
-});
+// OrderSchema.pre('save', async function(next) {
+//     // Hash the username if it exists
+//     if (this.username) {
+//         const salt = await bcrypt.genSalt(10);
+//         this.hashedUsername = await bcrypt.hash(this.username, salt);
+//     }
+//     next();
+// });
 // Create the Order model
 const OrderModel = mongoose.model('Order', OrderSchema);
 

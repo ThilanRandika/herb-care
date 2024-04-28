@@ -35,13 +35,17 @@ const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
 const productRouter = require("./routes/inventory/inventoryManagers.js");
 const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
 
+const cartRouter =require("./routes/order/Cart.js")
+
 const customizeGiftPackageRouter = require("./routes/GiftPackage/customizeGiftPackage.js");
 const defaultGiftpackageRouter = require("./routes/GiftPackage/defaultGiftpackage.js");
 const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js");
 
 const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
 const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
-//const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js")
+//const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js")\
+
+const orderRouter = require( "./routes/order/orders.js" );
 
 const authRouter = require( "./routes/auth.js" );
 
@@ -78,6 +82,8 @@ app.use("/approvalProcess",approvalProcessRouter);
 
 
 
+//Order Management
+app.use("/cart",cartRouter);
 
 
 app.use("/customizeGiftPackage",customizeGiftPackageRouter);
@@ -87,6 +93,8 @@ app.use("/giftPackageOrder",giftPackageOrderRouter);
 app.use("/feedback",feedbackRouter);
 // app.use("/feedbackGiftPackage",FeedbackGiftPackageRouter);
 app.use("/complaints",complaintsRouter);
+
+app.use("/order", orderRouter);
 
 app.use("/auth", authRouter);
 

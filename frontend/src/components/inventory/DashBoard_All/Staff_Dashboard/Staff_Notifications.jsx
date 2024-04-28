@@ -35,36 +35,36 @@ export default function Staff_Notifications() {
   };
 
   return (
-    <div className="approval-processes-container">
+    <div className="staff-notifications-container">
       <input
         type="text"
         placeholder="Search by product name..."
         value={searchQuery}
         onChange={handleSearchChange}
-        className="search-input"
+        className="staff-notifications-search"
       />
-      <table>
+      <table className="staff-notifications-table">
         <thead>
-          <tr>
-            <th>Product Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Expire Date</th>
-            <th>Status</th>
-            <th>Action</th>
+          <tr className="staff-table-header">
+            <th className="staff-notifications-table-header">Product Name</th>
+            <th className="staff-notifications-table-header">Category</th>
+            <th className="staff-notifications-table-header">Price</th>
+            <th className="staff-notifications-table-header">Quantity</th>
+            <th className="staff-notifications-table-header">Expire Date</th>
+            <th className="staff-notifications-table-header">Status</th>
+            <th className="staff-notifications-table-header">Action</th>
           </tr>
         </thead>
         <tbody>
           {filteredApprovalProcesses.map((approvalProcess, index) => (
-            <tr key={index}>
-              <td>{approvalProcess.name}</td>
-              <td>{approvalProcess.category}</td>
-              <td>{approvalProcess.price}</td>
-              <td>{approvalProcess.quantity}</td>
-              <td>{approvalProcess.expireDate}</td>
-              <td>{approvalProcess.status}</td>
-              <td>{approvalProcess.action}</td>
+            <tr key={index} className="staff-table-item">
+              <td className="staff-notifications-table-data">{approvalProcess.name}</td>
+              <td className="staff-notifications-table-data">{approvalProcess.category}</td>
+              <td className="staff-notifications-table-data">{approvalProcess.price}</td>
+              <td className="staff-notifications-table-data">{approvalProcess.quantity}</td>
+              <td className="staff-notifications-table-data">{approvalProcess.expireDate}</td>
+              <td className="staff-notifications-table-data-status">{approvalProcess.status}</td>
+              <td className="staff-notifications-table-data-action">{approvalProcess.action}</td>
             </tr>
           ))}
         </tbody>

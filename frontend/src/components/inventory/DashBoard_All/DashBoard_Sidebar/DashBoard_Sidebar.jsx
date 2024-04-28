@@ -7,26 +7,22 @@ import AllProducts from '../../AllProduct/AllProducts';
 
 const DashBoard_Sidebar = () => {
   return (
-    <div className="sidebar">
-      <ul className='inventory-nav-list'>
+    <div className="inventory-manager-sidebar">
+      <ul className='inventory-manager-nav-list'>
         <li>
           <Link className="sidebar-link" to="/Inventory_Dashboard/" aria-current="page">
-            Dashboard
+            <BsFillGridFill className="sidebar-icon" /> Dashboard
           </Link>
         </li>
         <li>
           <Link className="sidebar-link" to="/Inventory_Dashboard/AddProduct">
-            Add Product
+            <BsPlusCircleFill className="sidebar-icon" /> Add Product
           </Link>
         </li>
-        <li>
-          <Link className="sidebar-link" to="/Inventory_Dashboard/AllProducts">
-            All Products
-          </Link>
-        </li>
+        
         <li>
           <Link className="sidebar-link" to="/Inventory_Dashboard/Notifications">
-            Notifications
+            <BsListUl className="sidebar-icon" /> Notifications
           </Link>
         </li>
       </ul>
