@@ -1,20 +1,32 @@
-.Staff-nav-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .staff-sidebar-link {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #000;
-  }
-  
-  .staff-sidebar-link:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .staff-sidebar-link.active {
-    background-color: #ddd;
-  }
-  
+.Staff-manager-inventory-parts-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 200px;
+  background-color: green;
+  padding-top: 50px;
+}
+
+.Staff-manager-inventory-parts-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Staff-manager-inventory-parts-link {
+  display: flex; /* Make the link a flex container */
+  align-items: center; /* Center the items vertically */
+  padding: 10px;
+  text-decoration: none;
+  color: #0d0e0d;
+}
+
+.Staff-manager-inventory-parts-link:hover {
+  background-color: #f7f8f7;
+}
+
+.sidebar-icon {
+  margin-right: 20px;
+  margin-left:  10px;
+}
