@@ -50,3 +50,16 @@
   .bag-icon {
     color: #535353;
   }
+
+
+  .add-to-cart-button1 {
+  
+    background-color: #129a10; /* Set background color */
+    color: #fff; /* Set text color */
+    border-radius: 5px;
+    
+  }
+  
+  .add-to-cart-button1:hover {
+    background-color: #095a07; /* Change background color on hover */
+  }

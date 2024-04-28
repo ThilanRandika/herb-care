@@ -1,17 +1,37 @@
-.recommended-flex {
-    display: flex;
-    margin-left: 5rem;
-  }
-  
-  .recommended-title {
-    margin-left: 5rem;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    font-size: 20px;
-    text-align: left;
-  }
-  
-  .recommended-button {
-    margin-right: 10px; 
-  }
-  
+.recommended-flex-custom {
+  display: flex;
+  margin-left: 5rem;
+}
+
+.recommended-title-custom {
+  margin-left: 5rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.recommended-button-custom {
+  margin-right: 10px;
+  font-size: 16px; /* Adjust font size */
+  font-weight: bold;
+  background-color: #129a10; /* Set background color to #129a10 */
+  color: #fff; /* Set text color to white */
+  border: none; /* Remove button border */
+  border-radius: 5px;
+  padding: 10px 20px; /* Adjust padding as needed */
+  text-decoration: none; /* Remove default link underline */
+  cursor: pointer; /* Set cursor to pointer on hover */
+  display: inline-block; /* Make sure buttons display inline */
+}
+
+/* Adjust button style on hover */
+.recommended-button-custom:hover {
+  background-color: #0c6f08; /* Darken the color slightly on hover */
+}
+
+/* Remove default button styles */
+.recommended-button-custom:focus,
+.recommended-button-custom:active {
+  outline: none;
+}

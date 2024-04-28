@@ -68,7 +68,7 @@ function Products({ searchQuery, priceRange }) {
                   <del>Rs.800.00</del> {product.price}
                 </div>
               </section>
-              <button className="add-to-cart-button">Add to Cart</button>
+              <button className="add-to-cart-button1">Add to Cart</button>
             </div>
           </section>
         </Link>
