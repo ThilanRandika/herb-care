@@ -2,7 +2,6 @@
 
 const router = require("express").Router();
 const DefaultGiftPack = require("../../models/GiftPackage/defaultGiftpackage");
-const Product = require("../../models/inventory/Product")
 const multer = require('multer');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -22,7 +21,7 @@ const upload = multer({ storage: storage });
 
 
 // Fetch available products
-router.get('/products', async (req, res) => {
+/*router.get('/products', async (req, res) => {
   try {
       const products = await Product.find();
       res.status(200).json(products);
@@ -30,24 +29,24 @@ router.get('/products', async (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });
   }
-});
+});*/
 
 // From gift package adding form, by Staff
 // Create default gift packagesand add them
 router.route("/addDefault-gift-package").post(upload.array('images', 10), async (req, res) => {
   try {
-      const { packageName, description } = req.body;
-      const productIds = JSON.parse(req.body.productIds)
-      const images = req.files.map(file => file.path);
+      const { packageName, description, products, totalPrice } = req.body;
+      const images = req.files.map(file => file.filename);
+
 
       // Fetch products by IDs
-      const productObjectIds=productIds.map(productId=>mongoose.Types.ObjectId(productId));
-      const products = await Product.find({ _id: { $in: productObjectIds } });
+      //const productObjectIds=productIds.map(productId=>mongoose.Types.ObjectId(productId));
 
       const newDefaultGiftPack = new DefaultGiftPack({
           packageName,
           description,
           products,
+          totalPrice,
           images
       });
 
@@ -72,8 +71,9 @@ router.route("/default-gift-packages").get(async(req,res)=>{
       res.status(500).json({ message: err.message });
     }
 
-  
+
 })
+
 //After select a package system will display package details
 // Display a single default gift package
 router.route("/default-gift-package/:id").get(async (req, res) => {
@@ -92,30 +92,32 @@ router.route("/default-gift-package/:id").get(async (req, res) => {
 
 // Staff can update default package details
 // Update added default gift packages
-router.route("/updateDefault-gift-package/:id").put(async(req,res)=>{
-
+router.route("/updateDefault-gift-package/:id").put(async(req, res) => {
   try {
-    const { packageName, description, productIds} = req.body;
-    const images = req.files.map(file => file.path);
+    const { packageName, description, products, totalPrice } = req.body;
 
-    const updatedDefaultGiftPack = await DefaultGiftPack.findById(req.params.id);
-
-    if (!updatedDefaultGiftPack) {
-      return res.status(404).json({ message: "Custom gift package not found" });
+    // Check if all required fields are provided
+    if (!packageName || !description || !products) {
+      return res.status(400).json({ message: "Missing required fields" });
     }
 
-    updatedDefaultGiftPack.packageName = packageName;
-    updatedDefaultGiftPack.description = description;
-    updatedDefaultGiftPack.products = productIds;
-    updatedDefaultGiftPack.images = images;
+    const updatedDefaultGiftPack = await DefaultGiftPack.findByIdAndUpdate(req.params.id, {
+      packageName,
+      description,
+      products,
+      totalPrice
+    }, { new: true });
 
-    await updatedDefaultGiftPack.save();
+    if (!updatedDefaultGiftPack) {
+      return res.status(404).json({ message: "Default gift package not found" });
+    }
 
-    res.status(200).json({message: "Package updated" });
+    res.status(200).json({ message: "Package updated", updatedDefaultGiftPack });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
+});
     
     /*try {
         const updatedDefaultGiftPack = await DefaultGiftPack.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -125,7 +127,7 @@ router.route("/updateDefault-gift-package/:id").put(async(req,res)=>{
       }*/
 
     
-}) 
+
 
 
 // Staff can delete default packages

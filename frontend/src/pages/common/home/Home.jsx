@@ -4,7 +4,6 @@ import "./home.css";
 import NavigationBar from '../../../components/common/navigationBar/NavigationBar';
 import { Link } from 'react-router-dom';
 
-
 function Home() {
 
   const [isPopupVisible, setPopupVisible] = useState(false);
@@ -18,9 +17,9 @@ function Home() {
       <NavigationBar></NavigationBar>
       <div>Home</div>
 
-      
+
     </>
   )
 }
 
-export default Home
+export default Home;

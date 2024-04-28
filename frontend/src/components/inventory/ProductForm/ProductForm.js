@@ -58,54 +58,54 @@ function ProductForm() {
   };
 
   return (
-    <div className="form-container">
-      <h2>Add Product</h2>
+    <div className="form-container-inventory-add">
+      <legend className="form-legend">Add Product</legend>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Name:</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Category:</label>
           <input type="text" name="category" value={formData.category} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Description:</label>
           <textarea name="description" value={formData.description} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Price:</label>
           <input type="number" name="price" value={formData.price} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Manufactured Price:</label>
           <input type="number" name="Manufactured_price" value={formData.Manufactured_price} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Discount:</label>
           <input type="number" name="discount" value={formData.discount} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Quantity:</label>
           <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Image:</label>
           <input type="file" name="image" onChange={handleImageChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Expire Date:</label>
           <input type="date" name="expireDate" value={formData.expireDate} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Manufacture Date:</label>
           <input type="date" name="manufactureDate" value={formData.manufactureDate} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className="form-group-inventory-add">
           <label>Ingredients:</label>
           <input type="text" name="ingredients" value={formData.ingredients} onChange={handleChange} required />
         </div>
-        <button type="submit">Submit</button>
+        <button className="inventory-manager-add" type="submit">Submit</button>
       </form>
     </div>
   );
