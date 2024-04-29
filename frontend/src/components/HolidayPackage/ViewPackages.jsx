@@ -34,7 +34,7 @@ const ViewPackages = () => {
                     <strong>Price:</strong> ${Package.defaultPrice}
                   </Card.Text>
                   {/* Link to package details page */}
-                  <Link to={`/packages/${Package._id}`}>
+                  <Link to={`/package_details/${Package._id}`}>
                     <Button variant="primary">View Details</Button>
                   </Link>
                 </Card.Body>

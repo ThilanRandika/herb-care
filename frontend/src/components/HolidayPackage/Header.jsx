@@ -9,6 +9,7 @@ const Header = () => {
         <Nav className="me-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="/create_holiday_package">Create Package</Nav.Link>
+          <Nav.Link href="/edit_packages">Create Package</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
