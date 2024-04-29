@@ -8,14 +8,19 @@ function SpecialistList(props) {
   const [specialists, setSpecialists] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredSpecialists, setFilteredSpecialists] = useState([]);
+  const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(()=>{
     
     axios.get('http://localhost:8070/specialist/all')
     .then((res) => {
       setSpecialists(res.data);
+      setLoading(false); // Set loading to false after data is fetched
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      console.error(error);
+      setLoading(false); // Set loading to false in case of error
+    });
 
   }, []);
 
@@ -42,6 +47,17 @@ function SpecialistList(props) {
   };
 
 
+  // Render loading indicator if loading is true
+  if (loading) {
+    return (
+      <div className="specialistList-loading-container">
+        <div className="specialistList-loading-spinner"></div>
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
+  // If not loading, render the specialist list
   return (
     <div className="specialistList">
       <header className="specialist-list-header">

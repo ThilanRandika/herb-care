@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
 
 function ProductList() {
+  const [loading, setLoading] = useState(true);
   const [productList, setProductList] = useState([]);
   const [filteredProductList, setFilteredProductList] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -18,9 +19,11 @@ function ProductList() {
         setProductList(res.data.products);
         setFilteredProductList(res.data.products);
         setCategories(res.data.categories);
+        setLoading(false);
       })
       .catch((err) => {
         console.log("Error getting pending seller sellers", err);
+        setLoading(false);
       });
   }, []);
 
@@ -41,6 +44,11 @@ function ProductList() {
 
   return (
     <div className="seller-product-list-centered-container">
+      {loading ? ( // Conditionally render loading indicator
+        <div style={{ margin: "25px" }}>
+          Loding...
+        </div>
+      ) : (
       <div className="seller-product-list-container">
         <div className="seller-product-list-header">
           <h1>Product List</h1>
@@ -73,7 +81,7 @@ function ProductList() {
               <div class="seller-product-list-card" key={index}>
                 <div class="seller-product-list-image">
                   <img
-                    src="https://cdn.photographylife.com/wp-content/uploads/2014/09/Nikon-D750-Image-Samples-2.jpg"
+                    src="https://th.bing.com/th/id/R.71d3cb5052aa3113ebcfbaf798103647?rik=DI3tsU%2bd8IJMfw&pid=ImgRaw&r=0"//{require(`../../../../../BACKEND/uploads/${product.image}`)}
                     className="seller-product-list-image"
                     alt="Product"
                   />
@@ -102,6 +110,7 @@ function ProductList() {
             ))}
         </div>
       </div>
+      )};
     </div>
   );
 }

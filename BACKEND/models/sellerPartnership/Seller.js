@@ -74,6 +74,14 @@ const sellerSchema = new mongoose.Schema(
     //   type: Number,
     //   required: true,
     // },
+    unread_notification: {
+      type: [String],
+      required: false,
+    },
+    read_notification: {
+      type: [String],
+      required: false,
+    },
   },
   { timestamps: true }
 );

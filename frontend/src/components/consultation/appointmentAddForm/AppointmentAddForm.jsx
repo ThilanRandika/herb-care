@@ -28,6 +28,13 @@ function AppointmentAddForm(props) {
     patientGender: "",
     patientPhone: "",
   });
+  const [appointmentSubmitted, setAppointmentSubmitted] = useState(false);
+  const [errors, setErrors] = useState({
+    patientName: "",
+    patientAge: "",
+    patientGender: "",
+    patientPhone: "",
+  });
 
   useEffect(() => {
     if (props.selectedSpecialist) {
@@ -209,7 +216,45 @@ function AppointmentAddForm(props) {
       ...prevPatientInfo,
       [id]: value,
     }));
+
+    validateInput(id, value);
   };
+
+
+  
+  const validateInput = (id, value) => {
+    let errorMessage = "";
+
+    switch (id) {
+      case "patientName":
+        errorMessage = value.trim() ? "" : "Patient name is required";
+        break;
+      case "patientAge":
+        errorMessage = value.trim() && /^\d+$/.test(value) ? "" : "Invalid age";
+        break;
+      case "patientPhone":
+        if (value.trim() === "") {
+          errorMessage = "Phone number is required";
+        } else if (!/^\d{10}$/.test(value.trim())) {
+          errorMessage = "Invalid phone number";
+        }
+        break;
+      default:
+        break;
+    }
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [id]: errorMessage,
+    }));
+  };
+
+
+
+  const isFormValid = () => {
+    return Object.values(errors).every((error) => error === "");
+  };
+
 
 
 
@@ -241,7 +286,15 @@ function AppointmentAddForm(props) {
       return date.getDate() === availabilityDate.getDate() &&
              date.getMonth() === availabilityDate.getMonth() &&
              date.getFullYear() === availabilityDate.getFullYear();
-    });
+    }) || isPastDate(date);
+  };
+
+
+
+  const isPastDate = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 for comparison
+    return date < today;
   };
 
 
@@ -257,6 +310,26 @@ function AppointmentAddForm(props) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    // Check for empty fields
+    const emptyFields = Object.entries(patientInfo).filter(([key, value]) => value.trim() === '');
+    if (emptyFields.length > 0) {
+      const emptyFieldNames = emptyFields.map(([key, value]) => key);
+      alert(`Please fill in the following fields: ${emptyFieldNames.join(', ')}`);
+      return;
+    }
+
+    if (!isFormValid()) {
+      // Form validation failed, do not proceed with submission
+      return;
+    }
+
+    // Check if a time slot is selected
+    if (!selectedTimeSlot) {
+      // Display alert message
+      alert("Please select a date and search available time slots. Then you can see available time slots and select one of them.");
+      return;
+    }
 
     if (!props.selectedSpecialist) {
       console.error("Selected specialist is null");
@@ -300,7 +373,14 @@ function AppointmentAddForm(props) {
     }
     console.log("new appointment is",  newAppointment);
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
-      navigator('../myConsultations/myOngoingConsultations');
+      setAppointmentSubmitted(true); // Set appointmentSubmitted to true upon successful submission
+        const confirmation = window.confirm('Appointment submitted successfully! Do you want to navigate to the next screen?');
+        if (confirmation) {
+          navigator('../myConsultations/myOngoingConsultations');
+        }
+        // else {
+        //   window.location.reload(); // Reload the page if the user clicks cancel
+        // }
     }).catch((err)=>{
       console.error(err);
     })
@@ -355,6 +435,7 @@ function AppointmentAddForm(props) {
                       value={patientInfo.patientName}
                       onChange={handlePatientInfoChange}
                     />
+                    {errors.patientName && <span className="error">{errors.patientName}</span>}
                   </div>
                   <div className="AppointmentAddForm-patientPhone">
                     <label htmlFor="patientPhone" className="form-label">
@@ -367,6 +448,7 @@ function AppointmentAddForm(props) {
                       value={patientInfo.patientPhone}
                       onChange={handlePatientInfoChange}
                     />
+                    {errors.patientPhone && <span className="error">{errors.patientPhone}</span>}
                   </div>
                   <div className="AppointmentAddForm-patientAge">
                     <label htmlFor="patientAge" className="form-label">
@@ -379,6 +461,7 @@ function AppointmentAddForm(props) {
                       value={patientInfo.patientAge}
                       onChange={handlePatientInfoChange}
                     />
+                    {errors.patientAge && <span className="error">{errors.patientAge}</span>}
                   </div>
                   <div className="AppointmentAddForm-patientGender">
                     <label className="form-label">Gender</label>

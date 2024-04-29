@@ -18,7 +18,6 @@ import SellerManagerDashboard from "./pages/sellerPartnership/managerDashboard/S
 import LoginPage from "./pages/common/login/LoginPage";
 import SellerStaffDashboard from "./pages/sellerPartnership/staffDashboard/SellerStaffDashboard";
 import SellerMainHome from "./pages/sellerPartnership/Home/SellerMainHome";
-import SellerHome from "./pages/sellerPartnership/sellerHome/SellerHome";
 
 import ConsultationsCustomer from "./pages/consultation/consultationsCustomer/ConsultationsCustomer";
 import SpecialistInterface from "./pages/consultation/specialist/specialistInterface/SpecialistInterface";
@@ -30,6 +29,15 @@ import GiftPackage_manage from "./pages/giftPackage/staff/Dashboard/GiftPackage_
 import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/AddDefaultGiftPack";
 import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/DefaultGiftPackages";
 import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
+
+
+import MyOrders from "./pages/Order_Management/myOrders/MyOrders";
+
+import DisplayDefaultGiftPackages from "./components/gift package/customizeGiftPackage/DisplayDefaultGiftPackages";
+import PlaceOrder from "./components/gift package/giftPackageOrders/PlaceOrder";
+import DisplayGiftPackOrders from "./components/gift package/giftPackageOrders/DisplayGiftPackOrders";
+
+
 
 function App() {
   return (
@@ -57,10 +65,20 @@ function App() {
         <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
 
       
-        <Route path="/staff" element={<GiftPackage_manage/>}></Route>
+        <Route path="/staffGift" element={<GiftPackage_manage/>}></Route>
         <Route path="/add_Default_gift_pack" element={<AddDefaultGiftPack/>}></Route>
         <Route path="/Default_gift_packages" element={<DefaultGiftpackages/>}></Route>
-        <Route path="/Update_default_gift_packages" element={<UpdateDefaultGiftPackage/>}></Route>
+
+
+        <Route path="/myOrders/*" element={<MyOrders />} />
+          
+
+        <Route path="/Update_default_gift_packages/:id" element={<UpdateDefaultGiftPackage/>}></Route>
+        <Route path="/Gift-Package-Orders" element={<DisplayGiftPackOrders/>}></Route>
+        <Route path="/Gift_Packages" element={<DisplayDefaultGiftPackages/>}></Route>
+        <Route path="/Place-Order/:id" element={<PlaceOrder/>}></Route>
+        
+
       </Routes>
     </BrowserRouter>
 

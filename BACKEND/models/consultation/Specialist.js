@@ -7,6 +7,13 @@ const SpecialistSchema = new Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      unique: true,
+    },
+    password: {
+      type: String,
+    },
     speciality: {
       type: String,
       required: true,

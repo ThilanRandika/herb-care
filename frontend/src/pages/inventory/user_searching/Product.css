@@ -1,18 +1,87 @@
-.product-container {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 20px auto;
-    width: 70%;
-  }
-  
-  .product-container img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-  
-  .product-container p {
-    margin-bottom: 10px;
-  }
-  
+.product-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.product-details-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  border-radius: 10px; /* Add small radius */
+  background-color: #f2f2f2; /* Set grey background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+
+}
+
+.image-container {
+  flex: 0 0 30%; /* Adjust image container width */
+  border-radius: 10px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.details {
+  flex: 0 0 70%; /* Adjust details container width */
+  padding-left: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: relative; /* Add position relative */
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  position: absolute; /* Position absolutely */
+  left: 0; /* Align to the right within the details container */
+  width: 50%; /* Set width to 30% of the details container */
+  margin-top: 10px; /* Add margin top */
+}
+
+
+.quantity-button {
+  padding: 5px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #129a10;
+}
+
+.quantity-input {
+  width: 100px; /* Adjust the width to match the width of quantity buttons */
+  margin: 0 10px;
+  text-align: center;
+}
+
+.add-to-cart-button {
+  margin-left: 10px; /* Add margin left */
+  width: 2000px; /* Adjust width */
+  height: 40px; /* Adjust height */
+  font-size: 16px; /* Adjust font size */
+  font-weight: bold; /* Make the text bold */
+  background-color: #129a10; /* Set background color */
+  color: #fff; /* Set text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add border radius */
+  cursor: pointer; /* Add pointer cursor */
+  transition: background-color 0.3s ease; /* Add transition effect */
+}
+
+.add-to-cart-button:hover {
+  background-color: #095a07; /* Change background color on hover */
+}
+
+
+.quantity-button:hover {
+  background-color: #095a07; /* Change background color on hover */
+}

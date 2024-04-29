@@ -6,6 +6,7 @@ function Appointments(props) {
   const [appointments, setAppointments] = useState([]);
   const [specialist, setSpecialist] = useState("");
   const [expandedAppointment, setExpandedAppointment] = useState(null);
+  const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
     setSpecialist(props.specialistID);
@@ -21,9 +22,11 @@ function Appointments(props) {
         // Sort appointments by date in descending order
         const sortedAppointments = res.data.sort((a, b) => new Date(b.date) - new Date(a.date));
         setAppointments(sortedAppointments);
+        setLoading(false); // Set loading to false after data is fetched
       })
       .catch((err) => {
         console.error('Error getting appointment history', err);
+        setLoading(false); // Set loading to false in case of error
       });
   }, []);
   
@@ -32,6 +35,20 @@ function Appointments(props) {
     setExpandedAppointment(expandedAppointment === index ? null : index);
   };
 
+
+
+
+  // Render loading indicator if loading is true
+  if (loading) {
+    return (
+      <div className="specialistList-loading-container">
+        <div className="specialistList-loading-spinner"></div>
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
+  // If not loading, render the page
   return (
     <div className="appointments-history-specialist-container">
       <h1>Appointments History</h1>

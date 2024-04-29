@@ -40,4 +40,10 @@
   .specialist-availabilityAddForm-submitBtn:hover {
     background-color: #0056b3;
   }
+
+  .specialist-availabilityAddForm-submitBtn[disabled] {
+    opacity: 0.5; /* Reduce opacity to indicate it's disabled */
+    cursor: not-allowed; /* Change cursor to not-allowed */
+  }
+  
   
