@@ -25,7 +25,7 @@
   height: auto;
 }
 
-.details {
+.product-details-container .details {
   flex: 0 0 70%; /* Adjust details container width */
   padding-left: 20px;
   margin-left: 20px;
