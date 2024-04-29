@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './AddComplaints.css'
+import { useLocation } from 'react-router-dom';
 
-const ComplaintForm = ({ productId }) => {
+const ComplaintForm = () => {
     //const [order, setOrder] = useState('');
     const [complaintsName, setComplaintsName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
+    const location = useLocation();
+    const orderId = new URLSearchParams(location.search).get('orderId');
+    const productId = new URLSearchParams(location.search).get('productId');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`http://localhost:8070/complaints/add/6616e9a655f4276e55708c82`, {
-                //order,
+            const response = await axios.post(`http://localhost:8070/complaints/add/${productId}`, {
+                orderId,
                 complaintsName,
                 email,
                 description
