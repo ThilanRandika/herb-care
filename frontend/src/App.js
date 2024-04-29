@@ -38,6 +38,13 @@ import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/Add
 import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/DefaultGiftPackages";
 import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
 
+
+
+import ViewPackages from "./components/HolidayPackage/ViewPackages";
+import CreatePackage from "./components/HolidayPackage/CreatePackage";
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -68,7 +75,12 @@ function App() {
         <Route path="/staff" element={<GiftPackage_manage/>}></Route>
         <Route path="/add_Default_gift_pack" element={<AddDefaultGiftPack/>}></Route>
         <Route path="/Default_gift_packages" element={<DefaultGiftpackages/>}></Route>
-        <Route path="/Update_default_gift_packages" element={<UpdateDefaultGiftPackage/>}></Route>
+        <Route path="/Update_default_gift_packages" element={<UpdateDefaultGiftPackage />}></Route>
+        
+
+
+        <Route path="/holiday_packages" element={<ViewPackages />}></Route>
+        <Route path="/create_holiday_package" element={<CreatePackage />}></Route>
       </Routes>
     </BrowserRouter>
 
