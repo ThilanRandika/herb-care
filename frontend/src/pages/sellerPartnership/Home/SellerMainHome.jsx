@@ -7,6 +7,9 @@ import SellerCheckoutPage from '../chekeckout/SellerCheckoutPage'
 import SellerOrdersPage from '../orders/SellerOrdersPage'
 import SellerSingleOrderPage from '../singleOrder/SellerSingleOrderPage'
 import SellerHome from '../sellerHome/SellerHome'
+import SellerProfilePage from '../profile/SellerProfilePage'
+import SellerAppointmentPage from '../appointment/SellerAppointmentPage'
+import SellerNotificationPage from '../notification/SellerNotificationPage'
 
 function SellerMainHome() {
   return (
@@ -20,6 +23,9 @@ function SellerMainHome() {
       <Route path="/checkout" element={<SellerCheckoutPage/>}/>
       <Route path="/orders" element={<SellerOrdersPage/>}/>
       <Route path="/singleOrder/:orderId" element={<SellerSingleOrderPage/>}/>
+      <Route path="/profile" element={<SellerProfilePage/>}/>
+      <Route path="/appointment" element={<SellerAppointmentPage/>}/>
+      <Route path="/notification" element={<SellerNotificationPage/>}/>
     </Routes>
     </>
   )

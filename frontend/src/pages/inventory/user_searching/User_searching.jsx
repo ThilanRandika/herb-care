@@ -3,6 +3,9 @@ import SearchBar from '../../../components/inventory/User_searching_all/Search_B
 import Products from '../../../components/inventory/User_searching_all/Products/Products';
 import Recommended from '../../../components/inventory/User_searching_all/Recommended/Recommended';
 import Sidebar from '../../../components/inventory/User_searching_all/SideBar/Sidebar';
+
+import Cart from '../../Order_Management/Cart';
+
 import { Route, Routes } from 'react-router-dom';
 import Product from './Product';
 
@@ -37,6 +40,7 @@ function User_searching() {
 
       <Routes>
         <Route path="/Product/:id" element={< Product/>} />
+        <Route path="/Cart" element={<Cart/>} />
       </Routes>
     </>
   )

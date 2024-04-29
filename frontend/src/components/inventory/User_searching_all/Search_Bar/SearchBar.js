@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./SearchBar.css";
+import { Link } from 'react-router-dom';
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 
@@ -26,9 +27,9 @@ function SearchBar({ onSearch }) {
         <a href="#">
           <FiHeart className="nav-icons" />
         </a>
-        <a href="">
+        <Link to={`/Cart`}>
           <AiOutlineShoppingCart className="nav-icons" />
-        </a>
+        </Link>
         <a href="">
           <AiOutlineUserAdd className="nav-icons" />
         </a>

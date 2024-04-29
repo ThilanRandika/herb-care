@@ -11,7 +11,8 @@ function MyCancelledConsultations(props) {
   const [dataFetched, setDataFetched] = useState(false); // Track whether data has been fetched
   const [refundStatuses, setRefundStatuses] = useState([]); // Store refund statuses
   const { user } = useContext(AuthContext); // get the customer ID from authentication context
-  const [expandedAppointment, setExpandedAppointment] = useState(null);  
+  const [expandedAppointment, setExpandedAppointment] = useState(null);
+  const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
         axios.get(`http://localhost:8070/consultAppointment/cancelledAppointments/${user._id}`)
@@ -19,9 +20,11 @@ function MyCancelledConsultations(props) {
                 console.log("Got data: ", res.data);
                 setCancelledAppointments(res.data);
                 setDataFetched(true); // Update state to indicate data has been fetched
+                setLoading(false); // Set loading to false after data is fetched
             })
             .catch((err) => {
                 console.log('Error getting cancelled appointments', err);
+                setLoading(false); // Set loading to false in case of error
             });
     }, [user._id]);
 
@@ -54,7 +57,18 @@ function MyCancelledConsultations(props) {
       setExpandedAppointment(expandedAppointment === index ? null : index);
     };
 
+  
+  // Render loading indicator if loading is true
+  if (loading) {
+    return (
+      <div className="specialistList-loading-container">
+        <div className="specialistList-loading-spinner"></div>
+        <div>Loading...</div>
+      </div>
+    );
+  }
 
+  // If not loading, render the page
   return (
         <div className='cancelledConsultations-allContents'>
             <h3 className='cancelledConsultations-header'>Cancelled Consultations</h3>
@@ -75,18 +89,19 @@ function MyCancelledConsultations(props) {
                             <td>{new Date(appointment.date).toLocaleDateString()}</td>
                             <td>{appointment.specialistName}</td>
                             <td>
-                                {dataFetched && refundStatuses[index] !== undefined && (
-                                    <>
-                                        {!refundStatuses[index] && (
-                                            <>
-                                                <Link to={`../../refunds/addForm/${appointment._id}`} className="cancelledConsultations-link-btn">Apply refund</Link>
-                                            </>
-                                        )}
-                                        {refundStatuses[index] && (
-                                            <span>Refund already requested</span>
-                                        )}
-                                    </>
-                                )}
+                              {dataFetched && refundStatuses[index] !== undefined ? (
+                                <>
+                                  {!refundStatuses[index] ? (
+                                    <Link to={`../../refunds/addForm/${appointment._id}`} className="cancelledConsultations-link-btn">Apply refund</Link>
+                                  ) : (
+                                    <span>Refund already requested</span>
+                                  )}
+                                </>
+                              ) : (
+                                <>
+                                  <span>Loading......</span>
+                                </>
+                              )}
                             </td>
                         </tr>
 

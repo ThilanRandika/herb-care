@@ -45,7 +45,7 @@ const FeedbackSummaries = () => {
         {summaries.map((summary, index) => (
           <div key={index} className={`FHS_feedback ${currentFeedback === index ? 'visible' : ''}`}>
             <div className='FHS_containor3'>
-            <img className='FHS_image' src={summary.productImage} alt={summary.productName} />
+            <img className='FHS_image' src={require(`../../../../../../../BACKEND/uploads/${summary.productImage}`)} alt={summary.productName} />
             <p className='FHS_Pname'>{summary.productName}</p>
             <div className='FHS_ratings'>{renderStars(summary.ratings)}</div>
             <p className='FHS_message'>{summary.message}</p>

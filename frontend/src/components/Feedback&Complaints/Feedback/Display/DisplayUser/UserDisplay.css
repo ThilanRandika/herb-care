@@ -16,6 +16,8 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 /* Star rating styles */
@@ -33,15 +35,19 @@
 }
 
 /* Image styles */
-.FUD_image {
+.FUD_imageName {
     font-weight: bold;
 }
 
+.FUD_image{
+    max-width: 50px;
+}
 /* Overall container styles */
 .FUD_history {
     font-size: 24px;
     margin-bottom: 20px;
     font-weight: bold;
+    text-align: center;
 }
 
 /* Feedback item styles */
