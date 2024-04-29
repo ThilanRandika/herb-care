@@ -11,7 +11,8 @@ import DisplayFeedback_staff from "../Feedback/DisplayStaff";
 
 import Summary from "../Feedback/FeedbackSummary";
 
-import FeedbackandcomplayntsNav from "../../../components/Feedback&Complaints/feedbackandcomplayntsNav/FeedbackandcomplayntsNav"
+import FeedbackandcomplayntsNav from "../../../components/Feedback&Complaints/feedbackandcomplayntsNav/FeedbackandcomplayntsNav";
+
 
 import FeedbackGiftPackage_Dashboard from "../FeedbackGiftPackage/FeedbackGiftPackage";
 import DisplayGiftPackage_user from "../FeedbackGiftPackage/DisplayUserGiftPackageFeedback";
