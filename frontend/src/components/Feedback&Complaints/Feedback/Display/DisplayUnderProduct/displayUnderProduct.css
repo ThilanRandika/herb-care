@@ -1,0 +1,78 @@
+/* Container for each feedback */
+.DIUP_containor1 {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .DIUP_containor2{
+    border: 1px solid #adadad;
+    border-radius: 5px;
+  }
+  
+  /* Container for individual feedback */
+  .DIUP_feedback {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  /* Title */
+  .DIUP_title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* List for feedbacks */
+  .DIUP_UL {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Feedback item */
+  .DIUP_UL li {
+    margin-bottom: 20px;
+  }
+  
+  /* Customer name */
+  .DIUP_name {
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Rating stars */
+  .DIUP_rate {
+    margin-top: 5px;
+    margin-left: 10px;
+  }
+  
+  .DIUP_rate i {
+    color: gold; /* Gold color for rating stars */
+  }
+  
+  /* Message */
+  .message {
+    margin-top: 10px;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  
+  /* Images */
+.DIUP_imag {
+    display: flex; /* Use flexbox */
+    flex-wrap: nowrap; /* Prevent wrapping onto multiple lines */
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Individual image */
+  .DIUP_imag img {
+    max-width: 100px; /* Adjust the max-width to your desired size */
+    margin-right: 10px; /* Add spacing between images */
+  }
+  
+  

@@ -72,19 +72,19 @@ router.route("/get").get(verifyToOther, async (req, res) => {
 //   }
 // });
 
-router.get('/products/:productId', async (req, res) => {
-  const productId = req.params.productId;
+// Assuming you have defined your router instance already
+
+router.route('/feedbacks/:productId').get(async (req, res) => {
   try {
-    const product = await Product.findById(productId);
-    if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
-    }
-    res.json(product);
+    const productId = req.params.productId;
+    const feedbacks = await Feedback.find({ Product: productId }).populate('Customer', 'customer_name');
+    res.status(200).json(feedbacks);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 
 //Read - Display staff & manager dashbord
@@ -178,7 +178,7 @@ router.get('/feedback-summaries', async (req, res) => {
       {
         $project: {
           productName: '$product.name',
-          productImage: '$product.image_url',
+          productImage: '$product.image',
           ratings: 1,
           message: 1
         }
@@ -238,7 +238,6 @@ router.get('/download', async (req, res) => {
     res.status(500).json({ message: 'Failed to generate PDF' });
   }
 });
-
 
 
 module.exports = router;

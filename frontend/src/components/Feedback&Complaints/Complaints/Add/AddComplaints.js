@@ -38,18 +38,18 @@ const ComplaintForm = ({ productId }) => {
                 <form onSubmit={handleSubmit}>
 
                     <br></br>
-                    <label for="name" className="com_name">Complainant Name:</label>
-                    <input className="com_input2" type="text" value={complaintsName} onChange={(e) => setComplaintsName(e.target.value)} />
+                    <label for="name" className="ccom_name">Complainant Name:</label>
+                    <input className="ccom_input2" type="text" value={complaintsName} onChange={(e) => setComplaintsName(e.target.value)} />
             
                     <br></br>
-                    <label for="email" className="com_email">Complainant Email:</label>    
-                    <input className="com_input3" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <label for="email" className="ccom_email">Complainant Email:</label>    
+                    <input className="ccom_input3" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             
                     <br></br>
-                    <label for="description" className="com_description">Description:</label>
-                    <textarea className="com_textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <label for="description" className="ccom_description">Description:</label>
+                    <textarea className="ccom_textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
             
-                    <button className="com_inputbttn" type="submit">Submit</button>
+                    <button className="ccom_input" type="submit">Submit</button>
                 </form>
         </div>
         </div>
