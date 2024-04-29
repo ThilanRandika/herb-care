@@ -8,6 +8,11 @@
   margin: 20px;
   display: flex;
   flex-direction: column;
+}
+
+.bag-container-head {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -15,6 +20,16 @@
   font-size: 30px;
   margin-bottom: 10px;
 }
+
+.select-all-button {
+  background-color: #0059ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 
 /*.edit-button {
   background-color: #007bff;
@@ -150,7 +165,7 @@
 }
 
 .siDesc {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
 }
@@ -163,7 +178,9 @@
 }
 
 .siDetailTexts {
-  margin-bottom: 8px; /* Add space between buttons */
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .siDetailTexts input[type="number"] {
@@ -194,7 +211,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.update-button {
+.update-button, .checkout-button {
   margin-top: 8px;
   margin-right: 8px;
   padding: 8px 16px;
@@ -218,7 +235,7 @@
   border: none;
 }
 
-.update-button:hover{
+.update-button:hover, .checkout-button:hover{
   background-color: #007904;
 }
 
@@ -299,4 +316,38 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.seller-bag-checkbox {
+  /* Hide default checkbox */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #007bff; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  outline: none; /* Remove outline */
+  cursor: pointer; /* Show pointer cursor */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* seller-bag design for checked state */
+.seller-bag-checkbox:checked {
+  background-color: #007bff; /* Background color when checked */
+}
+
+/* seller-bag design for checked state - checkmark */
+.seller-bag-checkbox:checked::before {
+  content: '\2713'; /* Unicode checkmark character */
+  display: block;
+  text-align: center;
+  color: white; /* Color of checkmark */
+  font-size: 18px; /* Size of checkmark */
+}
+
+/* Style for checkbox label */
+.seller-bag-checkbox-label {
+  font-size: 18px; /* Adjust label font size */
+  margin-left: 10px; /* Add space between checkbox and label */
 }

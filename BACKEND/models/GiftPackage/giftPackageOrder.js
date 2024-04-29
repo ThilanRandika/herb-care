@@ -24,8 +24,8 @@ const giftPackageOrderSchema = new mongoose.Schema(
 
     payment: {
       type: String,
-      enum: ["pending","done", "cash on delivery"],
-      default: "pending"
+      enum: ["Pending","Deliverd","Done"],
+      default: "Pending"
     },
 
     orderStatus: {

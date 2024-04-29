@@ -1,6 +1,5 @@
 import React from "react";
 import SellerBag from "../../../components/sellerPartnership/bag/SellerBag";
-import { Link } from "react-router-dom";
 
 function SellerBagPage() {
   return (
