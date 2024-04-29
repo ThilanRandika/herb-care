@@ -24,14 +24,7 @@ import ConsultationsCustomer from "./pages/consultation/consultationsCustomer/Co
 import SpecialistInterface from "./pages/consultation/specialist/specialistInterface/SpecialistInterface";
 import ConsultationStaff from "./pages/consultation/staff/consultationStaff/ConsultationStaff";
 
-
-
-
-
-
 import FeedbackDashboard from "./pages/Feedback&complaints/FeedbackDashboard/FeedbackDashboard";
-
-
 
 import GiftPackage_manage from "./pages/giftPackage/staff/Dashboard/GiftPackage_manage";
 import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/AddDefaultGiftPack";
@@ -45,7 +38,6 @@ function App() {
         
 
         <Route path="/Feedback&Complains/*" element={<FeedbackDashboard/>}></Route>
-
 
         <Route path="/customer" element={<Home/>}></Route>
         <Route path="/Inventory_Dashboard/*" element={<Inventory_Dashboard />} />

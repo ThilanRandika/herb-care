@@ -1,0 +1,83 @@
+/* DisplayFeedbackGiftPackage.css */
+
+.DFGPU_containor1 {
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+  
+.DFGPU_title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+  
+.DFGPU_containor2 {
+    margin-top: 20px;
+    width: 1000px;
+    margin-left: 200px;
+}
+  
+.DFGPU_LI {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+  
+.DFGPU_rating {
+    font-weight: bold;
+}
+
+/* Star rating styles */
+.star-rating {
+    display: inline-block;
+}
+
+.star-filled {
+    color: gold; /* Gold color for filled stars */
+}
+
+.star-empty {
+    color: #ccc; /* Gray color for empty stars */
+}
+  
+.DFGPU_message {
+    margin-top: 5px;
+}
+  
+.DFGPU_image {
+    margin-top: 5px;
+    font-weight: bold;
+}
+  
+.DFGPU_imaUL {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.DFGPU_imaUL li {
+    display: inline-block;
+    margin-right: 10px;
+}
+  
+.DFGPU_im {
+    max-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.DFGPU_deletefeedgift {
+    background-color: #ff6347; /* Red color for delete button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.DFGPU_deletefeedgift:hover {
+    background-color: #d32f2f; /* Darker red color on hover */
+}
