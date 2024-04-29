@@ -12,9 +12,8 @@ router.route('/add/:productId').post(verifyToOther, async (req, res) => {
 
         const complaints = new Complaints({
             Customer: req.person.userId,
-            Order: req.body.Order,
+            Order: req.body.orderId,
             Product: req.params.productId,
-            //giftPackageOrder: req.params.giftPackageOrder,
             complaintsName: req.body.complaintsName,
             email: req.body.email,
             description: req.body.description

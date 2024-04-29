@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './AddFeedback.css';
+import { useLocation } from 'react-router-dom';
 
 const FeedbackForm = () => {
   const [ratings, setRatings] = useState(0);
   const [message, setMessage] = useState('');
   const [images, setImages] = useState([]);
+  const location = useLocation();
+  const orderId = new URLSearchParams(location.search).get('orderId');
+  const productId = new URLSearchParams(location.search).get('productId');
 
   const handleImageChange = (e) => {
     setImages([...images, ...e.target.files]);
@@ -26,12 +30,15 @@ const FeedbackForm = () => {
     const formData = new FormData();
     formData.append('ratings', ratings);
     formData.append('message', message);
+    formData.append('orders', orderId);
     images.forEach((image) => {
       formData.append('image', image);
     });
 
+    
+
     try {
-      await axios.post('http://localhost:8070/feedback/add/661ed1c2ba2e882298ce303c', formData, {
+      await axios.post(`http://localhost:8070/feedback/add/${productId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you have stored the token in localStorage
@@ -58,6 +65,8 @@ const FeedbackForm = () => {
     }
     return stars;
   };
+
+  console.log(productId)
 
   return (
     <div className='F_conCenter'>

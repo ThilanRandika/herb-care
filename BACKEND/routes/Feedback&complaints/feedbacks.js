@@ -27,7 +27,7 @@ router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (
 
     const feedback = new Feedback({
       Customer: req.person.userId, // Assuming you have user authentication middleware
-      Order: req.body.Order,
+      Order: req.body.orders,
       Product: req.params.productId,
       ratings: req.body.ratings,
       message: req.body.message,

@@ -9,10 +9,9 @@ const complaintsSchema = new Schema({
         required: true
       },
       Order: {
-        type:String,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "Order",
-        required: false
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "orders",
+        required: true
       },
       Product: {
         type: mongoose.Schema.Types.ObjectId,
