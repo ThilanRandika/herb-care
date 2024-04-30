@@ -39,7 +39,10 @@ const sellerOrderSchema = new mongoose.Schema(
     returnProducts: [
       {
         product: { type: mongoose.Types.ObjectId, ref: "Product" },
+        productName: String,
         quantity: Number,
+        returnReason: String,
+        images: [String]
       }
     ],
   },

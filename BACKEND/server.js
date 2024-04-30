@@ -31,6 +31,8 @@ const sellerPartnershipRequestRouter = require( "./routes/sellerPartnership/sell
 const sellerProducts = require( "./routes/sellerPartnership/sellerProducts.js" )
 const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
 const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
+const sellerNotification = require( "./routes/sellerPartnership/sellerNotification.js" );
+const sellerAppointments = require( "./routes/sellerPartnership/sellerAppointments.js" );
 
 const productRouter = require("./routes/inventory/inventoryManagers.js");
 const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
@@ -43,8 +45,7 @@ const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js
 
 const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
 const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
-//const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js")\
-
+const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js")
 const orderRouter = require( "./routes/order/orders.js" );
 
 const authRouter = require( "./routes/auth.js" );
@@ -76,6 +77,8 @@ app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
 app.use("/sellerProducts",  sellerProducts);
 app.use("/sellerBag",  sellerBag);
 app.use("/sellerOrder",  sellerOrder);
+app.use("/sellerNotification", sellerNotification);
+app.use("/sellerAppointments", sellerAppointments);
 
 app.use("/product", productRouter);
 app.use("/approvalProcess",approvalProcessRouter);
@@ -91,7 +94,7 @@ app.use("/defaultGiftpackage",defaultGiftpackageRouter);
 app.use("/giftPackageOrder",giftPackageOrderRouter);
 
 app.use("/feedback",feedbackRouter);
-// app.use("/feedbackGiftPackage",FeedbackGiftPackageRouter);
+app.use("/feedbackGiftPackage",FeedbackGiftPackageRouter);
 app.use("/complaints",complaintsRouter);
 
 app.use("/order", orderRouter);
