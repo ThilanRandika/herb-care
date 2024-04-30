@@ -224,13 +224,15 @@ function AppointmentAddForm(props) {
   
   const validateInput = (id, value) => {
     let errorMessage = "";
-
+  
     switch (id) {
       case "patientName":
         errorMessage = value.trim() ? "" : "Patient name is required";
         break;
       case "patientAge":
-        errorMessage = value.trim() && /^\d+$/.test(value) ? "" : "Invalid age";
+        errorMessage = value.trim() && /^\d+$/.test(value) && parseInt(value, 10) >= 1 && parseInt(value, 10) <= 120
+          ? "" 
+          : "Invalid age (Age must be between 1 and 120)";
         break;
       case "patientPhone":
         if (value.trim() === "") {
@@ -242,7 +244,7 @@ function AppointmentAddForm(props) {
       default:
         break;
     }
-
+  
     setErrors((prevErrors) => ({
       ...prevErrors,
       [id]: errorMessage,
