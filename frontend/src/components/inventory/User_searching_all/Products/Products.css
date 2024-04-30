@@ -1,65 +1,56 @@
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 5rem;
-    margin-top: 2rem;
-    z-index: -2;
-    
-  }
-  
-  .card {
-    margin: 20px;
-    border: 2px solid #ededed;
-    padding: 20px;
-    cursor: pointer;
-    
-    
-  }
-  
-  .card-img {
-    /*width: 13rem;
-    margin-bottom: 1rem;*/
-    width: 100%; 
-    height: auto;
-  }
-  
-  .card-title {
-    margin-bottom: 1rem;
-  }
-  
-  .card-reviews {
-    margin-bottom: 1rem;
-    display: flex;
-  }
-  
-  .rating-star {
-    color: #d5ab55;
-  }
-  
-  .total-reviews {
-    font-size: 0.9rem;
-    margin-left: 10px;
-  }
-  
-  .card-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .bag-icon {
-    color: #535353;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  z-index: -2;
+}
 
+.card {
+  margin: 20px;
+  border: 2px solid #ededed;
+  padding: 20px;
+  cursor: pointer;
+  width: 200px; /* Set a fixed width for each card */
+  height: 300px; /* Set a fixed height for each card */
+  overflow: hidden; /* Hide overflow content */
+}
 
-  .add-to-cart-button1 {
-  
-    background-color: #129a10; /* Set background color */
-    color: #fff; /* Set text color */
-    border-radius: 5px;
-    
-  }
-  
-  .add-to-cart-button1:hover {
-    background-color: #095a07; /* Change background color on hover */
-  }
+.card-details {
+  padding: 10px; /* Add padding for better spacing */
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+.card-img {
+  width: 70%; /* Set a fixed width for the image */
+  height: 70%; /* Maintain aspect ratio */
+}
+
+.card-title1 {
+  margin-bottom: 1rem;
+  font-size: 16px;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+}
+
+.card-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-to-cart-button1 {
+  background-color: #129a10; /* Set background color */
+  color: #fff; /* Set text color */
+  border-radius: 5px;
+}
+
+.add-to-cart-button1:hover {
+  background-color: #095a07; /* Change background color on hover */
+}
+
+.productCard-img-inventory{
+  width: 150px;
+  height: 150px;
+}
