@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import axios from 'axios';
-import './Product.css';
+//import './Product.css';
 import Feedback from '../../../components/Feedback&Complaints/Feedback/Display/DisplayUnderProduct/displayUnderProduct';
 
 function Product() {

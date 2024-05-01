@@ -47,14 +47,18 @@ function FeedbackandcomplayntsNav() {
 
  
       
-      {/* <Link to="/Feedback&Complains/FeedbackGiftPackage">
+      <Link to="/Feedback&Complains/FeedbackGiftPackage">
         <button className='FEEDandCOM_Dash8' >FeedbackGiftPackage</button>
       </Link>
       
 
       <Link to="/Feedback&Complains/DisplayFeedbackGiftPackageUser">
         <button className='FEEDandCOM_Dash9' >Display Gift Package User</button>
-      </Link> */}
+      </Link>
+
+      <Link to="/Feedback&Complains/DisplayFeedbackGiftPackageStaff">
+        <button className='FEEDandCOM_Dash10' >Display Gift Package Staff</button>
+      </Link>
 
     </div>
   )

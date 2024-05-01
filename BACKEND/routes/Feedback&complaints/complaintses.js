@@ -95,16 +95,16 @@ router.route("/get").get(verifyToOther, async (req, res) => {
   }
 });
 
-
-//Read - Display staff & manager dashbord
+//Read - Display staff & manager dashboard
 // http://localhost:8070/complaints/get
-router.route('/').get((req, res) => {
-  Complaints.find().then((complaints) => {
+router.route('/').get(async (req, res) => {
+  try {
+    const complaints = await Complaints.find().populate('Product');
     res.json(complaints);
-  }).catch((err) => {
-    console.log(err);
+  } catch (err) {
+    console.error(err.message);
     res.status(500).json({ message: 'Internal server error' });
-  });
+  }
 });
 
 // Get total count of all complaints
