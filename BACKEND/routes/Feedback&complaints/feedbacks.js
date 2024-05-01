@@ -27,7 +27,7 @@ router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (
 
     const feedback = new Feedback({
       Customer: req.person.userId, // Assuming you have user authentication middleware
-      Order: req.body.Order,
+      Order: req.body.orders,
       Product: req.params.productId,
       ratings: req.body.ratings,
       message: req.body.message,
@@ -62,18 +62,6 @@ router.route("/get").get(verifyToOther, async (req, res) => {
 
 //Read - Display under the product
 //http://localhost:8070/feedback/get/:productId
-// router.get('/product/:productId', async (req, res) => {
-//   try {
-//     const feedback = await Feedback.find({ Product: req.params.productId });
-//     res.status(200).json(feedback);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send('Server Error');
-//   }
-// });
-
-// Assuming you have defined your router instance already
-
 router.route('/feedbacks/:productId').get(async (req, res) => {
   try {
     const productId = req.params.productId;

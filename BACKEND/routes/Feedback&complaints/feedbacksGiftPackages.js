@@ -4,6 +4,8 @@ const multer = require('multer');
 const path = require('path');
 const FeedbackGiftPackage = require('../../models/Feedback&Complaints/feedbackGiftPackage');
 const { verifyToOther } = require("../../utils/veryfyToken");
+const PDFDocument = require('pdfkit');
+
 
 // Image uploading
 const storage = multer.diskStorage({
@@ -43,8 +45,8 @@ router.post('/add/:packageId', verifyToOther, upload.array('image', 10), async (
     }
   });
   
-  // Route to fetch feedbacks of logged-in user
-router.get('/giftpackagefeedbacks', verifyToOther, async (req, res) => {
+//Read - User Display
+router.get('/', verifyToOther, async (req, res) => {
   try {
       // Fetch feedbacks for the logged-in user
       const feedbacks = await FeedbackGiftPackage.find({ Customer: req.person.userId });
@@ -56,19 +58,105 @@ router.get('/giftpackagefeedbacks', verifyToOther, async (req, res) => {
   }
 });
 
-
-// Route to delete a feedback
-router.delete('/delete/:feedbackId', verifyToOther, async (req, res) => {
+//Read - staff Display All
+router.get('/all', async (req, res) => {
   try {
-    const feedback = await FeedbackGiftPackage.findOneAndDelete({ _id: req.params.feedbackId, Customer: req.person.userId });
-    if (!feedback) {
-      return res.status(404).json({ message: 'Feedback not found or you do not have permission to delete' });
-    }
+      // Fetch all feedbacks
+      const feedbacks = await FeedbackGiftPackage.find().populate('Customer');
+      res.status(200).json({ feedbacks });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+// Route to get the total count of feedbacks
+router.get('/count', async (req, res) => {
+  try {
+    const count = await FeedbackGiftPackage.countDocuments();
+    res.json({ count });
+  } catch (error) {
+    console.error('Error counting feedbacks:', error);
+    res.status(500).json({ error: 'Error counting feedbacks' });
+  }
+});
+
+//Delete - delete feedbackGiftPackage
+// http://localhost:8070/feedback/delete/:id
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const feedbackId = req.params.id;
+
+    await FeedbackGiftPackage.findByIdAndDelete(feedbackId);
+
     res.status(200).json({ message: 'Feedback deleted successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+//Update - update feedback for gift package
+// http://localhost:8070/feedback/update/:id
+router.put('/update/:id', upload.array('images', 5), async (req, res) => {
+  try {
+    console.log('Received files:', req.files);
+
+    const feedbackId = req.params.id;
+    const { ratings, message } = req.body;
+
+    let newImages = [];
+    if (req.files) {
+      newImages = req.files.map(file => file.filename);
+    }
+
+    console.log('New images:', newImages);
+
+    // Update feedbackGiftPackage entry
+    await FeedbackGiftPackage.findByIdAndUpdate(feedbackId, {
+      ratings,
+      message,
+      $push: { image: { $each: newImages } }, // Add new images to existing array
+    });
+
+    res.status(200).json({ message: 'Feedback updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+//Download pdf
+router.get('/download', async (req, res) => {
+  try {
+    const feedbacks = await FeedbackGiftPackage.find().populate('Customer');
+
+    const pdfDoc = new PDFDocument();
+
+    // Set response headers for PDF download
+    res.setHeader('Content-Disposition', 'attachment; filename="GiftPackageFeedbacks.pdf"');
+    res.setHeader('Content-Type', 'application/pdf');
+
+    // Pipe the PDF document directly to the response stream
+    pdfDoc.pipe(res);
+
+    // Add content to the PDF document
+    pdfDoc.fontSize(12).text('Gift Package Feedbacks Report', { align: 'center' }).moveDown();
+
+    feedbacks.forEach((feedback, index) => {
+      pdfDoc.fontSize(10).text(`Feedback ${index + 1}:`);
+      pdfDoc.fontSize(8).text(`Customer: ${feedback.Customer.customer_name}`);
+      pdfDoc.fontSize(8).text(`Ratings: ${feedback.ratings}`);
+      pdfDoc.fontSize(8).text(`Message: ${feedback.message}`);
+      pdfDoc.fontSize(8).text(`Date: ${new Date(feedback.createdAt).toLocaleString()}\n\n`);
+    });
+
+    // Finalize the PDF document
+    pdfDoc.end();
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    res.status(500).json({ message: 'Failed to generate PDF' });
+  }
+});
+
 
 module.exports = router;

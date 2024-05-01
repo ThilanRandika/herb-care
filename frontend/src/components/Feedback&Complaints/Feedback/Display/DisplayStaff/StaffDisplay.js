@@ -78,25 +78,38 @@ const StaffDashboard = () => {
     }
   };
 
-  return (
-    <div>
-      <br />
-      <h1 className='FSD_title'>Feedbacks Lists</h1><br></br>
+  // Omitted code for brevity
 
-      <input className='FSD_searchfeedback' type="text" placeholder="Search customer...." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
-      
-      <button className='FSD_download_feedback_btn' onClick={downloadFeedbacksPdf}>Download Report</button>
-      <div>
-        <h1 className='FSD_count'>Total Feedbacks: {count}</h1>
-      </div>
-      <div className='FSD_containor1'>
+return (
+  <div>
+    <br />
+    <h1 className='FSD_title'>Feedbacks Lists</h1><br></br>
+
+    <input className='FSD_searchfeedback' type="text" placeholder="Search customer...." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+    
+    <button className='FSD_download_feedback_btn' onClick={downloadFeedbacksPdf}>Download Report</button>
+    <div>
+      <h1 className='FSD_count'>Total Feedbacks: {count}</h1>
+    </div>
+    <table className='FSD_table'>
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Ratings</th>
+          <th>Message</th>
+          <th>Images</th>
+          <th>Droped <br></br>Date & Time</th>
+          <th>Updated <br></br>Date & Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
         {feedbacks.filter(searchFeedbacks).map((feedback) => (
-          <div key={feedback._id} style={{ marginBottom: '20px' }} className='FSD_comntainor2'>
-            <h3 className='FSD_cusName'>Customer: {feedback.Customer.customer_name}</h3>
-            <p className='FSD_ratings'>Ratings: <StarRating rating={feedback.ratings} /></p>
-            <p className='FSD_message'>Message: {feedback.message}</p>
-            <p>
-              Images:{' '}
+          <tr key={feedback._id}>
+            <td>{feedback.Customer.customer_name}</td>
+            <td><StarRating rating={feedback.ratings} /></td>
+            <td>{feedback.message}</td>
+            <td>
               {feedback.image ? (
                 <div className='FSD_image'>
                   {feedback.image.map((img, index) => (
@@ -111,23 +124,30 @@ const StaffDashboard = () => {
               ) : (
                 <span>No images</span>
               )}
-            </p>
-            <p className='FSD_date'>
-              Date: {new Date(feedback.createdAt).toLocaleDateString()} <br />
-              Time: {new Date(feedback.createdAt).toLocaleTimeString()} <br /><br />
-              {feedback.updatedAt && (
-                <>
-                  Updated Date: {new Date(feedback.updatedAt).toLocaleDateString()} <br />
-                  Updated Time: {new Date(feedback.updatedAt).toLocaleTimeString()}
-                </>
+            </td>
+            <td>
+              {new Date(feedback.createdAt).toLocaleDateString()}<br />
+              {new Date(feedback.createdAt).toLocaleTimeString()}
+            </td>
+            <td>
+              {feedback.updatedAt ? (
+              <>
+                  {new Date(feedback.updatedAt).toLocaleDateString()}<br />
+                  {new Date(feedback.updatedAt).toLocaleTimeString()}
+              </>
+              ) : (
+                <span>Not updated</span>
               )}
-            </p>
-            <button className='FSD_deletebtn' onClick={() => deleteFeedback(feedback._id)}>Delete</button>
-          </div>
+            </td>
+
+            <td><button className='FSD_deletebtn' onClick={() => deleteFeedback(feedback._id)}>Delete</button></td>
+          </tr>
         ))}
-      </div>
-    </div>
-  );
+      </tbody>
+    </table>
+  </div>
+);
+
 };
 
 export default StaffDashboard;
