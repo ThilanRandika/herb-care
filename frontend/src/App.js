@@ -75,7 +75,7 @@ function App() {
         <Route path="/Update_default_gift_packages/:id" element={<UpdateDefaultGiftPackage/>}></Route>
         <Route path="/Gift-Package-Orders" element={<DisplayGiftPackOrders/>}></Route>
         <Route path="/Gift_Packages" element={<DisplayDefaultGiftPackages/>}></Route>
-        <Route path="/Place-Order/:id" element={<PlaceOrder/>}></Route>
+        <Route path="/Place-Order" element={<PlaceOrder/>}></Route>
         <Route path="/DisplaySinglePackage" element={<SinglePackageDetails/>}></Route>
         
       </Routes>

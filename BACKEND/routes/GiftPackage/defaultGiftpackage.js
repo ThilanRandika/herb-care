@@ -5,6 +5,7 @@ const DefaultGiftPack = require("../../models/GiftPackage/defaultGiftpackage");
 const multer = require('multer');
 const path = require('path');
 const mongoose = require('mongoose');
+const { verifyToOther } = require("../../utils/veryfyToken");
 
 
 // Image uploading
@@ -90,7 +91,7 @@ router.route("/default-gift-packages").get(async(req,res)=>{
 // });
 
 //Single product
-router.get('/:packageId', async (req, res) => {
+router.get('/:packageId',verifyToOther, async (req, res) => {
   try {
       const packageId = req.params.packageId;
       if (!packageId) {

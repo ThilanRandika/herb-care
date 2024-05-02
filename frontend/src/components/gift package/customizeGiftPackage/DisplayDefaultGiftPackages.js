@@ -47,19 +47,7 @@ function DisplayDefaultGiftPackages() {
                   <button className="btn">See details</button>
                 </Link>
 
-                {/* <div className="button-container">
-
-                  <Link to={{
-                    pathname: `/Place-Order/${giftPackage._id}`,
-                    state: {
-                      packageDetails: giftPackage,
-                      customerDetails: null // You can update this with actual customer details
-                    }
-                  }}>
-                    
-                    <button className="btn">Order Package</button></Link>
-                    
-                </div> */}
+                
             </div>
           </div>
         ))}

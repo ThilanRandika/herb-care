@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom'; // Import Link from react-router-dom
+
 
 const DisplaySingleDefaultGiftPackage = () => {
     const [packageData, setPackageData] = useState(null);
     const [loading, setLoading] = useState(true);
     const location = useLocation();
     const packageId = new URLSearchParams(location.search).get('packageId');
+    
 
     useEffect(() => {
         const fetchPackage = async () => {
@@ -29,13 +31,13 @@ const DisplaySingleDefaultGiftPackage = () => {
 
     return (
         <div>
+          
             {loading ? (
                 <p>Loading...</p>
             ) : (
                 packageData && (
                     <div>
-                      <div>
-                           
+                        <div>
                             {packageData.images.map((image, index) => (
                                 <img key={index} src={require(`../../../../../BACKEND/uploads/${image}`)} alt={`Image ${index}`} />
                             ))}
@@ -45,8 +47,10 @@ const DisplaySingleDefaultGiftPackage = () => {
                         <p>Products: {packageData.products}</p>
                         <p>Total Price: {packageData.totalPrice}</p>
                         
+                        <Link to={`/Place-Order?packageId=${packageData._id}`}>
+                            <button className="btn">Order Package</button>
+                        </Link>
                     </div>
-                    
                 )
             )}
         </div>

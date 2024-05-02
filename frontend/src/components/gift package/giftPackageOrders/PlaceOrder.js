@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from "react";
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { AuthContext } from "../../../context/AuthContext";
 
 const GiftPackageOrderForm = () => {
   const [customerId, setCustomerId] = useState('');
   const [packageId, setPackageId] = useState('');
   const [orderAddress, setOrderAddress] = useState('');
   const [response, setResponse] = useState(null);
+  const location = useLocation();
+  const queryPackageId = new URLSearchParams(location.search).get('packageId');
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,11 +33,11 @@ const GiftPackageOrderForm = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="customerId">Customer ID:</label>
-          <input type="text" id="customerId" value={customerId} onChange={(e) => setCustomerId(e.target.value)} />
+          <input type="text" id="customerId" value={user._id} onChange={(e) => setCustomerId(e.target.value)} />
         </div>
         <div>
           <label htmlFor="packageId">Package ID:</label>
-          <input type="text" id="packageId" value={packageId} onChange={(e) => setPackageId(e.target.value)} />
+          <input type="text" id="packageId" value={queryPackageId} disabled />
         </div>
         <div>
           <label htmlFor="orderAddress">Order Address:</label>
