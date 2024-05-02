@@ -36,8 +36,7 @@ import MyOrders from "./pages/Order_Management/myOrders/MyOrders";
 import DisplayDefaultGiftPackages from "./components/gift package/customizeGiftPackage/DisplayDefaultGiftPackages";
 import PlaceOrder from "./components/gift package/giftPackageOrders/PlaceOrder";
 import DisplayGiftPackOrders from "./components/gift package/giftPackageOrders/DisplayGiftPackOrders";
-
-
+import SinglePackageDetails from "./components/gift package/customizeGiftPackage/DisplaySingleDefaultGiftPackage";
 
 function App() {
   return (
@@ -77,8 +76,8 @@ function App() {
         <Route path="/Gift-Package-Orders" element={<DisplayGiftPackOrders/>}></Route>
         <Route path="/Gift_Packages" element={<DisplayDefaultGiftPackages/>}></Route>
         <Route path="/Place-Order/:id" element={<PlaceOrder/>}></Route>
+        <Route path="/DisplaySinglePackage" element={<SinglePackageDetails/>}></Route>
         
-
       </Routes>
     </BrowserRouter>
 
