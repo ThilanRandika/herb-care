@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import "./AllProducts.css"; // Import CSS file for styling
+import { Link } from "react-router-dom";
+import "./AllProducts.css";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -13,9 +13,9 @@ export default function AllProducts() {
       axios
         .get("http://localhost:8070/Product/")
         .then((res) => {
-          console.log(res.data); // Assuming the data is in res.data
-          setProducts(res.data); // Set the products state with fetched data
-          setFilteredProducts(res.data); // Initialize filtered products with all products
+          console.log(res.data);
+          setProducts(res.data);
+          setFilteredProducts(res.data);
         })
         .catch((err) => {
           alert(err.message);
@@ -25,18 +25,29 @@ export default function AllProducts() {
     getProducts();
   }, []);
 
-  // Handle search query change
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    // Filter products based on search query
     const filtered = products.filter((product) =>
       product.name.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setFilteredProducts(filtered);
   };
 
+  const handleDelete = async (productId) => {
+    try {
+      await axios.delete(`http://localhost:8070/Product/delete/${productId}`);
+      // Remove the deleted product from the state
+      setFilteredProducts(filteredProducts.filter((product) => product._id !== productId));
+      setProducts(products.filter((product) => product._id !== productId));
+      alert("Product deleted successfully");
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      alert('Failed to delete product');
+    }
+  };
+
   return (
-    <div className="products-container">
+    <div className="all-products-container">
       <input
         type="text"
         placeholder="Search by product name..."
@@ -44,34 +55,33 @@ export default function AllProducts() {
         onChange={handleSearchChange}
         className="search-input"
       />
-      <table>
+      <table className="product-table">
         <thead>
           <tr>
-            <th>Product Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Expire Date</th>
-            <th>Update</th> {/* New column for update button */}
-            <th>Delete</th> {/* New column for delete button */}
+            <th className="product-table-header">Product Name</th>
+            <th className="product-table-header">Category</th>
+            <th className="product-table-header">Price</th>
+            <th className="product-table-header">Quantity</th>
+            <th className="product-table-header">Expire Date</th>
+            <th className="product-table-header">Update</th>
+            <th className="product-table-header">Delete</th>
           </tr>
         </thead>
         <tbody>
           {filteredProducts.map((product, index) => (
             <tr key={index}>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>{product.price}</td>
-              <td>{product.quantity}</td>
-              <td>{product.expireDate}</td>
-              <td>
-                {/* Use Link to navigate to the update page with product id */}
+              <td className="product-table-data">{product.name}</td>
+              <td className="product-table-data">{product.category}</td>
+              <td className="product-table-data">{product.price}</td>
+              <td className="product-table-data">{product.quantity}</td>
+              <td className="product-table-data">{product.expireDate}</td>
+              <td className="product-table-data">
                 <Link to={`/Inventory_Dashboard/UpdateProduct/${product._id}`}>
-                  <button>Update</button>
+                  <button className="inventory-manager-update-btn" >Update</button>
                 </Link>
               </td>
-              <td>
-                <button>Delete</button> {/* onClick={() => handleDelete(product._id)} */}
+              <td className="product-table-data">
+                <button className="inventory-manager-delete-btn" onClick={() => handleDelete(product._id)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -79,4 +89,5 @@ export default function AllProducts() {
       </table>
     </div>
   );
+  
 }

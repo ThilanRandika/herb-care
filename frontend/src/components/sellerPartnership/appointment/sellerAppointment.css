@@ -1,0 +1,138 @@
+.seller-appointment-container {
+  width: 85%;
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px 60px 30px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* Center horizontally using margin:auto */
+}
+.seller-appointment-container .seller-appointment-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.seller-appointment-container .seller-appointment-left {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+}
+.seller-appointment-content .seller-appointment-left::before {
+  content: '';
+  position: absolute;
+  height: 70%;
+  width: 2px;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #afafb6;
+}
+.seller-appointment-content .seller-appointment-left .details {
+  margin: 14px;
+  text-align: center;
+}
+.seller-appointment-content .seller-appointment-left .details i {
+  font-size: 30px;
+  color: #268213;
+  margin-bottom: 10px;
+}
+.seller-appointment-content .seller-appointment-left .details .topic {
+  font-size: 18px;
+  font-weight: 500;
+}
+.seller-appointment-content .seller-appointment-left .details .text-one,
+.seller-appointment-content .seller-appointment-left .details .text-two {
+  font-size: 14px;
+  color: #afafb6;
+}
+.seller-appointment-container .seller-appointment-right {
+  width: 75%;
+  margin-left: 75px;
+}
+.seller-appointment-content .seller-appointment-right .topic-text {
+  font-size: 23px;
+  font-weight: 600;
+  color: #268213;
+}
+.seller-appointment-right .input-box {
+  height: 50px;
+  width: 100%;
+  margin: 12px 0;
+}
+.seller-appointment-right .input-box input,
+.seller-appointment-right .input-box textarea {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #f0f1f8;
+  border-radius: 6px;
+  padding: 0 15px;
+  resize: none;
+}
+.seller-appointment-right .message-box {
+  min-height: 110px;
+}
+.seller-appointment-right .input-box textarea {
+  padding-top: 6px;
+}
+.seller-appointment-right .button {
+  display: inline-block;
+  margin-top: 12px;
+}
+.seller-appointment-right .button input[type="button"] {
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #268213;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.seller-appointment-right .button input[type="button"]:hover {
+  background: #268213;
+}
+@media (max-width: 950px) {
+  .seller-appointment-container {
+    width: 90%;
+    padding: 30px 40px 40px 35px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .seller-appointment-container .seller-appointment-content .seller-appointment-right {
+   width: 75%;
+   margin-left: 55px;
+  }
+}
+
+@media (max-width: 820px) {
+  .seller-appointment-container {
+    margin: 40px auto; /* Center horizontally using margin:auto */
+    height: 100%;
+  }
+  .seller-appointment-container .seller-appointment-content {
+    flex-direction: column-reverse;
+  }
+ .seller-appointment-container .seller-appointment-content .seller-appointment-left {
+   width: 100%;
+   flex-direction: row;
+   margin-top: 40px;
+   justify-content: center;
+   flex-wrap: wrap;
+ }
+ .seller-appointment-container .seller-appointment-content .seller-appointment-left::before {
+   display: none;
+ }
+ .seller-appointment-container .seller-appointment-content .seller-appointment-right {
+   width: 100%;
+   margin-left: 0;
+ }
+}

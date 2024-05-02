@@ -1,26 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./DefaultGiftPackages.css";
 
 function DisplayDefaultGiftPackages() {
-
     const [defaultGiftPackages, setDefaultGiftPackages] = useState([]);
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        async function fetchProducts() {
-            try {
-                const response = await axios.get("http://localhost:8070/defaultGiftpackage/products");
-                setProducts(response.data);
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            }
-        }
-        fetchProducts();
-    }, []);
-
-
-    
 
     useEffect(() => {
         async function fetchDefaultGiftPackages() {
@@ -35,11 +19,6 @@ function DisplayDefaultGiftPackages() {
         fetchDefaultGiftPackages();
     }, []);
 
-    const handleUpdate = (id) => {
-        // Handle update logic
-    };
-
-
     const handleDelete = async (id) => {
         try {
             await axios.delete(`http://localhost:8070/defaultGiftpackage/deleteDefault-gift-packages/${id}`);
@@ -52,31 +31,42 @@ function DisplayDefaultGiftPackages() {
         }
     };
 
+    const handleDownloadReport = () => {
+        // Format data into CSV
+        const csvContent = "data:text/csv;charset=utf-8," + defaultGiftPackages.map(giftPackage => Object.values(giftPackage).join(",")).join("\n");
+        // Create a link element and trigger download
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "default_gift_packages_report.csv");
+        document.body.appendChild(link);
+        link.click();
+    };
+
     return (
         <div>
-            <h3>Default Gift Packages</h3>
+            <h3><center>Default Gift Packages</center></h3>
             <div>
                 {defaultGiftPackages.map((giftPackage) => (
                     <div key={giftPackage._id} className="giftPackage-default-all-container">
-                        <h4>{giftPackage.packageName}</h4>
-                        <p>{giftPackage.description}</p>
-                        <h5>Products:</h5>
-                        <ul>
-                            {giftPackage.products.map((product) => (
-                                <li key={product._id}>{product.name}</li>
-                            ))}
-                        </ul>
-                        <div>
-                            {giftPackage.images.map((image, index) => (
-                                <img key={index} src={`http://localhost:8070/${image}`} alt={`Image ${index}`} />
-                            ))}
+                        <div className="details">
+                            <img src={require(`../../../../../BACKEND/uploads/${giftPackage.images}`)} alt="Package Image" />
                         </div>
-                        <div>
-                            <Link to="/Update_default_gift_packages"><button>Update</button></Link>
-                            <button onClick={() => handleDelete(giftPackage._id)}>Delete</button>
+                        <div className="details">
+                            <h4>{giftPackage.packageName}</h4>
+                            <p>Description: {giftPackage.description}</p>
+                            <p>Products: {giftPackage.products}</p>
+                            <p>Total Price: Rs.{giftPackage.totalPrice}</p>
+                            <div className="button-container">
+                                <Link to={`/Update_default_gift_packages/${giftPackage._id}`}><button className="btn">Update</button></Link>
+                                <button onClick={() => handleDelete(giftPackage._id)} className="btn">Delete</button>
+                            </div>
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="button-container-report">
+                <button onClick={handleDownloadReport} className="btn">Download Report</button>
             </div>
         </div>
     );

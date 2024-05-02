@@ -7,9 +7,6 @@ import MyRefunds from '../../../components/consultation/myRefunds/MyRefunds';
 function RefundsCustomer() {
   return (
     <>
-    
-      <h3>Refunds page</h3>
-
 
       <Routes>
         <Route path="/myRefunds" element={<MyRefunds />} ></Route>

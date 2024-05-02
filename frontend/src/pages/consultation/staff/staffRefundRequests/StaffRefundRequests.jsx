@@ -3,32 +3,32 @@ import './staffRefundRequests.css';
 import axios from 'axios';
 
 function StaffRefundRequests() {
-
-    const  [refundRequests, setRefundRequests] = useState([]);
+    const [refundRequests, setRefundRequests] = useState([]);
+    const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/refund/pendingRefunds`)
-            .then((res) => {
-                console.log("Got data: ", res.data);
-                setRefundRequests(res.data);
-            })
-            .catch((err) => {
-                console.log('Error getting RefundRequests', err);
-            });
+        fetchRefundRequests();
     }, []);
+
+    const fetchRefundRequests = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8070/refund/pendingRefunds`);
+            setRefundRequests(response.data);
+        } catch (error) {
+            console.error('Error getting refund requests', error);
+        }
+    };
 
     const handleMarkAsCompleted = async (refundId) => {
         try {
             await axios.put(`http://localhost:8070/refund/completeRefund/${refundId}`);
-            // Update the refund status locally after successful completion
-            setRefundRequests(prevRefundRequests => {
-                return prevRefundRequests.map(refund => {
-                    if (refund._id === refundId) {
-                        return { ...refund, refundStatus: "Completed" };
-                    }
-                    return refund;
-                });
-            });
+            setShowAlert(true); // Show success alert
+            // Re-fetch refund requests after marking as completed
+            fetchRefundRequests();
+            // Hide success alert after 3 seconds
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 3000);
         } catch (error) {
             console.error('Failed to mark refund as completed', error);
         }
@@ -36,8 +36,13 @@ function StaffRefundRequests() {
 
     return (
         <>
-            <div>
+            <div className='consultation-staff-refundRequests'>
                 <h3>Refund Requests</h3>
+                {showAlert && (
+                    <div className="alert alert-success" role="alert">
+                        Refund completed successfully!
+                    </div>
+                )}
                 <table style={{ marginTop: "5%" }}>
                     <thead>
                         <tr>

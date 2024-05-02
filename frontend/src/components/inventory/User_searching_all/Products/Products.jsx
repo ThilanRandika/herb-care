@@ -51,24 +51,19 @@ function Products({ searchQuery, priceRange }) {
       {filteredProducts.map((product, index) => (
         <Link to={`/Product/${product._id}`} key={index}> {/* Use Link to navigate to product  ` page */}
           <section className="card">
-            <img src={require(`../../../../../../BACKEND/uploads/${product.image}`)} alt={product.name} height={120} width={120}/>
+            <div className="productCard-img-inventory">
+              <img src={require(`../../../../../../BACKEND/uploads/${product.image}`)} className="card-img" alt={product.name} height={120} width={120}/>
+            </div>
 
             <div className="card-details">
-              <h3 className="card-title">{product.name}</h3>
-              <section className="card-reviews">
-                <AiFillStar className="rating-star" />
-                <AiFillStar className="rating-star" />
-                <AiFillStar className="rating-star" />
-                <AiFillStar className="rating-star" />
-                <AiFillStar className="rating-star" />
-                <span className="total-reviews">5</span>
-              </section>
+              <h3 className="card-title1">{product.name}</h3>
+              
               <section className="card-price">
                 <div className="price">
-                  <del>Rs.800.00</del> {product.price}
+                  Rs. {product.price}
                 </div>
               </section>
-              <button className="add-to-cart-button">Add to Cart</button>
+              <button className="add-to-cart-button1">Add to Cart</button>
             </div>
           </section>
         </Link>

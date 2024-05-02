@@ -20,8 +20,8 @@ router.route('/addToBag/:productId').post(verifySellerToOther, async (req,res) =
       } else {
           // If the product does not exist in the seller's bag, add it as a new item
           const newBagItem = new SellerBag({ sellerId: sellerId, product_id: productId, ...req.body });
-          const savedBagItem = await newBagItem.save();
-          res.status(200).json(savedBagItem);
+          const savedBagItem = await newBagItem.save();  
+          res.status(200).json(savedBagItem);   
       }
   } catch(err){
       console.log(err);
