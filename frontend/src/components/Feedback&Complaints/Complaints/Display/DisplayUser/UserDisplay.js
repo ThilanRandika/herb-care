@@ -32,6 +32,7 @@ const UserDisplay = () => {
     <div>
       <br></br>
       <h2 className='UD_title'>My Complaints</h2>
+      <br></br>
       <ul className='UD_UL'>
         {complaints.map((complaint) => (
         <div className='UD_containor'>

@@ -31,9 +31,21 @@ function DisplayDefaultGiftPackages() {
         }
     };
 
+    const handleDownloadReport = () => {
+        // Format data into CSV
+        const csvContent = "data:text/csv;charset=utf-8," + defaultGiftPackages.map(giftPackage => Object.values(giftPackage).join(",")).join("\n");
+        // Create a link element and trigger download
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "default_gift_packages_report.csv");
+        document.body.appendChild(link);
+        link.click();
+    };
+
     return (
-        <div >
-            <h3><center>Add Default Gift Packages</center></h3>
+        <div>
+            <h3><center>Default Gift Packages</center></h3>
             <div>
                 {defaultGiftPackages.map((giftPackage) => (
                     <div key={giftPackage._id} className="giftPackage-default-all-container">
@@ -52,6 +64,9 @@ function DisplayDefaultGiftPackages() {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="button-container-report">
+                <button onClick={handleDownloadReport} className="btn">Download Report</button>
             </div>
         </div>
     );
