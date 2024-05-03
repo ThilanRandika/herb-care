@@ -5,6 +5,7 @@ const SellerProducts = require('../models/sellerPartnership/SellerProducts');
 const jwt  = require("jsonwebtoken");
 const Customer = require('../models/user/Customer');
 const Staff = require('../models/staff/staff');
+const Specialist = require('../models/consultation/Specialist');
 
 /*
 //Seller Login
@@ -46,6 +47,8 @@ router.route('/login').post(async (req, res) => {
       const customer = await Customer.findOne({ email: req.body.username });
       //const manager = await Manager.findOne({ username: req.body.username });
       const staff = await Staff.findOne({ username: req.body.username });
+      //const staff = await Staff.findOne({ username: req.body.username });
+      const specialist = await Specialist.findOne({ email: req.body.username });
       const seller = await Seller.findOne({ sellerId: req.body.username });
 
       // Determine the user type
@@ -54,6 +57,11 @@ router.route('/login').post(async (req, res) => {
       if (customer) {
         userType = 'customer';
         userDetails = customer;
+      } 
+
+      else if (specialist) {
+        userType = 'specialist';
+        userDetails = specialist;
       } 
       
       /*else if (manager) {
@@ -91,6 +99,11 @@ router.route('/login').post(async (req, res) => {
           process.env.JWT
         );
 
+      }else if(userType === "specialist"){
+        token = jwt.sign(
+          { specialistId: specialist._id, userType: userType },
+          process.env.JWT
+        );
       }else {
 
         token = jwt.sign(
@@ -115,6 +128,8 @@ router.route('/login').post(async (req, res) => {
           break;
         case 'seller':
           redirectURL = '/sellerMainHome/sellerHome';
+        case 'specialist':
+          redirectURL = '/specialistInterface/dashboard';
           break;
       }
   

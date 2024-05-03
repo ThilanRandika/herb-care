@@ -1,0 +1,27 @@
+.FEEDandCOM_Dash1{
+    width: 148px;
+}
+.FEEDandCOM_Dash1,
+.FEEDandCOM_Dash2,
+.FEEDandCOM_Dash3,
+.FEEDandCOM_Dash4,
+.FEEDandCOM_Dash5,
+.FEEDandCOM_Dash6,
+.FEEDandCOM_Dash7,
+.FEEDandCOM_Dash8{
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+}
+
+.FEEDandCOM_Dash1:hover, 
+.FEEDandCOM_Dash2:hover, 
+.FEEDandCOM_Dash3:hover, 
+.FEEDandCOM_Dash4:hover, 
+.FEEDandCOM_Dash5:hover, 
+.FEEDandCOM_Dash6:hover,
+.FEEDandCOM_Dash7:hover, 
+.FEEDandCOM_Dash8:hover {
+  background-color: #16e20f;
+  border-radius: 5px;
+}
