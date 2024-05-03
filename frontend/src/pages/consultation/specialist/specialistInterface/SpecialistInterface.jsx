@@ -7,23 +7,30 @@ import NavBarSpecialistDashBoard from '../../../../components/consultation/speci
 import SpecialistDashboard from '../specialistDashboard/SpecialistDashboard';
 import Availability from '../availability/Availability';
 import { AuthContext } from '../../../../context/AuthContext';
+import TopNavBarSpecialist from '../../../../components/consultation/specialist/topNavBarSpecialist/TopNavBarSpecialist';
+import NotificationPopup from '../../../../components/consultation/specialist/notificationPopupSpecialist/NotificationPopupSpecialist'
 
 function DashboardSpecialist() {
 
-  const { user } = useContext(AuthContext); // get the customer ID from authentication context
-  // const [specialistID, setSpecialistID] = useState("");
+  const { user } = useContext(AuthContext); // get the specialist ID from authentication context
+  const [isNotificationVisible, setNotificationVisible] = useState(false);
+
+  const handleCloseNotification = () => {
+    setNotificationVisible(false);
+  };
 
   return (
-    <>
+    <div className="specialistInterface-specialist-allPages">
+      <div className="specialistInterface-specialist-top-nav-bar">
+        <TopNavBarSpecialist isNotificationVisible={isNotificationVisible} setNotificationVisible={setNotificationVisible} />
+      </div>
+      <div className="specialistInterface-specialist-notifications-popup">
+        {isNotificationVisible && <NotificationPopup onClose={handleCloseNotification} />}
+      </div>
       <div className="specialistInterface-specialist-container">
-        <div className="specialistInterface-specialist-nav-bar">
+        <div className="specialistInterface-specialist-side-nav-bar">
           <NavBarSpecialistDashBoard/>
-          {/* <div className="specialistInterface-specialist-id-input">
-            <label> enter specialistID</label>
-            <input type="text" value={specialistID} onChange={(e)=> setSpecialistID(e.target.value) }/>
-          </div> */}
         </div>
-
         <div className="specialistInterface-pages">
           <Routes>
             <Route path="/dashboard" element={<SpecialistDashboard specialistID={user._id}/>}></Route>
@@ -33,7 +40,7 @@ function DashboardSpecialist() {
           </Routes>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
