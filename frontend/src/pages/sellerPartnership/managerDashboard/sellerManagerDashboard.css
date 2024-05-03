@@ -1,0 +1,12 @@
+.seller-manager-dashboard-container {
+    position: relative;
+	width: calc(100% - 280px);
+	left: 280px;
+	transition: .3s ease;
+  }
+  
+  .seller-manager-content-container {
+    padding: 20px;
+  }
+  
+  
