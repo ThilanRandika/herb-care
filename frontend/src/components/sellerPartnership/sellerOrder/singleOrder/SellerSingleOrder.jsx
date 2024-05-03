@@ -13,7 +13,7 @@ function SellerSingleOrder() {
   const [editable, setEditable] = useState(false); // Track if the data is editable
   const [paymentMethod, setPaymentMethod] = useState("credit");
   const [address, setAddress] = useState("");
-  const [returnProducts, setReturnProducts] = useState({});
+  const [returnProducts, setReturnProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState({});
   const [quantity, setQuantity] = useState('');
   const [returnReason, setReturnReason] = useState('');
@@ -79,6 +79,11 @@ function SellerSingleOrder() {
   };
 
   const toggleReturnForm = () => {
+        setReturnProducts([]);
+        setSelectedProduct('');
+        setQuantity('');
+        setReturnReason('');
+        setProductImages([]);
     setShowReturnForm(!showReturnForm); // Toggles the state between true and false
   };
 
@@ -155,11 +160,13 @@ function SellerSingleOrder() {
 
   const handleAddToSubmit = (event) => {
     event.preventDefault();
+
+    console.log(selectedProduct)
     // Create a new FormData object
     const formData = new FormData();
     // Append product details to FormData
-    formData.append('productId', selectedProduct.id);
-    formData.append('productName', selectedProduct.name);
+    formData.append('productId', selectedProduct.productId);
+    formData.append('productName', selectedProduct.productName);
     formData.append('quantity', quantity);
     formData.append('returnReason', returnReason);
     // Append all product images to FormData
@@ -170,7 +177,7 @@ function SellerSingleOrder() {
     console.log('return products sre'+returnProducts)
 
     // Add the new return product to the array
-    setReturnProducts( formData);
+    setReturnProducts([...returnProducts, formData]);
     // Clear the form fields
     setSelectedProduct('');
     setQuantity('');
@@ -183,14 +190,22 @@ function SellerSingleOrder() {
 
     try {
       // Send all return products to the backend in one request
-      await axios.put("http://localhost:8070/sellerOrder/returnProducts/"+orderId ,returnProducts, {
+      console.log(returnProducts)
+      const promises = returnProducts.map(formData =>
+
+      axios.put("http://localhost:8070/sellerOrder/returnProducts/"+orderId ,formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you have stored the token in localStorage
         },
       } )
+    );
+
+    await Promise.all(promises)
       .then((res) => {
         console.log('Return products submitted successfully:', res.data);
+
+        alert('Return products submitted successfully!');
         
         // Clear the form and state after successful submission
         setReturnProducts([]);
@@ -221,7 +236,7 @@ function SellerSingleOrder() {
                   <h5 className="mb-0">
                     ORDER{" "}
                     <span className="text-primary font-weight-bold">
-                      #{singleOrder.id}
+                      #{singleOrder.orderviewId}
                     </span>
                   </h5>
                 </div>
@@ -702,13 +717,19 @@ function SellerSingleOrder() {
                         <select
                           id="product"
                           className="billing-input form-control"
-                          value={selectedProduct.id}
+                          value={selectedProduct.productId}
                           onChange={(e) => {
                             const productId = e.target.value;
                             const selectedProduct = singleOrder.orderDetails.find(
                               (product) => product.productId === productId
                             );
-                            setSelectedProduct(selectedProduct);
+                          
+                            // Ensure selectedProduct is not undefined before setting state
+                            if (selectedProduct) {
+                              setSelectedProduct(selectedProduct); // Set the selected product
+                            } else {
+                              console.log(`Product with ID ${productId} not found.`);
+                            }
                           }}
                           required
                         >
@@ -787,27 +808,30 @@ function SellerSingleOrder() {
                   )}
                   {/* Display the list of selected return products */}
                   {returnProducts.length > 0 && (
-                    <div>
-                      <h4>Selected Return Products</h4>
-                      <ul>
-                          <li >
-                            {console.log('type',returnProducts)}
-                            <p>
-                              Product ID: {returnProducts.get('productId')}, 
-                              Product Name: {returnProducts.get('productName')}, 
-                              Quantity: {returnProducts.get('quantity')}, 
-                              Return Reason: {returnProducts.get('returnReason')}
-                            </p>
-                            {/* Display uploaded images */}
-                            <div>
-                              {Array.from(returnProducts.getAll('productImages')).map((image, i) => (
-                                <img key={i} src={URL.createObjectURL(image)} alt={`Product ${i + 1}`} style={{ maxWidth: '100px', maxHeight: '100px', marginRight: '10px' }} />
-                              ))}
+                        <div className="seller-selected-return-products">
+                            <h4>Selected Return Products</h4>
+                            <div className="return-product-list">
+                                {returnProducts.map((product, index) => (
+                                    <div key={index} className="seller-selected-ret-card">
+                                        <div className="seller-selected-ret-product-details">
+                                            <p>
+                                                Product ID: {product.get('productId')}, 
+                                                Product Name: {product.get('productName')}, 
+                                                Quantity: {product.get('quantity')}, 
+                                                Return Reason: {product.get('returnReason')}
+                                            </p>
+                                        </div>
+                                        {/* Display uploaded images */}
+                                        <div className="seller-selected-ret-product-images">
+                                            {Array.from(product.getAll('productImages')).map((image, i) => (
+                                                <img key={i} src={URL.createObjectURL(image)} alt={`Product ${index + 1}`} className="seller-selected-ret-product-image" />
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                          </li>
-                      </ul>
-                    </div>
-                  )}
+                        </div>
+                    )}
                 </div>
               )}
               {/* Update button */}

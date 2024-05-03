@@ -1,8 +1,8 @@
-/* SellerRegisterForm.css */
+/* sellerRegisterForm.css */
 
 /* Container styling */
 .seller-register-form-container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -10,30 +10,13 @@
     background-color: #f9f9f9;
 }
 
-.seller-register-product-details{
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    width: 75%;
+/* Form group styling */
+.seller-register-form-group {
+    margin-bottom: 15px;
 }
 
-/* Product list styling */
-.product-list {
-    margin-top: 20px;
-}
-
-/* Individual product item styling */
-.product-item {
-    margin-bottom: 10px;
-}
-
-/* Label for product */
-.product-item-label {
-    font-weight: bold;
-}
-
-/* Input field for product price */
-.product-price-input {
+/* Form control styling */
+.seller-register-form-control {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -41,11 +24,75 @@
     border-radius: 5px;
 }
 
-/* Input field for product quantity */
-.product-quantity-input {
+/* Form text styling */
+.seller-register-form-text {
+    font-size: 0.8em;
+    color: #6c757d;
+}
+
+/* Product details styling */
+.seller-register-product-details {
+    margin-top: 20px;
+}
+
+/* Scrollable container styling */
+.seller-register-scrollable-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Product list styling */
+.seller-register-product-list {
+    margin-top: 10px;
+}
+
+/* Product item styling */
+.seller-register-product-item {
+    margin-bottom: 10px;
+}
+
+/* Product name styling */
+.seller-register-product-name {
+    font-weight: bold;
+}
+
+/* Additional details styling */
+.seller-register-additional-details {
+    margin-top: 20px;
+}
+
+/* Form label styling */
+.seller-register-form-label {
+    font-weight: bold;
+}
+
+/* Submit button styling */
+.seller-register-btn {
+    display: block;
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+.seller-register-btn:hover {
+    background-color: #0056b3;
+}
+
+.seller-register-product-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.seller-register-product-image {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    margin-right: 20px;
     border-radius: 5px;
 }
