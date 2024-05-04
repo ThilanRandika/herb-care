@@ -1,52 +1,82 @@
-/* DiscussionLevelRequests.css */
+/* discussionLevelRequests.css */
 
-.discussion-level-requests-container {
-    margin-top: 5%;
+.seller-manager-disPending-discussion-level-requests-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
-.discussion-level-requests-table {
+.seller-manager-disPending-discussion-level-requests-heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.seller-manager-disPending-discussion-level-requests-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.discussion-level-requests-table th,
-.discussion-level-requests-table td {
+.seller-manager-disPending-discussion-level-requests-table th,
+.seller-manager-disPending-discussion-level-requests-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 15px;
     text-align: left;
 }
 
-.discussion-level-requests-table th {
-    background-color: #f2f2f2;
+.seller-manager-disPending-discussion-level-requests-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #333;
 }
 
-.discussion-level-requests-table td {
-    background-color: #fff;
-}
-
-.discussion-level-requests-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.discussion-level-requests-table tr:hover {
-    background-color: #ddd;
-}
-
-.approve-link,
-.reject-btn {
-    padding: 8px 16px;
-    margin-right: 5px;
-    border: none;
-    cursor: pointer;
+.seller-manager-disPending-discussion-level-requests-email {
+    color: #007bff;
     text-decoration: none;
 }
 
-.approve-link {
-    color: #fff;
-    background-color: #007bff;
+.seller-manager-disPending-discussion-level-requests-email:hover {
+    color: #0056b3;
 }
 
-.reject-btn {
+.seller-manager-disPending-discussion-level-requests-website {
+    color: #17a2b8;
+    text-decoration: none;
+}
+
+.seller-manager-disPending-discussion-level-requests-website:hover {
+    color: #117a8b;
+}
+
+.seller-manager-disPending-approve-link,
+.seller-manager-disPending-reject-btn {
+     /* Adjust padding for button size */
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.seller-manager-disPending-approve-link {
+    background-color: #4caf50;
+    padding: 10px 20px;
     color: #fff;
-    background-color: #dc3545;
+}
+
+.seller-manager-disPending-reject-btn {
+    background-color: #f44336;
+    padding: 10px 30px;
+    color: #fff;
+}
+
+/* Add space between buttons */
+.seller-manager-disPending-approve-link + .seller-manager-disPending-reject-btn {
+    margin-left: 10px;
+    margin-bottom: 5px;
 }

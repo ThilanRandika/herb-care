@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
 
+const crypto = require('crypto');
+
+const generateOrderviewId = () => {
+  const randomNumbers = crypto.randomBytes(2).toString('hex'); 
+  return `HC-${randomNumbers}`; 
+};
+
 const sellerOrderSchema = new mongoose.Schema(
   {
     sellerId: {
@@ -45,6 +52,12 @@ const sellerOrderSchema = new mongoose.Schema(
         images: [String]
       }
     ],
+    orderviewId: {
+      type: String,
+      unique: true,
+      required: true,
+      default: generateOrderviewId
+    }
   },
   { timestamps: true }
 );

@@ -81,7 +81,7 @@ function ProductList() {
               <div class="seller-product-list-card" key={index}>
                 <div class="seller-product-list-image">
                   <img
-                    src="https://th.bing.com/th/id/R.71d3cb5052aa3113ebcfbaf798103647?rik=DI3tsU%2bd8IJMfw&pid=ImgRaw&r=0"//{require(`../../../../../BACKEND/uploads/${product.image}`)}
+                    src={require(`../../../../../BACKEND/uploads/${product.image}`)}
                     className="seller-product-list-image"
                     alt="Product"
                   />
