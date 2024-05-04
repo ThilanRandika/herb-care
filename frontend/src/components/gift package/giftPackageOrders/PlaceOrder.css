@@ -1,0 +1,30 @@
+.PGPO_form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .PGPO_form label {
+    margin-bottom: 10px;
+  }
+  
+  .PGPO_subbttn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .PGPO_subbttn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Additional styling for radio buttons */
+  .PGPO_form input[type="radio"] {
+    margin-right: 5px;
+  }
+  
