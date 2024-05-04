@@ -15,7 +15,7 @@ const feedbackGiftPackageSchema = new Schema({
   },
   packageId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "giftPackageOrder",
+    ref: "defaultgiftpackages",
     required: true
   },
   ratings: {
