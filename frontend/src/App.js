@@ -38,6 +38,7 @@ import PlaceOrder from "./components/gift package/giftPackageOrders/PlaceOrder";
 import DisplayGiftPackOrders from "./components/gift package/giftPackageOrders/DisplayGiftPackOrders";
 import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
+import Cart from "./pages/Order_Management/Cart";
 
 
 
@@ -82,6 +83,9 @@ function App() {
 
         <Route path="/staff/*" element={<StaffMainDashboard/>}></Route>
         <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
+
+
+        <Route path="/cart" element={<Cart/>}></Route>
 
         
 
