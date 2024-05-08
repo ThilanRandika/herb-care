@@ -5,6 +5,7 @@ function Complaints_Dashboard() {
   return (
     <div>
         <AddComplaints/>
+        
     </div>
   )
 }

@@ -79,3 +79,12 @@
 .appointmentRequests-table tbody tr {
   cursor: pointer; /* Set cursor to pointer for the entire row */
 }
+
+.appointmentRequests-success-alert {
+  background-color: #dff0d8; /* Green background color */
+  color: #3c763d; /* Dark green text color */
+  padding: 10px 15px; /* Padding */
+  margin-bottom: 20px; /* Margin bottom to create space */
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #d0e9c6; /* Green border color */
+}

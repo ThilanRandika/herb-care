@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const sellerAppointmentSchema = new mongoose.Schema(
   {
     sellerId: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       ref: "seller",
     },
     topic: {
@@ -11,11 +11,7 @@ const sellerAppointmentSchema = new mongoose.Schema(
       required: true,
     },
     discription: {
-      type: Number,
-      required: true,
-    },
-    AppointmentDate: {
-      type: Date,
+      type: String,
       required: true,
     },
     status: {
@@ -25,8 +21,9 @@ const sellerAppointmentSchema = new mongoose.Schema(
       default: "pending"
     },
   },
+  
   { timestamps: true }
 );
 
-const SellerAppointment = mongoose.model("sellerOrder", sellerAppointmentSchema);
+const SellerAppointment = mongoose.model("sellerAppointment", sellerAppointmentSchema);
 module.exports = SellerAppointment;

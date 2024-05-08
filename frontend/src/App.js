@@ -23,7 +23,6 @@ import ConsultationsCustomer from "./pages/consultation/consultationsCustomer/Co
 import SpecialistInterface from "./pages/consultation/specialist/specialistInterface/SpecialistInterface";
 import ConsultationStaff from "./pages/consultation/staff/consultationStaff/ConsultationStaff";
 
-
 import FeedbackDashboard from "./pages/Feedback&complaints/FeedbackDashboard/FeedbackDashboard";
 
 import GiftPackage_manage from "./pages/giftPackage/staff/Dashboard/GiftPackage_manage";
@@ -37,6 +36,8 @@ import MyOrders from "./pages/Order_Management/myOrders/MyOrders";
 import DisplayDefaultGiftPackages from "./components/gift package/customizeGiftPackage/DisplayDefaultGiftPackages";
 import PlaceOrder from "./components/gift package/giftPackageOrders/PlaceOrder";
 import DisplayGiftPackOrders from "./components/gift package/giftPackageOrders/DisplayGiftPackOrders";
+import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
+import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
 
 
 
@@ -47,7 +48,6 @@ function App() {
         
 
         <Route path="/Feedback&Complains/*" element={<FeedbackDashboard/>}></Route>
-
 
         <Route path="/customer" element={<Home/>}></Route>
         <Route path="/Inventory_Dashboard/*" element={<Inventory_Dashboard />} />
@@ -79,6 +79,10 @@ function App() {
         <Route path="/Gift-Package-Orders" element={<DisplayGiftPackOrders/>}></Route>
         <Route path="/Gift_Packages" element={<DisplayDefaultGiftPackages/>}></Route>
         <Route path="/Place-Order/:id" element={<PlaceOrder/>}></Route>
+
+        <Route path="/staff/*" element={<StaffMainDashboard/>}></Route>
+        <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
+
         
 
       </Routes>

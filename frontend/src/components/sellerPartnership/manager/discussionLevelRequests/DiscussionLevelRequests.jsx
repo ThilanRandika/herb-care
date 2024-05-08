@@ -29,9 +29,9 @@ function DiscussionLevelRequests() {
     };
 
     return (
-        <div className="discussion-level-requests-container">
-            <h1>Discussion Level Partnership Requests</h1>
-            <table className="discussion-level-requests-table">
+        <div className="seller-manager-disPending-discussion-level-requests-container">
+            <h1 className="seller-manager-disPending-discussion-level-requests-heading">Discussion Level Partnership Requests</h1>
+            <table className="seller-manager-disPending-discussion-level-requests-table">
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
@@ -40,7 +40,6 @@ function DiscussionLevelRequests() {
                         <th scope="col">Address</th>
                         <th scope="col">Contact Number</th>
                         <th scope="col">Company Name</th>
-                        <th scope="col">Company Description</th>
                         <th scope="col">Company Website</th>
                         <th scope="col">Tax Id</th>
                         <th scope="col">Actions</th>
@@ -51,16 +50,16 @@ function DiscussionLevelRequests() {
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{discussion.seller_name}</td>
-                            <td><a href={`mailto:${discussion.email}`} target='_blank'>{discussion.email}</a></td>
+                            <td><a className="seller-manager-disPending-discussion-level-requests-email" href={`mailto:${discussion.email}`} target='_blank'>{discussion.email}</a></td>
                             <td>{discussion.address}</td>
                             <td>{discussion.contact_num}</td>
                             <td>{discussion.company}</td>
-                            <td>{discussion.company_discription ? discussion.company_discription : "N/A"}</td>
-                            <td><a href={discussion.website} rel="noreferrer" target='_blank'>Visit Site</a></td>
+                            <td><a className="seller-manager-disPending-discussion-level-requests-website" href={discussion.website} rel="noreferrer" target='_blank'>Visit Site</a></td>
                             <td>{discussion.taxId ? discussion.taxId : "N/A"}</td>
                             <td>
-                                <Link to={`/SellerManagerDashboard/sellerRegisterForm/${discussion._id}`} className="approve-link">Approve</Link>
-                                <button className="reject-btn" onClick={() => handleReject(discussion._id)}>Reject</button>
+                                <div><Link to={`/SellerManagerDashboard/sellerRegisterForm/${discussion._id}`} className="seller-manager-disPending-approve-link">Approve</Link></div>
+                                <br />
+                                <div><button className="seller-manager-disPending-reject-btn" onClick={() => handleReject(discussion._id)}>Reject</button></div>
                             </td>
                         </tr>
                     ))}

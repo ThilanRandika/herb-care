@@ -1,0 +1,54 @@
+/* seller-processing-orders.css */
+
+.seller-processing-order-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.seller-processing-order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.seller-processing-order-table th,
+.seller-processing-order-table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 12px;
+}
+
+.seller-processing-order-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.seller-processing-order-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+}
+
+.seller-processing-order-button:hover {
+    background-color: #45a049;
+}
+
+.seller-processing-order-details {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.seller-processing-order-details th,
+.seller-processing-order-details td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.seller-processing-order-details .seller-processing-order-button {
+    width: 100%;
+    text-align: right;
+}
