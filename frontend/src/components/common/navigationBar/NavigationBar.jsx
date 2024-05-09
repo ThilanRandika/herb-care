@@ -35,6 +35,9 @@ function NavigationBar() {
                 <Link to="/Gift_Packages" className="home-navBar-nav-link">
                 <button>Gift Packages</button>
                 </Link>
+                <Link to="/DisplayGiftPackageUser" className="home-navBar-nav-link">
+                <button>Gift Packages orders User</button>
+                </Link>
             </nav>
         </div>
     </>

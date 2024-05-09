@@ -2,7 +2,6 @@
 
 const router = require("express").Router();
 const GiftPackageOrder = require("../../models/GiftPackage/giftPackageOrder");
-const CustomizeGiftPackage = require("../../models/GiftPackage/customizeGiftPackage");
 const DefaultGiftPack = require("../../models/GiftPackage/defaultGiftpackage");
 const Customer = require("../../models/user/Customer");
 const mongoose = require("mongoose");
@@ -34,7 +33,7 @@ router.route('/create/:packageId').post(verifyToOther, async (req, res) => {
     const totalAmount = parseFloat(defaultGiftPackage.totalPrice) + deliveryPrice;
 
     const newOrder = new GiftPackageOrder({
-      Customer: req.person.userId,
+      customer: req.person.userId,
       packageId: req.params.packageId,
       orderName: req.body.orderName,
       orderAddress: req.body.orderAddress,
@@ -52,6 +51,9 @@ router.route('/create/:packageId').post(verifyToOther, async (req, res) => {
     res.status(500).json({ message: 'Failed to create order', error: error.message });
   }
 });
+
+
+
 
 // GET route to retrieve order details by order ID
 router.route('/order/:orderId').get(async (req, res) => {
@@ -84,16 +86,41 @@ router.route('/order/:orderId').get(async (req, res) => {
 });
 
 
-
 // Display order details in staff dashboard
-router.get('/displayGiftPackageOrders', async (req, res) => {
+router.get("/displayGiftPackageOrders", async (req, res) => {
   try {
-    const giftPackageOrders = await GiftPackageOrder.find()
-    res.json(giftPackageOrders);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const orders = await GiftPackageOrder.find();
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch orders", error: error.message });
   }
-  });
+});
+
+//update status
+// Backend route for updating order status
+// giftPackageOrderRoutes.js
+router.put("/updateStatus/:orderId", async (req, res) => {
+  const { orderId } = req.params;
+  const { newStatus, newPaymentStatus } = req.body;
+
+  try {
+    const order = await GiftPackageOrder.findByIdAndUpdate(
+      orderId,
+      { orderStatus: newStatus, payment: newPaymentStatus },
+      { new: true }
+    );
+    if (!order) {
+      return res.status(404).json({ error: "Order not found" });
+    }
+    res.json(order);
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    res.status(500).json({ error: "Failed to update order status" });
+  }
+});
+
+
 
 
   // Cancel a gift package order
@@ -106,6 +133,20 @@ router.get('/displayGiftPackageOrders', async (req, res) => {
       res.status(500).json({ message: 'Server Error' });
     }
   });
+
+
+  //Display order for user
+// GET route to retrieve orders for a specific customer (user)
+router.route('/orders').get(verifyToOther, async (req, res) => {
+  try {
+    const orders = await GiftPackageOrder.find({ customer: req.person.userId });
+    res.status(200).json({ orders });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to retrieve orders', error: error.message });
+  }
+});
+
 
 
 module.exports = router;

@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const giftPackageOrderSchema = new mongoose.Schema(
   {
-    Customer: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Customer",
-        required: true
-      },
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Customer",
+      required: true
+    },
 
     packageId: {
       type: mongoose.Types.ObjectId,
