@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function TopNavBarSpecialist({ isNotificationVisible, setNotificationVisible, unreadNotificationCount, setUnreadNotificationCount }) {
   const { user, logout } = useContext(AuthContext);
   const [isUserInfoVisible, setUserInfoVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -42,6 +43,12 @@ function TopNavBarSpecialist({ isNotificationVisible, setNotificationVisible, un
     setNotificationVisible(!isNotificationVisible);
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigator(`/specialistInterface/appointmentRequests?search=${encodeURIComponent(searchQuery)}`);
+  };
+  
+
   return (
     <div className="specialistInterface-specialist-top-nav-bar-top-nav-bar-specialist">
       <div className="specialistInterface-specialist-top-nav-bar-logo-container">
@@ -50,9 +57,16 @@ function TopNavBarSpecialist({ isNotificationVisible, setNotificationVisible, un
         </Link>
       </div>
       <div className="specialistInterface-specialist-top-nav-bar-search-bar">
-        <form class="specialistInterface-specialist-top-nav-bar-search-bar">
-          <input class="specialistInterface-specialist-top-nav-bar-search-bar-input" type="search" placeholder="Appointment or Patient" aria-label="Search" />
-          <button class="specialistInterface-specialist-top-nav-bar-search-bar-btn" type="submit">Search</button>
+        <form onSubmit={handleSearch} className="specialistInterface-specialist-top-nav-bar-search-bar">
+          <input
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="specialistInterface-specialist-top-nav-bar-search-bar-input"
+            type="search"
+            placeholder="Appointment or Patient"
+            aria-label="Search"
+          />
+          <button className="specialistInterface-specialist-top-nav-bar-search-bar-btn" type="submit">Search</button>
         </form>
       </div>
       <div className="specialistInterface-specialist-top-nav-bar-notifications" onClick={handleNotificationClick}>
