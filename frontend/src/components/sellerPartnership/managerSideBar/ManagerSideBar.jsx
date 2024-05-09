@@ -11,7 +11,7 @@ function ManagerSideBar() {
           <NavLink
             className="seller-manager-sidebar-link"
             activeClassName="active"
-            to={"/SellerManagerDashboard"}
+            to={"/manager/SellerManagerDashboard"}
             exact
           >
             Dashboard
@@ -21,7 +21,7 @@ function ManagerSideBar() {
           <NavLink
             className="seller-manager-sidebar-link"
             activeClassName="active"
-            to={"/SellerManagerDashboard/pendingSellerRequest"}
+            to={"/manager/SellerManagerDashboard/pendingSellerRequest"}
           >
             Partnership Requests
           </NavLink>
@@ -30,7 +30,7 @@ function ManagerSideBar() {
           <NavLink
             className="seller-manager-sidebar-link"
             activeClassName="active"
-            to={"/SellerManagerDashboard/discussionLevel"}
+            to={"/manager/SellerManagerDashboard/discussionLevel"}
           >
             Discussion Level Requests
           </NavLink>
@@ -39,7 +39,7 @@ function ManagerSideBar() {
           <NavLink
             className="seller-manager-sidebar-link"
             activeClassName="active"
-            to="/SellerManagerDashboard/registeredSellers"
+            to="/manager/SellerManagerDashboard/registeredSellers"
           >
             Registered Sellers
           </NavLink>

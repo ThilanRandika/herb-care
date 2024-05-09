@@ -57,7 +57,7 @@ function DiscussionLevelRequests() {
                             <td><a className="seller-manager-disPending-discussion-level-requests-website" href={discussion.website} rel="noreferrer" target='_blank'>Visit Site</a></td>
                             <td>{discussion.taxId ? discussion.taxId : "N/A"}</td>
                             <td>
-                                <div><Link to={`/SellerManagerDashboard/sellerRegisterForm/${discussion._id}`} className="seller-manager-disPending-approve-link">Approve</Link></div>
+                                <div><Link to={`/manager/SellerManagerDashboard/sellerRegisterForm/${discussion._id}`} className="seller-manager-disPending-approve-link">Approve</Link></div>
                                 <br />
                                 <div><button className="seller-manager-disPending-reject-btn" onClick={() => handleReject(discussion._id)}>Reject</button></div>
                             </td>
