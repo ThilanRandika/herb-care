@@ -1,4 +1,5 @@
 const ConsultAppointment = require("../../models/consultation/ConsultAppointment.js");
+const SpecialistNotification = require("../../models/consultation/SpecialistNotification.js");
 const Availability = require("../../models/consultation/Availability.js");
 const { verifyToOther } = require("../../utils/veryfyToken.js");
 const router = require("express").Router();
@@ -20,6 +21,20 @@ const PDFDocument = require('pdfkit');
       const availabilityId = req.body.availabilityId;
       const bookedTimeSlot = req.body.timeSlot;
       await Availability.findByIdAndUpdate(availabilityId, { $push: { bookedTimeSlots: bookedTimeSlot } });
+
+      // Create a notification for the specialist
+      const notification = new SpecialistNotification({
+        specialist: req.body.specialist,
+        appointment: savedConsultAppointment._id,
+        notificationType: "New Appointment",
+        notificationDateTime: new Date(),
+        notificationStatus: "Unread",
+        appointmentDate: savedConsultAppointment.date,
+        appointmentTime: savedConsultAppointment.timeSlot,
+        appointmentType: savedConsultAppointment.type,
+        notificationBody: "An appointment has been created for you.",
+      });
+      await notification.save();
 
       res.status(200).json(savedConsultAppointment);
     } catch (err) {

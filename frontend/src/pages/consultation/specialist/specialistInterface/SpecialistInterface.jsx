@@ -12,8 +12,9 @@ import NotificationPopup from '../../../../components/consultation/specialist/no
 
 function DashboardSpecialist() {
 
-  const { user } = useContext(AuthContext); // get the specialist ID from authentication context
+  const { user } = useContext(AuthContext); // get the specialist object from authentication context
   const [isNotificationVisible, setNotificationVisible] = useState(false);
+  const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
 
   const handleCloseNotification = () => {
     setNotificationVisible(false);
@@ -22,10 +23,10 @@ function DashboardSpecialist() {
   return (
     <div className="specialistInterface-specialist-allPages">
       <div className="specialistInterface-specialist-top-nav-bar">
-        <TopNavBarSpecialist isNotificationVisible={isNotificationVisible} setNotificationVisible={setNotificationVisible} />
+        <TopNavBarSpecialist isNotificationVisible={isNotificationVisible} setNotificationVisible={setNotificationVisible} unreadNotificationCount={unreadNotificationCount} setUnreadNotificationCount={setUnreadNotificationCount} />
       </div>
       <div className="specialistInterface-specialist-notifications-popup">
-        {isNotificationVisible && <NotificationPopup onClose={handleCloseNotification} />}
+        {isNotificationVisible && <NotificationPopup onClose={handleCloseNotification} setUnreadNotificationCount={setUnreadNotificationCount} />}
       </div>
       <div className="specialistInterface-specialist-container">
         <div className="specialistInterface-specialist-side-nav-bar">

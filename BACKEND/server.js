@@ -25,6 +25,7 @@ const RefundRouter = require("./routes/consultation/refunds.js");
 const AvailabilityRouter = require("./routes/consultation/availabilities.js");
 const SpecialistRouter = require("./routes/consultation/specialists.js");
 const CenterRouter = require("./routes/consultation/centers.js");
+const SpecialistNotificationsRouter = require("./routes/consultation/specialistNotifications.js");
 
 const customerRouter = require( "./routes/user/customer.js" );
 
@@ -76,6 +77,7 @@ app.use("/refund", RefundRouter);
 app.use("/availability", AvailabilityRouter);
 app.use("/specialist", SpecialistRouter);
 app.use("/center", CenterRouter);
+app.use("/specialistNotifications", SpecialistNotificationsRouter);
 
 app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
