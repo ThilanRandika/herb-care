@@ -228,6 +228,9 @@ function AppointmentAddForm(props) {
     switch (id) {
       case "patientName":
         errorMessage = value.trim() ? "" : "Patient name is required";
+        if (!errorMessage && !/^[a-zA-Z\s]*$/.test(value)) {
+          errorMessage = "Patient name should contain only letters and spaces";
+        }
         break;
       case "patientAge":
         errorMessage = value.trim() && /^\d+$/.test(value) && parseInt(value, 10) >= 1 && parseInt(value, 10) <= 120
@@ -250,6 +253,7 @@ function AppointmentAddForm(props) {
       [id]: errorMessage,
     }));
   };
+  
 
 
 
@@ -420,13 +424,13 @@ function AppointmentAddForm(props) {
                   <div className="AppointmentAddForm-date-cal">
                     <Calendar onChange={handleDateChange} value={date} tileDisabled={isDateDisabled} />
                   </div>
-                  <button type="button" onClick={handleShowTimeSlots}>Search Available Time Slots</button> 
+                  <button type="button" className="AppointmentAddForm-availableTime-btn" onClick={handleShowTimeSlots}>Search Available Time Slots</button> 
                 </div>
 
 
                 <div className="AppointmentAddForm-customerInfo">
                   <h4>Patient Info</h4>
-                  <div className="AppointmentAddForm-patientName">
+                  <div className="AppointmentAddForm-patientName AppointmentAddForm-customerInfo-raw">
                     <label htmlFor="patientName" className="form-label">
                       Patient Name
                     </label>
@@ -437,9 +441,9 @@ function AppointmentAddForm(props) {
                       value={patientInfo.patientName}
                       onChange={handlePatientInfoChange}
                     />
-                    {errors.patientName && <span className="error">{errors.patientName}</span>}
+                    {errors.patientName && <span className="AppointmentAddForm-error">{errors.patientName}</span>}
                   </div>
-                  <div className="AppointmentAddForm-patientPhone">
+                  <div className="AppointmentAddForm-patientPhone AppointmentAddForm-customerInfo-raw">
                     <label htmlFor="patientPhone" className="form-label">
                       Phone
                     </label>
@@ -450,9 +454,9 @@ function AppointmentAddForm(props) {
                       value={patientInfo.patientPhone}
                       onChange={handlePatientInfoChange}
                     />
-                    {errors.patientPhone && <span className="error">{errors.patientPhone}</span>}
+                    {errors.patientPhone && <span className="AppointmentAddForm-error">{errors.patientPhone}</span>}
                   </div>
-                  <div className="AppointmentAddForm-patientAge">
+                  <div className="AppointmentAddForm-patientAge AppointmentAddForm-customerInfo-raw">
                     <label htmlFor="patientAge" className="form-label">
                       Age
                     </label>
@@ -463,9 +467,9 @@ function AppointmentAddForm(props) {
                       value={patientInfo.patientAge}
                       onChange={handlePatientInfoChange}
                     />
-                    {errors.patientAge && <span className="error">{errors.patientAge}</span>}
+                    {errors.patientAge && <span className="AppointmentAddForm-error">{errors.patientAge}</span>}
                   </div>
-                  <div className="AppointmentAddForm-patientGender">
+                  <div className="AppointmentAddForm-patientGender AppointmentAddForm-customerInfo-raw">
                     <label className="form-label">Gender</label>
                     <div>
                       <input
@@ -564,7 +568,7 @@ function AppointmentAddForm(props) {
                 )}
               
 
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="appointmentAddForm-submitBtn">Submit</button>
             </>
 
             
