@@ -567,6 +567,7 @@ router.route('/getOneOrder/:orderId').get(verifySellerToOther, async (req, res) 
             
                 id: singleOrder._id, // Assuming MongoDB automatically generates IDs for SellersingleOrder
                 customer: singleOrder.sellerId,
+                orderViewId: singleOrder.orderviewId,
                 emial: seller.email,
                 address: singleOrder.shippingAddress, // Assuming sellerId represents the customer in this context
                 date: singleOrder.createdAt, // Assuming createdAt represents the singleOrder date
@@ -663,44 +664,40 @@ const storage = multer.diskStorage({
   // Route to handle form submission with returnProducts array
   router.put('/returnProducts/:orderId', upload.array('productImages', 5), async (req, res) => {
     try {
-      const returnProducts = req.body; // Get the array of return products from the request body
-      const orderId = req.params.orderId;
+        // Ensure returnProductsArray is an array
+        const returnProductsArray = Array.isArray(req.body) ? req.body : [req.body];
+        const orderId = req.params.orderId;
 
-      console.log(orderId)
-  
-        const { productId, productName, quantity, returnReason } = returnProducts;
-  
-        // Extract filenames of uploaded images for the current return product
-        const images = req.files.map(file => file.filename);
-  
-        // Create a new return product object
-        const newReturnProduct = {
-          product: productId,
-          productName: productName,
-          quantity: quantity,
-          returnReason: returnReason,
-          images: images
-        };
-  
-        // Push the new return product object to the array
-      
-  
-      // Saving all return products to the database
+        // Create an array to hold new return product objects
+        const newReturnProducts = returnProductsArray.map(returnProduct => {
+          const { productId, productName, quantity, returnReason } = returnProduct;
+          // Extract filenames of uploaded images for the current return product
+          const images = req.files.map(file => file.filename);
 
-      const updatedOrder = await SellerOrder.findByIdAndUpdate(
-        { _id: orderId },
-        { $set: { 
-            returnProducts:newReturnProduct,
-         } }, // Assuming req.body.seller contains the updated seller details
-        { new: true }
-      );
-  
+          // Create a new return product object
+          return {
+            product: productId,
+            productName: productName,
+            quantity: quantity,
+            returnReason: returnReason,
+            images: images
+          };
+        });
+
+        // Push the new return products array to the database
+        const updatedOrder = await SellerOrder.findByIdAndUpdate(
+          { _id: orderId },
+          { $push: { returnProducts: { $each: newReturnProducts } } }, // Pushing each new return product individually
+          { new: true }
+        );
+
       res.status(201).json({ success: true, data: updatedOrder });
     } catch (err) {
       console.error(err);
       res.status(500).json({ success: false, error: 'Server Error' });
     }
   });
+
 
 
 router.route("/generateOrderInvoice/:id").get(verifySellerToOther, async(req, res) => {
