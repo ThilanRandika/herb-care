@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function GiftPackage_manage(){
 
     return(
-        <div>
+        <div className="gift-dashboard-container">
             <h2><center>GiftPackage_management</center></h2>
 
             <Link to="/Default_gift_packages"><button className="giftPackage-staff-giftPackageManage-btn">Default gift packages</button></Link> {/*Display exsisting default gift packages*/}

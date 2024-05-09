@@ -1,92 +1,87 @@
-/* Style your table as needed */
-/* table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  tr:hover {
-    background-color: #ffffff;
-  }
-  
-  .acceptButton {
-    padding: 8px 16px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .acceptButton:hover {
-    background-color: #45a049;
-  }
+/* staffNewOrders.css */
 
-  .rejectButton {
-    padding: 8px 16px;
-    background-color: #ea3939;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .rejectButton:hover {
-    background-color: #df0404;
-  } */
+/* Container styling */
+.staffNewOrders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-
-
-  /* Existing CSS */
+/* Table styling */
 .staffNewOrders-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
+/* Table header and data cell styling */
 .staffNewOrders-th,
 .staffNewOrders-td {
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 8px;
+  padding: 12px;
 }
 
+/* Alternate row background color */
 .staffNewOrders-tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* Accept Button */
-.staffNewOrders-acceptButton {
+/* Button styling */
+.staffNewOrders-button {
   padding: 8px 16px;
-  background-color: #4caf50;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Accept button */
+.staffNewOrders-acceptButton {
+  background-color: #4caf50;
+  color: white;
+  float: left;
+  margin-right: 5px;
 }
 
 .staffNewOrders-acceptButton:hover {
   background-color: #45a049;
 }
 
-/* Reject Button */
+/* Reject button */
 .staffNewOrders-rejectButton {
-  padding: 8px 16px;
   background-color: #ea3939;
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  margin-right: 30px;
+  float: right; 
 }
 
 .staffNewOrders-rejectButton:hover {
   background-color: #df0404;
+}
+
+/* Details table */
+.staffNewOrders-detailsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+/* Details table header and data cell styling */
+.staffNewOrders-detailsTh,
+.staffNewOrders-detailsTd {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+/* Total price row */
+.staffNewOrders-totalRow {
+  font-weight: bold;
+}
+
+/* Button container */
+.staffNewOrders-buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }

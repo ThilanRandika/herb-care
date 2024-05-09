@@ -1,0 +1,72 @@
+/* seller-complete-orders.css */
+
+/* Table Styles */
+.seller-complete-order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.seller-complete-order-table th,
+.seller-complete-order-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.seller-complete-order-table th {
+  background-color: #f2f2f2;
+}
+
+.seller-complete-order-table tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Order Details Styles */
+.seller-complete-order-orderDetails {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.seller-complete-order-orderDetails th,
+.seller-complete-order-orderDetails td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.seller-complete-order-orderDetails th {
+  background-color: #f2f2f2;
+}
+
+.seller-complete-order-orderDetails tfoot td {
+  background-color: #f2f2f2;
+}
+
+.seller-complete-order-orderDetails tfoot td:first-child {
+  font-weight: bold;
+}
+
+/* Button Styles */
+.seller-complete-order-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.seller-complete-order-button:hover {
+  background-color: #45a049;
+}
+
+/* Toggle Arrow Styles */
+.seller-complete-order-toggleArrow {
+  font-size: 20px;
+  cursor: pointer;
+}
