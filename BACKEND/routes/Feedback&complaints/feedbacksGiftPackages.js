@@ -47,8 +47,8 @@ router.post('/add/:packageId', verifyToOther, upload.array('image', 10), async (
   
 
 // Route to get feedbacks for a specific gift package
-// GET http://localhost:8070/feedbacksGiftPackage/:productId
-router.get('/single/:packageId', async (req, res) => {
+// GET http://localhost:8070/feedbacksGiftPackage/singleFeedback/:packageId
+router.get('/singleFeedback/:packageId', async (req, res) => {
   try {
     const packageId = req.params.packageId;
     const feedbacks = await FeedbackGiftPackage.find({ packageId: packageId }).populate('Customer', 'customer_name');
@@ -58,6 +58,7 @@ router.get('/single/:packageId', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 
 //Read - User Display

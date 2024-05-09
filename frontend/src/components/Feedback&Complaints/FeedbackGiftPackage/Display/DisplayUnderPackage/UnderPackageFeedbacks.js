@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './UnderPackageFeedbacks.css'
 
 // Function to generate star icons based on rating value
 const generateStars = (rating) => {
@@ -22,7 +23,7 @@ const FeedbackList = (props) => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get(`http://localhost:8070/feedbacksGiftPackage/single/${props.productid}`);
+        const response = await axios.get(`http://localhost:8070/feedbackGiftPackage/singleFeedback/${props.packageId}`);   
         setFeedbacks(response.data);
         setLoading(false);
       } catch (error) {
@@ -32,20 +33,19 @@ const FeedbackList = (props) => {
     };
 
     fetchFeedbacks();
-  }, [props.productid]);
+  }, [props.packageId]);
 
   return (
-    <div>
-      <h1>Ratings & Reviews</h1>
-      
-      <ul>
+    <div className="UPGFAS_containor22">
+      <h1 className="UPGFAS_titl">Ratings & Reviews</h1>
+      <ul className="UPGFAS_ULLLL">
         {feedbacks && feedbacks.map((feedback) => (
           <li key={feedback._id}>
-            <p>Customer Name: {feedback.Customer?.customer_name}</p>
-            <p>Feedback: {feedback.message}</p>
-            <p>Ratings: {generateStars(feedback.ratings)}</p>
+            <p className="UPGFAS_name">{feedback.Customer.customer_name}</p>
+            <p className="UPGFAS_mess">{feedback.message}</p>
+            <p className="UPGFAS_rat">{generateStars(feedback.ratings)}</p>
             {feedback.image && feedback.image.map((image, index) => (
-              <img key={index} src={`http://localhost:8070/uploads/${image}`} alt={`Image ${index + 1}`} />
+              <img className="UPGFAS_im" key={index} src={require(`../../../../../../../BACKEND/uploads/${image}`)} alt={`Image ${index + 1}`} />
             ))}
           </li>
         ))}
