@@ -43,7 +43,7 @@ const giftPackageOrderSchema = new mongoose.Schema(
       required: true,
     },
 
-    deliveryPrice: {
+    totalAmount: {
       type: Number,
       required: false,
     },

@@ -22,6 +22,17 @@ router.route('/create/:packageId').post(verifyToOther, async (req, res) => {
       return res.status(400).json({ message: 'Invalid packageId' });
     }
 
+    // Get the default gift package details
+    const defaultGiftPackage = await DefaultGiftPack.findById(req.params.packageId);
+
+    if (!defaultGiftPackage) {
+      return res.status(404).json({ message: 'Package not found' });
+    }
+
+    // Calculate total amount (total price + delivery price)
+    const deliveryPrice = 200;
+    const totalAmount = parseFloat(defaultGiftPackage.totalPrice) + deliveryPrice;
+
     const newOrder = new GiftPackageOrder({
       Customer: req.person.userId,
       packageId: req.params.packageId,
@@ -31,15 +42,48 @@ router.route('/create/:packageId').post(verifyToOther, async (req, res) => {
       postalCode: req.body.postalCode,
       mobileNum: req.body.mobileNum,
       paymentMethod: req.body.paymentMethod,
+      totalAmount: totalAmount,
     });
 
     await newOrder.save();
-    res.status(201).json({ message: 'Order submitted successfully' });
+    res.status(201).json({ message: 'Order submitted successfully', order: newOrder, totalPrice: defaultGiftPackage.totalPrice, totalAmount: totalAmount });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to create order', error: error.message });
   }
 });
+
+// GET route to retrieve order details by order ID
+router.route('/order/:orderId').get(async (req, res) => {
+  try {
+    const order = await GiftPackageOrder.findById(req.params.orderId);
+    
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    const defaultGiftPackage = await DefaultGiftPack.findById(order.packageId);
+    if (!defaultGiftPackage) {
+      return res.status(404).json({ message: 'Default gift package not found' });
+    }
+
+    const totalPrice = defaultGiftPackage.totalPrice;
+    const deliveryPrice = 200;
+    const totalAmount = parseFloat(totalPrice) + deliveryPrice;
+
+    res.status(200).json({
+      order,
+      totalPrice,
+      deliveryPrice,
+      totalAmount
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to retrieve order details', error: error.message });
+  }
+});
+
+
 
 // Display order details in staff dashboard
 router.get('/displayGiftPackageOrders', async (req, res) => {
