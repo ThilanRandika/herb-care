@@ -6,17 +6,15 @@ import StaffProcessingOrders from '../../../components/sellerPartnership/staff/p
 import StaffReadyToDeliveryOrders from '../../../components/sellerPartnership/staff/readyToDelivery/StaffReadyToDeliveryOrders'
 import StaffDeliveryOrders from '../../../components/sellerPartnership/staff/deliveryOrders/StaffDeliveryOrders'
 import StaffCompleteOrders from '../../../components/sellerPartnership/staff/completeOrder/StaffCompleteOrders'
+import './sellerStaffDashboard.css'
 
 function SellerStaffDashboard() {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-1">
+      <div className="seller-staff-dashboard-container">
             <StaffSideBar />
-          </div>
 
-          <div className="col-lg-11">
+          <div className="seller-staff-content-container">
             <Routes>
             <Route
                 exact
@@ -32,7 +30,6 @@ function SellerStaffDashboard() {
               <Route exact path="/completeOrders" element={<StaffCompleteOrders />} />
             </Routes>
           </div>
-        </div>
       </div>
     </>
   )

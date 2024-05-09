@@ -18,6 +18,8 @@ const corsOptions = {
   app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+const StaffRouter = require("./routes/staff/staff.js");
+
 const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
 const RefundRouter = require("./routes/consultation/refunds.js");
 const AvailabilityRouter = require("./routes/consultation/availabilities.js");
@@ -65,6 +67,9 @@ mongoose.connect(URL, {
 
 
 app.use(cookieParser());
+
+
+app.use("/staff", StaffRouter);
 
 
 app.use("/consultAppointment", ConsultAppointmentsRouter);
