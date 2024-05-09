@@ -9,6 +9,7 @@ import Availability from '../availability/Availability';
 import { AuthContext } from '../../../../context/AuthContext';
 import TopNavBarSpecialist from '../../../../components/consultation/specialist/topNavBarSpecialist/TopNavBarSpecialist';
 import NotificationPopup from '../../../../components/consultation/specialist/notificationPopupSpecialist/NotificationPopupSpecialist'
+import SpecialistProfile from '../specialistProfile/SpecialistProfile';
 
 function DashboardSpecialist() {
 
@@ -38,6 +39,7 @@ function DashboardSpecialist() {
             <Route path="/appointmentRequests" element={<AppointmentRequests specialistID={user._id}/>}></Route>
             <Route path="/appointments" element={<Appointments specialistID={user._id}/>}></Route>
             <Route path="/availability" element={<Availability specialistID={user._id}/>}></Route>
+            <Route path="/profile" element={<SpecialistProfile />}></Route>
           </Routes>
         </div>
       </div>
