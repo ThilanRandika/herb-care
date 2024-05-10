@@ -133,3 +133,12 @@
 .AppointmentAddForm-customerInfo-raw{
   margin-bottom: 20px;
 }
+
+.AppointmentAddForm-patientGender{
+  display: flex;
+  gap: 10px;
+}
+
+.AppointmentAddForm-timeSlots{
+  margin-top: 20px;
+}

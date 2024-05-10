@@ -470,7 +470,7 @@ function AppointmentAddForm(props) {
                     {errors.patientAge && <span className="AppointmentAddForm-error">{errors.patientAge}</span>}
                   </div>
                   <div className="AppointmentAddForm-patientGender AppointmentAddForm-customerInfo-raw">
-                    <label className="form-label">Gender</label>
+                    <label className="form-label">Gender : </label>
                     <div>
                       <input
                         type="radio"
