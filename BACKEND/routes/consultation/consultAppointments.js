@@ -347,6 +347,77 @@ router.route("/rejectAppointment/:id").put(async (req, res) => {
 
 
 
+    // Get the count of ongoing appointments for a specific specialist
+    router.route("/getOngoingAppointmentsCount/:specialistId").get(async (req, res) => {
+      try {
+        const ongoingAppointmentsCount = await ConsultAppointment.countDocuments({
+          specialist: req.params.specialistId,
+          status: { $ne: "Completed" }, // Excludes appointments with status "Completed"
+        });
+        res.status(200).json({ count: ongoingAppointmentsCount });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve ongoing appointments count" });
+      }
+    });
+
+
+    // Get the count of all appointments for a specific specialist
+    router.route("/getAllAppointmentsCount/:specialistId").get(async (req, res) => {
+      try {
+        const allAppointmentsCount = await ConsultAppointment.countDocuments({
+          specialist: req.params.specialistId
+        });
+        res.status(200).json({ count: allAppointmentsCount });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve all appointments count" });
+      }
+    });
+
+
+    // Get the count of completed appointments for a specific specialist
+    router.route("/getCompletedAppointmentsCount/:specialistId").get(async (req, res) => {
+      try {
+        const completedAppointmentsCount = await ConsultAppointment.countDocuments({
+          specialist: req.params.specialistId,
+          status: "Completed", // Filter appointments with status "Completed"
+        });
+        res.status(200).json({ count: completedAppointmentsCount });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve completed appointments count" });
+      }
+    });
+
+
+    // Get today's appointments count for a specific specialist
+    router.route("/getTodaysAppointmentsCount/:specialistId").get(async (req, res) => {
+      try {
+        // Get the current date
+        const currentDate = new Date();
+        // Set the start of the day to 00:00:00
+        currentDate.setHours(0, 0, 0, 0);
+        // Set the end of the day to 23:59:59
+        const endOfDay = new Date(currentDate);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        const todaysAppointmentsCount = await ConsultAppointment.countDocuments({
+          specialist: req.params.specialistId,
+          date: { $gte: currentDate, $lte: endOfDay }, // Filter appointments for today
+        });
+
+        res.status(200).json({ count: todaysAppointmentsCount });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve today's appointments count" });
+      }
+    });
+
+
+    
+
+
 
     module.exports = router;
     
