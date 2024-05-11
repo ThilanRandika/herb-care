@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../context/AuthContext';
 import './specialistDashboard.css';
+import CalenderSpecialistAvailabilitiesDashBoard from '../../../../components/consultation/specialist/calenderSpecialistAvailabilitiesDashBoard/CalenderSpecialistAvailabilitiesDashBoard';
 
 function SpecialistDashboard(props) {
   const { user } = useContext(AuthContext);
@@ -61,7 +62,7 @@ function SpecialistDashboard(props) {
         </div>
 
         <div className="specialistDashboard-calenderContent">
-          a
+          <CalenderSpecialistAvailabilitiesDashBoard specialistID={user._id}  />
         </div>
       </div>
     </div>

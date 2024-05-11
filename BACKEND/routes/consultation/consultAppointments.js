@@ -415,6 +415,26 @@ router.route("/rejectAppointment/:id").put(async (req, res) => {
     });
 
 
+    // Route to get the dates of ongoing appointments for a specific specialist
+    router.route("/getOngoingAppointmentDates/:specialistId").get(async (req, res) => {
+      try {
+        // Find appointments that are not marked as "Completed" for the given specialist
+        const appointments = await ConsultAppointment.find({
+          specialist: req.params.specialistId,
+          status: { $ne: "Completed" } // Exclude appointments with status "Completed"
+        });
+
+        // Extract unique dates from the appointments
+        const appointmentDates = [...new Set(appointments.map(appointment => appointment.date.toDateString()))];
+
+        res.status(200).json({ dates: appointmentDates });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve ongoing appointment dates" });
+      }
+    });
+
+
     
 
 
