@@ -202,5 +202,18 @@ router.get("/pendingRefunds", async (req, res) => {
 });
 
 
+// Get the count of incomplete refunds
+router.get("/incompleteRefundsCount", async (req, res) => {
+  try {
+    const incompleteRefundsCount = await Refund.countDocuments({ refundStatus: { $ne: "Completed" } });
+    res.status(200).json({ count: incompleteRefundsCount });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch incomplete refunds count" });
+  }
+});
+
+
+
 
 module.exports = router;
