@@ -51,6 +51,14 @@ function StaffMainDashboard() {
     <li className="main-staff-sidebar-item">
       <Link
         className="main-staff-sidebar-link"
+        to="/staff/Staff_Dashboard"
+      >
+        Inventory
+      </Link>
+    </li>
+    <li className="main-staff-sidebar-item">
+      <Link
+        className="main-staff-sidebar-link"
         to="/staff/DisplayFeedbackStaff"
       >
         Feedbacks / Complanes
