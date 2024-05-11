@@ -4,7 +4,6 @@ import './AddComplaints.css'
 import { useLocation } from 'react-router-dom';
 
 const ComplaintForm = () => {
-    //const [order, setOrder] = useState('');
     const [complaintsName, setComplaintsName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');

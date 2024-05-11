@@ -43,15 +43,11 @@ function DisplayDefaultGiftPackages() {
                 <p>{giftPackage.products}</p>
                 <br></br>
                 <p>Total Price: Rs.{giftPackage.totalPrice}</p>
-                <div className="button-container">
-                  <Link to={{
-                    pathname: `/Place-Order/${giftPackage._id}`,
-                    state: {
-                      packageDetails: giftPackage,
-                      customerDetails: null // You can update this with actual customer details
-                    }
-                  }}><button className="btn">Order Package</button></Link>
-                </div>
+                <Link to={`/DisplaySinglePackage?packageId=${giftPackage._id}`}>
+                  <button className="btn">See details</button>
+                </Link>
+
+                
             </div>
           </div>
         ))}

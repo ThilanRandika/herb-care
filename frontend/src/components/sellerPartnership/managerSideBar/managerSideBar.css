@@ -1,36 +1,36 @@
+/* Additional CSS */
+
 .seller-manager-sidebar {
-    position: fixed;
-	  top: 0;
-	  left: 0;
-	  width: 280px;
-	  height: 100%;
-    z-index: 2000;
-    overflow-x: hidden;
-	  scrollbar-width: none;
-    background-color: #333;
-    margin: 10px;
-    border-radius: 10px;
-  }
-  
-  .seller-manager-sidebar-nav {
-    list-style-type: none;
-    padding: 20px;
-  }
-  
-  .seller-manager-sidebar-item {
-    margin-bottom: 10px;
-  }
-  
-  .seller-manager-sidebar-link {
-    display: block;
-    padding: 10px;
-    color: #fff;
-    border-radius: 10px;
-    text-decoration: none;
-  }
-  
-  .seller-manager-sidebar-link:hover,
-  .seller-manager-sidebar-link.active {
-    color: #fff;
-    background-color: #555;
-  }
+  width: auto;
+  height: 50px;
+  margin: 10px;
+  background: #333;
+  font-size: 0;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
+}
+
+.seller-manager-sidebar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Align items horizontally */
+}
+
+.seller-manager-sidebar-item {
+  margin-right: 10px; /* Spacing between items */
+}
+
+.seller-manager-sidebar-link {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  line-height: 50px;
+  padding: 0 20px;
+  display: inline-block;
+  position: relative;
+}
+
+.seller-manager-sidebar-link:hover {
+  background-color: #2c3e50;
+}
