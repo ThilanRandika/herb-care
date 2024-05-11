@@ -214,6 +214,32 @@ router.get("/incompleteRefundsCount", async (req, res) => {
 });
 
 
+// Get the count of all refunds
+router.get("/allRefundsCount", async (req, res) => {
+  try {
+    const allRefundsCount = await Refund.countDocuments(); // Corrected variable name
+    res.status(200).json({ count: allRefundsCount });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch all refunds count" }); // Updated error message
+  }
+});
+
+
+
+// Get the count of incomplete refunds
+router.get("/completeRefundsCount", async (req, res) => {
+  try {
+    const completeRefundsCount = await Refund.countDocuments({ refundStatus: "Completed" }); // Corrected variable name
+    res.status(200).json({ count: completeRefundsCount });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch complete refunds count" }); // Updated error message
+  }
+});
+
+
+
 
 
 module.exports = router;
