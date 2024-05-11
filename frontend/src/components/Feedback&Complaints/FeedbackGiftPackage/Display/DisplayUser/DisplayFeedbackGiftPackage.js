@@ -56,7 +56,11 @@ const UserFeedbackGiftpackage = () => {
   return (
     <div>
       <br />
-      <h2 className="DFGPU_title">Gift Package Feedback History</h2>
+      <div className="DFGPU_title_card">
+      <h2 className="DFGPU_title">Gift Package Feedbacks</h2>
+      <p className="DFGPU_title">Manage your submitted Feedbacks for Gift Packages</p>
+      </div>
+      
       <br />
       <ul className="DFGPU_containor">
         {Array.isArray(feedbacks) && feedbacks.map((item) => (
@@ -90,8 +94,11 @@ const UserFeedbackGiftpackage = () => {
                   Created Date: {new Date(item.createdAt).toLocaleDateString()}<br />
                   Created Time: {new Date(item.createdAt).toLocaleTimeString()}<br /><br />
                 </p>
-                <button className="DFGPU_del" onClick={() => handleDelete(item._id)}>Delete</button>
-                <button className="DFGPU_edit" onClick={() => handleEdit(item._id)}>Edit</button>
+                <div className="DFGPU_btn_container"> 
+                  <button className="DFGPU_del" onClick={() => handleDelete(item._id)}>Delete</button>
+                  <button className="DFGPU_edit" onClick={() => handleEdit(item._id)}>Edit</button>
+                </div>
+                
               </>
             )}
           </li>

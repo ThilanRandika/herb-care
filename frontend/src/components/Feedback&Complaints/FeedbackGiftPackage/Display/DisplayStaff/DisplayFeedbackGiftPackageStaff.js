@@ -74,7 +74,11 @@ const AdminFeedbackList = () => {
   return (
     <div>
       <br />
-      <h1 className='DFGPST_title'>Gift Packages Feedbacks List </h1>
+      <div className='DFGPST_title_card'>
+        <h1 className='DFGPST_title'>Gift Packages Feedback</h1>
+        <p className='DFGPST_title'>Manage Gift Packages Feedbacks</p>
+      </div>
+      
       <br />
       
       <input className='DFGPST_searchfeedback' type="text" placeholder="Search customer...." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>

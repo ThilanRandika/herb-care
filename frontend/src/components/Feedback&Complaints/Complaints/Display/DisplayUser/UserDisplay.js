@@ -31,7 +31,11 @@ const UserDisplay = () => {
   return (
     <div>
       <br />
-      <h2 className='UD_title'>My Complaints</h2>
+      <div className='UD_title_card'>
+        <h2 className='UD_title'>My Complaints</h2>
+        <p className='UD_title'>Manage your complaints</p>
+      </div>
+      
       <br />
       <ListGroup className='UD_UL'>
         {complaints.map((complaint) => (
@@ -45,7 +49,7 @@ const UserDisplay = () => {
                 <strong>Date:</strong> {new Date(complaint.createdAt).toLocaleDateString()} <br />
                 <strong>Time:</strong> {new Date(complaint.createdAt).toLocaleTimeString()}
               </p>
-              <Button variant="danger" size="sm" style={{ marginLeft: '10px' }} onClick={() => handleDelete(complaint._id)}>Delete</Button>
+              <Button className='CUS_btnDel' variant="danger" size="sm" style={{ marginLeft: '10px' }} onClick={() => handleDelete(complaint._id)}>Delete</Button>
             </div>
           </ListGroup.Item>
         ))}

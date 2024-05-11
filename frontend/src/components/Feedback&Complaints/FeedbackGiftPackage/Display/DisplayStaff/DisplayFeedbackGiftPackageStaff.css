@@ -1,9 +1,13 @@
 .DFGPST_title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
+  text-align: center;
+  color: #2A3C24;
   }
+
+.DFGPST_title_card{
+  padding: 50px;
+  background-color: #CAD593;
+  margin-bottom: 30px;
+}
 
   .DFGPST_searchfeedback {
   margin: 20px;
@@ -12,6 +16,7 @@
 }
 
   .DFGPST_table {
+    margin: 20px;
     width: 100%;
     border-collapse: collapse;
   }
@@ -50,7 +55,7 @@
   
   .DFGPST_deletebtn {
     padding: 5px 10px;
-    background-color: #1f8b33;
+    background-color: #143109;
     color: white;
     border: none;
     border-radius: 5px;
@@ -63,7 +68,7 @@
 
   .DFGPST_pdfdownloadbtn {
     padding: 5px 10px;
-    background-color: #1f8b33; 
+    background-color: #143109; 
     color: white;
     border: none;
     border-radius: 5px;

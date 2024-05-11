@@ -83,7 +83,11 @@ const StaffDashboard = () => {
 return (
   <div>
     <br />
-    <h1 className='FSD_title'>Feedbacks Lists</h1><br></br>
+    <div className='FSD_title_card'>
+       <h1 className='FSD_title'>Feedback List</h1>
+       <p className='FSD_title'>Manage the feedbacks</p>
+    </div>
+    <br></br>
 
     <input className='FSD_searchfeedback' type="text" placeholder="Search customer...." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
     
