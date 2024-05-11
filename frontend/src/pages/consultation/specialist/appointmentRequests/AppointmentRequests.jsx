@@ -8,6 +8,7 @@ function AppointmentRequests(props) {
   const [specialist, setSpecialist] = useState("");
   const [expandedAppointment, setExpandedAppointment] = useState(null);
   const [loading, setLoading] = useState(true); // State to track loading status
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     setSpecialist(props.specialistID);
@@ -29,6 +30,17 @@ function AppointmentRequests(props) {
         setLoading(false); // Set loading to false in case of error
       });
   }, []);
+
+
+
+  // Close success alert after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [successMessage]);
   
 
 
@@ -37,8 +49,8 @@ function AppointmentRequests(props) {
     axios.put(`http://localhost:8070/consultAppointment/rejectAppointment/${id}`)
         .then((res) => {
             console.log("Request rejected successfully", res.data);
-
-            
+            setSuccessMessage("Appointment rejected successfully!");
+            setExpandedAppointment(null); // Close all expanded appointment details
             axios.get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
               .then((res) => {
                   console.log("Got data: ", res.data);
@@ -61,6 +73,8 @@ function AppointmentRequests(props) {
     axios.put(`http://localhost:8070/consultAppointment/completeAppointment/${id}`)
       .then((res) => {
         console.log("Appointment completed successfully", res.data);
+        setSuccessMessage("Appointment completed successfully!");
+        setExpandedAppointment(null); // Close all expanded appointment details
         // Fetch appointments again to update the list
         axios.get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
           .then((res) => {
@@ -98,6 +112,7 @@ function AppointmentRequests(props) {
   // If not loading, render the page
   return (
     <div className="appointmentRequests-container">
+      {successMessage && <div className="appointmentRequests-success-alert">{successMessage}</div>}
       <h1>Upcoming Appointments</h1>
       <table className="appointmentRequests-table">
         <thead>

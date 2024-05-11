@@ -1,71 +1,165 @@
-/* PendingSellerRequests.css */
-
-.pending-seller-requests-container {
-    margin-top: 5%;
+/* seller-pending-req-container */
+.seller-pending-req-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
-.pending-seller-requests-table {
+/* seller-pending-req-heading */
+.seller-pending-req-heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* seller-pending-req-table */
+.seller-pending-req-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.pending-seller-requests-table th,
-.pending-seller-requests-table td {
+/* seller-pending-req-table th, seller-pending-req-table td */
+.seller-pending-req-table th,
+.seller-pending-req-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 15px;
     text-align: left;
 }
 
-.pending-seller-requests-table th {
-    background-color: #f2f2f2;
+/* seller-pending-req-table th */
+.seller-pending-req-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #333;
 }
 
-.pending-seller-requests-table td {
-    background-color: #fff;
-}
-
-.pending-seller-requests-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.pending-seller-requests-table tr:hover {
-    background-color: #ddd;
-}
-
-.approve-btn,
-.reject-btn {
-    padding: 8px 16px;
-    margin-right: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-.approve-btn {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.reject-btn {
-    background-color: #f44336;
-    color: white;
-}
-
-
-
-.details-row {
+/* seller-pending-req-details-row */
+.seller-pending-req-details-row {
     background-color: #f9f9f9;
 }
 
-.seller-details {
-    padding: 10px;
+/* seller-pending-req-details */
+.seller-pending-req-details {
+    padding: 15px;
+    border-top: 2px solid #ddd;
+    background-color: #fff;
 }
 
-/* Hide the seller details by default */
-.details-row .seller-details {
+/* seller-pending-req-details p */
+.seller-pending-req-details p {
+    margin-bottom: 10px;
+}
+
+/* seller-pending-req-details-row.open */
+.seller-pending-req-details-row.open .seller-pending-req-details {
+    display: table-row;
+}
+
+/* seller-pending-req-approve-btn, seller-pending-req-reject-btn */
+.seller-pending-req-approve-btn,
+.seller-pending-req-reject-btn {
+    
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* seller-pending-req-approve-btn */
+.seller-pending-req-approve-btn {
+    background-color: #4caf50;
+    padding: 8px 15px;
+    color: #fff;
+}
+
+/* seller-pending-req-reject-btn */
+.seller-pending-req-reject-btn {
+    background-color: #f44336;
+    padding: 8px 22px;
+    color: #fff;
+}
+
+/* seller-pending-req-email */
+.seller-pending-req-email {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* seller-pending-req-email:hover */
+.seller-pending-req-email:hover {
+    color: #0056b3;
+}
+
+/* seller-pending-req-website */
+.seller-pending-req-website {
+    color: #17a2b8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* seller-pending-req-website:hover */
+.seller-pending-req-website:hover {
+    color: #117a8b;
+}
+
+/* seller-pending-req-details-row.open */
+.seller-pending-req-details-row.open .seller-pending-req-details {
+    display: table-row;
+}
+
+/* seller-pending-req-details */
+.seller-pending-req-details {
     display: none;
 }
 
-/* Show the seller details when the row is open */
-.details-row.open .seller-details {
-    display: block;
+/* seller-pending-req-actions */
+.seller-pending-req-actions {
+    margin-top: 15px;
+}
+
+/* seller-pending-req-actions button */
+.seller-pending-req-actions button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* seller-pending-req-actions button.seller-pending-req-approve-btn */
+.seller-pending-req-actions button.seller-pending-req-approve-btn {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+/* seller-pending-req-actions button.seller-pending-req-reject-btn */
+.seller-pending-req-actions button.seller-pending-req-reject-btn {
+    background-color: #f44336;
+    color: #fff;
+}
+
+
+/* pendingSellerRequests.css */
+
+.toggle-part-table {
+    width: 100%;
+}
+
+.toggle-part-table td {
+    padding: 8px 15px;
+    border-bottom: 1px solid #ddd;
+    width: 12.5%; /* Set width to match the percentage of columns in the main table */
+}
+
+.toggle-part-table strong {
+    margin-right: 5px;
 }

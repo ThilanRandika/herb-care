@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import './pendingSellerRequests.css'; // Import the CSS file for styling
+import './pendingSellerRequests.css';
 
 function PendingSellerRequests() {
     const [requests, setRequests] = useState([]);
@@ -41,9 +41,9 @@ function PendingSellerRequests() {
     };
 
     return (
-        <div className="pending-seller-requests-container">
-            <h1>Pending Seller Requests</h1>
-            <table className="pending-seller-requests-table">
+        <div className="seller-pending-req-container">
+            <h1 className="seller-pending-req-heading">Pending Seller Requests</h1>
+            <table className="seller-pending-req-table">
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
@@ -52,7 +52,6 @@ function PendingSellerRequests() {
                         <th scope="col">Address</th>
                         <th scope="col">Contact Number</th>
                         <th scope="col">Company Name</th>
-                        <th scope="col">Company Description</th>
                         <th scope="col">Company Website</th>
                         <th scope="col">Tax Id</th>
                         <th scope="col">Actions</th>
@@ -64,30 +63,57 @@ function PendingSellerRequests() {
                             <tr onClick={() => toggleOrderDetails(request)} >
                                 <td>{index + 1}</td>
                                 <td>{request.seller_name}</td>
-                                <td><a href={`mailto:${request.email}`} target='_blank'>{request.email}</a></td>
+                                <td><a className="seller-pending-req-email" href={`mailto:${request.email}`} target='_blank'>{request.email}</a></td>
                                 <td>{request.address}</td>
                                 <td>{request.contact_num}</td>
                                 <td>{request.company}</td>
-                                <td>{request.company_discription ? request.company_discription : "N/A"}</td>
                                 <td>{request.website ? request.website : "N/A"}</td>
                                 <td>{request.taxId ? request.taxId : "N/A"}</td>
                                 <td>
-                                    <button className="approve-btn" onClick={() => handleApprove(request._id)}>Approve</button>
-                                    <button className="reject-btn" onClick={() => handleReject(request._id)}>Reject</button>
+                                    <button className="seller-pending-req-approve-btn" onClick={() => handleApprove(request._id)}>Approve</button>
+                                    <button className="seller-pending-req-reject-btn" onClick={() => handleReject(request._id)}>Reject</button>
                                 </td>
                             </tr>
                             {openOrder === request && (
-                                <tr className={`details-row ${openOrder === request ? 'open' : ''}`}>
+                                <tr className={`seller-pending-req-details-row ${openOrder === request ? 'open' : ''}`}>
                                     <td colSpan="10">
-                                        <div className="seller-details">
-                                            <p><strong>Seller Name:</strong> {request.seller_name}</p>
-                                            <p><strong>Email:</strong> <a href={`mailto:${request.email}`} target="_blank" rel="noopener noreferrer">{request.email}</a></p>
-                                            <p><strong>Address:</strong> {request.address}</p>
-                                            <p><strong>Contact Number:</strong> {request.contact_num}</p>
-                                            <p><strong>Company Name:</strong> {request.company}</p>
-                                            <p><strong>Company Description:</strong> {request.company_discription ? request.company_discription : "N/A"}</p>
-                                            <p><strong>Company Website:</strong> <a href={request.website} target="_blank" rel="noopener noreferrer">{request.website}</a></p>
-                                            <p><strong>Tax ID:</strong> {request.taxId ? request.taxId : "N/A"}</p>
+                                        <div className="seller-pending-req-details">
+                                            <table className="toggle-part-table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>Seller Name:</strong></td>
+                                                        <td>{request.seller_name}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Email:</strong></td>
+                                                        <td><a className="seller-pending-req-email" href={`mailto:${request.email}`} target="_blank" rel="noopener noreferrer">{request.email}</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Address:</strong></td>
+                                                        <td>{request.address}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Contact Number:</strong></td>
+                                                        <td>{request.contact_num}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Company Name:</strong></td>
+                                                        <td>{request.company}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Company Description:</strong></td>
+                                                        <td>{request.company_discription ? request.company_discription : "N/A"}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Company Website:</strong></td>
+                                                        <td><a className="seller-pending-req-website" href={request.website} target="_blank" rel="noopener noreferrer">{request.website}</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Tax ID:</strong></td>
+                                                        <td>{request.taxId ? request.taxId : "N/A"}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </td>
                                 </tr>
@@ -101,3 +127,5 @@ function PendingSellerRequests() {
 }
 
 export default PendingSellerRequests;
+
+/* CSS styles... */

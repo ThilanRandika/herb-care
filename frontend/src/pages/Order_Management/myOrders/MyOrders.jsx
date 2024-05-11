@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
 import './myOrders.css';
+import { Link } from 'react-router-dom';
 
 function MyOrders() {
     const { user } = useContext(AuthContext);
@@ -51,8 +52,14 @@ function MyOrders() {
                         <div className="my-orders-order-actions">
                             <button onClick={() => cancelOrder(order._id)}>Cancel Order</button>
                             <div className="my-orders-order-actions-fc">
-                                <button>Add Feedback</button>
-                                <button>Add Complaint</button>
+
+                            <Link to={`/Feedback&Complains/Feedback?orderId=${order._id}&productId=${order.productId}`}>
+                                <button className='FEEDandCOM_Dash4'>Feedback</button>
+                            </Link>
+                            <Link to={`/Feedback&Complains/Complaints?orderId=${order._id}&productId=${order.productId}`}>
+                                <button className='FEEDandCOM_Dash4'>Complaints</button>
+                            </Link>
+                            
                             </div>
                         </div>
                     </div>

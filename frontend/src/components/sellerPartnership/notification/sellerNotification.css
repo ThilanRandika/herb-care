@@ -1,0 +1,22 @@
+.notification_card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.notification_image{
+    width: 20%;
+    height: auto;
+    margin: 5px;
+}
+
+.notification_image img {
+    width: 70px;
+    height: auto;
+}
+
+.notification_info{
+    width: 80%;
+    height: auto;
+    margin: 5px;
+}

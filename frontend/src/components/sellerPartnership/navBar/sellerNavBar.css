@@ -1,7 +1,8 @@
 /* Navbar container */
 .custom-navbar {
-    background-color: #3d935e; /* Background color */
+    background-color: #ffffff; /* Background color */
     padding: 10px 20px; /* Add padding */
+    border-color: #148603;
     /* position: fixed;
     top: 0; 
     width: 100%; 
@@ -50,7 +51,44 @@
   }
   
   .custom-navbar-link {
-    color: #ffffff; /* Link color */
+    color: #148603; /* Link color */
     text-decoration: none; /* Remove underline */
   }
+
+  .bell-notification {
+    color: #148603;
+    position: relative;
+    animation: bell 1s linear infinite alternate-reverse;
+    transform-origin: top;
+  }
+  
+  @keyframes bell {
+    0% {
+      transform: rotate(-20deg);
+    }
+    100% {
+      transform: rotate(20deg);
+    }
+  }
+  
+  .fa-bell {
+    font-size: 30px;
+  }
+  
+  /* Notification count */
+.notification-count {
+  position: absolute;
+  top: 5px; /* Adjust vertical position */
+  right: 0; /* Adjust horizontal position */
+  background-color: red;
+  color: white;
+  width: 20px; /* Adjust width */
+  height: 20px; /* Adjust height */
+  border-radius: 50%; /* Make it a circle */
+  font-size: 12px; /* Adjust font size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
   

@@ -171,7 +171,9 @@ function SellerBag() {
 
                     <div className="product-page" key={index}>
                         <div className="product-image">
-                            <img src={require(`../../../../../BACKEND/uploads/${item.image}`)} alt="" className="siImg" />
+                            <img src={require(`../../../../../BACKEND/uploads/${item.image}`)} 
+                            alt="" 
+                            className="siImg" />
                         </div>
                         <div className="product-details">
                             <div className="siDesc">
