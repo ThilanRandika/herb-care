@@ -83,7 +83,7 @@ function App() {
         <Route path="/DisplaySinglePackage" element={<SinglePackageDetails/>}></Route>
         <Route path="/DisplayGiftPackageUser" element={<UserDisplayOrder/>}></Route>
 
-        <Route path="/Place-Order/:id" element={<PlaceOrder/>}></Route>
+        <Route path="/Place-Order/" element={<PlaceOrder/>}></Route>
 
         <Route path="/staff/*" element={<StaffMainDashboard/>}></Route>
         <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
