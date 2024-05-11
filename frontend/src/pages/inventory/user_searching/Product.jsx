@@ -74,7 +74,9 @@ function Product() {
           </div>
           
         </div>
-        <Feedback productid={id} />
+
+//         <Feedback productid={id} />
+
       </div>
     </div>
     

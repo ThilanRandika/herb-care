@@ -54,3 +54,13 @@
     margin-bottom: 10px;
   }
 
+  .restock-message {
+    display: flex;
+    align-items: center;
+  }
+  
+  .restock-text {
+    color: red;
+    margin-left: 10px;
+  }
+  

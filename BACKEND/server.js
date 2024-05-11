@@ -19,6 +19,7 @@ const corsOptions = {
 app.use(bodyParser.json());
 
 const StaffRouter = require("./routes/staff/staff.js");
+const ManagerRouter = require("./routes/manager/manager.js");
 
 const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
 const RefundRouter = require("./routes/consultation/refunds.js");
@@ -70,6 +71,7 @@ app.use(cookieParser());
 
 
 app.use("/staff", StaffRouter);
+app.use("/manager", ManagerRouter);
 
 
 app.use("/consultAppointment", ConsultAppointmentsRouter);
