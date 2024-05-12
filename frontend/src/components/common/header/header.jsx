@@ -69,7 +69,7 @@ class Header extends Component {
 							    <Link to="#" class="dropdown-item hed_dorfosiz">Holiday Packages</Link>
 						    </div>
 					    </li>
-					    <li><Link to="/consultation" class="nav-item nav-link hed_fosiz">Consultation</Link></li>
+					    <li><Link to="/consultation/homeConsultation" class="nav-item nav-link hed_fosiz">Consultation</Link></li>
               <li ><Link to="#" class="nav-item nav-link hed_fosiz">Partnership Request</Link></li>
               <li><Link to="#" class="nav-item nav-link hed_fosiz">About Us</Link></li>
 
