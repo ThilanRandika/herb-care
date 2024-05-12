@@ -317,6 +317,12 @@ function AppointmentAddForm(props) {
   const submit = (e) => {
     e.preventDefault();
 
+    if (!user) {
+      // If user is not logged in, navigate to login page
+      navigator('../../login');
+      return;
+    }
+
     // Check for empty fields
     const emptyFields = Object.entries(patientInfo).filter(([key, value]) => value.trim() === '');
     if (emptyFields.length > 0) {
