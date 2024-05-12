@@ -1,4 +1,5 @@
 import React from 'react'
+import './sellerOrdersPage.css'
 import SellerApprovelPendingOrders from '../../../components/sellerPartnership/sellerOrder/pendingOrders/SellerApprovelPendingOrders'
 import SellerOngoingOrders from '../../../components/sellerPartnership/sellerOrder/ongoingOrders/SellerOngoingOrders'
 import SellerCompletedOrders from '../../../components/sellerPartnership/sellerOrder/completedOrders/SellerCompletedOrders'
@@ -6,10 +7,11 @@ import SellerCompletedOrders from '../../../components/sellerPartnership/sellerO
 function SellerOrdersPage() {
   return (
     <>
-    <div>SellerOrdersPage</div>
+    <div className='seller-OrdersPage'>SellerOrdersPage
     <SellerApprovelPendingOrders/>
     <SellerOngoingOrders/>
     <SellerCompletedOrders/>
+    </div>
     </>
   )
 }

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import "./login.css"; // Updated filename to follow convention
+import companyLogo from '../../../Images/logo/HerbCare Logo.png';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -35,6 +36,11 @@ const Login = () => {
   };
 
   return (
+    <>
+    <div className='user-register'>
+    <div className="register-header">
+        <img src={companyLogo} alt="Company Logo" className="company-logo" />
+    </div>
     <div className="login-container"> {/* Updated class name */}
       <div className="login-form"> {/* Updated class name */}
         <input
@@ -57,6 +63,10 @@ const Login = () => {
         {error && <span className="error-message">{error.message}</span>} {/* Updated class name */}
       </div>
     </div>
+    <br />
+    <h6 className='user-register-login'>Do not have an Account? <Link className='user-register-login' to={'/register'}> Sign up</Link></h6>
+    </div>
+    </>
   );
 };
 

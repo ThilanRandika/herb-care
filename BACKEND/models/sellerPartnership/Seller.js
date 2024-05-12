@@ -82,6 +82,10 @@ const sellerSchema = new mongoose.Schema(
       type: [String],
       required: false,
     },
+    profile_Image: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );
