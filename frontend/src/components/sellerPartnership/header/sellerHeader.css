@@ -1,0 +1,52 @@
+.header {
+    grid-area: header;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align content to the right */
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+    background-color: #ffffff; /* Set background color */
+    color: #014709; /* Set text color */
+    position: fixed; /* Set the position to fixed */
+    width: 100%; /* Make the width 100% of the viewport */
+    top: 0; /* Position the header at the top of the viewport */
+    z-index: 1000; 
+    transition: width 0.3s;
+  }
+  
+
+  /* .menu-open {
+    width: calc(100% - 200px); 
+  } */
+  
+  .menu-icon {
+    display: inline; /* Show the menu icon */
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .icon {
+    margin-right: 10px; /* Adjust spacing between icons */
+  }
+  
+  .icon-header {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 26px; /* Increase icon size */
+  }
+  
+  .icon,
+  .icon-header {
+    margin-right: 10px; /* Adjust spacing between icons */
+  }
+  

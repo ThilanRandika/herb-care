@@ -69,6 +69,7 @@ function SellerCheckout({ selectedItems, onClose }) {
 
   return (
     <>
+    <div className="seller-checkout-full-container">
       <div className="seller-checkout">
         <div className="seller-checkout-container">
           <main>
@@ -276,6 +277,7 @@ function SellerCheckout({ selectedItems, onClose }) {
             </div>
           </main>
         </div>
+      </div>
       </div>
     </>
   );
