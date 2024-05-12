@@ -11,10 +11,11 @@ function FeedbackandcomplayntsNav() {
 
       
       
-      <Link to="/Feedback&Complains/DisplayComplaintsUser">
+      {/* <Link to="/Feedback&Complains/DisplayComplaintsUser">
         <button className='FEEDandCOM_Dash2'>Display User Complaints</button>
-      </Link>
+      </Link> */}
 
+      
       
 
       <Link to="/Feedback&Complains/DisplayComplaintsStaff">
@@ -29,9 +30,9 @@ function FeedbackandcomplayntsNav() {
 
     
 
-      <Link to="/Feedback&Complains/DisplayFeedbackUser">
+      {/* <Link to="/Feedback&Complains/DisplayFeedbackUser">
         <button className='FEEDandCOM_Dash5' >Display User Feedback</button>
-      </Link>
+      </Link> */}
 
      
 
@@ -49,11 +50,20 @@ function FeedbackandcomplayntsNav() {
       
       {/* <Link to="/Feedback&Complains/FeedbackGiftPackage">
         <button className='FEEDandCOM_Dash8' >FeedbackGiftPackage</button>
+      </Link> */}
+      
+
+      {/* <Link to="/Feedback&Complains/DisplayFeedbackGiftPackageUser">
+        <button className='FEEDandCOM_Dash9' >Display Gift Package User</button>
+      </Link> */}
+
+      <Link to="/Feedback&Complains/DisplayFeedbackGiftPackageStaff">
+        <button className='FEEDandCOM_Dash10' >Display Gift Package Staff</button>
       </Link>
       
 
-      <Link to="/Feedback&Complains/DisplayFeedbackGiftPackageUser">
-        <button className='FEEDandCOM_Dash9' >Display Gift Package User</button>
+      {/* <Link to="/Feedback&Complains/DisplayFeedbackUnderPackage">
+        <button className='FEEDandCOM_Dash11' >Display feedbacks under packages</button>
       </Link> */}
 
     </div>

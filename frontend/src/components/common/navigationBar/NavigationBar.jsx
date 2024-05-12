@@ -38,6 +38,9 @@ function NavigationBar() {
                 <Link to="/DisplayGiftPackageUser" className="home-navBar-nav-link">
                 <button>Gift Packages orders User</button>
                 </Link>
+                <Link to="/User" className="home-navBar-nav-link">
+                <button>User Dashboard</button>
+                </Link>
             </nav>
         </div>
     </>
