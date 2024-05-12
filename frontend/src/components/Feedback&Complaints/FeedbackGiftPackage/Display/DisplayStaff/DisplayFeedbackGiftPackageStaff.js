@@ -73,7 +73,6 @@ const AdminFeedbackList = () => {
 
   return (
     <div>
-      <br />
       <div className='DFGPST_title_card'>
         <h1 className='DFGPST_title'>Gift Packages Feedback</h1>
         <p className='DFGPST_title'>Manage Gift Packages Feedbacks</p>

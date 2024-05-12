@@ -30,7 +30,6 @@ const UserDisplay = () => {
 
   return (
     <div>
-      <br />
       <div className='UD_title_card'>
         <h2 className='UD_title'>My Complaints</h2>
         <p className='UD_title'>Manage your complaints</p>

@@ -82,7 +82,6 @@ const StaffDashboard = () => {
 
 return (
   <div>
-    <br />
     <div className='FSD_title_card'>
        <h1 className='FSD_title'>Feedback List</h1>
        <p className='FSD_title'>Manage the feedbacks</p>

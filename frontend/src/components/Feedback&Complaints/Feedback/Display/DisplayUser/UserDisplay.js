@@ -53,7 +53,6 @@ const UserFeedback = ({ customerId }) => {
 
   return (
     <div>
-      <br></br>
       <div className='FUD_history_card'>
           <h2 className='FUD_history'>Feedback History</h2>
           <p className='FUD_history'>Manage your submitted feedbacks</p>

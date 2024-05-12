@@ -54,8 +54,8 @@ const UserFeedbackGiftpackage = () => {
   };
 
   return (
+    
     <div>
-      <br />
       <div className="DFGPU_title_card">
       <h2 className="DFGPU_title">Gift Package Feedbacks</h2>
       <p className="DFGPU_title">Manage your submitted Feedbacks for Gift Packages</p>

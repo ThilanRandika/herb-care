@@ -84,7 +84,6 @@ const ComplaintsList = () => {
 
   return (
     <div>
-      <br />
       <div className='CcSD_title_card'>
         <h2 className='CcSD_title'>Complaints</h2>
         <p className='CcSD_title'>Manage User Complaints</p>
