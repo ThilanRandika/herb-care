@@ -58,7 +58,7 @@
 @media (min-width: 768px) {
   .seller-product-list-grid {
     grid-template-columns: repeat(
-      4,
+      3,
       1fr
     ); /* Displaying maximum four products per row on larger screens */
     max-width: none; /* Resetting the maximum width */

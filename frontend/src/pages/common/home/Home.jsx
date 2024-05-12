@@ -16,8 +16,6 @@ function Home() {
     <>
       <NavigationBar></NavigationBar>
       <div>Home</div>
-
-
     </>
   )
 }
