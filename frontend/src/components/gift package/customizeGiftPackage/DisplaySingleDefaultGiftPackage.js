@@ -45,10 +45,11 @@ const DisplaySingleDefaultGiftPackage = () => {
             </div>
 
             <div>
-                {loading ? (
-                    <p>Loading...</p>
-                ) : (
-                    packageData && (
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                packageData && (
+                    <div>
                         <div className='SGP_containor'>
                             <div className='SGP_Image_card'>
                                 {packageData.images.map((image, index) => (
@@ -62,34 +63,21 @@ const DisplaySingleDefaultGiftPackage = () => {
                                 <p>Including Products: <br></br>{packageData.products}</p>
                                 <br></br>
                                 <p>Total Price: {packageData.totalPrice}</p>
-
                                 <br></br>
-
                                 <div className='SGP_order_btn_containor'>
                                     <Link to={`/Place-Order?packageId=${packageData._id}`}>
                                         <button className="btn">Order Package</button>
                                     </Link>
                                 </div>
                             </div>
-
-                            
-
                         </div>
-
-                        <h1>{packageData.packageName}</h1>
-                        <p>Description: {packageData.description}</p>
-                        <p>Products: {packageData.products}</p>
-                        <p>Total Price: {packageData.totalPrice}</p>
-                        
-                        <Link to={`/Place-Order?packageId=${packageData._id}`}>
-                            <button className="btn">Order Package</button>
-                        </Link>
+                        <FeedbackGiftPAck packageId={packageId} />
                     </div>
                 )
             )}
-            <FeedbackGiftPAck packageId={packageId} />
 
-        </div>
+            </div>  
+            </div> 
     );
 };
 
