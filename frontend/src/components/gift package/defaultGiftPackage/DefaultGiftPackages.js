@@ -46,7 +46,12 @@ function DisplayDefaultGiftPackages() {
 
     return (
         <div>
-            <h3><center>Default Gift Packages</center></h3>
+            <br></br>
+            <div className="DGPS_title_card">
+                <h3 className="DGPS_title"><center>Default Gift Packages</center></h3>
+                <p className="DGPS_title">Manage default gift packages</p>
+            </div>
+            
             <div>
                 {defaultGiftPackages.map((giftPackage) => (
                     <div key={giftPackage._id} className="giftPackage-default-all-container">

@@ -75,20 +75,20 @@ router.route("/default-gift-packages").get(async(req,res)=>{
 
 })
 
-// //After select a package system will display package details
-// // Display a single default gift package
-// router.route("/default-gift-package/:id").get(async (req, res) => {
-//     try {
-//       const defaultGiftPack = await DefaultGiftPack.findById(req.params.id);
-//       if (defaultGiftPack == null) {
-//         return res.status(404).json({ message: "Default gift package not found"});
-//       }
-//       res.json(defaultGiftPack);
-//     } catch (err) {
-//       return res.status(500).json({ message: err.message });
-//     }
+//After select a package system will display package details
+// Display a single default gift package
+router.route("/default-gift-pack/:id").get(async (req, res) => {
+    try {
+      const defaultGiftPack = await DefaultGiftPack.findById(req.params.id);
+      if (defaultGiftPack == null) {
+        return res.status(404).json({ message: "Default gift package not found"});
+      }
+      res.json(defaultGiftPack);
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
+    }
 
-// });
+});
 
 //Single product
 router.get('/:packageId', async (req, res) => {

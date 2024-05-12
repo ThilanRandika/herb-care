@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './appointmentRequests.css'
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+
 
 function AppointmentRequests(props) {
 
@@ -9,27 +11,36 @@ function AppointmentRequests(props) {
   const [expandedAppointment, setExpandedAppointment] = useState(null);
   const [loading, setLoading] = useState(true); // State to track loading status
   const [successMessage, setSuccessMessage] = useState("");
+  const location = useLocation(); // Use useLocation to access the current URL location
 
   useEffect(() => {
     setSpecialist(props.specialistID);
   }, [props.specialistID]);
 
-  console.log("logged specialist: " + JSON.stringify(specialist));
-
   useEffect(() => {
-    axios.get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
+    const searchParams = new URLSearchParams(location.search);
+    const searchQuery = searchParams.get('search'); // Get the value of the 'search' parameter
+
+    axios
+      .get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
       .then((res) => {
-        console.log("Got data: ", res.data);
-        // Sort appointments by date before setting state
-        const sortedAppointments = res.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+        console.log('Got data:', res.data);
+        const filteredAppointments = searchQuery
+          ? res.data.filter(
+              (appointment) =>
+                appointment.patientInfo.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                appointment._id.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+          : res.data;
+        const sortedAppointments = filteredAppointments.sort((a, b) => new Date(a.date) - new Date(b.date));
         setAppointments(sortedAppointments);
-        setLoading(false); // Set loading to false after data is fetched
+        setLoading(false);
       })
       .catch((err) => {
         console.log('Error getting pending appointments', err);
-        setLoading(false); // Set loading to false in case of error
+        setLoading(false);
       });
-  }, []);
+  }, [location.search, props.specialistID]);
 
 
 
@@ -98,7 +109,6 @@ function AppointmentRequests(props) {
 
 
 
-
   // Render loading indicator if loading is true
   if (loading) {
     return (
@@ -140,6 +150,7 @@ function AppointmentRequests(props) {
                   <td colSpan="5">
                     <div className="appointmentRequests-expanded-details-innerContainer">
                       <div className="appointmentRequests-expanded-details-innerContainer-left">
+                        <p><strong>Appointment ID: </strong> {request._id}</p>
                         <p><strong>Date: </strong> {new Date(request.date).toLocaleDateString()}</p>
                         <p><strong>Time: </strong> {request.timeSlot}</p>
                         <p>{request.centerName ? request.centerName : "Virtual Session"}</p>

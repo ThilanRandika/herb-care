@@ -1,0 +1,9 @@
+.GHPB_image img {
+    max-width: 80%;
+    height: auto; /* Ensures the image maintains its aspect ratio */
+    display: block; /* Ensures the image is displayed as a block element */
+    margin: 0 auto; /* Centers the image horizontally */
+    box-shadow:0 0 2.5rem rgba(0, 0, 0,0.28);
+    border-radius: 15px;
+}
+
