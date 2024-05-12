@@ -1,9 +1,51 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from "../../../context/AuthContext";
 import './sellerProfile.css';
+import axios from 'axios';
 
 function SellerProfile() {
   const { user } = useContext(AuthContext);
+  const [newPassword, setNewPassword] = useState('');
+  const [avatar, setAvatar] = useState(null);
+
+  const handleFileInputChange = (event) => {
+    setAvatar(event.target.files[0]);
+  };
+
+  const handlePasswordChange = (event) => {
+    setNewPassword(event.target.value);
+  };
+
+  const handleUpload = () => {
+    const formData = new FormData();
+    formData.append('avatar', avatar);
+    formData.append('userId', user.sellerId);
+    formData.append('name', user.seller_name);
+    formData.append('email', user.email);
+    formData.append('company', user.company);
+    formData.append('companyDescription', user.company_discription);
+    formData.append('taxId', user.tax_id);
+    formData.append('address', user.address);
+    formData.append('phone', user.contact_num);
+    formData.append('website', user.website);
+    formData.append('newPassword', newPassword);
+
+    console.log(formData)
+
+    axios.post('http://localhost:8070/sellerProfile/update', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(response => {
+      console.log(response.data);
+      // Handle success
+    })
+    .catch(error => {
+      console.error(error);
+      // Handle error
+    });
+  };
 
   return (
     <>
@@ -17,12 +59,12 @@ function SellerProfile() {
             <div className="col-md-3 pt-0">
               <div className="seller-profile-card-body">
                 <div className="seller-profile-avatar-container">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile" className="seller-profile-avatar" />
+                <img src={require(`../../../../../BACKEND/routes/sellerPartnership/uploads/images/${user.profile_Image}`)} alt="Profile" className="seller-profile-avatar" />
                 </div>
                 <div className="seller-profile-info">
                   <label className="seller-profile-btn">
                     Upload
-                    <input type="file" className="seller-profile-account-settings-fileinput" style={{ display: 'none' }} />
+                    <input type="file" className="seller-profile-account-settings-fileinput" style={{ display: 'none' }} onChange={handleFileInputChange}/>
                   </label>
                   &nbsp;
                   <button type="button" className="seller-profile-btn seller-profile-reset-btn">Reset</button>
@@ -40,7 +82,6 @@ function SellerProfile() {
             <div className="col-md-9">
               <div className="tab-content">
                 <div className="tab-pane fade active show" id="seller-profile-account-general">
-                  
                   <hr className="border-light m-0"/>
                   <div className="seller-profile-card-body">
                     <div className="seller-profile-form-group">
@@ -73,7 +114,7 @@ function SellerProfile() {
                     </div>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">New password</label>
-                      <input type="password" className="seller-profile-input"/>
+                      <input type="password" className="seller-profile-input" onChange={handlePasswordChange}/>
                     </div>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Repeat new password</label>
@@ -116,7 +157,7 @@ function SellerProfile() {
           </div>
         </div>
         <div className="seller-profile-text-right mt-3">
-          <button type="button" className="seller-profile-button seller-profile-button-primary">Save changes</button>&nbsp;
+          <button type="button" className="seller-profile-button seller-profile-button-primary" onClick={handleUpload}>Save changes</button>&nbsp;
           <button type="button" className="seller-profile-button seller-profile-button-secondary">Cancel</button>
         </div>
       </div>

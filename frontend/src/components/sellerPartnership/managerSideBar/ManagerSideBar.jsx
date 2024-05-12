@@ -11,7 +11,7 @@ function ManagerSideBar() {
           <NavLink
             className="seller-manager-sidebar-link"
             activeClassName="active"
-            to={"/manager/SellerManagerDashboard"}
+            to={"/manager/SellerManagerDashboard/SMdashboard"}
             exact
           >
             Dashboard

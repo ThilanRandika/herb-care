@@ -17,6 +17,7 @@ function Home() {
 
   return (
     <>
+
       <Header></Header>
       {/* <NavigationBar></NavigationBar> */}
       <ProductSummary />
