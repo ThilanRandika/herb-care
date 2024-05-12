@@ -15,7 +15,7 @@ const complaintsSchema = new Schema({
       },
       Product: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "product",
+        ref: "Product",
         required: true
       },
       complaintsName: {

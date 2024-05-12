@@ -62,18 +62,6 @@ router.route("/get").get(verifyToOther, async (req, res) => {
 
 //Read - Display under the product
 //http://localhost:8070/feedback/get/:productId
-// router.get('/product/:productId', async (req, res) => {
-//   try {
-//     const feedback = await Feedback.find({ Product: req.params.productId });
-//     res.status(200).json(feedback);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send('Server Error');
-//   }
-// });
-
-// Assuming you have defined your router instance already
-
 router.route('/feedbacks/:productId').get(async (req, res) => {
   try {
     const productId = req.params.productId;

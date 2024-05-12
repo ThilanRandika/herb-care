@@ -41,8 +41,10 @@ import UserDisplayOrder from "./pages/giftPackage/User/DisplayOrderUser";
 
 import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
+import UserDashboard from "./pages/common/User/UserDashboard";
 import RegisterPage from "./pages/common/register/RegisterPage";
 
+import ContactUs from "./pages/common/contactUs/ContactUs";
 
 function App() {
   return (
@@ -86,11 +88,13 @@ function App() {
         <Route path="/DisplaySinglePackage" element={<SinglePackageDetails/>}></Route>
         <Route path="/DisplayGiftPackageUser" element={<UserDisplayOrder/>}></Route>
 
-        <Route path="/Place-Order/:id" element={<PlaceOrder/>}></Route>
+        <Route path="/Place-Order/" element={<PlaceOrder/>}></Route>
 
         <Route path="/staff/*" element={<StaffMainDashboard/>}></Route>
         <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
+        <Route path="/user" element={<UserDashboard/>}></Route>
 
+        <Route path="/contactUs" element={<ContactUs/>}></Route>
         
       </Routes>
     </BrowserRouter>
