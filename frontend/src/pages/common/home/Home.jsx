@@ -3,6 +3,7 @@ import PartnershipRequest from "../../../components/sellerPartnership/partnershi
 import "./home.css";
 import NavigationBar from '../../../components/common/navigationBar/NavigationBar';
 import { Link } from 'react-router-dom';
+import Banner from '../../../components/common/Banner/Banner'
 
 function Home() {
 
@@ -15,7 +16,9 @@ function Home() {
   return (
     <>
       <NavigationBar></NavigationBar>
-      <div>Home</div>
+      <div>
+        <Banner/>
+      </div>
 
 
     </>
