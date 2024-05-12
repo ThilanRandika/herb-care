@@ -55,7 +55,16 @@ function StaffMainDashboard() {
                   </NavDropdown>
 
                   <Nav.Link as={Link} to="" className="UDB_HolBookHis">Holiday Package Booking History</Nav.Link>
-                  <Nav.Link as={Link} to="../consultation/myConsultations/myOngoingConsultations" className="UDB_ConsuHis">Consultation History</Nav.Link>
+
+                  <NavDropdown
+                    title="Consultation History"
+                    id={`offcanvasNavbarDropdown-expand-${expand}`}
+                    data-bs-theme="dark"
+                  >
+                    <NavDropdown.Item as={Link} to="../consultation/myConsultations/myOngoingConsultations" className="UDB_profeedHis">My Consultation</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="../consultation/refunds/myRefunds" className="UDB_GiftPafeedHis">Consultation Refunds</NavDropdown.Item>
+                  </NavDropdown>
+
                   <Nav.Link as={Link} to="/Feedback&Complains/DisplayComplaintsUser" className="UDB_compHis">Complaints History</Nav.Link>
 
                   <NavDropdown
