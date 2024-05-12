@@ -44,12 +44,12 @@ const Register = () => {
     </div>
     <div className="register-container">
       <form className="register-form" onSubmit={handleSubmit}>
-        <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
-        <input type="text" placeholder="Contact Number" value={contactNumber} onChange={(e) => setContactNumber(e.target.value)} />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Sign Up</button>
+        <input className='user-register-inputs' type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+        <input className='user-register-inputs' type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input className='user-register-inputs' type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
+        <input className='user-register-inputs' type="text" placeholder="Contact Number" value={contactNumber} onChange={(e) => setContactNumber(e.target.value)} />
+        <input className='user-register-inputs' type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <button className='user-register-btn' type="submit">Sign Up</button>
       </form>
     </div>
     <br />

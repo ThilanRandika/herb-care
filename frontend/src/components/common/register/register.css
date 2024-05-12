@@ -16,7 +16,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  input {
+  .user-register-inputs {
     margin: 5px 0;
     padding: 5px;
     border: 1px solid #ccc;
@@ -47,15 +47,8 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  
-  input {
-    margin: 5px 0;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  button {
+   
+  .user-register-btn {
     margin-top: 10px;
     padding: 8px 12px;
     background-color: #007bff;
@@ -65,7 +58,7 @@
     cursor: pointer;
   }
   
-  button:hover {
+  .user-register-btn:hover {
     background-color: #0056b3;
   }
   
