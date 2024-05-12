@@ -4,6 +4,7 @@ import "./home.css";
 import NavigationBar from '../../../components/common/navigationBar/NavigationBar';
 import { Link } from 'react-router-dom';
 import Banner from '../../../components/common/Banner/Banner'
+import GiftHomeBanner from '../../../components/gift package/GiftHomeBanner/GiftHomeBanner'
 
 function Home() {
 
@@ -18,6 +19,12 @@ function Home() {
       <NavigationBar></NavigationBar>
       <div>
         <Banner/>
+
+        <br></br>
+        <br></br>
+        <br></br>
+
+        <GiftHomeBanner/>
       </div>
 
 
