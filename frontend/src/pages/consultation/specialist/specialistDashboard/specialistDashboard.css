@@ -1,0 +1,73 @@
+.specialistDashboard-allContent{
+    
+}
+
+.specialistDashboard-greeting-specialistName{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #305e54;
+}
+
+.specialistDashboard-countStatsAndCalender{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.specialistDashboard-countStats{
+    flex: 1;
+    background-color: #6ace8a;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.specialistDashboard-calenderContent{
+    flex: 1;
+}
+
+.specialistDashboard-countStats-ongoingAppointments{
+    margin-bottom: 25px;
+}
+
+.specialistDashboard-countStats-otherCounts{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.specialistDashboard-countStats-allAppointments{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.specialistDashboard-countStats-completedAppointments{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.specialistDashboard-countStats-todayAppointments{
+    background-color: #e1ffeb;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
