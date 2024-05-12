@@ -1,4 +1,5 @@
 const ConsultAppointment = require("../../models/consultation/ConsultAppointment.js");
+const SpecialistNotification = require("../../models/consultation/SpecialistNotification.js");
 const Availability = require("../../models/consultation/Availability.js");
 const { verifyToOther } = require("../../utils/veryfyToken.js");
 const router = require("express").Router();
@@ -20,6 +21,20 @@ const PDFDocument = require('pdfkit');
       const availabilityId = req.body.availabilityId;
       const bookedTimeSlot = req.body.timeSlot;
       await Availability.findByIdAndUpdate(availabilityId, { $push: { bookedTimeSlots: bookedTimeSlot } });
+
+      // Create a notification for the specialist
+      const notification = new SpecialistNotification({
+        specialist: req.body.specialist,
+        appointment: savedConsultAppointment._id,
+        notificationType: "New Appointment",
+        notificationDateTime: new Date(),
+        notificationStatus: "Unread",
+        appointmentDate: savedConsultAppointment.date,
+        appointmentTime: savedConsultAppointment.timeSlot,
+        appointmentType: savedConsultAppointment.type,
+        notificationBody: "An appointment has been created for you.",
+      });
+      await notification.save();
 
       res.status(200).json(savedConsultAppointment);
     } catch (err) {
@@ -330,6 +345,97 @@ router.route("/rejectAppointment/:id").put(async (req, res) => {
       }
     });
 
+
+
+    // Get the count of ongoing appointments for a specific specialist
+    router.route("/getOngoingAppointmentsCount/:specialistId").get(async (req, res) => {
+      try {
+        const ongoingAppointmentsCount = await ConsultAppointment.countDocuments({
+          specialist: req.params.specialistId,
+          status: { $ne: "Completed" }, // Excludes appointments with status "Completed"
+        });
+        res.status(200).json({ count: ongoingAppointmentsCount });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve ongoing appointments count" });
+      }
+    });
+
+
+    // Get the count of all appointments for a specific specialist
+    router.route("/getAllAppointmentsCount/:specialistId").get(async (req, res) => {
+      try {
+        const allAppointmentsCount = await ConsultAppointment.countDocuments({
+          specialist: req.params.specialistId
+        });
+        res.status(200).json({ count: allAppointmentsCount });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve all appointments count" });
+      }
+    });
+
+
+    // Get the count of completed appointments for a specific specialist
+    router.route("/getCompletedAppointmentsCount/:specialistId").get(async (req, res) => {
+      try {
+        const completedAppointmentsCount = await ConsultAppointment.countDocuments({
+          specialist: req.params.specialistId,
+          status: "Completed", // Filter appointments with status "Completed"
+        });
+        res.status(200).json({ count: completedAppointmentsCount });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve completed appointments count" });
+      }
+    });
+
+
+    // Get today's appointments count for a specific specialist
+    router.route("/getTodaysAppointmentsCount/:specialistId").get(async (req, res) => {
+      try {
+        // Get the current date
+        const currentDate = new Date();
+        // Set the start of the day to 00:00:00
+        currentDate.setHours(0, 0, 0, 0);
+        // Set the end of the day to 23:59:59
+        const endOfDay = new Date(currentDate);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        const todaysAppointmentsCount = await ConsultAppointment.countDocuments({
+          specialist: req.params.specialistId,
+          date: { $gte: currentDate, $lte: endOfDay }, // Filter appointments for today
+        });
+
+        res.status(200).json({ count: todaysAppointmentsCount });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve today's appointments count" });
+      }
+    });
+
+
+    // Route to get the dates of ongoing appointments for a specific specialist
+    router.route("/getOngoingAppointmentDates/:specialistId").get(async (req, res) => {
+      try {
+        // Find appointments that are not marked as "Completed" for the given specialist
+        const appointments = await ConsultAppointment.find({
+          specialist: req.params.specialistId,
+          status: { $ne: "Completed" } // Exclude appointments with status "Completed"
+        });
+
+        // Extract unique dates from the appointments
+        const appointmentDates = [...new Set(appointments.map(appointment => appointment.date.toDateString()))];
+
+        res.status(200).json({ dates: appointmentDates });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve ongoing appointment dates" });
+      }
+    });
+
+
+    
 
 
 

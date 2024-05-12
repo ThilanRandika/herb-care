@@ -96,8 +96,8 @@ function MyOngoingConsultations() {
       <table className='ongoingConsultations-table'>
         <thead className='ongoingConsultations-thead'>
           <tr>
-            <th>No.</th>
             <th>Date</th>
+            <th>Time</th>
             <th>Specialist</th>
             <th>Status</th>
           </tr>
@@ -106,8 +106,8 @@ function MyOngoingConsultations() {
           {onGoingAppointments.map((appointment, index) => (
             <React.Fragment key={index}>
               <tr onClick={() => toggleExpandedDetails(index)}>
-                <td>{index + 1}</td>
                 <td>{new Date(appointment.date).toLocaleDateString()}</td>
+                <td>{appointment.timeSlot}</td>
                 <td>{appointment.specialistName}</td>
                 <td>{appointment.status}</td>
               </tr>
