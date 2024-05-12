@@ -47,8 +47,8 @@ function MyAllConsultations() {
             <table className='allConsultations-table'>
                 <thead className='allConsultations-thead'>
                     <tr>
-                        <th>No.</th>
                         <th>Date</th>
+                        <th>Time</th>
                         <th>Specialist</th>
                         <th>Status</th>
                     </tr>
@@ -57,8 +57,8 @@ function MyAllConsultations() {
                     {appointments.map((appointment, index) => (
                         <React.Fragment key={index}>
                             <tr onClick={() => toggleExpandedDetails(index)}>
-                            <td>{index + 1}</td>
                             <td>{new Date(appointment.date).toLocaleDateString()}</td>
+                            <td>{appointment.timeSlot}</td>
                             <td>{appointment.specialistName}</td>
                             <td>{appointment.status}</td>
                             </tr>
@@ -75,7 +75,6 @@ function MyAllConsultations() {
                                     )}
                                     <p><strong>Type:</strong> {appointment.type}</p>
                                     <p><strong>Appointment Amount:</strong> {appointment.appointmentAmount}</p>
-                                    <p><strong>Time Slot:</strong> {appointment.timeSlot}</p>
                                     
                                     </div>
                                     <div className="allConsultations-expanded-details-innerContainer-right">

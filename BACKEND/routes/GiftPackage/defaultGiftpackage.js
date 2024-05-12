@@ -91,7 +91,7 @@ router.route("/default-gift-pack/:id").get(async (req, res) => {
 });
 
 //Single product
-router.get('/:packageId',verifyToOther, async (req, res) => {
+router.get('/:packageId', async (req, res) => {
   try {
       const packageId = req.params.packageId;
       if (!packageId) {
