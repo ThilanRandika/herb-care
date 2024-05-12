@@ -10,6 +10,7 @@ function GiftPackage_manage(){
     // <div className="gift-dashboard-container">
     //         <h2><center>GiftPackage_management</center></h2>
 
+
     //         <Link to="/Default_gift_packages"><button className="giftPackage-staff-giftPackageManage-btn">Default gift packages</button></Link> {/*Display exsisting default gift packages*/}
     //         <br></br> <br></br>
     //         <Link to="/add_Default_gift_pack"><button className="giftPackage-staff-giftPackageManage-btn">Add default gift packages</button> </Link> {/*Add default gift packages*/}   

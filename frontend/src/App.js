@@ -36,10 +36,12 @@ import MyOrders from "./pages/Order_Management/myOrders/MyOrders";
 import DisplayDefaultGiftPackages from "./components/gift package/customizeGiftPackage/DisplayDefaultGiftPackages";
 import PlaceOrder from "./components/gift package/giftPackageOrders/PlaceOrder";
 import DisplayGiftPackOrders from "./components/gift package/giftPackageOrders/DisplayGiftPackOrders";
+import SinglePackageDetails from "./components/gift package/customizeGiftPackage/DisplaySingleDefaultGiftPackage";
+import UserDisplayOrder from "./pages/giftPackage/User/DisplayOrderUser";
+
 import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
 import RegisterPage from "./pages/common/register/RegisterPage";
-
 
 
 function App() {
@@ -81,13 +83,15 @@ function App() {
         <Route path="/Update_default_gift_packages/:id" element={<UpdateDefaultGiftPackage/>}></Route>
         <Route path="/Gift-Package-Orders" element={<DisplayGiftPackOrders/>}></Route>
         <Route path="/Gift_Packages" element={<DisplayDefaultGiftPackages/>}></Route>
+        <Route path="/DisplaySinglePackage" element={<SinglePackageDetails/>}></Route>
+        <Route path="/DisplayGiftPackageUser" element={<UserDisplayOrder/>}></Route>
+
         <Route path="/Place-Order/:id" element={<PlaceOrder/>}></Route>
 
         <Route path="/staff/*" element={<StaffMainDashboard/>}></Route>
         <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
 
         
-
       </Routes>
     </BrowserRouter>
 

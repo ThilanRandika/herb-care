@@ -42,8 +42,8 @@
 }
 
 .specialist-card-one-specialist.selected {
-  border: 2px solid #007bff; /* Add a border to indicate selection */
-  background-color: #007bff; /* Change background color to indicate selection */
+  border: 2px solid #45a049; /* Add a border to indicate selection */
+  background-color: #45a049; /* Change background color to indicate selection */
   color: #fff; /* Adjust text color for better contrast */
 }
 
