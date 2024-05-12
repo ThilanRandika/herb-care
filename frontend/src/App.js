@@ -41,6 +41,7 @@ import UserDisplayOrder from "./pages/giftPackage/User/DisplayOrderUser";
 
 import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
+import UserDashboard from "./pages/common/User/UserDashboard";
 
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
 
         <Route path="/staff/*" element={<StaffMainDashboard/>}></Route>
         <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
+        <Route path="/user" element={<UserDashboard/>}></Route>
 
         
       </Routes>

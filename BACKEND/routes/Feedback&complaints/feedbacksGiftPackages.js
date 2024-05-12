@@ -45,6 +45,22 @@ router.post('/add/:packageId', verifyToOther, upload.array('image', 10), async (
     }
   });
   
+
+// Route to get feedbacks for a specific gift package
+// GET http://localhost:8070/feedbacksGiftPackage/singleFeedback/:packageId
+router.get('/singleFeedback/:packageId', async (req, res) => {
+  try {
+    const packageId = req.params.packageId;
+    const feedbacks = await FeedbackGiftPackage.find({ packageId: packageId }).populate('Customer', 'customer_name');
+    res.status(200).json(feedbacks);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
 //Read - User Display
 router.get('/', verifyToOther, async (req, res) => {
   try {
@@ -58,27 +74,27 @@ router.get('/', verifyToOther, async (req, res) => {
   }
 });
 
-//Read - staff Display All
-router.get('/all', async (req, res) => {
+// Read - staff Display All
+router.route('/get/all').get(async (req, res) => {
   try {
-      // Fetch all feedbacks
-      const feedbacks = await FeedbackGiftPackage.find().populate('Customer');
-      res.status(200).json({ feedbacks });
+    const feedbacks = await FeedbackGiftPackage.find().populate('Customer');
+    res.status(200).json({ feedbacks });
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
-// Route to get the total count of feedbacks
-router.get('/count', async (req, res) => {
+// Route to get the total count of all feedbacks
+router.get('/count/feedbacks', async (req, res) => {
   try {
-    const count = await FeedbackGiftPackage.countDocuments();
-    res.json({ count });
+    const totalFeedbacksCount = await FeedbackGiftPackage.countDocuments();
+    res.json({ totalFeedbacksCount });
   } catch (error) {
-    console.error('Error counting feedbacks:', error);
-    res.status(500).json({ error: 'Error counting feedbacks' });
+    console.error('Error fetching total feedbacks count:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 //Delete - delete feedbackGiftPackage
 // http://localhost:8070/feedback/delete/:id
@@ -126,7 +142,7 @@ router.put('/update/:id', upload.array('images', 5), async (req, res) => {
 });
 
 //Download pdf
-router.get('/download', async (req, res) => {
+router.get('/download/pdf', async (req, res) => {
   try {
     const feedbacks = await FeedbackGiftPackage.find().populate('Customer');
 

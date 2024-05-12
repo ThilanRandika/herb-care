@@ -84,8 +84,11 @@ const ComplaintsList = () => {
 
   return (
     <div>
-      <br />
-      <h2 className='CcSD_title'>Complaints List</h2>
+      <div className='CcSD_title_card'>
+        <h2 className='CcSD_title'>Complaints</h2>
+        <p className='CcSD_title'>Manage User Complaints</p>
+      </div>
+      
       <br />
       <button className='CcSD_download_complaints_btn' onClick={downloadComplaintsPdf}>Download Report</button>
 

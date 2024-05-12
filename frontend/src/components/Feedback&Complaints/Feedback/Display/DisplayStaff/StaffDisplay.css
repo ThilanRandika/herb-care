@@ -1,5 +1,11 @@
 .FSD_title {
   text-align: center;
+  color: #2A3C24;
+}
+
+.FSD_title_card{
+  padding: 50px;
+  background-color: #CAD593;
 }
 
 .FSD_searchfeedback {
@@ -11,7 +17,7 @@
 .FSD_download_feedback_btn {
   margin: 10px;
   padding: 5px 10px;
-  background-color: #1f8b33;
+  background-color: #143109;
   color: white;
   border: none;
   border-radius: 5px;
@@ -29,13 +35,13 @@
 }
 
 .FSD_table {
-  width: 100%;
+  width: 98%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .FSD_table th, .FSD_table td {
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ddd;
   text-align: left;
 }
@@ -56,7 +62,7 @@
 
 .FSD_deletebtn {
   padding: 5px 10px;
-  background-color: #1f8b33;
+  background-color: #143109;
   color: white;
   border: none;
   border-radius: 5px;

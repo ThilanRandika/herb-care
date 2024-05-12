@@ -13,7 +13,7 @@ const StarRating = ({ rating }) => {
 const AdminFeedbackList = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [feedbacksCount, setFeedbacksCount] = useState(0);
+  const [totalFeedbacksCount, setTotalFeedbacksCount] = useState(0);
 
   const searchFeedbacks = (feedback) => {
     if (!searchQuery) {
@@ -27,33 +27,24 @@ const AdminFeedbackList = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedbackgiftpackage/all');
+        const response = await axios.get('http://localhost:8070/feedbackgiftpackage/get/all');
         setFeedbacks(response.data.feedbacks);
       } catch (error) {
         console.error('Error fetching feedbacks:', error);
       }
     };
 
-    fetchFeedbacks();
-  }, []);
-
-  useEffect(() => {
-    const fetchFeedbacksCount = async () => {
+    const fetchTotalFeedbacksCount = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedbackgiftpackage/count');
-        setFeedbacksCount(response.data.count);
+        const response = await axios.get('http://localhost:8070/feedbackgiftpackage/count/feedbacks');
+        setTotalFeedbacksCount(response.data.totalFeedbacksCount);
       } catch (error) {
-        console.error('Error fetching feedbacks count:', error);
+        console.error('Error fetching total feedbacks count:', error);
       }
     };
 
-    fetchFeedbacksCount();
-
-    // Fetch feedback count every 10 seconds
-    const interval = setInterval(fetchFeedbacksCount, 10000);
-
-    // Clear interval on component unmount
-    return () => clearInterval(interval);
+    fetchFeedbacks();
+    fetchTotalFeedbacksCount();
   }, []);
 
   const handleDeleteFeedback = async (id) => {
@@ -67,13 +58,14 @@ const AdminFeedbackList = () => {
 
   const handleDownloadPDF = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/feedbackgiftpackage/download', { responseType: 'blob' });
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const response = await axios.get('http://localhost:8070/feedbackgiftpackage/download/pdf', { responseType: 'blob' });
+      const url = window.URL.createObjectURL(response.data);
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', 'GiftPackageFeedbacks.pdf');
       document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
     } catch (error) {
       console.error('Error downloading PDF:', error);
     }
@@ -81,13 +73,18 @@ const AdminFeedbackList = () => {
 
   return (
     <div>
+      <div className='DFGPST_title_card'>
+        <h1 className='DFGPST_title'>Gift Packages Feedback</h1>
+        <p className='DFGPST_title'>Manage Gift Packages Feedbacks</p>
+      </div>
+      
       <br />
-      <h1 className='DFGPST_title'>Gift Packages Feedbacks List </h1>
-      <br />
+      
       <input className='DFGPST_searchfeedback' type="text" placeholder="Search customer...." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
       <button className='DFGPST_pdfdownloadbtn' onClick={handleDownloadPDF}>Download PDF</button>
 
-      <h1>Total Feedbacks : {feedbacksCount}</h1>
+      <p className='DFGPST_count'>Total Feedbacks: {totalFeedbacksCount}</p>
+
       <table className='DFGPST_table'>
         <thead>
           <tr>
@@ -112,7 +109,7 @@ const AdminFeedbackList = () => {
                     {feedback.image.map((img, index) => (
                       <img
                         key={index}
-                        src={require(`../../../../../../../BACKEND/uploads/${img}`)}
+                        src={require(`../../../../../../../BACKEND/uploads/${img}`)} 
                         alt={`Image ${index}`}
                         style={{ maxWidth: '100px', maxHeight: '100px', marginRight: '10px' }}
                       />

@@ -17,6 +17,7 @@ import FeedbackandcomplayntsNav from "../../../components/Feedback&Complaints/fe
 import FeedbackGiftPackage_Dashboard from "../FeedbackGiftPackage/FeedbackGiftPackage";
 import DisplayGiftPackage_user from "../FeedbackGiftPackage/DisplayUserGiftPackageFeedback";
 import DisplayGiftPackage_Staff from "../FeedbackGiftPackage/DisplayStaffGiftPackageFeedback";
+import DisplayUnder_Package from "../FeedbackGiftPackage/UnderPackageFeedbacksDisplay";
 
 function FeedbackDashboard() {
   return (
@@ -38,6 +39,7 @@ function FeedbackDashboard() {
         <Route path="/FeedbackGiftPackage" element={<FeedbackGiftPackage_Dashboard/>}></Route>
         <Route path="/DisplayFeedbackGiftPackageUser" element={<DisplayGiftPackage_user/>}></Route>
         <Route path="/DisplayFeedbackGiftPackageStaff" element={<DisplayGiftPackage_Staff/>}></Route>
+        <Route path="/DisplayFeedbackUnderPackage" element={<DisplayUnder_Package/>}></Route>
     </Routes>
     </>
   )

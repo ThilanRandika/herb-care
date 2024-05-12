@@ -9,14 +9,15 @@
   
   /* Feedback item styles */
   .DFGPU_containor2 {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
+    /* border: 1px solid #ddd; */
+    padding: 40px;
+    margin-bottom: 40px;
+    margin-top: 20px;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
     position: relative;
   }
   
@@ -46,10 +47,13 @@
   
   /* Overall container styles */
   .DFGPU_title {
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: bold;
     text-align: center;
+    color: #2A3C24;
+  }
+
+  .DFGPU_title_card{
+    padding: 50px;
+    background-color: #CAD593;
   }
   
   /* Date and time styles */
@@ -65,18 +69,21 @@
   .DFGPU_date span {
     margin-right: 10px;
   }
+
+  .DFGPU_btn_container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
   
   .DFGPU_del {
-    background-color: #178535;
+    background-color: #143109;
     color: rgb(255, 255, 255);
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    position: absolute;
-    right: 10px;
-    top: 10px;
   }
   
   .DFGPU_del:hover {
@@ -86,16 +93,13 @@
   
   /* Edit button styles */
   .DFGPU_edit {
-    background-color: #238552;
+    background-color: #143109;
     color: white;
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    position: absolute;
-    right: 120px;
-    top: 10px;
   }
   
   .DFGPU_edit:hover {
