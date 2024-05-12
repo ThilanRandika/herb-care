@@ -62,39 +62,48 @@ function AddDefaultGiftPack() {
     };
 
     return (
-        <div className="giftPackage-default-add">
-            <h3>Create Default Gift Package</h3>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Package Name:</label>
-                    <input type="text" value={packageName} onChange={handlePackageNameChange} required />
-                </div>
-                <br></br>
-                <div>
-                    <label>Description:</label>
-                    <textarea value={description} onChange={handleDescriptionChange} required />
-                </div>
-                <br></br>
-                <div>
-                    <label>Product List:</label>
-                    <textarea value={products} onChange={handleProductsChange} required />
-                </div>
-                <br></br>
-                <div>
-                    <label>Package Total Price:</label>
-                    <input type="text" value={totalPrice} onChange={handleTotalPriceChange} required />
-                </div>
-                <br></br>
-                <div>
-                    <label>Upload Images:</label>
+
+        <div>
+            <br></br>
+            <div className="ADGPS_title_card">
+                <h3 className="ADGPS_title"><center>Default Gift Packages</center></h3>
+                <p className="ADGPS_title">Manage default gift packages</p>
+            </div>
+
+            <div className="giftPackage-default-add">
+
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Package Name:</label>
+                        <input type="text" value={packageName} onChange={handlePackageNameChange} required />
+                    </div>
                     <br></br>
-                    <input type="file" multiple onChange={handleImageChange} accept="image/*" />
-                </div>
-                <br></br>
-                <div>
-                    <button type="submit"className="add">Add Package</button>
-                </div>
-            </form>
+                    <div>
+                        <label>Description:</label>
+                        <textarea value={description} onChange={handleDescriptionChange} required />
+                    </div>
+                    <br></br>
+                    <div>
+                        <label>Product List:</label>
+                        <textarea value={products} onChange={handleProductsChange} required />
+                    </div>
+                    <br></br>
+                    <div>
+                        <label>Package Total Price:</label>
+                        <input type="text" value={totalPrice} onChange={handleTotalPriceChange} required />
+                    </div>
+                    <br></br>
+                    <div>
+                        <label>Upload Images:</label>
+                        <br></br>
+                        <input type="file" multiple onChange={handleImageChange} accept="image/*" />
+                    </div>
+                    <br></br>
+                    <div>
+                        <button type="submit"className="add">Add Package</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import "./DisplaySingleDefaultGiftPackage.css"
 
 
 const DisplaySingleDefaultGiftPackage = () => {
@@ -31,28 +32,53 @@ const DisplaySingleDefaultGiftPackage = () => {
 
     return (
         <div>
-          
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                packageData && (
-                    <div>
-                        <div>
-                            {packageData.images.map((image, index) => (
-                                <img key={index} src={require(`../../../../../BACKEND/uploads/${image}`)} alt={`Image ${index}`} />
-                            ))}
+
+            <br></br>
+            <br></br>
+            
+            <div className="Single_GiftPack_display_header_card">
+                <h1 className="Single_GiftPack_display_header">Default Gift Packages</h1>
+                <h5 className="Single_GiftPack_display_header">Order the special Gift packages from us with a best price.</h5>
+                <p className="Single_GiftPack_display_header">Quick  -  Easy  -  The best</p>
+                <p className="Single_GiftPack_display_header">From Us</p>
+            </div>
+
+            <div>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    packageData && (
+                        <div className='SGP_containor'>
+                            <div className='SGP_Image_card'>
+                                {packageData.images.map((image, index) => (
+                                    <img key={index} src={require(`../../../../../BACKEND/uploads/${image}`)} alt={`Image ${index}`} />
+                                ))}
+                            </div>
+                            <div className='SGP_Content'>
+                                <h1>{packageData.packageName}</h1>
+                                <br></br>
+                                <p>{packageData.description}</p>
+                                <p>Including Products: <br></br>{packageData.products}</p>
+                                <br></br>
+                                <p>Total Price: {packageData.totalPrice}</p>
+
+                                <br></br>
+
+                                <div className='SGP_order_btn_containor'>
+                                    <Link to={`/Place-Order?packageId=${packageData._id}`}>
+                                        <button className="btn">Order Package</button>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            
+
                         </div>
-                        <h1>{packageData.packageName}</h1>
-                        <p>Description: {packageData.description}</p>
-                        <p>Products: {packageData.products}</p>
-                        <p>Total Price: {packageData.totalPrice}</p>
-                        
-                        <Link to={`/Place-Order?packageId=${packageData._id}`}>
-                            <button className="btn">Order Package</button>
-                        </Link>
-                    </div>
-                )
-            )}
+                    )
+                )}
+            </div>
+          
+            
         </div>
     );
 };
