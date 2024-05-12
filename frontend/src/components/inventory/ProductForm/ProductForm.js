@@ -5,7 +5,7 @@ import './ProductForm.css'; // Import your CSS file
 function ProductForm() {
   const [formData, setFormData] = useState({
     name: '',
-    category: '',
+    category: '', // Change category input to dropdown
     description: '',
     price: '',
     Manufactured_price: '',
@@ -67,7 +67,14 @@ function ProductForm() {
         </div>
         <div className="form-group-inventory-add">
           <label>Category:</label>
-          <input type="text" name="category" value={formData.category} onChange={handleChange} required />
+          <select name="category" value={formData.category} onChange={handleChange} required>
+            <option value="">Select Category</option>
+            <option value="Hair Care">Hair Care</option>
+            <option value="Face and Body Care">Face and Body Care</option>
+            <option value="Pain and Safety">Pain and Safety</option>
+            <option value="Others">Others</option>
+            
+          </select>
         </div>
         <div className="form-group-inventory-add">
           <label>Description:</label>

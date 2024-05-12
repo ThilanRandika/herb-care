@@ -1,0 +1,85 @@
+.notificationPopupSpecialist-notification-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the popup appears above other content */
+}
+
+.notificationPopupSpecialist-notification-popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 50%;
+  overflow: auto; /* Add scrollbars if content overflows */
+}
+
+.notificationPopupSpecialist-notification-popup-content {
+  /* Add styles for notification content */
+}
+
+.notificationPopupSpecialist-close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 80%;
+  width: 10%;
+}
+
+.notificationPopupSpecialist-notificationsList {
+  margin-top: 20px; /* Add some space between the header and the notifications list */
+  max-height: 300px; /* Set a fixed height for the notifications list */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.notificationPopupSpecialist-notification-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.notificationPopupSpecialist-notification-card p {
+  margin: 0; /* Remove default paragraph margin */
+}
+
+.notificationPopupSpecialist-notification-cardinotification-DateAndTime {
+  color: #797979; /* Change color of the date/time */
+}
+
+.notificationPopupSpecialist-notification-appointment-details {
+  font-weight: bold; /* Make the first paragraph (notification body) bold */
+}
+
+.notificationPopupSpecialist-notification-card-dateAndTime{
+  display: flex;
+  gap: 25px;
+}
+
+.notificationPopupSpecialist-notification-card-read {
+  color: #ccc; /* Light color for read notifications */
+}
+
+.notificationPopupSpecialist-mark-all-btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.notificationPopupSpecialist-mark-all-btn:hover {
+  background-color: #45a049; /* Darker green */
+}

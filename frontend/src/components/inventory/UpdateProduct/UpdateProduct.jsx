@@ -28,6 +28,11 @@ function Product() {
           manufactureDate: formatDate(res.data.product.manufactureDate),
           expireDate: formatDate(res.data.product.expireDate),
         }); // Initialize form data with product details and format dates
+
+        // Check if quantity is less than 10 and display alert message
+        if (res.data.product.quantity < 10) {
+          alert('Product quantity is less than 10. Restock the product.');
+        }
       })
       .catch((err) => {
         alert(err.message);
@@ -68,7 +73,6 @@ function Product() {
       }
     }
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,9 +86,7 @@ function Product() {
       formDataToSend.append('Manufactured_price', formData.Manufactured_price);
       formDataToSend.append('discount', formData.discount);
       formDataToSend.append('quantity', formData.quantity);
-      
       formDataToSend.append('image', formData.image); // Append image file if available
-      
       formDataToSend.append('expireDate', formData.expireDate);
       formDataToSend.append('manufactureDate', formData.manufactureDate);
       formDataToSend.append('ingredients', formData.ingredients);
@@ -108,6 +110,16 @@ function Product() {
   if (!product) {
     return <div>Loading...</div>;
   }
+  
+  let restockMessage = null;
+  if (product.quantity < 10) {
+    restockMessage = (
+      <div className="inventory-manager-update-form-group">
+        <p className="restock-text">Restock the product</p>
+      </div>
+    );
+  }
+
   return (
     <div className="inventory-manager-update-product-container">
       <h2 className="inventory-manager-update-product-title">Update Product</h2>
@@ -122,7 +134,7 @@ function Product() {
           <label className="inventory-form-label">Name:</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} className="inventory-form-input" />
         </div>
-
+        
         <div className="inventory-manager-update-form-group">
           <label className="inventory-form-label">Price:</label>
           <input type="text" name="price" value={formData.price} onChange={handleChange} className="inventory-form-input" />
@@ -135,7 +147,16 @@ function Product() {
 
         <div className="inventory-manager-update-form-group">
           <label className="inventory-form-label">Category:</label>
-          <input type="text" name="category" value={formData.category} onChange={handleChange} className="inventory-form-input" />
+          
+          <select name="category" value={formData.category} onChange={handleChange} className="inventory-form-input"  required>
+            <option value="">Select Category</option>
+            <option value="Hair Care">Hair Care</option>
+            <option value="Face and Body Care">Face and Body Care</option>
+            <option value="Pain and Safety">Pain and Safety</option>
+            <option value="Others">Others</option>
+            
+          </select>
+          
         </div>
 
         <div className="inventory-manager-update-form-group">
@@ -162,6 +183,8 @@ function Product() {
           <label className="inventory-form-label">Quantity:</label>
           <input type="text" name="quantity" value={formData.quantity} onChange={handleChange} className="inventory-form-input" />
         </div>
+
+        {restockMessage}
 
         <button type="submit" className="inventory-manager-update-form-button">Update</button>
       </form>

@@ -5,7 +5,7 @@
   .User-searching-sidebar {
     width: 250px; /* Width of the sidebar */
     background-color: white; /* Sidebar background color */
-    padding: 20px; /* Add padding for spacing */
+    padding: 10px; /* Add padding for spacing */
   }
   
   .user-searching-content {
