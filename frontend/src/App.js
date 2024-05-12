@@ -41,6 +41,7 @@ import UserDisplayOrder from "./pages/giftPackage/User/DisplayOrderUser";
 
 import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
+import RegisterPage from "./pages/common/register/RegisterPage";
 
 
 function App() {
@@ -51,7 +52,7 @@ function App() {
 
         <Route path="/Feedback&Complains/*" element={<FeedbackDashboard/>}></Route>
 
-        <Route path="/customer" element={<Home/>}></Route>
+        <Route path="/" element={<Home/>}></Route>
         <Route path="/Inventory_Dashboard/*" element={<Inventory_Dashboard />} />
         <Route path="/User_searching/*" element={<User_searching />} />
         <Route path="/Producttesting/*" element={<Producttesting />} />
@@ -63,7 +64,9 @@ function App() {
         <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
         <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard />} />
 
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
         <Route path="/consultation/*" element={<ConsultationsCustomer />} />
         <Route path="/specialistInterface/*" element={<SpecialistInterface />} />
         <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
