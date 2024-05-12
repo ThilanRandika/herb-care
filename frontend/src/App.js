@@ -42,6 +42,7 @@ import UserDisplayOrder from "./pages/giftPackage/User/DisplayOrderUser";
 import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
 
+import ContactUs from "./pages/common/contactUs/ContactUs";
 
 function App() {
   return (
@@ -88,6 +89,7 @@ function App() {
         <Route path="/staff/*" element={<StaffMainDashboard/>}></Route>
         <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
 
+        <Route path="/contactUs" element={<ContactUs/>}></Route>
         
       </Routes>
     </BrowserRouter>
