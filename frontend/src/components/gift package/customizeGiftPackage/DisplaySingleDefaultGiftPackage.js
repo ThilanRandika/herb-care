@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom'; // Import Link from react-router-dom
-
+import FeedbackGiftPAck from '../../../components/Feedback&Complaints/FeedbackGiftPackage/Display/DisplayUnderPackage/UnderPackageFeedbacks';
 
 const DisplaySingleDefaultGiftPackage = () => {
     const [packageData, setPackageData] = useState(null);
@@ -53,6 +53,7 @@ const DisplaySingleDefaultGiftPackage = () => {
                     </div>
                 )
             )}
+            <FeedbackGiftPAck packageId={packageId} />
         </div>
     );
 };
