@@ -61,19 +61,24 @@ function DisplayGiftPackOrders() {
 
   return (
     <div>
-      <h3 className="GiftOrder-topic"><center>Gift Package Orders</center></h3>
+      <br></br>
+      <div className="GiftOrder_title_card">
+        <h3 className="GiftOrder_title"><center>Gift Package Orders</center></h3>
+        <p className="GiftOrder_title">Manage customer orders</p>
+      </div>
+      
       {orders.map((order) => (
         <div key={order._id} className="giftPackage-order-container">
-          <p>Order Name: {order.orderName}</p>
-          <p>Order Address: {order.orderAddress}</p>
-          <p>Area: {order.area}</p>
-          <p>Postal Code: {order.postalCode}</p>
-          <p>Mobile Number: {order.mobileNum}</p>
-          <p>Payment Method: {order.paymentMethod}</p>
-          <p>Total Amount: {order.totalAmount}</p>
-          <p>Order Placed date: {new Date(order.createdAt).toLocaleDateString()}</p>
-          <p>Order Placed time: {new Date(order.createdAt).toLocaleTimeString()}</p>
-          <p>Payment Status: {order.payment}</p>
+          <p><b>Order Name:</b> {order.orderName}</p>
+          <p><b>Order Address:</b> {order.orderAddress}</p>
+          <p><b>Area:</b> {order.area}</p>
+          <p><b>Postal Code:</b> {order.postalCode}</p>
+          <p><b>Mobile Number:</b> {order.mobileNum}</p>
+          <p><b>Payment Method:</b> {order.paymentMethod}</p>
+          <p><b>Total Amount:</b> {order.totalAmount}</p>
+          <p><b>Order Placed date:</b> {new Date(order.createdAt).toLocaleDateString()}</p>
+          <p><b>Order Placed time:</b> {new Date(order.createdAt).toLocaleTimeString()}</p>
+          <p><b>Payment Status:</b> {order.payment}</p>
           <select
             value={order.payment}
             onChange={(e) => updateOrderStatus(order._id, order.orderStatus, e.target.value)}
@@ -83,7 +88,7 @@ function DisplayGiftPackOrders() {
             <option value="Done">Done</option>
           </select>
           <br></br><br></br>
-          <p>Order Deliver Status: {order.orderStatus}</p>
+          <p><b>Order Deliver Status:</b> {order.orderStatus}</p>
           <select
             value={order.orderStatus}
             onChange={(e) => updateOrderStatus(order._id, e.target.value, order.payment)}
@@ -93,11 +98,16 @@ function DisplayGiftPackOrders() {
             <option value="completed">Completed</option>
             <option value="delivered">Delivered</option>
           </select>
-          <button onClick={() => cancelOrder(order._id)} className="cancel-btn">Cancel Order</button>
+
+          <div className="GiftOrder_card_btn">
+
+              <button onClick={() => cancelOrder(order._id)} className="cancel-btn">Cancel Order</button>
+          </div>
+
         </div>
       ))}
       <div className="ReportDownload-button-container">
-        <button onClick={generateReport} className="btn">Download Report</button>
+        <button onClick={generateReport} className="btn">Download Full Report</button>
       </div>
     </div>
   );

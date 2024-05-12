@@ -11,6 +11,8 @@
     margin-right: auto;
 }
 
+
+
 .giftPackage-default-container .card-content img {
     width: 400px;
     margin-right: 24px;
@@ -46,6 +48,14 @@
     justify-content: flex-end;
 }
 
-.giftPackage-default-container .header {
-    margin-top: 30px;
+.GiftPack_display_header{
+    text-align: center;
+  color: #2A3C24;
+}
+
+
+.GiftPack_display_header_card {
+    padding: 50px;
+  background-color: #CAD593;
+  margin-bottom: 100px;
 }
