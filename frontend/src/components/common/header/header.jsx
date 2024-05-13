@@ -70,7 +70,6 @@ class Header extends Component {
 						    </div>
 					    </li>
 					    <li><Link to="/consultation/homeConsultation" class="nav-item nav-link hed_fosiz">Consultation</Link></li>
-              <li ><Link to="#" class="nav-item nav-link hed_fosiz">Partnership Request</Link></li>
               <li><Link to="#" class="nav-item nav-link hed_fosiz">About Us</Link></li>
 
               <li><Link to="#" class="nav-item nav-link hed_fosiz headeee_loLOinf"><img width="30" height="30" src="https://img.icons8.com/sf-regular-filled/48/1A1A1A/shopping-cart.png" alt="shopping-cart--v1"/></Link></li>
