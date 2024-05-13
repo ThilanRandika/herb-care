@@ -122,7 +122,7 @@ router.route('/login').post(async (req, res) => {
           redirectURL = '/';
           break;
         case 'manager':
-          redirectURL = '/manager';
+          redirectURL = '/manager/Inventory_Dashboard';
           break;
         case 'staff':
           redirectURL = '/staff';
