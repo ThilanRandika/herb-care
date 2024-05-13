@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt'); // For password hashing
 const Seller = require('../../models/sellerPartnership/Seller');
+const { verifySellerToOther } = require('../../utils/veryfyToken');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -57,5 +58,41 @@ router.post('/update', upload.single('avatar'), async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 });
+
+
+router.route('/profile').get(verifySellerToOther, async (req, res) => {
+  try {
+    const sellerId = req.person.sellerId;
+
+    // Use await to ensure the result is resolved before proceeding
+    const seller = await Seller.findOne({ sellerId: sellerId });
+
+    // Check if seller exists
+    if (!seller) {
+      return res.status(404).json({ message: 'Seller not found' });
+    }
+
+    // Send only necessary data without circular references
+    const sellerData = {
+      sellerId: seller.sellerId,
+      email: seller.email,
+      seller_name: seller.seller_name,
+      company: seller.company,
+      company_discription: seller.company_discription,
+      address: seller.address,
+      contact_num: seller.contact_num,
+      website: seller.website,
+      profile_Image: seller.profile_Image,
+      tax_id: seller.tax_id,
+    };
+
+    // Send the modified data as JSON response
+    res.status(200).json(sellerData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 
 module.exports = router;

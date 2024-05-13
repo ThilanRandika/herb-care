@@ -3,6 +3,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import SellerManagerDashboard from '../../sellerPartnership/managerDashboard/SellerManagerDashboard'
 import './managerDashboard.css'
 import Inventory_Dashboard from '../../inventory/Inventory_Dashboard/Inventory_Dashboard'
+import ManagerMainDashboard from './dashboard/ManagerMainDashboard'
 
 function ManagerDashboard() {
   return (
@@ -14,7 +15,7 @@ function ManagerDashboard() {
     <li className="main-staff-sidebar-item">
       <Link
         className="main-staff-sidebar-link"
-        to={"/staff"}
+        to={"/manager/dashboard"}
         aria-current="page"
       >
         Dashboard
@@ -42,6 +43,7 @@ function ManagerDashboard() {
       <Routes>
         <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
         <Route path="/Inventory_Dashboard/*" element={<Inventory_Dashboard />} />
+        <Route path="/dashboard" element={<ManagerMainDashboard />} />
       </Routes>
     </div>
     </>
