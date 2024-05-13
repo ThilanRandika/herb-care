@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './PlaceOrder.css';
+import Header from '../../common/header/header';
+import Footer from '../../common/footer/footer';
 
 const PlaceOrder = () => {
   const [orderName, setOrderName] = useState('');
@@ -17,6 +19,19 @@ const PlaceOrder = () => {
   const [totalAmount, setTotalAmount] = useState('');
   const location = useLocation();
   const packageId = new URLSearchParams(location.search).get('packageId');
+  
+
+
+  useEffect(()=>{
+    axios.get(`http://localhost:8070/giftPackageOrder/get/${packageId}`)
+    .then((res)=>{
+      console.log(res.data)
+      setOrderName(res.data.orderName)
+      setOrderAddress(res.data.orderAddress)
+      setMobileNum(res.data.mobileNum)
+      setTotalPrice(res.data.totalPrice)
+    })
+  },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +65,7 @@ const PlaceOrder = () => {
 
   return (
     <div>
+      <Header></Header>
       <br></br>
       <form className="PGPO_form" onSubmit={handleSubmit}>
         <label className="PGPO_ordername">Order Name : <br/>
@@ -67,6 +83,9 @@ const PlaceOrder = () => {
         <label className="PGPO_monum">Mobile Number : <br/>
           <input type="text" placeholder="Input Mobile Number" value={mobileNum} onChange={(e) => setMobileNum(e.target.value)} required />
         </label><br/>
+
+        <p className="PGPO_totpri">Total Price: {totalPrice}</p>
+        
         <label className="PGPO_paymentmethod">Payment Method: <br/>
           <label className="PGPO_paymentmethod_option">
             <input
@@ -102,6 +121,7 @@ const PlaceOrder = () => {
           <p className="PGPO_totamou">Total Amount: {totalAmount}</p>
         </div>
       )}
+      <Footer></Footer>
     </div>
   );
 };

@@ -535,7 +535,8 @@ router.route("/sellerPendingOrders").get(verifySellerToOther, async(req, res) =>
             const formattedOrders = orders.map(order => {
                 return {
                     id: order._id, // Assuming shipping address is customer name
-                    price: `$${order.totalPrice}`, // Formatting price
+                    orderviewId: order.orderviewId,
+                    price: `Rs. ${order.totalPrice}`, // Formatting price
                     paymentMethod: order.payment,
                     status: order.status,
                     date: order.createdAt.toISOString(), // Using createdAt timestamp
@@ -608,7 +609,8 @@ router.route("/ongoingOrders").get(verifySellerToOther, async (req, res) => {
         const formattedOrders = orders.map(order => {
             return {
                 id: order._id, // Assuming shipping address is customer name
-                price: `$${order.totalPrice}`, // Formatting price
+                orderviewId: order.orderviewId,
+                price: `Rs. ${order.totalPrice}`, // Formatting price
                 paymentMethod: order.payment,
                 status: order.status,
                 date: order.createdAt.toISOString(), // Using createdAt timestamp
@@ -634,7 +636,8 @@ router.route("/sellerCompletedOrders").get(verifySellerToOther, async(req, res) 
             const formattedOrders = orders.map(order => {
                 return {
                     id: order._id, // Assuming shipping address is customer name
-                    price: `$${order.totalPrice}`, // Formatting price
+                    orderviewId: order.orderviewId,
+                    price: `Rs. ${order.totalPrice}`, // Formatting price
                     paymentMethod: order.payment,
                     status: order.status,
                     date: order.createdAt.toISOString(), // Using createdAt timestamp

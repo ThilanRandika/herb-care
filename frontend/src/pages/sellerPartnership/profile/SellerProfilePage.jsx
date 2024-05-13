@@ -5,7 +5,7 @@ import SellerProfile from '../../../components/sellerPartnership/Profile/SellerP
 function SellerProfilePage() {
   return (
     <>
-    <div className='seller-ProfilePage'>SellerProfilePage
+    <div className='seller-ProfilePage'>
     <SellerProfile/>
     </div>
     </>

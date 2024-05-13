@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import './sellerManagerDashboardPage.css' 
-import SMDashboardCard from '../../../components/sellerPartnership/manager/dashboard/cards/SMDashboardCard'
-import SellerManagerBarChart from '../../../components/sellerPartnership/manager/dashboard/charts/barcharts/SellerManagerBarChart'
-import SellerManagerRadarChart from '../../../components/sellerPartnership/manager/dashboard/charts/radarChart/SellerManagerRadarChart';
-import SellerManagerDonutChart from '../../../components/sellerPartnership/manager/dashboard/charts/donutChart/SellerManagerDonutChart';
+import SMDashboardCard from '../../../../components/sellerPartnership/manager/dashboard/cards/SMDashboardCard'
+import SellerManagerBarChart from '../../../../components/sellerPartnership/manager/dashboard/charts/barcharts/SellerManagerBarChart'
+import SellerManagerRadarChart from '../../../../components/sellerPartnership/manager/dashboard/charts/radarChart/SellerManagerRadarChart';
+import SellerManagerDonutChart from '../../../../components/sellerPartnership/manager/dashboard/charts/donutChart/SellerManagerDonutChart';
 
-function SellerManagerDashboardPage() {
+function ManagerMainDashboard() {
     const [radarData, setRadarData] = useState({ series: [], labels: [] });
 
     const lineData = [
@@ -48,13 +47,10 @@ function SellerManagerDashboardPage() {
         series: [44, 55, 13, 33],
         labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
       };
-      
-      
-      
   return (
     <>
-
     <div className='seller-manager-dashboard'>
+    
         <div className='seller-manager-dashboard-left'>
             <div className='seller-manager-dashboard-cards'>
                 <SMDashboardCard title="Sales" value={145} percentageIncrease={12} />
@@ -78,8 +74,7 @@ function SellerManagerDashboardPage() {
         </div>
     </div>
     </>
-    
   )
 }
 
-export default SellerManagerDashboardPage
+export default ManagerMainDashboard

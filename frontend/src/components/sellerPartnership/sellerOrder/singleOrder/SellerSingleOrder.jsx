@@ -236,7 +236,7 @@ function SellerSingleOrder() {
                   <h5 className="mb-0">
                     ORDER{" "}
                     <span className="text-primary font-weight-bold">
-                      #{singleOrder.orderviewId}
+                      #{singleOrder.orderViewId}
                     </span>
                   </h5>
                 </div>
@@ -704,7 +704,7 @@ function SellerSingleOrder() {
                   </div>
                 ))}
               ;
-              <button onClick={toggleOrderTracker}>Toggle Order Details</button>
+              <button onClick={toggleOrderTracker} className="seller-order-singleOrder-btn">Toggle Order Details</button>
               {singleOrder.status === "completed" && (
                   <div className="p-5">
                   <h3>Return Product details</h3>
@@ -836,7 +836,7 @@ function SellerSingleOrder() {
               )}
               {/* Update button */}
               {editable && (
-                <button onClick={updateOrder} className="btn btn-primary">
+                <button onClick={updateOrder} className="seller-order-singleOrder-btn">
                   Update Order
                 </button>
               )}

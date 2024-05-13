@@ -14,7 +14,7 @@ function StaffMainDashboard() {
       {[false].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-custom mb-3">
           <Container fluid>
-            <Navbar.Brand as={Link} to="/customer" className="UDB_home">
+            <Navbar.Brand as={Link} to="/" className="UDB_home">
               Home
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -76,7 +76,7 @@ function StaffMainDashboard() {
                     <NavDropdown.Item as={Link} to="/Feedback&Complains/DisplayFeedbackGiftPackageUser" className="UDB_GiftPafeedHis">Gift Package Feedbacks</NavDropdown.Item>
                   </NavDropdown>
 
-                  <Nav.Link as={Link} to="" className="UDB_LOGOUT">LogOut</Nav.Link>
+                  <Nav.Link as={Link} to="/Login" className="UDB_LOGOUT">LogOut</Nav.Link>
                 </Nav>
                 {/* Your existing Form and Button elements */}
               </Offcanvas.Body>
