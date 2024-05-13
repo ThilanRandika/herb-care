@@ -4,6 +4,7 @@ import MyConsultations from '../myConsultations/MyConsultations';
 import HomeConsultation from '../home-consultation/HomeConsultation';
 import RefundsCustomer from '../refundsCustomer/RefundsCustomer';
 import MyRefunds from '../../../components/consultation/myRefunds/MyRefunds';
+import Header from '../../../components/common/header/header';
 import NavigationBar from '../../../components/common/navigationBar/NavigationBar';
 import ConsultationCusNavBar from '../../../components/consultation/consultationCusNavBar/ConsultationCusNavBar';
 // import { useContext, useState } from 'react';
@@ -13,9 +14,11 @@ function ConsultationsCustomer() {
 
   return (
     <>
-    <NavigationBar></NavigationBar>
+    {/* <NavigationBar></NavigationBar> */}
     
-        <ConsultationCusNavBar></ConsultationCusNavBar>
+        {/* <ConsultationCusNavBar></ConsultationCusNavBar> */}
+
+        <Header></Header>
 
         <Routes>
             <Route path="/homeConsultation" element={<HomeConsultation />}></Route>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import axios from 'axios';
-import './Product.css';
+//import './Product.css';
 import Feedback from '../../../components/Feedback&Complaints/Feedback/Display/DisplayUnderProduct/displayUnderProduct';
 
 function Product() {
@@ -35,8 +35,10 @@ function Product() {
     }
   };
 
+  // console.log(product.name);
+
   const addToCart = () => {
-    axios.post('http://localhost:8070/Cart/add', { productId: id, quantity })
+    axios.post('http://localhost:8070/Cart/add', { productId: id, quantity, productname: product.name })
       .then((res) => {
         console.log(res.data); // Handle success response
       })

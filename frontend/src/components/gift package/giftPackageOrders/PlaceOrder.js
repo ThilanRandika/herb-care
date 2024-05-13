@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './PlaceOrder.css';
+import Header from '../../common/header/header';
+import Footer from '../../common/footer/footer';
 
 const PlaceOrder = () => {
   const [orderName, setOrderName] = useState('');
@@ -17,6 +19,7 @@ const PlaceOrder = () => {
   const [totalAmount, setTotalAmount] = useState('');
   const location = useLocation();
   const packageId = new URLSearchParams(location.search).get('packageId');
+  
 
 
   useEffect(()=>{
@@ -62,6 +65,8 @@ const PlaceOrder = () => {
 
   return (
     <div>
+      <Header></Header>
+      <br></br>
       <form className="PGPO_form" onSubmit={handleSubmit}>
         <label className="PGPO_ordername">Order Name : <br/>
           <input type="text" placeholder="Input Full Name" value={orderName} onChange={(e) => setOrderName(e.target.value)} required />
@@ -78,6 +83,9 @@ const PlaceOrder = () => {
         <label className="PGPO_monum">Mobile Number : <br/>
           <input type="text" placeholder="Input Mobile Number" value={mobileNum} onChange={(e) => setMobileNum(e.target.value)} required />
         </label><br/>
+
+        <p className="PGPO_totpri">Total Price: {totalPrice}</p>
+        
         <label className="PGPO_paymentmethod">Payment Method: <br/>
           <label className="PGPO_paymentmethod_option">
             <input
@@ -89,7 +97,7 @@ const PlaceOrder = () => {
             Cash on Delivery <p className="PGPO_admon">(Add 200 for delivery fee)</p>
           </label>
           <br/>
-          <label className="PGPO_paymentmethod_option">
+          {/* <label className="PGPO_paymentmethod_option">
             <input
               type="radio"
               value="Card Payment"
@@ -97,12 +105,13 @@ const PlaceOrder = () => {
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
             Card Payment
-          </label>
+          </label> */}
         </label><br/>
         <button type="submit" className="PGPO_submit_button" disabled={loading}>
-          {loading ? 'Submitting...' : 'Submit Order'}
+          {loading ? 'Submitting...' : 'Place Order'}
         </button>
       </form>
+      <br></br>
 
       {/* Display total price, delivery price, and total amount */}
       {orderId && (
@@ -112,6 +121,7 @@ const PlaceOrder = () => {
           <p className="PGPO_totamou">Total Amount: {totalAmount}</p>
         </div>
       )}
+      <Footer></Footer>
     </div>
   );
 };

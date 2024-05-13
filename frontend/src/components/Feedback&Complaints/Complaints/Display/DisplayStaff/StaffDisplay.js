@@ -70,12 +70,12 @@ const ComplaintsList = () => {
   const filterInProgressComplaints = () => {
     const inProgressComplaints = complaints.filter(complaint => complaint.status === "In Progress");
     setFilteredComplaints(inProgressComplaints);
-    setShowOverlay(true); // Show the overlay when filtering
+    setShowOverlay(true); 
   };
 
   const closeOverlay = () => {
-    setShowOverlay(false); // Close the overlay
-    setFilteredComplaints([]); // Clear filtered complaints when closing overlay
+    setShowOverlay(false); 
+    setFilteredComplaints([]); 
   };
 
   if (loading) {
@@ -84,89 +84,56 @@ const ComplaintsList = () => {
 
   return (
     <div>
-      <br></br>
-      <h2 className='CcSD_title'>Complaints List</h2>
-      <br></br>
+      <div className='CcSD_title_card'>
+        <h2 className='CcSD_title'>Complaints</h2>
+        <p className='CcSD_title'>Manage User Complaints</p>
+      </div>
+      
+      <br />
       <button className='CcSD_download_complaints_btn' onClick={downloadComplaintsPdf}>Download Report</button>
 
       <button className='FSD_ove' onClick={filterInProgressComplaints}>Filter In Progress Complaints</button>
       {showOverlay && (
-        <div className="FSD_overlay" onClick={closeOverlay}></div> // Overlay for transparency
+        <div className="FSD_overlay" onClick={closeOverlay}></div> 
       )}
 
       <p className='CSD_count'>Total Complaints: {totalCount}</p>
-      
+
       <div className={`SD_containor ${showOverlay ? "overlay-active" : ""}`}>
         <ul className='sd_UL'>
-          {showOverlay ? (
-            filteredComplaints.map(complaint => (
-              <li key={complaint._id}>
-                <p className='SD_complaintsName'><strong>Complaint Name: </strong>{complaint.complaintsName}</p>
-                <p className='SD_email'><strong>Email: </strong>{complaint.email}</p>
-                <p className='SD_description'><strong>Description: </strong>{complaint.description}</p>
-                <p className='SD_status'><strong>Status: </strong>{complaint.status}</p>
+          {(showOverlay ? filteredComplaints : complaints).map(complaint => (
+            <li key={complaint._id}>
+              <p className='SD_complaintsName'><strong>Complaint Name: </strong>{complaint.complaintsName}</p>
+              <p className='SD_email'><strong>Email: </strong>{complaint.email}</p>
+              <p className='SD_description'><strong>Description: </strong>{complaint.description}</p>
+              <p className='SD_status'><strong>Status: </strong>{complaint.status}</p>
+              <p className='SD_product'><strong>Product: </strong>{complaint.Product ? complaint.Product.name : 'N/A'}</p>
+              <p className='UD_date'>
+                Date: {new Date(complaint.createdAt).toLocaleDateString()} <br />
+                Time: {new Date(complaint.createdAt).toLocaleTimeString()}<br /><br />
+                {complaint.updatedAt && (
+                  <>
+                    Updated Date: {new Date(complaint.updatedAt).toLocaleDateString()} <br />
+                    Updated Time: {new Date(complaint.updatedAt).toLocaleTimeString()}
+                  </>
+                )}
+              </p>
+              <p className='cSD_change'>Change status:
+                <select
+                  value={complaint.status}
+                  onChange={(e) => handleStatusChange(complaint._id, e.target.value)} className='cSD_status'>
 
-                <p className='UD_date'>
-                  Date: {new Date(complaint.createdAt).toLocaleDateString()} <br/>
-                  Time: {new Date(complaint.createdAt).toLocaleTimeString()}<br/><br></br>
-                  {complaint.updatedAt && (
-                    <>
-                      Updated Date: {new Date(complaint.updatedAt).toLocaleDateString()} <br/>
-                      Updated Time: {new Date(complaint.updatedAt).toLocaleTimeString()}
-                    </>
-                  )}
-                </p>
-                <p className='cSD_change'>Change status: 
-                  <select
-                    value={complaint.status}
-                    onChange={(e) => handleStatusChange(complaint._id, e.target.value)} className='cSD_status'>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                  <option value="Removed">Removed</option>
 
-                    <option value="In Progress">In Progress</option>
-                    <option value="Resolved">Resolved</option>
-                    <option value="Removed">Removed</option>
+                </select>
 
-                  </select>
+              </p>
+              <button type="button" className="btnDel" onClick={() => handleDelete(complaint._id)}>Delete</button>
 
-                </p>
-                <button type="button" className="btnDel" onClick={() => handleDelete(complaint._id)}>Delete</button>
-
-              </li>
-            ))
-          ) : (
-            complaints.map(complaint => (
-              <li key={complaint._id}>
-                <p className='SD_complaintsName'><strong>Complaint Name: </strong>{complaint.complaintsName}</p>
-                <p className='SD_email'><strong>Email: </strong>{complaint.email}</p>
-                <p className='SD_description'><strong>Description: </strong>{complaint.description}</p>
-                <p className='SD_status'><strong>Status: </strong>{complaint.status}</p>
-
-                <p className='UD_date'>
-                  Date: {new Date(complaint.createdAt).toLocaleDateString()} <br/>
-                  Time: {new Date(complaint.createdAt).toLocaleTimeString()}<br/><br></br>
-                  {complaint.updatedAt && (
-                    <>
-                      Updated Date: {new Date(complaint.updatedAt).toLocaleDateString()} <br/>
-                      Updated Time: {new Date(complaint.updatedAt).toLocaleTimeString()}
-                    </>
-                  )}
-                </p>
-                <p className='cSD_change'>Change status: 
-                  <select
-                    value={complaint.status}
-                    onChange={(e) => handleStatusChange(complaint._id, e.target.value)} className='cSD_status'>
-
-                    <option value="In Progress">In Progress</option>
-                    <option value="Resolved">Resolved</option>
-                    <option value="Removed">Removed</option>
-
-                  </select>
-
-                </p>
-                <button type="button" className="btnDel" onClick={() => handleDelete(complaint._id)}>Delete</button>
-
-              </li>
-            ))
-          )}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
