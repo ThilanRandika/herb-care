@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./DisplayDefaultGiftPackages.css";
-
+import Footer from '../../common/footer/footer'
+import Header from "../../common/header/header";
 
 function DisplayDefaultGiftPackages() {
   const [defaultGiftPackages, setDefaultGiftPackages] = useState([]);
@@ -24,11 +25,17 @@ function DisplayDefaultGiftPackages() {
 
   return (
     <div>
-
-      <h3 className="header"><center>Default Gift Packages</center></h3>
-      <h6><center>Order the special Gift packages from us with a best price.</center></h6>
-      <p><center>Quick  -  Easy  -  The best</center></p>
-      <p><center>From Us</center></p>
+      <Header></Header>
+      <br></br>
+      <br></br>
+      
+      <div className="GiftPack_display_header_card">
+          <h1 className="GiftPack_display_header">Default Gift Packages</h1>
+          <h5 className="GiftPack_display_header">Order the special Gift packages from us with a best price.</h5>
+          <p className="GiftPack_display_header">Quick  -  Easy  -  The best</p>
+          <p className="GiftPack_display_header">From Us</p>
+      </div>
+      
       <div>
         {defaultGiftPackages.map((giftPackage) => (
           <div key={giftPackage._id} className="giftPackage-default-container">
@@ -64,7 +71,7 @@ function DisplayDefaultGiftPackages() {
           <Link to=" "><button className="btn">Customize a Gift Package</button></Link>
         </div>
       </div> */}
-
+      <Footer></Footer>
     </div>
   );
 }

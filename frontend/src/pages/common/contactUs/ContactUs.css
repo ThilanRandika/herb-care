@@ -1,0 +1,56 @@
+.ContactUs_title_card {
+    padding: 70px;
+    background-color: #CAD593;
+    margin-bottom: 100px;
+}
+
+.ContactUs_title {
+    text-align: center;
+    color: #2A3C24;
+}
+
+.ContactUs_Containor {
+    display: flex;
+    justify-content: center;
+}
+
+.ContactUs_Address_card,
+.ContactUs_Phone_card,
+.ContactUs_Email_card {
+    width: 350px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.28);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ContactUs_icon {
+    color: #143109;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.ContactUs_Address_card h4,
+.ContactUs_Phone_card h4,
+.ContactUs_Email_card h4 {
+    color: #143109;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ccc; /* Add border to bottom */
+    padding-bottom: 5px; /* Optional: Adjust padding for spacing */
+}
+
+.ContactUs_Address_card p,
+.ContactUs_Phone_card p,
+.ContactUs_Email_card p {
+    color: #143109;
+    margin-bottom: 0;
+}
+
+.ContactUs_map{
+    margin: 50px;
+    max-width: 80%;
+    
+}

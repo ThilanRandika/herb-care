@@ -1,0 +1,89 @@
+.DFGPST_title {
+  text-align: center;
+  color: #2A3C24;
+  }
+
+.DFGPST_title_card{
+  padding: 50px;
+  background-color: #CAD593;
+  margin-bottom: 30px;
+}
+
+  .DFGPST_searchfeedback {
+  margin: 20px;
+  padding: 5px;
+  max-width: 250px; 
+}
+
+  .DFGPST_table {
+    margin: 20px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .DFGPST_table th,
+  .DFGPST_table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .DFGPST_table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .DFGPST_table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .DFGPST_table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .DFGPST_image {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .DFGPST_image img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .DFGPST_deletebtn {
+    padding: 5px 10px;
+    background-color: #143109;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .DFGPST_deletebtn:hover {
+    background-color: #15e63b;
+  }
+
+  .DFGPST_pdfdownloadbtn {
+    padding: 5px 10px;
+    background-color: #143109; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 950px;
+  }
+  
+  .DFGPST_pdfdownloadbtn:hover {
+    background-color: #15e63b; 
+  }
+  
+  .DFGPST_count {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  
+  
