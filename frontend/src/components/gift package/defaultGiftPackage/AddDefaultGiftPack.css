@@ -19,3 +19,14 @@
   cursor: pointer;
   border-radius: 10px;
 }
+
+.ADGPS_title_card{
+  padding: 50px;
+  background-color: #CAD593;
+  margin-bottom: 100px;
+}
+
+.ADGPS_title {
+  text-align: center;
+  color: #2A3C24;
+}

@@ -1,0 +1,88 @@
+.specialistInterface-specialist-top-nav-bar-top-nav-bar-specialist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px 5%;
+  }
+  
+  .specialistInterface-specialist-top-nav-bar-logo-container img {
+    width: 30px; 
+  }
+
+  .specialistInterface-specialist-top-nav-bar-notifications {
+    padding-left: 40%;
+    color: #206128;
+    cursor: pointer;
+  }
+
+.specialistInterface-specialist-top-nav-bar-notifications .svg-inline--fa {
+  font-size: 1.3rem; /* Adjust the font size as desired */
+}
+
+
+  
+  .specialistInterface-specialist-top-nav-bar-user-info {
+    position: relative;
+  }
+  
+  .specialistInterface-specialist-top-nav-bar-user-info-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .specialistInterface-specialist-top-nav-bar-user-info-toggle span {
+    margin-right: 10px;
+  }
+  
+  .specialistInterface-specialist-top-nav-bar-user-info-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .specialistInterface-specialist-top-nav-bar-user-info-dropdown button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .fa-chevron-up,
+  .fa-chevron-down {
+    transition: transform 0.3s ease;
+  }
+
+  .specialistInterface-specialist-top-nav-bar-search-bar {
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+  }
+  
+  .specialistInterface-specialist-top-nav-bar-search-bar-input {
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .specialistInterface-specialist-top-nav-bar-search-bar-btn {
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .specialistInterface-specialist-top-nav-bar-search-bar-btn:hover {
+    background-color: #a9e1b2;
+  }
+  
+  .specialistInterface-specialist-top-nav-bar-notifications-notification-badge {
+    background-color: #ff4d4d;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+  }
+  

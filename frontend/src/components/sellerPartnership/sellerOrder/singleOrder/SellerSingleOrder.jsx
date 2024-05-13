@@ -226,11 +226,11 @@ function SellerSingleOrder() {
 
   return (
     <>
-      <div className="container-fluid d-flex justify-content-center align-items-center h-100">
+      <div className="container-fluid d-flex justify-content-center align-items-center h-100 " >
         <div className="row">
           <div className="col">
             {console.log(singleOrder)}
-            <div className=" container row d-flex justify-content-center align-items-center  py-5 h-100 vw-100 mb-5">
+            <div className=" container row d-flex justify-content-center align-items-center  py-5 h-100 mb-5" >
               <div className="d-flex justify-content-between align-items-center mb-5">
                 <div>
                   <h5 className="mb-0">

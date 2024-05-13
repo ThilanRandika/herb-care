@@ -1,0 +1,35 @@
+.Single_GiftPack_display_header{
+    text-align: center;
+    color: #2A3C24;
+}
+
+
+.Single_GiftPack_display_header_card {
+    padding: 50px;
+  background-color: #CAD593;
+  margin-bottom: 100px;
+}
+
+.SGP_containor{
+    width: 90%;
+    margin: 50px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.SGP_Image_card{
+    margin-right: 20px;
+}
+
+.SGP_order_btn_containor .btn{
+    display: inline-block;
+    padding: 8px 16px;
+    background: #143109;
+    color:#fff;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}

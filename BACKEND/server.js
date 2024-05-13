@@ -19,12 +19,14 @@ const corsOptions = {
 app.use(bodyParser.json());
 
 const StaffRouter = require("./routes/staff/staff.js");
+const ManagerRouter = require("./routes/manager/manager.js");
 
 const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
 const RefundRouter = require("./routes/consultation/refunds.js");
 const AvailabilityRouter = require("./routes/consultation/availabilities.js");
 const SpecialistRouter = require("./routes/consultation/specialists.js");
 const CenterRouter = require("./routes/consultation/centers.js");
+const SpecialistNotificationsRouter = require("./routes/consultation/specialistNotifications.js");
 
 const customerRouter = require( "./routes/user/customer.js" );
 
@@ -35,6 +37,8 @@ const sellerBag = require( "./routes/sellerPartnership/sellerBag.js" );
 const sellerOrder = require( "./routes/sellerPartnership/sellerOrders.js" );
 const sellerNotification = require( "./routes/sellerPartnership/sellerNotification.js" );
 const sellerAppointments = require( "./routes/sellerPartnership/sellerAppointments.js" );
+const SellerHome = require( "./routes/sellerPartnership/sellerHome.js" );
+const SellerProfile = require( "./routes/sellerPartnership/sellerProfile.js" );
 
 const productRouter = require("./routes/inventory/inventoryManagers.js");
 const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
@@ -47,7 +51,8 @@ const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js
 
 const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
 const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
-const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js")
+const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js");
+
 const orderRouter = require( "./routes/order/orders.js" );
 
 const authRouter = require( "./routes/auth.js" );
@@ -69,6 +74,7 @@ app.use(cookieParser());
 
 
 app.use("/staff", StaffRouter);
+app.use("/manager", ManagerRouter);
 
 
 app.use("/consultAppointment", ConsultAppointmentsRouter);
@@ -76,6 +82,7 @@ app.use("/refund", RefundRouter);
 app.use("/availability", AvailabilityRouter);
 app.use("/specialist", SpecialistRouter);
 app.use("/center", CenterRouter);
+app.use("/specialistNotifications", SpecialistNotificationsRouter);
 
 app.use("/seller", sellerRouter);
 app.use("/sellerPartnershipRequest", sellerPartnershipRequestRouter);
@@ -84,6 +91,9 @@ app.use("/sellerBag",  sellerBag);
 app.use("/sellerOrder",  sellerOrder);
 app.use("/sellerNotification", sellerNotification);
 app.use("/sellerAppointments", sellerAppointments);
+app.use("/sellerHome", SellerHome);
+app.use("/sellerProfile", SellerProfile);
+
 
 app.use("/product", productRouter);
 app.use("/approvalProcess",approvalProcessRouter);

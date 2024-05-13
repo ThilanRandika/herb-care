@@ -764,4 +764,20 @@ function addKeyValueToPdf(doc, key, value, fontTitle, fontText) {
 
 
 
+// Route to get the count of pending seller orders
+router.route("/pendingOrders/count").get(async (req, res) => {
+    try {
+        // Find the count of pending orders from SellerOrder model
+        const pendingOrdersCount = await SellerOrder.countDocuments({ status: 'pending' });
+        // Send the count as JSON response
+        res.status(200).json({ pendingOrdersCount });
+    } catch (error) {
+        console.error('Error fetching pending orders count:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+
+
 module.exports = router;
