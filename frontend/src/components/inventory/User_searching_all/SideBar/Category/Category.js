@@ -12,10 +12,10 @@ const CategorySelector = ({ onCategoryChange }) => {
   };
 
   return (
-    <div className="category-container">
-      <h3 className="category-heading">Category:</h3>
+    <div className="User-search-category-container">
+      <h3 className="User-search-category-heading">Category:</h3>
       {/* Category radio buttons */}
-      <div className="category-option">
+      <div className="User-search-category-option">
         <input
           type="radio"
           id="hair-care"
@@ -25,7 +25,7 @@ const CategorySelector = ({ onCategoryChange }) => {
         />
         <label htmlFor="hair-care">Hair Care</label>
       </div>
-      <div className="category-option">
+      <div className="User-search-category-option">
         <input
           type="radio"
           id="face-body-care"
@@ -35,7 +35,7 @@ const CategorySelector = ({ onCategoryChange }) => {
         />
         <label htmlFor="face-body-care">Face and Body Care</label>
       </div>
-      <div className="category-option">
+      <div className="User-search-category-option">
         <input
           type="radio"
           id="pain-safety"
@@ -45,7 +45,7 @@ const CategorySelector = ({ onCategoryChange }) => {
         />
         <label htmlFor="pain-safety">Pain and Safety</label>
       </div>
-      <div className="category-option">
+      <div className="User-search-category-option">
         <input
           type="radio"
           id="others"

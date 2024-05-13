@@ -37,7 +37,7 @@
   
   .inventory-manager-add {
     padding: 0.5rem 1rem;
-    background-color: #129a10;
+    background-color: #333333;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -48,7 +48,7 @@
   }
   
   .inventory-manager-add:hover {
-    background-color: #095a07;
+    background-color: #4b4f4b;
   }
   * Style for the dropdown */
   .form-group-inventory-add select {
@@ -78,6 +78,6 @@
 
 /* Add border color when dropdown is focused */
 .form-group-inventory-add select:focus {
-  border-color: #129a10;
+  border-color: #353935;
   outline: none;
 }

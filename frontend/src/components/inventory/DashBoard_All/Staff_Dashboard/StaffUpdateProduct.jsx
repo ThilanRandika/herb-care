@@ -137,7 +137,14 @@ function StaffUpdateProduct() {
 
         <div className="staff-form-group">
           <label className="staff-form-label">Category:</label>
-          <input type="text" name="category" value={formData.category} onChange={handleChange} className="staff-form-input" />
+          <select name="category" value={formData.category} onChange={handleChange} className="staff-form-input"  required>
+            <option value="">Select Category</option>
+            <option value="Hair Care">Hair Care</option>
+            <option value="Face and Body Care">Face and Body Care</option>
+            <option value="Pain and Safety">Pain and Safety</option>
+            <option value="Others">Others</option>
+            
+          </select>
         </div>
 
         <div className="staff-form-group">

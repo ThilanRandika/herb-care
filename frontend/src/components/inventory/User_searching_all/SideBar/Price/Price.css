@@ -1,25 +1,26 @@
-.price-container {
+.User-searching-price-container {
   
   display: flex;
   flex-direction: column;
 }
 
-.price-option {
+.User-searching-price-option {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  font-size: 16px;
 }
 
-.price-option input {
+.User-searching-price-option input {
   margin-right: 10px;
 }
 
-.price-heading {
+.User-searching-price-heading {
   margin-bottom: 10px;
 }
 
 
-.price-option input[type="radio"]:checked + label {
+.User-searching-price-option input[type="radio"]:checked + label {
   font-weight: bold;
   color: #022002; 
 }
