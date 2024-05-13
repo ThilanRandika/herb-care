@@ -67,7 +67,7 @@ function ApprovalProcessForm() {
         </div>
         <div className="staff-form-group">
           <label className="staff-label">Category:</label>
-          <select name="category" value={formData.category} onChange={handleChange} className="inventory-form-input"  required>
+          <select name="category" value={formData.category} onChange={handleChange} className="staff-input"  required>
             <option value="">Select Category</option>
             <option value="Hair Care">Hair Care</option>
             <option value="Face and Body Care">Face and Body Care</option>
