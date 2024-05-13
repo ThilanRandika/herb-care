@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const PDFDocument = require("pdfkit");
 const Product = require("../../models/inventory/Product");
 
 
@@ -177,5 +178,56 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-  
+
+
+
+
+router.get("/generateReport", async (req, res) => {
+  try {
+    // Fetch all products from the database
+    const products = await Product.find({});
+
+    // Create a new PDF document
+    const doc = new PDFDocument();
+    doc.pipe(fs.createWriteStream("report.pdf")); // Save PDF to file
+
+    // Add products data to the PDF
+    doc.fontSize(12).text("Product Report", { align: "center" });
+    doc.moveDown();
+
+    // Create table header
+    const tableHeaders = ["Product Name", "Category", "Description", "Price", "Manufactured Price", "Discount", "Quantity", "Image", "Expire Date", "Manufacture Date", "Ingredients"];
+    doc.table([tableHeaders], { headerRows: 1 });
+
+    // Add products to the table
+    products.forEach(product => {
+      const rowData = [
+        product.name,
+        product.category,
+        product.description,
+        product.price,
+        product.Manufactured_price,
+        product.discount,
+        product.quantity,
+        product.image,
+        product.expireDate,
+        product.manufactureDate,
+        product.ingredients
+      ];
+      doc.table([rowData], { headerRows: 0 });
+    });
+
+    // Finalize the PDF document
+    doc.end();
+
+    // Send the generated PDF file as a response
+    res.download("report.pdf");
+  } catch (error) {
+    console.error("Error generating report:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
 module.exports = router;

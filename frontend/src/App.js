@@ -10,7 +10,7 @@ import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory
 
 import User_searching from "./pages/inventory/user_searching/User_searching"
 import Producttesting from "./pages/inventory/Inventory_Dashboard/Producttesting";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from "./pages/inventory/user_searching/Product";
 import Staff_Dashboard from "./pages/inventory/Staff_Inventory_Management/Staff_Dashboard";
 
@@ -39,6 +39,8 @@ import PlaceOrder from "./components/gift package/giftPackageOrders/PlaceOrder";
 import DisplayGiftPackOrders from "./components/gift package/giftPackageOrders/DisplayGiftPackOrders";
 
 
+import AboutUs from "./pages/inventory/AboutUs/about_us";
+
 
 function App() {
   return (
@@ -55,6 +57,8 @@ function App() {
         <Route path="/Producttesting/*" element={<Producttesting />} />
         <Route path="/Product/:id" element={<Product />} />
         <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
+        <Route path="/aboutUs" element={<AboutUs/>} />
+
 
 
         <Route path="/sellerMainHome/*" element={<SellerMainHome />} />
