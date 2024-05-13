@@ -46,7 +46,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
+      <div className="home-header-body">
         <header class="header-area overlay">
         <nav class="navbar navbar-expand-md navbar-dark">
 		    <div class="container">
@@ -82,6 +82,9 @@ class Header extends Component {
 		    </div>
 	    </nav>
         </header>
+        <br />
+        <br />
+        <br />
     </div>
     );
   }
