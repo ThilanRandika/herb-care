@@ -14,7 +14,6 @@ const defaultGiftPackSchema = new mongoose.Schema(
             required: true
         },
 
-        
         //products in the package
         products: {
               type: String, 

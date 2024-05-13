@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./DisplayDefaultGiftPackages.css";
-
+import Footer from '../../common/footer/footer'
+import Header from "../../common/header/header";
 
 function DisplayDefaultGiftPackages() {
   const [defaultGiftPackages, setDefaultGiftPackages] = useState([]);
@@ -24,6 +25,7 @@ function DisplayDefaultGiftPackages() {
 
   return (
     <div>
+      <Header></Header>
       <br></br>
       <br></br>
       
@@ -69,7 +71,7 @@ function DisplayDefaultGiftPackages() {
           <Link to=" "><button className="btn">Customize a Gift Package</button></Link>
         </div>
       </div> */}
-
+      <Footer></Footer>
     </div>
   );
 }
