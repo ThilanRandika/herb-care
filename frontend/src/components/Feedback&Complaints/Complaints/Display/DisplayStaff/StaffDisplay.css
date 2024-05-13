@@ -1,12 +1,15 @@
+/* StaffDisplay.css */
+
 .CSD_count {
   font-size: 18px;
   margin-bottom: 20px;
   margin-left: 140px;
 }
 
-.CSD_title{
+.CcSD_title {
   font-size: 27px;
   font-weight: bold;
+  text-align: center;
 }
 
 .SD_containor {
@@ -28,6 +31,7 @@
   border: 1px solid #b3b3b3;
   border-radius: 5px;
   background-color: #dbdbdb;
+  position: relative; /* Ensure relative positioning for absolute positioning of delete button */
 }
 
 .SD_complaintsName {
@@ -36,16 +40,18 @@
 
 .SD_email,
 .SD_description,
-.SD_status {
+.cSD_status {
   margin-top: 5px;
 }
 
-.SD_change {
+.cSD_change {
   margin-top: 10px;
   font-weight: bold;
+  display: flex; /* Add flex display for aligning status and delete button */
+  justify-content: space-between; /* Ensure space between status and delete button */
 }
 
-.SD_status select {
+.cSD_status select {
   margin-left: 10px;
 }
 
@@ -53,13 +59,61 @@
   background-color: #0f6c3c;
   color: white;
   border: none;
-  padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-  float: right;
-  margin-top: 5px; 
+  padding: 5px 10px;
+  position: absolute; /* Position the delete button absolutely */
+  top: 10px; /* Adjust top position as needed */
+  right: 10px; /* Adjust right position as needed */
 }
 
 .btnDel:hover {
   background-color: #0ddb3d;
+}
+.FSD_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust transparency here */
+  z-index: 1000; /* Ensure the overlay is on top of everything */
+
+}
+
+.FSD_ove {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #1f8b33;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 820px;
+  margin-bottom: 20px;
+}
+
+.FSD_ove:hover{
+  background-color: #0ddb3d;
+}
+
+.CcSD_download_complaints_btn {
+  padding: 10px 20px;
+    font-size: 16px;
+    background-color: #1f8b33;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 100px;
+    margin-bottom: 20px;
+}
+
+.CcSD_download_complaints_btn:hover{
+  background-color: #0ddb3d;
+}
+
+.overlay-active {
+  position: relative;
+  z-index: 2000; /* Ensure the filtered complaints are on top of the overlay */
 }

@@ -9,13 +9,49 @@ const Product = require("../../models/inventory/Product.js");
 
 const PDFDocument = require('pdfkit-table');
 const fs = require('fs');
+const multer = require("multer");
+const path = require('path');
+
+// Define storage for the files
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, '/uploads/fileUploads'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+// Initialize multer instance with the storage options
+const upload = multer({ storage: storage });
 
 //CREATE - Add new seller seller
-router.route("/addSeller").post(async (req, res) => {
+router.route("/addSeller").post(upload.single("seller_agreement"), async (req, res) => {
   try {
     //save seller details to seller collection
 
-    const newSeller = new Seller(req.body.seller);
+    console.log(req.file.filename);
+
+    const sellerDetails = JSON.parse(req.body.seller);
+    const productDetails = JSON.parse(req.body.products);
+
+    // Extract required fields from sellerDetails
+    const { email, seller_name, company, company_discription, address, contact_num, website, tax_id, status, price_margine } = sellerDetails;
+
+    // Create new Seller object
+    const newSeller = new Seller({
+      email,
+      seller_name,
+      company,
+      company_discription,
+      address,
+      contact_num,
+      website,
+      tax_id,
+      status,
+      price_margine,
+      seller_agreement: req.file.filename, // Assuming this is the correct field to store the seller agreement
+    });
     const savedSeller = await newSeller.save();
 
     const password = savedSeller.toJSON().password;
@@ -29,16 +65,16 @@ router.route("/addSeller").post(async (req, res) => {
     await savedSeller.save();
 
     //save related product details to sellerproduct collection
-    const sellerProducts = req.body.products.map((productData) => ({
+    const sellerProducts = productDetails.map((productData) => ({
       ...productData,
       sellerId: savedSeller.sellerId,
     }));
     const savedSellerProducts = await SellerProducts.insertMany(sellerProducts);
 
     // Remove from partnership request table
-    const requestId = req.body.seller.requestId;
+    const requestId = req.body.seller._id;
     try{
-      await PartnershipRequest.findByIdAndDelete(requestId);
+      await PartnershipRequest.findByIdAndDelete({_id: requestId});
     }catch(err){
       console.log(err)
     }

@@ -1,0 +1,280 @@
+/* sellerProfile.css */
+/* 
+.seller-profile-ui-w-80 {
+    width : 80px !important;
+    height: auto;
+}
+
+.btn-default {
+    border-color: rgba(24, 28, 33, 0.1);
+    background  : rgba(0, 0, 0, 0);
+    color       : #4E5155;
+}
+
+label.btn {
+    margin-bottom: 0;
+}
+
+.btn-outline-primary {
+    border-color: #26B4FF;
+    background  : transparent;
+    color       : #26B4FF;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.text-light {
+    color: #babbbc !important;
+}
+
+.btn-facebook {
+    border-color: rgba(0, 0, 0, 0);
+    background  : #3B5998;
+    color       : #fff;
+}
+
+.btn-instagram {
+    border-color: rgba(0, 0, 0, 0);
+    background  : #000;
+    color       : #fff;
+}
+
+.card {
+    background-clip: padding-box;
+    box-shadow     : 0 1px 4px rgba(24, 28, 33, 0.012);
+}
+
+.row-bordered {
+    overflow: hidden;
+}
+
+.seller-profile-account-settings-fileinput {
+    position  : absolute;
+    visibility: hidden;
+    width     : 1px;
+    height    : 1px;
+    opacity   : 0;
+}
+
+.seller-profile-account-settings-links .list-group-item.active {
+    font-weight: bold !important;
+}
+
+html:not(.dark-style) .seller-profile-account-settings-links .list-group-item.active {
+    background: transparent !important;
+}
+
+.seller-profile-account-settings-multiselect~.select2-container {
+    width: 100% !important;
+}
+
+.light-style .seller-profile-account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+.light-style .seller-profile-account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+
+.material-style .seller-profile-account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+
+.material-style .seller-profile-account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+
+.dark-style .seller-profile-account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+.dark-style .seller-profile-account-settings-links .list-group-item.active {
+    color: #fff !important;
+}
+
+.light-style .seller-profile-account-settings-links .list-group-item.active {
+    color: #4E5155 !important;
+}
+
+.light-style .seller-profile-account-settings-links .list-group-item {
+    padding     : 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+} */
+
+
+/* Styles for SellerProfile component */
+
+/* Container styles */
+.seller-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  background-color: #f5f5f5;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+  
+  /* Title styles */
+  .seller-profile-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Card styles */
+  .seller-profile-card { /* Center horizontally */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    max-width: 80%; /* Limit card width */
+    width: 100%; /* Fill parent width */
+  }
+  
+  /* Card header styles */
+  .seller-profile-card-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Card body styles */
+  .seller-profile-card-body {
+    padding: 20px;
+  }
+
+  .seller-profile-avatar-container {
+    margin-top: 20px; /* Adjust margin as needed */
+  }
+  
+  /* Avatar styles */
+  .seller-profile-avatar {
+    width: 150px; /* Adjust image size as needed */
+    height: 150px; /* Adjust image size as needed */
+    border-radius: 50%;
+    object-fit: cover; /* Ensure image covers container */
+  }
+  
+  /* Info styles */
+  .seller-profile-info {
+    text-align: center; /* Center text */
+    margin-top: 10px; /* Adjust margin as needed */
+  }
+  
+  /* Button styles */
+  .seller-profile-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .seller-profile-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .seller-profile-reset-btn {
+    background-color: #6c757d;
+    margin-left: 10px;
+  }
+  
+  .seller-profile-reset-btn:hover {
+    background-color: #495057;
+  }
+  
+  /* Hint styles */
+  .seller-profile-hint {
+    color: #666;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* Form group styles */
+  .seller-profile-form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Label styles */
+  .seller-profile-label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Input styles */
+  .seller-profile-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Textarea styles */
+  .seller-profile-textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Select styles */
+  .seller-profile-select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Alert styles */
+  .seller-profile-alert {
+    color: #f00;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* Text-right styles */
+  .seller-profile-text-right {
+    text-align: right;
+    margin-top: 20px;
+  }
+  
+  /* Button styles */
+  .seller-profile-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .seller-profile-button-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .seller-profile-button-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .seller-profile-button-secondary {
+    background-color: #6c757d;
+    color: #fff;
+  }
+  
+  .seller-profile-button-secondary:hover {
+    background-color: #495057;
+  }
+  

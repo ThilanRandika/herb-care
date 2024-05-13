@@ -1,0 +1,96 @@
+/* staffDeliveryOrders.css */
+
+/* Table Styles */
+.seller-onDelivery-order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.seller-onDelivery-order-table th,
+.seller-onDelivery-order-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.seller-onDelivery-order-table th {
+    background-color: #f2f2f2;
+}
+
+.seller-onDelivery-order-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Order Details Styles */
+.seller-onDelivery-order-orderDetails {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.seller-onDelivery-order-orderDetails th,
+.seller-onDelivery-order-orderDetails td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.seller-onDelivery-order-orderDetails th {
+    background-color: #f2f2f2;
+}
+
+.seller-onDelivery-order-orderDetails tfoot td {
+    background-color: #f2f2f2;
+}
+
+.seller-onDelivery-order-orderDetails tfoot td:first-child {
+    font-weight: bold;
+}
+
+/* Button Styles */
+.seller-onDelivery-order-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.seller-onDelivery-order-button:hover {
+    background-color: #0056b3;
+}
+
+/* Toggle Arrow Styles */
+.seller-onDelivery-order-toggleArrow {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Toggle Content Styles */
+.seller-onDelivery-order-toggleContent {
+    display: none;
+}
+
+.seller-onDelivery-order-toggleContent.active {
+    display: block;
+}
+
+/* Custom Styles */
+.acceptButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.acceptButton:hover {
+    background-color: #0056b3;
+}

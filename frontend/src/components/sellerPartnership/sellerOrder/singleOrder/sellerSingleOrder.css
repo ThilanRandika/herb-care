@@ -165,3 +165,56 @@
      }
      @keyframes blink { 50% { border-color:#fff ; }  }
      
+
+     .seller-selected-return-products {
+      margin-top: 20px;
+  }
+  
+  .seller-selected-return-products {
+    margin-top: 20px;
+}
+
+.return-product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Add space between cards */
+}
+
+.seller-selected-ret-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden; /* Prevent images from overflowing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Set a fixed width for each card */
+}
+
+.seller-selected-ret-product-details {
+    padding: 20px;
+}
+
+.seller-selected-ret-product-details p {
+    margin: 0; /* Remove default margins */
+    line-height: 1.5; /* Improve readability */
+}
+
+.seller-selected-ret-product-images {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px 20px; /* Add padding to the bottom */
+}
+
+.seller-selected-ret-product-image {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.seller-selected-ret-product-image:hover {
+    transform: scale(1.1);
+}
+
+  

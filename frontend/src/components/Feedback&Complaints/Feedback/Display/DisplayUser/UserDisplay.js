@@ -55,6 +55,7 @@ const UserFeedback = ({ customerId }) => {
     <div>
       <br></br>
       <h2 className='FUD_history'>Feedback History</h2>
+      <br></br>
       <ul className='FUD_containor'>
         {feedback.map((item) => (
           <li key={item._id} className='FUD_containor2'>
@@ -69,7 +70,7 @@ const UserFeedback = ({ customerId }) => {
             ) : (
               <>
                 <strong className='FUD_ratings'>Ratings:</strong> <StarRating rating={item.ratings} /><br />
-                <strong className='FUD_message'>Message:</strong> {item.message}<br /><br/>
+                <strong className='FUD_message'>Message:</strong> <br></br> {item.message}<br /><br/>
                 {item.image && item.image.length > 0 && (
                   <div>
                     <strong className='FUD_image'>Images:</strong>

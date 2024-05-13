@@ -1,0 +1,98 @@
+/* sellerReadyToDeliveryOrders.css */
+
+/* Table Styles */
+.seller-readyToDeli-order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.seller-readyToDeli-order-table th,
+.seller-readyToDeli-order-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.seller-readyToDeli-order-table th {
+  background-color: #f2f2f2;
+}
+
+.seller-readyToDeli-order-table tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Order Details Styles */
+.seller-readyToDeli-order-orderDetails {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.seller-readyToDeli-order-orderDetails th,
+.seller-readyToDeli-order-orderDetails td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.seller-readyToDeli-order-orderDetails th {
+  background-color: #f2f2f2;
+}
+
+.seller-readyToDeli-order-orderDetails tfoot td {
+  background-color: #f2f2f2;
+}
+
+.seller-readyToDeli-order-orderDetails tfoot td:first-child {
+  font-weight: bold;
+}
+
+/* Button Styles */
+.seller-readyToDeli-order-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.seller-readyToDeli-order-button:hover {
+  background-color: #45a049;
+}
+
+/* Toggle Arrow Styles */
+.seller-readyToDeli-order-toggleArrow {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Toggle Content Styles */
+.seller-readyToDeli-order-toggleContent {
+  display: none;
+}
+
+.seller-readyToDeli-order-toggleContent.active {
+  display: block;
+}
+
+/* Custom Styles */
+.acceptButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.acceptButton:hover {
+  background-color: #0056b3;
+}

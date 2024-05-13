@@ -12,9 +12,8 @@ router.route('/add/:productId').post(verifyToOther, async (req, res) => {
 
         const complaints = new Complaints({
             Customer: req.person.userId,
-            Order: req.body.Order,
+            Order: req.body.orderId,
             Product: req.params.productId,
-            //giftPackageOrder: req.params.giftPackageOrder,
             complaintsName: req.body.complaintsName,
             email: req.body.email,
             description: req.body.description
@@ -117,6 +116,26 @@ router.get('/count', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// fetch complaints with optional filtering
+router.get('/complaints', async (req, res) => {
+  try {
+    let filter = {}; // Default empty filter
+
+    // Check if a filter parameter is provided in the query
+    if (req.query.filter) {
+      // Assuming 'filter' is a query parameter specifying the status
+      filter = { status: req.query.filter }; // Filter by status
+    }
+
+    // Fetch complaints based on the filter
+    const complaints = await Complaint.find(filter);
+    res.json(complaints);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
   }
 });
 
