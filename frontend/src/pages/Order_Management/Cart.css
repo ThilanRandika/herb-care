@@ -1,4 +1,4 @@
-.container{
+.order-cart-container{
     display: flex;
     width: 100%;
     align-items: center;
@@ -8,7 +8,7 @@
     margin-top: 40px;
 }
 
-.item{
+.order-cart-item{
     background-color: rgb(243, 242, 242);
     border-radius: 8px;
     min-height: 100px;

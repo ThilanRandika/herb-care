@@ -1,7 +1,7 @@
 .all-products-container {
   margin: 0 auto;
-  width:80%;
-  padding: 20px;
+  width:90%;
+  padding: 10px;
   border-radius: 10px;
   background-color: #f2f2f2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -57,4 +57,67 @@
 
 .inventory-manager-delete-btn:hover {
   background-color: #4b110a;
+}
+
+
+
+
+
+.report-generate-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+.report-generate-button {
+  background-color: #4caf50; /* Green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px; /* Suitable border radius */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.report-generate-button:hover {
+  background-color: #095a07; /* Darker green color on hover */
+}
+
+.card2 {
+  width: calc(25% - 10px);
+  height: 150px; /* Adjusted height for the cards */
+  background-color: #43a243;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px; /* Add margin between cards */
+  position: relative;
+}
+
+.out-of-stock-card {
+  background-color: #e62f13; 
+}
+
+.cards2-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.icon2 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  color: #f2f2f2;
+}
+
+.title2 {
+  margin-top: 20px;
+  color: #f2f2f2;
+}
+
+.count2 {
+  margin-top: 5px;
+  color: #f2f2f2;
 }

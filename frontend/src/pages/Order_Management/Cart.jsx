@@ -59,10 +59,10 @@ function Cart() {
   };
 
   return (
-    <div className='container'>
+    <div className='container order-cart-container'>
       <h2>Cart</h2>
       {items.map(item => (
-        <div className="item" key={item._id}>
+        <div className="order-cart-item" key={item._id}>
           <p>Product id: {item.product_id}</p>
           <p>Name: {item.name}</p>
           <p>Quantity: {item.quantity}</p>

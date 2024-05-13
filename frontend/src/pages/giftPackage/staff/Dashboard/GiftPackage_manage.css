@@ -1,4 +1,4 @@
-.gift-dashboard-container{
+/* .gift-dashboard-container{
     position: relative;
 	width: calc(100% - 280px);
 	left: 280px;
@@ -14,4 +14,11 @@
     margin: 10px;
     cursor: pointer;
     border-radius: 30px;
+} */
+
+.giftPackage-staff-content{
+    position: relative;
+	width: calc(100% - 280px);
+	left: 280px;
+	transition: .3s ease;
 }

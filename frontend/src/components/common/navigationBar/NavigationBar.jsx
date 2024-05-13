@@ -26,7 +26,7 @@ function NavigationBar() {
                 <Link to="/cart" className="home-navBar-nav-link">
                 <i className="fas fa-shopping-cart fa-2x"></i>
                 </Link>
-                <Link to="/consultation" className="home-navBar-nav-link">
+                <Link to="/consultation/homeConsultation" className="home-navBar-nav-link">
                 <button>Customer Consultation</button>
                 </Link>
                 <Link to="/myOrders" className="home-navBar-nav-link">
@@ -34,6 +34,12 @@ function NavigationBar() {
                 </Link>
                 <Link to="/Gift_Packages" className="home-navBar-nav-link">
                 <button>Gift Packages</button>
+                </Link>
+                <Link to="/DisplayGiftPackageUser" className="home-navBar-nav-link">
+                <button>Gift Packages orders User</button>
+                </Link>
+                <Link to="/User" className="home-navBar-nav-link">
+                <button>User Dashboard</button>
                 </Link>
             </nav>
         </div>

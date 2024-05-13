@@ -50,4 +50,34 @@
   .inventory-manager-add:hover {
     background-color: #095a07;
   }
+  * Style for the dropdown */
+  .form-group-inventory-add select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+  }
   
+  /* Style for the dropdown options */
+  .form-group-inventory-add select option {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+  }
+
+
+  /* Add hover color for dropdown options */
+.form-group-inventory-add select option:hover {
+  background-color: #e0e0e0;
+}
+
+/* Add border color when dropdown is focused */
+.form-group-inventory-add select:focus {
+  border-color: #129a10;
+  outline: none;
+}

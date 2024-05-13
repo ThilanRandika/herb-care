@@ -535,7 +535,8 @@ router.route("/sellerPendingOrders").get(verifySellerToOther, async(req, res) =>
             const formattedOrders = orders.map(order => {
                 return {
                     id: order._id, // Assuming shipping address is customer name
-                    price: `$${order.totalPrice}`, // Formatting price
+                    orderviewId: order.orderviewId,
+                    price: `Rs. ${order.totalPrice}`, // Formatting price
                     paymentMethod: order.payment,
                     status: order.status,
                     date: order.createdAt.toISOString(), // Using createdAt timestamp
@@ -608,7 +609,8 @@ router.route("/ongoingOrders").get(verifySellerToOther, async (req, res) => {
         const formattedOrders = orders.map(order => {
             return {
                 id: order._id, // Assuming shipping address is customer name
-                price: `$${order.totalPrice}`, // Formatting price
+                orderviewId: order.orderviewId,
+                price: `Rs. ${order.totalPrice}`, // Formatting price
                 paymentMethod: order.payment,
                 status: order.status,
                 date: order.createdAt.toISOString(), // Using createdAt timestamp
@@ -634,7 +636,8 @@ router.route("/sellerCompletedOrders").get(verifySellerToOther, async(req, res) 
             const formattedOrders = orders.map(order => {
                 return {
                     id: order._id, // Assuming shipping address is customer name
-                    price: `$${order.totalPrice}`, // Formatting price
+                    orderviewId: order.orderviewId,
+                    price: `Rs. ${order.totalPrice}`, // Formatting price
                     paymentMethod: order.payment,
                     status: order.status,
                     date: order.createdAt.toISOString(), // Using createdAt timestamp
@@ -760,6 +763,22 @@ router.route("/generateOrderInvoice/:id").get(verifySellerToOther, async(req, re
 function addKeyValueToPdf(doc, key, value, fontTitle, fontText) {
     doc.font(fontTitle).text(key, { continued: true }).font(fontText).text(value).moveDown();
 }
+
+
+
+
+// Route to get the count of pending seller orders
+router.route("/pendingOrders/count").get(async (req, res) => {
+    try {
+        // Find the count of pending orders from SellerOrder model
+        const pendingOrdersCount = await SellerOrder.countDocuments({ status: 'pending' });
+        // Send the count as JSON response
+        res.status(200).json({ pendingOrdersCount });
+    } catch (error) {
+        console.error('Error fetching pending orders count:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 
 

@@ -7,9 +7,14 @@
 }
 
 .CcSD_title {
-  font-size: 27px;
-  font-weight: bold;
   text-align: center;
+  color: #2A3C24;
+}
+
+.CcSD_title_card {
+  padding: 50px;
+  background-color: #CAD593;
+  margin-bottom: 30px;
 }
 
 .SD_containor {
@@ -30,7 +35,7 @@
   padding: 10px;
   border: 1px solid #b3b3b3;
   border-radius: 5px;
-  background-color: #dbdbdb;
+  background-color: #EFEFEF;
   position: relative; /* Ensure relative positioning for absolute positioning of delete button */
 }
 
@@ -56,7 +61,7 @@
 }
 
 .btnDel {
-  background-color: #0f6c3c;
+  background-color: #143109;
   color: white;
   border: none;
   border-radius: 5px;
@@ -84,7 +89,7 @@
 .FSD_ove {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #1f8b33;
+  background-color: #143109;
   color: white;
   border: none;
   border-radius: 5px;
@@ -100,7 +105,7 @@
 .CcSD_download_complaints_btn {
   padding: 10px 20px;
     font-size: 16px;
-    background-color: #1f8b33;
+    background-color: #143109;
     color: white;
     border: none;
     border-radius: 5px;

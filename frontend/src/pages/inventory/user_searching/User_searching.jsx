@@ -14,6 +14,7 @@ import "./User_searching.css"; // Import CSS for User_searching component
 function User_searching() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -23,18 +24,22 @@ function User_searching() {
     setSelectedPriceRange(range);
   };
 
+  const handleCategoryChange = (category) => { 
+    setSelectedCategory(category);
+  };
+
   return (
     <>
       <div className="user-searching-container">
         <div className="User-searching-sidebar">
           {/* Pass handlePriceRangeChange function to Sidebar */}
-          <Sidebar onPriceRangeChange={handlePriceRangeChange} />
+          <Sidebar onPriceRangeChange={handlePriceRangeChange} onCategoryChange={handleCategoryChange} />
         </div>
 
         <div className="user-searching-content">
           <SearchBar onSearch={handleSearch}/>
           <Recommended/>
-          <Products searchQuery={searchQuery} priceRange={selectedPriceRange}  />
+          <Products searchQuery={searchQuery} priceRange={selectedPriceRange} category={selectedCategory}  />
         </div>
       </div>
 

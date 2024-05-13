@@ -5,6 +5,7 @@ const DefaultGiftPack = require("../../models/GiftPackage/defaultGiftpackage");
 const multer = require('multer');
 const path = require('path');
 const mongoose = require('mongoose');
+const { verifyToOther } = require("../../utils/veryfyToken");
 
 
 // Image uploading
@@ -76,7 +77,7 @@ router.route("/default-gift-packages").get(async(req,res)=>{
 
 //After select a package system will display package details
 // Display a single default gift package
-router.route("/default-gift-package/:id").get(async (req, res) => {
+router.route("/default-gift-pack/:id").get(async (req, res) => {
     try {
       const defaultGiftPack = await DefaultGiftPack.findById(req.params.id);
       if (defaultGiftPack == null) {
@@ -88,6 +89,28 @@ router.route("/default-gift-package/:id").get(async (req, res) => {
     }
 
 });
+
+//Single product
+router.get('/:packageId', async (req, res) => {
+  try {
+      const packageId = req.params.packageId;
+      if (!packageId) {
+          return res.status(400).json({ message: 'Package ID is required' });
+      }
+      
+      const giftPackage = await DefaultGiftPack.findById(packageId);
+      if (!giftPackage) {
+          return res.status(404).json({ message: 'Package not found' });
+      }
+      
+      res.status(200).json(giftPackage);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 
 
 // Staff can update default package details
@@ -127,7 +150,6 @@ router.route("/updateDefault-gift-package/:id").put(async(req, res) => {
       }*/
 
     
-
 
 
 // Staff can delete default packages

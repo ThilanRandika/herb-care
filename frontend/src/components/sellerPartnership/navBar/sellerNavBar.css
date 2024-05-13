@@ -1,94 +1,127 @@
-/* Navbar container */
+/* Additional CSS */
+
+/* Sidebar container */
 .custom-navbar {
-    background-color: #ffffff; /* Background color */
-    padding: 10px 20px; /* Add padding */
-    border-color: #148603;
-    /* position: fixed;
-    top: 0; 
-    width: 100%; 
-    z-index: 1000;  */
-  }
-  
-  /* Navbar container fluid */
-  .custom-navbar-container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 80%; /* Adjust max-width as needed */
-    margin: 0 auto; /* Center the navbar */
-  }
-  
-  /* Navbar logo */
-  .custom-navbar-logo {
-    color: #ffffff; /* Logo color */
-    text-decoration: none;/* Remove underline */
-  }
+  width: 250px; /* Set sidebar width */
+  height: 100%; /* Occupy full height */
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  background-color: #ffffff; /* Background color */
+  padding-top: 10px; /* Add padding */
+  display: flex; /* Ensure flex layout */
+  justify-content: space-between; /* Space items evenly */
+  align-items: center; /* Center items vertically */
+  border-right: 5px solid #148603;
+}
 
-  /* Navbar logo image */
+/* Navbar logo image */
 .custom-navbar-logo-image {
-    width: 50px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 10px; /* Add margin to the right */
-  }
-  
-  
-  /* Navbar links */
-  .custom-navbar-links {
-    display: flex;
-  }
-  
-  /* Navbar link items */
-  .custom-navbar-list {
-    display: flex;
-    list-style-type: none; /* Remove bullet points */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    align-items: center;
-  }
-  
-  .custom-navbar-item {
-    margin-left: 20px; /* Add space between links */
-    font-size: 20px;
-  }
-  
-  .custom-navbar-link {
-    color: #148603; /* Link color */
-    text-decoration: none; /* Remove underline */
-  }
+  width: 100px; /* Increase the width of the logo */
+  height: auto; /* Maintain aspect ratio */
+  margin-left: 40px; /* Add margin to the left */
+  margin-bottom: 90px ;
+}
 
-  .bell-notification {
-    color: #148603;
-    position: relative;
-    animation: bell 1s linear infinite alternate-reverse;
-    transform-origin: top;
-  }
-  
-  @keyframes bell {
-    0% {
-      transform: rotate(-20deg);
-    }
-    100% {
-      transform: rotate(20deg);
-    }
-  }
-  
-  .fa-bell {
-    font-size: 30px;
-  }
-  
-  /* Notification count */
+/* Navbar links */
+.custom-navbar-links {
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Navbar link items */
+.custom-navbar-list {
+  list-style-type: none; /* Remove bullet points */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.custom-navbar-item {
+  margin-bottom: 10px; /* Add space between items */
+}
+
+.custom-navbar-link {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: rgb(16, 117, 1);
+  text-decoration: none;
+  padding: 10px 20px; /* Add padding */
+  display: block;
+  position: relative; /* Ensure relative positioning */
+}
+
+.custom-navbar-link:hover {
+  background-color: #126f02; /* Change background color on hover */
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
+}
+
+.custom-navbar-link.active {
+  background-color: #126f02; /* Change background color for active link */
+  color: rgb(255, 255, 255); /* Change text color for active link */
+  border-radius: 8px;
+}
+
+/* Hover color for active link */
+.custom-navbar-link.active:hover {
+  background-color: #126f02; /* Hover color for active link */
+}
+
+/* Notification icon */
+.bell-notification {
+  font-size: 20px; /* Adjust font size */
+  color: rgb(5, 148, 2); /* Set color */
+}
+
+/* Notification count */
 .notification-count {
   position: absolute;
-  top: 5px; /* Adjust vertical position */
-  right: 0; /* Adjust horizontal position */
+  top: 10px; /* Adjust vertical position */
+  right: 70px; /* Adjust horizontal position */
   background-color: red;
   color: white;
-  width: 20px; /* Adjust width */
+  min-width: 20px; /* Ensure minimum width */
   height: 20px; /* Adjust height */
   border-radius: 50%; /* Make it a circle */
   font-size: 12px; /* Adjust font size */
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2px; /* Add padding */
 }
 
-  
+/* Additional CSS */
+
+/* Sublinks container */
+.seller-sublinks {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Sublink items */
+.seller-sublinks li {
+  margin-bottom: 5px; /* Add space between items */
+}
+
+/* Sublink styling */
+.seller-sublinks a {
+  font-size: 12px; /* Adjust font size */
+  color: #126f02; /* Set color */
+  text-decoration: none; /* Remove underline */
+  padding: 5px 20px; /* Add padding */
+  display: block; /* Make it a block element */
+}
+
+.seller-sublinks a:hover {
+  background-color: rgba(17, 94, 5, 0.521); /* Change background color on hover */
+  color: #ffffff;
+  border-radius: 5px; /* Add border radius */
+}
+
+.seller-sublinks a.active {
+  background-color: rgba(17, 94, 5, 0.521); /* Change background color for active link */
+  color: rgb(255, 255, 255); /* Change text color for active link */
+  border-radius: 5px; /* Add border radius */
+}
+

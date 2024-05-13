@@ -1,6 +1,4 @@
 
-
-    
       #seller-tracking {
         background: #fff
      }
@@ -217,4 +215,11 @@
     transform: scale(1.1);
 }
 
+.seller-order-singleOrder-btn{
+  background-color: #082e0b;
+  color:#fff ;
+  border-radius: 20px;
+  width: 500px;
+  height: 40px;
+}
   

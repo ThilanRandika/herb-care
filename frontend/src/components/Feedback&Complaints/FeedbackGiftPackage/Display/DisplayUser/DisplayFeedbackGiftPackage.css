@@ -1,83 +1,221 @@
 /* DisplayFeedbackGiftPackage.css */
 
-.DFGPU_containor1 {
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-  
-.DFGPU_title {
-    font-size: 24px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-  
-.DFGPU_containor2 {
-    margin-top: 20px;
-    width: 1000px;
-    margin-left: 200px;
-}
-  
-.DFGPU_LI {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 5px;
-}
-  
-.DFGPU_rating {
-    font-weight: bold;
-}
-
-/* Star rating styles */
-.star-rating {
-    display: inline-block;
-}
-
-.star-filled {
-    color: gold; /* Gold color for filled stars */
-}
-
-.star-empty {
-    color: #ccc; /* Gray color for empty stars */
-}
-  
-.DFGPU_message {
-    margin-top: 5px;
-}
-  
-.DFGPU_image {
-    margin-top: 5px;
-    font-weight: bold;
-}
-  
-.DFGPU_imaUL {
-    list-style: none;
+/* Container styles */
+.DFGPU_containor {
+    list-style-type: none;
     padding: 0;
     margin: 0;
-}
+  }
   
-.DFGPU_imaUL li {
-    display: inline-block;
-    margin-right: 10px;
-}
+  /* Feedback item styles */
+  .DFGPU_containor2 {
+    /* border: 1px solid #ddd; */
+    padding: 40px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
   
-.DFGPU_im {
-    max-width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+  /* Star rating styles */
+  .DFGPU_rating {
+    font-weight: bold;
+  }
+  
+  .DFGPU_star1 {
+    color: #FFD700;
+    font-size: 30px;
+  }
+  
+  .DFGPU_star2 {
+    color: #8a8a8a;
+    font-size: 30px;
+  }
+  
+  /* Image styles */
+  .DFGPU_ima {
+    font-weight: bold;
+  }
+  
+  .DFGPU_image {
+    max-width: 50px;
+  }
+  
+  /* Overall container styles */
+  .DFGPU_title {
+    text-align: center;
+    color: #2A3C24;
+  }
 
-.DFGPU_deletefeedgift {
-    background-color: #ff6347; /* Red color for delete button */
+  .DFGPU_title_card{
+    padding: 50px;
+    background-color: #CAD593;
+  }
+  
+  /* Date and time styles */
+  .DFGPU_date {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+    clear: both;
+    width: 100%;
+    margin-left: 10px;
+  }
+  
+  .DFGPU_date span {
+    margin-right: 10px;
+  }
+
+  .DFGPU_btn_container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .DFGPU_del {
+    background-color: #143109;
+    color: rgb(255, 255, 255);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .DFGPU_del:hover {
+    color: black;
+    background-color: #29db23;
+  }
+  
+  /* Edit button styles */
+  .DFGPU_edit {
+    background-color: #143109;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .DFGPU_edit:hover {
+    background-color: #29db23;
+  }
+  
+  /* Update button styles */
+  .DFGPU_up {
+    background-color: #238552;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.DFGPU_deletefeedgift:hover {
-    background-color: #d32f2f; /* Darker red color on hover */
-}
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .DFGPU_up:hover {
+    background-color: #0cdb4d;
+    color: black;
+  }
+  
+  /* Message styles */
+  .DFGPU_mes {
+    font-weight: bold;
+  }
+  
+  /* Image upload styles */
+  .DFGPU_imag {
+    font-weight: bold;
+  }
+  
+  /* Note styles */
+  .DFGPU_note {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  /* Star styles for update feedback */
+  .DFGPU_star1_upd {
+    color: #FFD700;
+    font-size: 24px;
+  }
+  
+  .DFGPU_star2_upd {
+    color: #8a8a8a;
+    font-size: 24px;
+  }
+  
+  /* Update Feedback container styles */
+  .DFGPU_upcontainor {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Update Feedback button styles */
+  .DFGPU_upbtn {
+    background-color: #238552;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  
+  .DFGPU_upbtn:hover {
+    background-color: #0cdb4d;
+    color: black;
+  }
+  
+  /* Update Feedback form styles */
+  .DFGPU_upform {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Update Feedback ratings styles */
+  .DFGPU_upratings {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Update Feedback message styles */
+  .DFGPU_upmessage {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Update Feedback image styles */
+  .DFGPU_upimage {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Update Feedback note styles */
+  .DFGPU_upnote {
+    color: red;
+    font-size: 1rem;
+  }
+  
+  /* Update Feedback update button styles */
+  .DFGPU_upupdateBtn {
+    background-color: #238552;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  
+  .DFGPU_upupdateBtn:hover {
+    background-color: #0cdb4d;
+    color: black;
+  }
+  
