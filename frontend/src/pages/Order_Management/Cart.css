@@ -15,3 +15,17 @@
     width: 400px;
     padding: 20px;
 }
+
+.cart-button{
+    display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #4CAF50; /* Green border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}

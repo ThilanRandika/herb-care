@@ -47,6 +47,8 @@ import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
 import UserDashboard from "./pages/common/User/UserDashboard";
 import RegisterPage from "./pages/common/register/RegisterPage";
 import Cart from "./pages/Order_Management/Cart";
+import Checkout_user from "./pages/Order_Management/checkout/Checkout_user";
+import Pending from "./pages/Order_Management/checkout/Pending";
 
 
 import ContactUs from "./pages/common/contactUs/ContactUs";
@@ -123,6 +125,9 @@ function App() {
 
 
         <Route path="/cart" element={<Cart/>}></Route>
+        <Route path="/checkout/:price" element={<Checkout_user/>}></Route>
+        <Route path="/pending_orders" element={<Pending/>}></Route>
+
 
 
     
