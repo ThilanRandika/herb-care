@@ -69,3 +69,12 @@
 }
 
 
+.status-approved {
+  font-weight: bold;
+  color: green;
+}
+
+.status-rejected {
+  font-weight: bold;
+  color: red;
+}
