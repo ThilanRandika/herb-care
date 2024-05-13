@@ -8,6 +8,7 @@ import GiftPackage_manage from '../../giftPackage/staff/Dashboard/GiftPackage_ma
 import DisplayFeedback_staff from "../../Feedback&complaints/Feedback/DisplayStaff"
 import './staffMainDashboard.css'
 import StaffDashboardHome from './staffDashboardHome/StaffDashboardHome'
+import DisplayGiftPackage_Staff from '../../Feedback&complaints/FeedbackGiftPackage/DisplayStaffGiftPackageFeedback'
 
 function StaffMainDashboard() {
   return (
@@ -77,6 +78,7 @@ function StaffMainDashboard() {
         <Route path="/consultationStaff/*" element={<ConsultationStaffDashboard/>} />
         <Route path="/DisplayFeedbackStaff" element={<DisplayFeedback_staff/>}></Route>
         <Route path="/DisplayComplaintsStaff" element={<Display_Staff/>}></Route>
+        <Route path="/DisplayFeedbackGiftPackageStaff" element={<DisplayGiftPackage_Staff/>}></Route>
         <Route path="/staffGift/*" element={<GiftPackage_manage/>}></Route>
       </Routes>
     </div>

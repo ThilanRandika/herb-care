@@ -53,7 +53,7 @@ router.route('/create/:packageId').post(verifyToOther, async (req, res) => {
 });
 
 
-router.route('/get/:orderId').get(async (req, res) => {
+router.route('/get/:packageId').get(verifyToOther, async (req, res) => {
   try {
     const getGiftPackage = await DefaultGiftPack.findById(req.params.packageId);
     const user = await Customer.findById(req.person.userId)
@@ -63,13 +63,13 @@ router.route('/get/:orderId').get(async (req, res) => {
     }
 
     const deliveryPrice = 200;
-    const totalAmount = parseFloat(defaultGiftPackage.totalPrice) + deliveryPrice;
+    const totalAmount = parseFloat(getGiftPackage.totalPrice) + deliveryPrice;
 
     
     const newOrder = {
       orderName: user.customer_name,
-      orderAddress: getGiftPackage.address,
-      mobileNum: getGiftPackage.contact_num,
+      orderAddress: user.address,
+      mobileNum: user.contact_num,
       totalAmount: totalAmount,
     };
 
