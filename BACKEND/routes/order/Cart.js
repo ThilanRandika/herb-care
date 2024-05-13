@@ -1,8 +1,6 @@
 const Product = require("../../models/inventory/Product.js");
 const router = require("express").Router();
 const Cart = require("../../models/order/Cart.js");
-const Order = require("../../models/order/Order_model.js");
-
 
 // Route to add a product to the cart
 router.post('/add', async (req, res) => {
@@ -62,40 +60,6 @@ router.post('/allcart', async (req, res) => {
 });
 
 
-
-router.post('/addorder_checkout', async (req, res) => {
-  try {
-      
-      // Extracting data from request body
-      const { fullName, email, address, city, zip, country, totalPrice } = req.body;
-      
-
-      // Creating a new instance of Order
-      const newOrder = new Order({
-          fullName,
-          email,
-          address,
-          city,
-          zip,
-          country,
-          totalPrice
-      });
-
-      // // Saving the new order to the database
-      const savedOrder = await newOrder.save();
-
-      // // Sending a success response
-      res.status(201).json({ message: 'Order added successfully', order: savedOrder });
-  } catch (error) {
-      // Handling any errors that occur during the process
-      // console.error('Error adding order:', error);
-      // res.status(500).json({ error: 'Failed to add order' });
-      res.json(error);
-  }
-});
-
-
-
 router.post('/remove/:id', async (req, res) => {
   const productId = req.params.id;
   try {
@@ -124,18 +88,6 @@ router.post('/update/:id', async (req, res) => {
     res.json({ message: "Error updating quantity of item in cart." });
   }
 });
-
-
-router.route("/allOrders").get(async (req, res) => {
-  try {
-    const orders = await Order.find();
-    res.json(orders);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-
 
 
 

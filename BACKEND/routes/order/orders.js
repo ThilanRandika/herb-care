@@ -1,4 +1,4 @@
-const Order = require("../../models/order/Order_model.js");
+const Order = require("../../models/order/Order.js");
 const router = require("express").Router();
 
 // Get all orders for a specific user
@@ -61,14 +61,6 @@ router.route("/add").post(async (req, res) => {
       res.status(500).json({ message: "Failed to cancel order" });
     }
   });
-
-
- 
-
-
-
-
-
 
   
   
