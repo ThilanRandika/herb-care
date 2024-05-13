@@ -43,6 +43,7 @@ import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
 import UserDashboard from "./pages/common/User/UserDashboard";
 import RegisterPage from "./pages/common/register/RegisterPage";
+import Cart from "./pages/Order_Management/Cart";
 
 
 import ContactUs from "./pages/common/contactUs/ContactUs";
@@ -98,7 +99,13 @@ function App() {
         <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
         <Route path="/user" element={<UserDashboard/>}></Route>
 
+
         <Route path="/contactUs" element={<ContactUs/>}></Route>
+
+
+        <Route path="/cart" element={<Cart/>}></Route>
+
+
         
       </Routes>
     </BrowserRouter>
