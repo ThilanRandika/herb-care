@@ -1,0 +1,73 @@
+.checkout-page {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .checkout-page h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .checkout-page form {
+    display: grid;
+    grid-gap: 20px;
+  }
+  
+  .checkout-page label {
+    font-weight: bold;
+  }
+  
+  .checkout-page input[type="text"],
+  .checkout-page input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .checkout-page input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .checkout-page input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#popup-message {
+    margin-bottom: 0;
+}

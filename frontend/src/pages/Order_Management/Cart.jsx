@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Cart.css";
+import { useNavigate } from 'react-router-dom';
+
 
 function Cart() {
   const [items, setItems] = useState([]);
   const [alltotalcount,setalltotalcount]=useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCartItems();
@@ -50,6 +53,11 @@ function Cart() {
       });
   }
 
+  const handleCheckout = () => {
+    // Redirect to the checkout page and pass the total price as a query parameter
+    navigate(`/checkout/${alltotalcount}`);
+  };
+
   return (
     <div className='container'>
       <h2>Cart</h2>
@@ -70,6 +78,8 @@ function Cart() {
       ))}
       <br></br>
       <h4>Total Price : {alltotalcount}</h4>
+      <button className='cart-button'  onClick={handleCheckout}>Checkout</button>
+      <br/><br/>
     </div>
   );
 }
