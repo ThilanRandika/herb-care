@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../context/AuthContext';
 import './specialistDashboard.css';
 import CalenderSpecialistAvailabilitiesDashBoard from '../../../../components/consultation/specialist/calenderSpecialistAvailabilitiesDashBoard/CalenderSpecialistAvailabilitiesDashBoard';
+import SpecialistBarChart from '../../../../components/consultation/specialist/specialistBarChart/SpecialistBarChart';
 
 function SpecialistDashboard(props) {
   const { user } = useContext(AuthContext);
@@ -64,6 +65,10 @@ function SpecialistDashboard(props) {
         <div className="specialistDashboard-calenderContent">
           <CalenderSpecialistAvailabilitiesDashBoard specialistID={user._id}  />
         </div>
+      </div>
+
+      <div className="specialistDashboard-barChart">
+        <SpecialistBarChart />
       </div>
     </div>
   );

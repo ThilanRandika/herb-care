@@ -10,7 +10,7 @@ import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory
 
 import User_searching from "./pages/inventory/user_searching/User_searching"
 import Producttesting from "./pages/inventory/Inventory_Dashboard/Producttesting";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from "./pages/inventory/user_searching/Product";
 import Staff_Dashboard from "./pages/inventory/Staff_Inventory_Management/Staff_Dashboard";
 
@@ -43,8 +43,11 @@ import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
 import UserDashboard from "./pages/common/User/UserDashboard";
 import RegisterPage from "./pages/common/register/RegisterPage";
+import Cart from "./pages/Order_Management/Cart";
+
 
 import ContactUs from "./pages/common/contactUs/ContactUs";
+import AboutUs from "./pages/inventory/AboutUs/about_us";
 
 function App() {
   return (
@@ -60,6 +63,8 @@ function App() {
         <Route path="/Producttesting/*" element={<Producttesting />} />
         <Route path="/Product/:id" element={<Product />} />
         <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
+        <Route path="/aboutUs" element={<AboutUs/>} />
+
 
 
         <Route path="/sellerMainHome/*" element={<SellerMainHome />} />
@@ -94,7 +99,13 @@ function App() {
         <Route path="/manager/*" element={<ManagerDashboard/>}></Route>
         <Route path="/user" element={<UserDashboard/>}></Route>
 
+
         <Route path="/contactUs" element={<ContactUs/>}></Route>
+
+
+        <Route path="/cart" element={<Cart/>}></Route>
+
+
         
       </Routes>
     </BrowserRouter>

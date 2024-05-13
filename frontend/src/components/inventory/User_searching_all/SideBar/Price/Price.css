@@ -1,21 +1,21 @@
 .price-container {
-  margin-bottom: 20px;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.price-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.price-option input {
+  margin-right: 10px;
 }
 
 .price-heading {
   margin-bottom: 10px;
-}
-
-.price-option {
-  margin-bottom: 5px;
-}
-
-.price-option input[type="radio"] {
-  margin-right: 5px;
-}
-
-.price-option label {
-  cursor: pointer;
 }
 
 

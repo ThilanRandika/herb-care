@@ -435,6 +435,46 @@ router.route("/rejectAppointment/:id").put(async (req, res) => {
     });
 
 
+
+    // Get the count of ongoing appointments for each day in the future 7 days for a specific specialist
+    router.route("/getOngoingAppointmentsCountForNext7Days/:specialistId").get(async (req, res) => {
+      try {
+        // Get the current date
+        const currentDate = new Date();
+        // Set the end date to 7 days from now
+        const endDate = new Date(currentDate);
+        endDate.setDate(endDate.getDate() + 7);
+        // Initialize an object to store counts for each day
+        const ongoingAppointmentsCounts = {};
+
+        // Loop through each day in the next 7 days
+        for (let date = new Date(currentDate); date <= endDate; date.setDate(date.getDate() + 1)) {
+          // Set the start of the day to 00:00:00
+          date.setHours(0, 0, 0, 0);
+          // Set the end of the day to 23:59:59
+          const endOfDay = new Date(date);
+          endOfDay.setHours(23, 59, 59, 999);
+
+          // Get the count of ongoing appointments for the current day
+          const count = await ConsultAppointment.countDocuments({
+            specialist: req.params.specialistId,
+            status: { $ne: "Completed" }, // Exclude appointments with status "Completed"
+            date: { $gte: date, $lte: endOfDay }, // Filter appointments for the current day
+          });
+
+          // Store the count for the current day
+          ongoingAppointmentsCounts[date.toISOString().slice(0, 10)] = count;
+        }
+
+        res.status(200).json(ongoingAppointmentsCounts);
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to retrieve ongoing appointments count for the next 7 days" });
+      }
+    });
+
+
+
     
 
 
