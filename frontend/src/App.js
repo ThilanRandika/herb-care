@@ -39,6 +39,7 @@ import StaffDashboard from "./components/HolidayPackage/StaffDashboard";
 import PackageDetails from "./components/HolidayPackage/PackageDetails";
 import BookingForm from "./components/HolidayPackage/BookingForm";
 import CreatePackage from "./components/HolidayPackage/CreatePackage";
+import ManageServices from "./components/HolidayPackage/ManageServices";
 
 function App() {
   return (
@@ -109,6 +110,7 @@ function App() {
         <Route path="/PackageDetails/:id" element={<PackageDetails />}></Route>
         <Route path="/BookingForm" element={<BookingForm />}></Route>
         <Route path="/CreatePackage" element={<CreatePackage />}></Route>
+        <Route path="/ManageServices" element={<ManageServices />}></Route>
       </Routes>
     </BrowserRouter>
   );

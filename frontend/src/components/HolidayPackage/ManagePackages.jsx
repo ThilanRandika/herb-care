@@ -92,7 +92,7 @@ const EditPackages = () => {
     <Container>
       <Header />
       <Container>
-        <h2 className="mb-4 mt-4">Edit Packages</h2>
+        <h2 className="mb-4 mt-4">Manage Packages</h2>
         <Row xs={1} md={2} lg={3} className="g-4">
           {packages.map((pkg) => (
             <Col key={pkg._id}>

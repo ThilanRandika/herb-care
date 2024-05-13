@@ -56,7 +56,7 @@ const StaffDashboard = () => {
               </Col>
               <Col md={4}>
                 {showServices && (
-                  <Link to="/holiday-services" className="text-decoration-none">
+                  <Link to="/ManageServices" className="text-decoration-none">
                     <Card
                       className="mb-3 custom-card"
                       style={{ width: "100%", height: "100%" }}
