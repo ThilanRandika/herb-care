@@ -1,0 +1,57 @@
+.PGPO_form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.PGPO_form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.PGPO_form input[type="text"],
+.PGPO_form input[type="radio"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.PGPO_form input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  margin-right: 5px;
+}
+
+.PGPO_admon{
+  color: red;
+}
+
+.PGPO_submit_button {
+  background-color: #143109;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 460px;
+}
+
+
+.PGPO_containor1 {
+  margin-top: 20px;
+  border-top: 1px solid #9e9e9e;
+  padding-top: 20px;
+  width: 100%;
+}
+
+
+.PGPO_totpri,
+.PGPO_delpri,
+.PGPO_totamou {
+  margin: 5px 0;
+  text-align: center;
+}

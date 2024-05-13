@@ -1,0 +1,9 @@
+.seller-mainHome-container {
+    position: relative;
+	width: calc(100% - 280px);
+	left: 280px;
+    padding: 20px;
+	transition: .3s ease;
+  }
+  
+ 

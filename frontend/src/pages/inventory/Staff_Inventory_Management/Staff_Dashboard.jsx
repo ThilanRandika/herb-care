@@ -24,7 +24,7 @@ function Staff_Dashboard() {
             <Route path="/" element={<ViewAllProducts/>}></Route>
             <Route path="/AddProductProposal" element={<ProductProposalForm/>}></Route>
             
-            <Route path="/notifications" element={<Staff_Notifications/>}></Route>
+            <Route path="/Notifications" element={<Staff_Notifications/>}></Route>
             <Route path="/StaffUpdateProduct/:id" element={<StaffUpdateProduct/>}></Route>
             
           </Routes>

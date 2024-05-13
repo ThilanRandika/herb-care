@@ -2,24 +2,50 @@ const mongoose = require("mongoose");
 
 const giftPackageOrderSchema = new mongoose.Schema(
   {
-    customerId: {
-      type: mongoose.Types.ObjectId,
-      ref: "customer",
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Customer",
+      required: true
     },
 
     packageId: {
       type: mongoose.Types.ObjectId,
-      required: true,
+      required: false,
     },
 
-    totalPrice: {
-      type: Number,
-      required: true,
+    orderName: {
+      type: String,
+      required: true
     },
 
     orderAddress: {
       type: String,
       required: true,
+    },
+    
+    area: {
+      type: String,
+      required: true,
+    },
+
+    postalCode: {
+      type: Number,
+      required: true,
+    },
+
+    mobileNum: {
+      type: String,
+      required: true,
+    },
+
+    paymentMethod:{
+      type: String,
+      required: true,
+    },
+
+    totalAmount: {
+      type: Number,
+      required: false,
     },
 
     payment: {

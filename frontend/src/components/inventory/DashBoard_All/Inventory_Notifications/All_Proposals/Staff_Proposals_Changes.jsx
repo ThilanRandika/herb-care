@@ -70,7 +70,7 @@ export default function StaffProposalsChanges() {
             <th className="table-header-staff-table-header">Price</th>
             <th className="table-header-staff-table-header">Quantity</th>
             <th className="table-header-staff-table-header">Expire Date</th>
-            <th className="table-header-staff-table-header">Update</th>
+            {/* <th className="table-header-staff-table-header">Update</th> */}
             <th className="table-header-staff-table-header">Status</th>
           </tr>
         </thead>
@@ -82,20 +82,24 @@ export default function StaffProposalsChanges() {
               <td className="table-item staff-table-item">{proposal.price}</td>
               <td className="table-item staff-table-item">{proposal.quantity}</td>
               <td className="table-item staff-table-item">{extractDate(proposal.expireDate)}</td>
-              <td className="table-item staff-table-item">
+              {/* <td className="table-item staff-table-item">
                 <Link to={`/Inventory_Dashboard/UpdateProposals/${proposal._id}`}>
                   <button className="staff-proposals-update-button">Update</button>
                 </Link>
-              </td>
+              </td> */}
               <td className="table-item staff-table-item">
-                {proposal.status === "Pending" ? (
-                  <div className="button-container">
-                    <button onClick={() => handleAction(proposal._id, "Approved")} className="Inventory-approve-button">Approve</button>
-                    <button onClick={() => handleAction(proposal._id, "Rejected")} className="Inventory-reject-button">Reject</button>
-                  </div>
-                ) : (
-                  <span>{proposal.status}</span>
-                )}
+              {proposal.status === "Pending" ? (
+                <div className="button-container">
+                  <button onClick={() => handleAction(proposal._id, "Approved")} className="Inventory-approve-button">Approve</button>
+                  <button onClick={() => handleAction(proposal._id, "Rejected")} className="Inventory-reject-button">Reject</button>
+                </div>
+              ) : (
+                proposal.status === "Approved" ? (
+                  <span className="status-approved">{proposal.status}</span>
+                ) : proposal.status === "Rejected" ? (
+                  <span className="status-rejected">{proposal.status}</span>
+                ) : null   
+              )}
               </td>
             </tr>
           ))}
@@ -105,3 +109,5 @@ export default function StaffProposalsChanges() {
   );
   
 }
+
+

@@ -535,7 +535,8 @@ router.route("/sellerPendingOrders").get(verifySellerToOther, async(req, res) =>
             const formattedOrders = orders.map(order => {
                 return {
                     id: order._id, // Assuming shipping address is customer name
-                    price: `$${order.totalPrice}`, // Formatting price
+                    orderviewId: order.orderviewId,
+                    price: `Rs. ${order.totalPrice}`, // Formatting price
                     paymentMethod: order.payment,
                     status: order.status,
                     date: order.createdAt.toISOString(), // Using createdAt timestamp
@@ -567,6 +568,7 @@ router.route('/getOneOrder/:orderId').get(verifySellerToOther, async (req, res) 
             
                 id: singleOrder._id, // Assuming MongoDB automatically generates IDs for SellersingleOrder
                 customer: singleOrder.sellerId,
+                orderViewId: singleOrder.orderviewId,
                 emial: seller.email,
                 address: singleOrder.shippingAddress, // Assuming sellerId represents the customer in this context
                 date: singleOrder.createdAt, // Assuming createdAt represents the singleOrder date
@@ -607,7 +609,8 @@ router.route("/ongoingOrders").get(verifySellerToOther, async (req, res) => {
         const formattedOrders = orders.map(order => {
             return {
                 id: order._id, // Assuming shipping address is customer name
-                price: `$${order.totalPrice}`, // Formatting price
+                orderviewId: order.orderviewId,
+                price: `Rs. ${order.totalPrice}`, // Formatting price
                 paymentMethod: order.payment,
                 status: order.status,
                 date: order.createdAt.toISOString(), // Using createdAt timestamp
@@ -633,7 +636,8 @@ router.route("/sellerCompletedOrders").get(verifySellerToOther, async(req, res) 
             const formattedOrders = orders.map(order => {
                 return {
                     id: order._id, // Assuming shipping address is customer name
-                    price: `$${order.totalPrice}`, // Formatting price
+                    orderviewId: order.orderviewId,
+                    price: `Rs. ${order.totalPrice}`, // Formatting price
                     paymentMethod: order.payment,
                     status: order.status,
                     date: order.createdAt.toISOString(), // Using createdAt timestamp
@@ -663,44 +667,40 @@ const storage = multer.diskStorage({
   // Route to handle form submission with returnProducts array
   router.put('/returnProducts/:orderId', upload.array('productImages', 5), async (req, res) => {
     try {
-      const returnProducts = req.body; // Get the array of return products from the request body
-      const orderId = req.params.orderId;
+        // Ensure returnProductsArray is an array
+        const returnProductsArray = Array.isArray(req.body) ? req.body : [req.body];
+        const orderId = req.params.orderId;
 
-      console.log(orderId)
-  
-        const { productId, productName, quantity, returnReason } = returnProducts;
-  
-        // Extract filenames of uploaded images for the current return product
-        const images = req.files.map(file => file.filename);
-  
-        // Create a new return product object
-        const newReturnProduct = {
-          product: productId,
-          productName: productName,
-          quantity: quantity,
-          returnReason: returnReason,
-          images: images
-        };
-  
-        // Push the new return product object to the array
-      
-  
-      // Saving all return products to the database
+        // Create an array to hold new return product objects
+        const newReturnProducts = returnProductsArray.map(returnProduct => {
+          const { productId, productName, quantity, returnReason } = returnProduct;
+          // Extract filenames of uploaded images for the current return product
+          const images = req.files.map(file => file.filename);
 
-      const updatedOrder = await SellerOrder.findByIdAndUpdate(
-        { _id: orderId },
-        { $set: { 
-            returnProducts:newReturnProduct,
-         } }, // Assuming req.body.seller contains the updated seller details
-        { new: true }
-      );
-  
+          // Create a new return product object
+          return {
+            product: productId,
+            productName: productName,
+            quantity: quantity,
+            returnReason: returnReason,
+            images: images
+          };
+        });
+
+        // Push the new return products array to the database
+        const updatedOrder = await SellerOrder.findByIdAndUpdate(
+          { _id: orderId },
+          { $push: { returnProducts: { $each: newReturnProducts } } }, // Pushing each new return product individually
+          { new: true }
+        );
+
       res.status(201).json({ success: true, data: updatedOrder });
     } catch (err) {
       console.error(err);
       res.status(500).json({ success: false, error: 'Server Error' });
     }
   });
+
 
 
 router.route("/generateOrderInvoice/:id").get(verifySellerToOther, async(req, res) => {
@@ -763,6 +763,22 @@ router.route("/generateOrderInvoice/:id").get(verifySellerToOther, async(req, re
 function addKeyValueToPdf(doc, key, value, fontTitle, fontText) {
     doc.font(fontTitle).text(key, { continued: true }).font(fontText).text(value).moveDown();
 }
+
+
+
+
+// Route to get the count of pending seller orders
+router.route("/pendingOrders/count").get(async (req, res) => {
+    try {
+        // Find the count of pending orders from SellerOrder model
+        const pendingOrdersCount = await SellerOrder.countDocuments({ status: 'pending' });
+        // Send the count as JSON response
+        res.status(200).json({ pendingOrdersCount });
+    } catch (error) {
+        console.error('Error fetching pending orders count:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 
 

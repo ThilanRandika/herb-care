@@ -1,0 +1,55 @@
+.seller-manager-dashboard-container {
+    position: relative;
+	width: calc(100% - 280px);
+	left: 280px;
+	transition: .3s ease;
+  }
+  
+  .seller-manager-content-container {
+    padding: 20px;
+  }
+  
+  .sale-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+  }
+  
+  .sale-card-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .sale-card-value {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .value-number {
+    vertical-align: top;
+  }
+  
+  .value-unit {
+    font-size: 24px;
+    vertical-align: top;
+  }
+  
+  .sale-card-percentage-increase {
+    font-size: 18px;
+    font-weight: bold;
+    color: green;
+    margin-top: 10px;
+  }
+  
+  .percentage-sign {
+    font-size: 14px;
+    vertical-align: top;
+  }
+  
+  .percentage-number {
+    vertical-align: top;
+  }

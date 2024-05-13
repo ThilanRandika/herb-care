@@ -4,5 +4,8 @@
   
   .consultation-home-contents-flex-display {
     display: flex;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
       

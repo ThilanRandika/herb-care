@@ -1,42 +1,86 @@
-/* RegisteredSellers.css */
+/* registeredSellers.css */
 
-.registered-sellers-container {
-    margin-top: 5%;
+/* Container styling */
+.seller-registered-sellers-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.registered-sellers-table {
+/* Title styling */
+.seller-registered-sellers-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+.seller-registered-download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.seller-registered-download-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Table styling */
+.seller-registered-sellers-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.registered-sellers-table th,
-.registered-sellers-table td {
+/* Table header styling */
+.seller-registered-sellers-table th {
+    background-color: #f2f2f2;
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-.registered-sellers-table th {
-    background-color: #f2f2f2;
+/* Table body styling */
+.seller-registered-sellers-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
-.registered-sellers-table td {
-    background-color: #fff;
-}
-
-.registered-sellers-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.registered-sellers-table tr:hover {
-    background-color: #ddd;
-}
-
-.registered-sellers-table a {
-    text-decoration: none;
+/* Link styling */
+.seller-registered-link {
     color: #007bff;
+    text-decoration: none;
 }
 
-.registered-sellers-table a:hover {
+.seller-registered-link:hover {
     text-decoration: underline;
+}
+
+/* Button styling */
+.seller-registered-reject-btn {
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.seller-registered-link-btn{
+    padding: 8px 32px;
+    background-color: #677dff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.seller-registered-reject-btn:hover {
+    background-color: #c82333;
 }
