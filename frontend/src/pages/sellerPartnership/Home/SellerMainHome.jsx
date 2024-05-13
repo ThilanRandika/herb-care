@@ -28,7 +28,7 @@ function SellerMainHome() {
       <Route path="/product/:Id" element={<ProductDetail/>}/>
       <Route path="/bag" element={<SellerBagPage/>}/>
       <Route path="/checkout" element={<SellerCheckoutPage/>}/>
-      <Route path="/orders" element={<SellerOrdersPage/>}/>
+      <Route path="/orders/*" element={<SellerOrdersPage/>}/>
       <Route path="/singleOrder/:orderId" element={<SellerSingleOrderPage/>}/>
       <Route path="/profile" element={<SellerProfilePage/>}/>
       <Route path="/appointment" element={<SellerAppointmentPage/>}/>

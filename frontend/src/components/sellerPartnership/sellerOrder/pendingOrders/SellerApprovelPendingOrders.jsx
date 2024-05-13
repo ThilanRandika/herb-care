@@ -35,7 +35,7 @@ function SellerApprovelPendingOrders() {
                 <tbody>
                     {orders.map((order, index) => (
                         <tr key={index} className={`seller-order-row-${index}`}>
-                            <td>{order.id}</td>
+                            <td>{order.orderviewId}</td>
                             <td>{order.price}</td>
                             <td>{order.paymentMethod}</td>
                             <td className={`seller-order-status-${order.status.toLowerCase()}`}>{order.status}</td>

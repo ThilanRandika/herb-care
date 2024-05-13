@@ -77,7 +77,7 @@
 .notification-count {
   position: absolute;
   top: 10px; /* Adjust vertical position */
-  right: 85px; /* Adjust horizontal position */
+  right: 70px; /* Adjust horizontal position */
   background-color: red;
   color: white;
   min-width: 20px; /* Ensure minimum width */
@@ -89,3 +89,39 @@
   align-items: center;
   padding: 2px; /* Add padding */
 }
+
+/* Additional CSS */
+
+/* Sublinks container */
+.seller-sublinks {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Sublink items */
+.seller-sublinks li {
+  margin-bottom: 5px; /* Add space between items */
+}
+
+/* Sublink styling */
+.seller-sublinks a {
+  font-size: 12px; /* Adjust font size */
+  color: #126f02; /* Set color */
+  text-decoration: none; /* Remove underline */
+  padding: 5px 20px; /* Add padding */
+  display: block; /* Make it a block element */
+}
+
+.seller-sublinks a:hover {
+  background-color: rgba(17, 94, 5, 0.521); /* Change background color on hover */
+  color: #ffffff;
+  border-radius: 5px; /* Add border radius */
+}
+
+.seller-sublinks a.active {
+  background-color: rgba(17, 94, 5, 0.521); /* Change background color for active link */
+  color: rgb(255, 255, 255); /* Change text color for active link */
+  border-radius: 5px; /* Add border radius */
+}
+
