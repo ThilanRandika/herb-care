@@ -206,7 +206,7 @@ const ManageServices = () => {
       {/* Edit Service Modal */}
       <Modal show={showEditModal} onHide={handleCloseEditModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Service</Modal.Title>
+          <Modal.Title>Manage Services</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
