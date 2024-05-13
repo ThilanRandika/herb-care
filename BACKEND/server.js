@@ -46,7 +46,12 @@ const giftPackageOrderRouter = require("./routes/GiftPackage/giftPackageOrder.js
 const feedbackRouter = require("./routes/Feedback&complaints/feedbacks.js");
 const complaintsRouter = require("./routes/Feedback&complaints/complaintses.js");
 const FeedbackGiftPackageRouter = require("./routes/Feedback&complaints/feedbacksGiftPackages.js")
-const orderRouter = require( "./routes/order/orders.js" );
+const orderRouter = require("./routes/order/orders.js");
+
+
+const packageRoutes = require("./routes/HolidayPackage/package.js");
+const serviceRoutes = require("./routes/HolidayPackage/service.js");
+const bookingRoutes = require("./routes/HolidayPackage/booking.js");
 
 const authRouter = require( "./routes/auth.js" );
 
@@ -83,6 +88,11 @@ app.use("/sellerAppointments", sellerAppointments);
 app.use("/product", productRouter);
 app.use("/approvalProcess",approvalProcessRouter);
 
+
+// Routes
+app.use("/packages", packageRoutes);
+app.use("/services", serviceRoutes);
+app.use("/bookings", bookingRoutes);
 
 
 //Order Management
