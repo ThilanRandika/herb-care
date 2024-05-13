@@ -36,8 +36,8 @@ function StaffMainDashboard() {
                     alt="User-Profile-Image"
                   />
                   <div>
-                    <h6 className="text-white">John Doe</h6> {/* Change the name here */}
-                    <p className="text-muted">Web Developer</p>
+                    <h6 className="text-white">Harshsna</h6> {/* Change the name here */}
+                    <p className="text-muted">Customer</p>
                   </div>
                 </div><br></br>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
@@ -96,8 +96,8 @@ function StaffMainDashboard() {
                         <div className="m-b-25">
                           <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image"></img> {/* Change the image URL here */}
                         </div>
-                        <h6 className="f-w-600">John Doe</h6> {/* Change the name here */}
-                        <p>Web Designer</p>
+                        <h6 className="f-w-600">Harshana</h6> {/* Change the name here */}
+                        <p>Customer</p>
                         <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                       </div>
                     </div>
@@ -107,7 +107,7 @@ function StaffMainDashboard() {
                         <div className="row">
                           <div className="col-sm-6">
                             <p className="m-b-10 f-w-600">Name</p>
-                            <h6 className="text-muted f-w-400">John Doe</h6> {/* Change the name here */}
+                            <h6 className="text-muted f-w-400">Harshana</h6> {/* Change the name here */}
                           </div>
                           <div className="col-sm-6">
                             <p className="m-b-10 f-w-600">Address</p>

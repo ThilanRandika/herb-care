@@ -4,6 +4,16 @@ import "./DisplayGiftPackOrders.css";
 
 function DisplayGiftPackOrders() {
   const [orders, setOrders] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const searchorders = (orders) => {
+    if (!searchQuery) {
+      return true; // Show all feedbacks if search query is empty
+    }
+
+    const customerName = orders.area.toLowerCase();
+    return customerName.includes(searchQuery.toLowerCase());
+  };
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -66,8 +76,8 @@ function DisplayGiftPackOrders() {
         <h3 className="GiftOrder_title"><center>Gift Package Orders</center></h3>
         <p className="GiftOrder_title">Manage customer orders</p>
       </div>
-      
-      {orders.map((order) => (
+      <input className='GiftOrder_seching' type="text" placeholder="Search Area...." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+      {orders.filter(searchorders).map((order) => (
         <div key={order._id} className="giftPackage-order-container">
           <p><b>Order Name:</b> {order.orderName}</p>
           <p><b>Order Address:</b> {order.orderAddress}</p>
