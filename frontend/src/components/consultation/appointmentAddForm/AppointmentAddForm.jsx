@@ -317,6 +317,12 @@ function AppointmentAddForm(props) {
   const submit = (e) => {
     e.preventDefault();
 
+    if (!user) {
+      // If user is not logged in, navigate to login page
+      navigator('../../login');
+      return;
+    }
+
     // Check for empty fields
     const emptyFields = Object.entries(patientInfo).filter(([key, value]) => value.trim() === '');
     if (emptyFields.length > 0) {
@@ -427,75 +433,79 @@ function AppointmentAddForm(props) {
                   <button type="button" className="AppointmentAddForm-availableTime-btn" onClick={handleShowTimeSlots}>Search Available Time Slots</button> 
                 </div>
 
-
-                <div className="AppointmentAddForm-customerInfo">
-                  <h4>Patient Info</h4>
-                  <div className="AppointmentAddForm-patientName AppointmentAddForm-customerInfo-raw">
-                    <label htmlFor="patientName" className="form-label">
-                      Patient Name
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="patientName"
-                      value={patientInfo.patientName}
-                      onChange={handlePatientInfoChange}
-                    />
-                    {errors.patientName && <span className="AppointmentAddForm-error">{errors.patientName}</span>}
-                  </div>
-                  <div className="AppointmentAddForm-patientPhone AppointmentAddForm-customerInfo-raw">
-                    <label htmlFor="patientPhone" className="form-label">
-                      Phone
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="patientPhone"
-                      value={patientInfo.patientPhone}
-                      onChange={handlePatientInfoChange}
-                    />
-                    {errors.patientPhone && <span className="AppointmentAddForm-error">{errors.patientPhone}</span>}
-                  </div>
-                  <div className="AppointmentAddForm-patientAge AppointmentAddForm-customerInfo-raw">
-                    <label htmlFor="patientAge" className="form-label">
-                      Age
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="patientAge"
-                      value={patientInfo.patientAge}
-                      onChange={handlePatientInfoChange}
-                    />
-                    {errors.patientAge && <span className="AppointmentAddForm-error">{errors.patientAge}</span>}
-                  </div>
-                  <div className="AppointmentAddForm-patientGender AppointmentAddForm-customerInfo-raw">
-                    <label className="form-label">Gender : </label>
-                    <div>
+                {user ? (
+                  <div className="AppointmentAddForm-customerInfo">
+                    <h4>Patient Info</h4>
+                    <div className="AppointmentAddForm-patientName AppointmentAddForm-customerInfo-raw">
+                      <label htmlFor="patientName" className="form-label">
+                        Patient Name
+                      </label>
                       <input
-                        type="radio"
-                        id="male"
-                        name="gender"
-                        value="male"
-                        checked={patientInfo.patientGender === 'male'}
-                        onChange={handlePatientGenderChange}
+                        type="text"
+                        className="form-control"
+                        id="patientName"
+                        value={patientInfo.patientName}
+                        onChange={handlePatientInfoChange}
                       />
-                      <label htmlFor="male">Male</label>
+                      {errors.patientName && <span className="AppointmentAddForm-error">{errors.patientName}</span>}
                     </div>
-                    <div>
+                    <div className="AppointmentAddForm-patientPhone AppointmentAddForm-customerInfo-raw">
+                      <label htmlFor="patientPhone" className="form-label">
+                        Phone
+                      </label>
                       <input
-                        type="radio"
-                        id="female"
-                        name="gender"
-                        value="female"
-                        checked={patientInfo.patientGender === 'female'}
-                        onChange={handlePatientGenderChange}
+                        type="text"
+                        className="form-control"
+                        id="patientPhone"
+                        value={patientInfo.patientPhone}
+                        onChange={handlePatientInfoChange}
                       />
-                      <label htmlFor="female">Female</label>
+                      {errors.patientPhone && <span className="AppointmentAddForm-error">{errors.patientPhone}</span>}
                     </div>
-                  </div>
+                    <div className="AppointmentAddForm-patientAge AppointmentAddForm-customerInfo-raw">
+                      <label htmlFor="patientAge" className="form-label">
+                        Age
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="patientAge"
+                        value={patientInfo.patientAge}
+                        onChange={handlePatientInfoChange}
+                      />
+                      {errors.patientAge && <span className="AppointmentAddForm-error">{errors.patientAge}</span>}
+                    </div>
+                    <div className="AppointmentAddForm-patientGender AppointmentAddForm-customerInfo-raw">
+                      <label className="form-label">Gender : </label>
+                      <div>
+                        <input
+                          type="radio"
+                          id="male"
+                          name="gender"
+                          value="male"
+                          checked={patientInfo.patientGender === 'male'}
+                          onChange={handlePatientGenderChange}
+                        />
+                        <label htmlFor="male">Male</label>
+                      </div>
+                      <div>
+                        <input
+                          type="radio"
+                          id="female"
+                          name="gender"
+                          value="female"
+                          checked={patientInfo.patientGender === 'female'}
+                          onChange={handlePatientGenderChange}
+                        />
+                        <label htmlFor="female">Female</label>
+                      </div>
+                    </div>
 
-                </div>
+                  </div>
+                ) : null}
+
+
+                
 
               </div>
 

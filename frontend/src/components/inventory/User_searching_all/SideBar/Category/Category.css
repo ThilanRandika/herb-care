@@ -1,0 +1,19 @@
+.category-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .category-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .category-option input {
+    margin-right: 10px;
+  }
+  
+  .category-heading {
+    margin-bottom: 10px;
+  }
+  

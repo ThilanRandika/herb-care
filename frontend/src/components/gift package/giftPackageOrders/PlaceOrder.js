@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './PlaceOrder.css';
@@ -20,6 +20,18 @@ const PlaceOrder = () => {
   const location = useLocation();
   const packageId = new URLSearchParams(location.search).get('packageId');
   
+
+
+  useEffect(()=>{
+    axios.get(`http://localhost:8070/giftPackageOrder/get/${packageId}`)
+    .then((res)=>{
+      console.log(res.data)
+      setOrderName(res.data.orderName)
+      setOrderAddress(res.data.orderAddress)
+      setMobileNum(res.data.mobileNum)
+      setTotalPrice(res.data.totalPrice)
+    })
+  },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -53,6 +53,36 @@ router.route('/create/:packageId').post(verifyToOther, async (req, res) => {
 });
 
 
+router.route('/get/:orderId').get(async (req, res) => {
+  try {
+    const getGiftPackage = await DefaultGiftPack.findById(req.params.packageId);
+    const user = await Customer.findById(req.person.userId)
+    
+    if (!getGiftPackage) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    const deliveryPrice = 200;
+    const totalAmount = parseFloat(defaultGiftPackage.totalPrice) + deliveryPrice;
+
+    
+    const newOrder = {
+      orderName: user.customer_name,
+      orderAddress: getGiftPackage.address,
+      mobileNum: getGiftPackage.contact_num,
+      totalAmount: totalAmount,
+    };
+
+    res.status(200).json({
+      newOrder
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to retrieve order details', error: error.message });
+  }
+});
+
+
 
 
 // GET route to retrieve order details by order ID
