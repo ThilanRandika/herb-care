@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import NavigationBar from '../../../components/common/navigationBar/NavigationBar';
 import "./ContactUs.css";
 import { BsEnvelopeAtFill } from "react-icons/bs";
 import { BsTelephoneInboundFill } from "react-icons/bs";
 import { BsHouseFill } from "react-icons/bs";
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import Footer from '../../../components/common/footer/footer';
+import Header from '../../../components/common/header/header';
 
 const containerStyle = {
-    width: '1420px',
+    width: '1300px',
     height: '800px'
   };
   
@@ -20,7 +21,7 @@ function ContactUs(){
 
     return (
         <>
-        <NavigationBar></NavigationBar>
+        <Header></Header>
         <div>
             
             <br></br>
@@ -76,7 +77,7 @@ function ContactUs(){
                     </GoogleMap>
                 </LoadScript>
             </div>
-            
+            <Footer></Footer>
         </div>
 
       </>

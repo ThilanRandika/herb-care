@@ -31,6 +31,7 @@ const OrderDisplay = () => {
 
   return (
     <div>
+      
       <h2 className='DPOU_ti'>Your Orders</h2>
       <ul className='DPOU_ULL'>
         {orders.map(order => (
@@ -53,6 +54,7 @@ const OrderDisplay = () => {
           </li>
         ))}
       </ul>
+      
     </div>
   );
 };
