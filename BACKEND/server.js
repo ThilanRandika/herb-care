@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 
 const StaffRouter = require("./routes/staff/staff.js");
 const ManagerRouter = require("./routes/manager/manager.js");
+const ManagerDashboardRouter = require("./routes/manager/managerDashboard.js");
 
 const ConsultAppointmentsRouter = require("./routes/consultation/consultAppointments.js");
 const RefundRouter = require("./routes/consultation/refunds.js");
@@ -79,7 +80,7 @@ app.use(cookieParser());
 
 app.use("/staff", StaffRouter);
 app.use("/manager", ManagerRouter);
-
+app.use("/managerDashboard", ManagerDashboardRouter);
 
 app.use("/consultAppointment", ConsultAppointmentsRouter);
 app.use("/refund", RefundRouter);

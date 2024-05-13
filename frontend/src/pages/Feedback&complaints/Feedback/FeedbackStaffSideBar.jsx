@@ -13,7 +13,7 @@ function FeedbackStaffSideBar() {
             to={"/staff/DisplayFeedbackStaff"}
             exact
           >
-            Feebacks
+            Product Feedbacks
           </NavLink>
         </li>
         <li className="seller-manager-sidebar-item">
@@ -23,6 +23,15 @@ function FeedbackStaffSideBar() {
             to={"/staff/DisplayComplaintsStaff"}
           >
             Complaines
+          </NavLink>
+        </li>
+        <li className="seller-manager-sidebar-item">
+          <NavLink
+            className="seller-manager-sidebar-link"
+            activeClassName="active"
+            to={"/staff/DisplayFeedbackGiftPackageStaff"}
+          >
+            Gift Package Feedbacks
           </NavLink>
         </li>
       </ul>
