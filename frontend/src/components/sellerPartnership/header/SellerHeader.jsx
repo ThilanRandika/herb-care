@@ -35,18 +35,12 @@ function SellerHeader() {
             <BsJustify className='icon' onClick={toggleMenu}/>
         </div>
         <div className='header-right'>
-
-
-        
           <Link className="bell-notification" to={"/sellerMainHome/notification"} aria-current="page" onClick={handleMarkAsRead}>
             <BsFillBellFill className='icon'/>
             {unreadNotifications > 0 && (
               <span className="notification-count">{unreadNotifications}</span>
             )}
           </Link>
-       
-
-            <BsFillEnvelopeFill className='icon'/>
             <BsPersonCircle className='icon'/>
         </div>
     </header>

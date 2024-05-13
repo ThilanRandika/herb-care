@@ -19,7 +19,7 @@ function footer() {
 				</div>
 				<div class="col-lg-5">
 					<div class="button_box">
-                    <Link to="" className="btn btn-white">Send Us</Link>
+                    <Link to="/contactUs" className="btn btn-white">Send Us</Link>
 					</div>
 				</div>
 			</div>
@@ -51,10 +51,9 @@ function footer() {
 						</div>
 						<ul>
                             <li><Link to="#">About Us</Link></li>
-							<li><Link to="#">Contact Us</Link></li>
+							<li><Link to="/contactUs">Contact Us</Link></li>
 							<li><Link to="#">Privacy Policy</Link></li>
                             <li><Link to="#">Support</Link></li>
-							<li><Link to="#">Blog</Link></li>
 						</ul>
 					</div>
 				</div>

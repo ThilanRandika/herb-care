@@ -20,7 +20,10 @@ function Home() {
   return (
     <>
 
-      <NavigationBar></NavigationBar>
+        <div className="home-customer-header">
+          <Header></Header>
+        </div>
+      
       <div>
         <Banner/>
 
@@ -29,13 +32,20 @@ function Home() {
         <br></br>
 
         <GiftHomeBanner/>
+
+        {/* <NavigationBar></NavigationBar> */}
+
+        <br></br>
+        <br></br>
+        <br></br>
+      <ProductSummary />
+      <Footer></Footer>
+
       </div>
 
 
-      <Header></Header>
-      {/* <NavigationBar></NavigationBar> */}
-      <ProductSummary />
-      <Footer></Footer>
+      
+      
 
     </>
   )

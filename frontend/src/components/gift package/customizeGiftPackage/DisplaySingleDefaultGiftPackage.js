@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import "./DisplaySingleDefaultGiftPackage.css"
 import FeedbackGiftPAck from '../../../components/Feedback&Complaints/FeedbackGiftPackage/Display/DisplayUnderPackage/UnderPackageFeedbacks';
-
+import Header from '../../common/header/header';
+import Footer from '../../common/footer/footer';
 
 const DisplaySingleDefaultGiftPackage = () => {
     const [packageData, setPackageData] = useState(null);
@@ -33,7 +34,7 @@ const DisplaySingleDefaultGiftPackage = () => {
 
     return (
         <div>
-
+            <Header></Header>
             <br></br>
             <br></br>
             
@@ -77,6 +78,7 @@ const DisplaySingleDefaultGiftPackage = () => {
             )}
 
             </div>  
+            <Footer></Footer>
             </div> 
     );
 };

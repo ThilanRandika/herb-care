@@ -7,6 +7,35 @@ function SellerProfile() {
   const { user } = useContext(AuthContext);
   const [newPassword, setNewPassword] = useState('');
   const [avatar, setAvatar] = useState(null);
+  const [editedUser, setEditedUser] = useState({});
+
+  useEffect(() => {
+
+    axios.get('http://localhost:8070/sellerProfile/profile')
+    .then((res)=> {
+      const data = { ...res.data };
+      delete data.client; // Remove the circular reference property
+      console.log(data);
+      setEditedUser(data);
+    })
+    .catch((err)=> {
+      console.log(err)
+    })
+  }, []);
+
+  const update= () =>{
+    axios.get('http://localhost:8070/sellerProfile/profile')
+    .then((res)=> {
+      const data = { ...res.data };
+      delete data.client; // Remove the circular reference property
+      console.log(data);
+      setEditedUser(data);
+    })
+    .catch((err)=> {
+      console.log(err)
+    })
+  }
+
 
   const handleFileInputChange = (event) => {
     setAvatar(event.target.files[0]);
@@ -16,21 +45,27 @@ function SellerProfile() {
     setNewPassword(event.target.value);
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEditedUser(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
   const handleUpload = () => {
     const formData = new FormData();
     formData.append('avatar', avatar);
-    formData.append('userId', user.sellerId);
-    formData.append('name', user.seller_name);
-    formData.append('email', user.email);
-    formData.append('company', user.company);
-    formData.append('companyDescription', user.company_discription);
-    formData.append('taxId', user.tax_id);
-    formData.append('address', user.address);
-    formData.append('phone', user.contact_num);
-    formData.append('website', user.website);
+    formData.append('userId', editedUser.sellerId);
+    formData.append('name', editedUser.seller_name);
+    formData.append('email', editedUser.email);
+    formData.append('company', editedUser.company);
+    formData.append('companyDescription', editedUser.company_discription);
+    formData.append('taxId', editedUser.tax_id);
+    formData.append('address', editedUser.address);
+    formData.append('phone', editedUser.contact_num);
+    formData.append('website', editedUser.website);
     formData.append('newPassword', newPassword);
-
-    console.log(formData)
 
     axios.post('http://localhost:8070/sellerProfile/update', formData, {
       headers: {
@@ -39,6 +74,7 @@ function SellerProfile() {
     })
     .then(response => {
       console.log(response.data);
+      update();
       // Handle success
     })
     .catch(error => {
@@ -49,7 +85,7 @@ function SellerProfile() {
 
   return (
     <>
-      <div className="seller-profile-title">SellerProfile</div>
+      
       <div className="seller-profile-container">
         <h4 className="font-weight-bold py-3 mb-4">
           Account settings
@@ -86,23 +122,19 @@ function SellerProfile() {
                   <div className="seller-profile-card-body">
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Username</label>
-                      <input type="text" className="seller-profile-input" value={user.sellerId}/>
+                      <input type="text" className="seller-profile-input" value={editedUser.sellerId} readOnly/>
                     </div>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Name</label>
-                      <input type="text" className="seller-profile-input" value={user.seller_name}/>
+                      <input type="text" className="seller-profile-input" name="seller_name" value={editedUser.seller_name} onChange={handleInputChange}/>
                     </div>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">E-mail</label>
-                      <input type="text" className="seller-profile-input" value={user.email}/>
-                      <div className="seller-profile-alert">
-                        Your email is not confirmed. Please check your inbox.<br/>
-                        <a href="javascript:void(0)">Resend confirmation</a>
-                      </div>
+                      <input type="email" className="seller-profile-input" name="email" value={editedUser.email} onChange={handleInputChange}/>
                     </div>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Company</label>
-                      <input type="text" className="seller-profile-input" value={user.company}/>
+                      <input type="text" className="seller-profile-input" name="company" value={editedUser.company} onChange={handleInputChange}/>
                     </div>
                   </div>
                 </div>
@@ -126,15 +158,15 @@ function SellerProfile() {
                   <div className="seller-profile-card-body pb-2">
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Company Description</label>
-                      <textarea className="seller-profile-textarea" rows="5">{user.company_discription}</textarea>
+                      <textarea className="seller-profile-textarea" rows="5" name="company_discription" value={editedUser.company_discription} onChange={handleInputChange}></textarea>
                     </div>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Tax ID</label>
-                      <input type="text" className="seller-profile-input" value={user.tax_id}/>
+                      <input type="text" className="seller-profile-input" name="tax_id" value={editedUser.tax_id} onChange={handleInputChange}/>
                     </div>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Address</label>
-                      <input type="text" className="seller-profile-input" value={user.address}/>
+                      <input type="text" className="seller-profile-input" name="address" value={editedUser.address} onChange={handleInputChange}/>
                     </div>
                   </div>
                   <hr className="border-light m-0"/>
@@ -142,11 +174,11 @@ function SellerProfile() {
                     <h6 className="mb-4">Contacts</h6>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Phone</label>
-                      <input type="text" className="seller-profile-input" value={user.contact_num}/>
+                      <input type="text" className="seller-profile-input" name="contact_num" value={editedUser.contact_num} onChange={handleInputChange}/>
                     </div>
                     <div className="seller-profile-form-group">
                       <label className="seller-profile-label">Website</label>
-                      <input type="text" className="seller-profile-input" value={user.website}/>
+                      <input type="text" className="seller-profile-input" name="website" value={editedUser.website} onChange={handleInputChange}/>
                     </div>
                   </div>
                 </div>

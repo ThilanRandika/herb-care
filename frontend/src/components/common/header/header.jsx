@@ -46,7 +46,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
+      <div className="home-header-body">
         <header class="header-area overlay">
         <nav class="navbar navbar-expand-md navbar-dark">
 		    <div class="container">
@@ -60,7 +60,7 @@ class Header extends Component {
 			
 			    <div id="main-nav" class="collapse navbar-collapse">
 				    <ul class="navbar-nav ml-auto Headfro_ULLI">
-					    <li><Link to="/customer" class="nav-item nav-link active hed_fosiz">Home</Link></li>
+					    <li><Link to="/" class="nav-item nav-link active hed_fosiz">Home</Link></li>
 					    <li><Link to="/User_searching" class="nav-item nav-link hed_fosiz">Shop</Link></li>
 					    <li class="dropdown">
 						    <a href="#" class="nav-item nav-link" data-toggle="dropdown hed_fosiz">Special Packages</a>
@@ -76,12 +76,15 @@ class Header extends Component {
               <li><Link to="#" class="nav-item nav-link hed_fosiz headeee_loLOinf"><img width="30" height="30" src="https://img.icons8.com/sf-regular-filled/48/1A1A1A/shopping-cart.png" alt="shopping-cart--v1"/></Link></li>
               
               <li><Link to="/User" class="nav-item nav-link hed_fosiz ">profile</Link></li>
-					    <li><Link to="#" class="nav-item nav-link hed_fosiz ">Login</Link></li>
+					    <li><Link to="Login" class="nav-item nav-link hed_fosiz ">Login</Link></li>
 				    </ul>
 			    </div>
 		    </div>
 	    </nav>
         </header>
+        <br />
+        <br />
+        <br />
     </div>
     );
   }
