@@ -149,4 +149,20 @@ router.route('/orders').get(verifyToOther, async (req, res) => {
 
 
 
+// Backend route to get the pending gift package orders count
+router.get("/pendingOrders/count", async (req, res) => {
+  try {
+    // Query the database to count pending gift package orders
+    const pendingOrdersCount = await GiftPackageOrder.countDocuments({ orderStatus: "pending" });
+
+    // Respond with the count
+    res.status(200).json({ pendingOrdersCount });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch pending orders count", error: error.message });
+  }
+});
+
+
+
 module.exports = router;

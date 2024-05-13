@@ -4,7 +4,9 @@ import MyConsultations from '../myConsultations/MyConsultations';
 import HomeConsultation from '../home-consultation/HomeConsultation';
 import RefundsCustomer from '../refundsCustomer/RefundsCustomer';
 import MyRefunds from '../../../components/consultation/myRefunds/MyRefunds';
+import Header from '../../../components/common/header/header';
 import NavigationBar from '../../../components/common/navigationBar/NavigationBar';
+import ConsultationCusNavBar from '../../../components/consultation/consultationCusNavBar/ConsultationCusNavBar';
 // import { useContext, useState } from 'react';
 // import { AuthContext } from '../../../context/AuthContext';
 
@@ -12,15 +14,14 @@ function ConsultationsCustomer() {
 
   return (
     <>
-    <NavigationBar></NavigationBar>
-      <div className="consultations-nav">
-        <Link className="nav-link" to={"/consultation"} aria-current="page"> Home Consultations </Link>
-        <Link className="nav-link" to={"/consultation/myConsultations/myOngoingConsultations"} aria-current="page"> My Consultations </Link>
-        <Link className='nav-link' to={"/consultation/refunds/myRefunds"} aria-current="page"> Refunds </Link>
-      </div>
+    {/* <NavigationBar></NavigationBar> */}
+    
+        {/* <ConsultationCusNavBar></ConsultationCusNavBar> */}
+
+        <Header></Header>
 
         <Routes>
-            <Route path="/" element={<HomeConsultation />}></Route>
+            <Route path="/homeConsultation" element={<HomeConsultation />}></Route>
             <Route path="/myConsultations/*" element={<MyConsultations />}></Route>
             <Route path="/refunds/*" element={<RefundsCustomer />}></Route>
             <Route path="/refunds/myRefunds" element={<MyRefunds />}></Route>

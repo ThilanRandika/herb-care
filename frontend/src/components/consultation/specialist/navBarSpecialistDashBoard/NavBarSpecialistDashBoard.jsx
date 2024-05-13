@@ -43,6 +43,15 @@ function NavBarSpecialistDashBoard() {
             Availability
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            activeClassName="active"
+            className="navBarSpecialistDashboard-specialist-nav-item"
+            to={"/specialistInterface/profile"}
+          >
+            Profile
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

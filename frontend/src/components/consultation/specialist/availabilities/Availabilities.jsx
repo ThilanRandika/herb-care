@@ -100,7 +100,11 @@ function Availabilities(props) {
       <div className="specialist-availabilityPage-availabilities-date-picker">
         <label htmlFor="date">Select Date:</label>
           <div className='specialist-availabilityPage-availabilities-calendar'>
-            <Calendar onChange={(date) => { onChange(date); formatDate(date); setShowAvailabilities(false); }} value={value} />
+          <Calendar
+            onChange={(date) => { onChange(date); formatDate(date); setShowAvailabilities(false); }}
+            value={value}
+            minDate={new Date()} // Set the minimum date to today
+          />
           </div>
       </div>
       {showAvailabilities ? (

@@ -71,8 +71,8 @@ function MyRejectedConsultations(props) {
       <table className='rejectedConsultations-table'>
         <thead className='rejectedConsultations-thead'>
         <tr>
-            <th>No.</th>
             <th>Date</th>
+            <th>Time</th>
             <th>Specialist</th>
             <th>Action</th>
         </tr>          
@@ -81,8 +81,8 @@ function MyRejectedConsultations(props) {
           {rejectedAppointments.map((appointment, index) => (
             <React.Fragment key={index}>
               <tr onClick={() => toggleExpandedDetails(index)}>
-              <td>{index + 1}</td>
               <td>{new Date(appointment.date).toLocaleDateString()}</td>
+              <td>{appointment.timeSlot}</td>
               <td>{appointment.specialistName}</td>
                 <td>
                   {dataFetched && refundStatuses[index] !== undefined ? (
@@ -113,7 +113,6 @@ function MyRejectedConsultations(props) {
                         )}
                         <p><strong>Type:</strong> {appointment.type}</p>
                         <p><strong>Appointment Amount:</strong> {appointment.appointmentAmount}</p>
-                        <p><strong>Time Slot:</strong> {appointment.timeSlot}</p>
                       
                       </div>
                       <div className="rejectedConsultations-expanded-details-innerContainer-right">

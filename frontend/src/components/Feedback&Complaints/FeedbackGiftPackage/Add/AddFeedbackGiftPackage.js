@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './AddFeedbackGiftPackage.css';
+import { useLocation } from 'react-router-dom';
 
 const StarRatingInput = ({ value, onChange }) => {
   const stars = Array.from({ length: 5 }, (_, index) => (
@@ -21,6 +22,9 @@ const FeedbackForm = () => {
   const [message, setMessage] = useState('');
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+  const giftPackageOrder = new URLSearchParams(location.search).get('giftPackageOrder');
+  const packageId = new URLSearchParams(location.search).get('packageId');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,12 +33,13 @@ const FeedbackForm = () => {
     const formData = new FormData();
     formData.append('ratings', ratings);
     formData.append('message', message);
+    formData.append('giftPackageOrder', giftPackageOrder);
     images.forEach((image) => {
       formData.append('image', image);
     });
 
     try {
-      await axios.post(`http://localhost:8070/feedbackGiftPackage/add/65faa626d8f91d7b94545acc`, formData, {
+      await axios.post(`http://localhost:8070/feedbackGiftPackage/add/${packageId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

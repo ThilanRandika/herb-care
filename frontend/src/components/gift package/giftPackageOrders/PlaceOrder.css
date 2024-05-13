@@ -31,17 +31,15 @@
 }
 
 .PGPO_submit_button {
-  background-color: #007bff;
+  background-color: #143109;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 460px;
 }
 
-.PGPO_submit_button:hover {
-  background-color: #0056b3;
-}
 
 .PGPO_containor1 {
   margin-top: 20px;

@@ -24,11 +24,16 @@ function DisplayDefaultGiftPackages() {
 
   return (
     <div>
-
-      <h3 className="header"><center>Default Gift Packages</center></h3>
-      <h6><center>Order the special Gift packages from us with a best price.</center></h6>
-      <p><center>Quick  -  Easy  -  The best</center></p>
-      <p><center>From Us</center></p>
+      <br></br>
+      <br></br>
+      
+      <div className="GiftPack_display_header_card">
+          <h1 className="GiftPack_display_header">Default Gift Packages</h1>
+          <h5 className="GiftPack_display_header">Order the special Gift packages from us with a best price.</h5>
+          <p className="GiftPack_display_header">Quick  -  Easy  -  The best</p>
+          <p className="GiftPack_display_header">From Us</p>
+      </div>
+      
       <div>
         {defaultGiftPackages.map((giftPackage) => (
           <div key={giftPackage._id} className="giftPackage-default-container">
