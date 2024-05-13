@@ -17,8 +17,17 @@ function ApprovalProcessForm() {
     ingredients: ''
   });
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // Check if the value is negative before updating the state
+    if ((name === 'price' || name === 'Manufactured_price' || name === 'quantity') && parseFloat(value) < 0) {
+      return; // Do not update state for negative values
+    }
     setFormData({ ...formData, [name]: value });
   };
 
@@ -49,13 +58,16 @@ function ApprovalProcessForm() {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }
       });
-      alert('Product Added Successfully');
+      alert('Product proposal Added');
       // Optionally, redirect to another page after successful submission
     } catch (error) {
       alert('Error occurred while adding product');
       console.error(error);
     }
   };
+
+
+  const today = new Date().toISOString().split('T')[0]; // Get today's date
 
   return (
     <div className="staff-form-container">
@@ -67,7 +79,7 @@ function ApprovalProcessForm() {
         </div>
         <div className="staff-form-group">
           <label className="staff-label">Category:</label>
-          <select name="category" value={formData.category} onChange={handleChange} className="inventory-form-input"  required>
+          <select name="category" value={formData.category} onChange={handleChange} className="staff-input"  required>
             <option value="">Select Category</option>
             <option value="Hair Care">Hair Care</option>
             <option value="Face and Body Care">Face and Body Care</option>
@@ -103,11 +115,11 @@ function ApprovalProcessForm() {
         </div>
         <div className="staff-form-group">
           <label className="staff-label">Expire Date:</label>
-          <input type="date" name="expireDate" value={formData.expireDate} onChange={handleChange} className="staff-input" required />
+          <input type="date" name="expireDate" value={formData.expireDate} min={today} onChange={handleChange} className="staff-input" required />
         </div>
         <div className="staff-form-group">
           <label className="staff-label">Manufacture Date:</label>
-          <input type="date" name="manufactureDate" value={formData.manufactureDate} onChange={handleChange} className="staff-input" required />
+          <input type="date" name="manufactureDate" value={formData.manufactureDate} max={today} onChange={handleChange} className="staff-input" required />
         </div>
         <div className="staff-form-group">
           <label className="staff-label">Ingredients:</label>

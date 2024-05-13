@@ -66,7 +66,7 @@ class Header extends Component {
 						    <a href="#" class="nav-item nav-link" data-toggle="dropdown hed_fosiz">Special Packages</a>
 						    <div class="dropdown-menu">
 							    <Link to="/Gift_Packages" class="dropdown-item hed_dorfosiz">Gift Packages</Link>
-							    <Link to="#" class="dropdown-item hed_dorfosiz">Holiday Packages</Link>
+							    <Link to="/ViewPackages" class="dropdown-item hed_dorfosiz">Holiday Packages</Link>
 						    </div>
 					    </li>
 					    <li><Link to="/consultation/homeConsultation" class="nav-item nav-link hed_fosiz">Consultation</Link></li>

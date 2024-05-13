@@ -1,52 +1,63 @@
-.card-container {
+.User-searching-card-container {
   display: flex;
   flex-wrap: wrap;
   margin-left: 5rem;
   margin-top: 2rem;
   z-index: -2;
+  
 }
 
-.card {
+.User-searching-card {
   margin: 20px;
   border: 2px solid #ededed;
   padding: 20px;
   cursor: pointer;
+  border-radius: 5px;
   width: 200px; /* Set a fixed width for each card */
   height: 300px; /* Set a fixed height for each card */
   overflow: hidden; /* Hide overflow content */
 }
 
-.card-details {
+.User-searching-card-details {
   padding: 10px; /* Add padding for better spacing */
   border-radius: 5px; /* Add border radius for rounded corners */
 }
 
-.card-img {
+.User-searching-card-img {
   width: 70%; /* Set a fixed width for the image */
   height: 70%; /* Maintain aspect ratio */
 }
 
-.card-title1 {
+.User-searching-card-title1 {
   margin-bottom: 1rem;
   font-size: 16px;
+  color: inherit;
+  
   white-space: nowrap; /* Prevent text from wrapping */
   overflow: hidden; /* Hide overflow text */
   text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
 }
 
-.card-price {
+.User-searching-card-title1 h3{
+  text-decoration: none;
+}
+.User-searching-card-price {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+  font-size: 16px;
+  
 }
 
-.add-to-cart-button1 {
+.User-searching-add-to-cart-button1 {
   background-color: #129a10; /* Set background color */
   color: #fff; /* Set text color */
   border-radius: 5px;
+  font-size: 16px;
 }
 
-.add-to-cart-button1:hover {
+.User-searching-add-to-cart-button1:hover {
   background-color: #095a07; /* Change background color on hover */
 }
 

@@ -63,6 +63,14 @@ export default function ViewAllProducts() {
     setFilteredProducts(filtered);
   };
 
+
+
+  // Function to extract only the date part from the datetime string
+  const extractDate = (dateTimeString) => {
+    return dateTimeString.split("T")[0];
+  };
+
+
   return (
     <div className="staff-products-container">
       <input
@@ -91,9 +99,9 @@ export default function ViewAllProducts() {
               <td className="staff-product-table-data">{product.category}</td>
               <td className="staff-product-table-data">{product.price}</td>
               <td className="staff-product-table-data">{product.quantity}</td>
-              <td className="staff-product-table-data">{product.expireDate}</td>
+              <td className="staff-product-table-data">{extractDate(product.expireDate)}</td>
               <td className="staff-product-table-data">
-                <Link to={`/Staff_Dashboard/StaffUpdateProduct/${product._id}`}>
+                <Link to={`/staff/Staff_Dashboard/StaffUpdateProduct/${product._id}`}>
                   <button className="staff-update-btn">Update</button>
                 </Link>
               </td>

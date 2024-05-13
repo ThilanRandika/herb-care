@@ -11,16 +11,6 @@ function ManagerSideBar() {
           <NavLink
             className="seller-manager-sidebar-link"
             activeClassName="active"
-            to={"/manager/SellerManagerDashboard/SMdashboard"}
-            exact
-          >
-            Dashboard
-          </NavLink>
-        </li>
-        <li className="seller-manager-sidebar-item">
-          <NavLink
-            className="seller-manager-sidebar-link"
-            activeClassName="active"
             to={"/manager/SellerManagerDashboard/pendingSellerRequest"}
           >
             Partnership Requests

@@ -3,14 +3,14 @@
     height: 60px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Align content to the right */
+    justify-content: space-between; 
     padding: 0 30px 0 30px;
     box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
-    background-color: #ffffff; /* Set background color */
-    color: #014709; /* Set text color */
-    position: fixed; /* Set the position to fixed */
-    width: 100%; /* Make the width 100% of the viewport */
-    top: 0; /* Position the header at the top of the viewport */
+    background-color: #ffffff; 
+    color: #014709; 
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
     z-index: 1000; 
     transition: width 0.3s;
   }
@@ -21,7 +21,7 @@
   } */
   
   .menu-icon {
-    display: inline; /* Show the menu icon */
+    display: inline; 
   }
   
   .header-left {
@@ -36,17 +36,17 @@
   }
   
   .icon {
-    margin-right: 10px; /* Adjust spacing between icons */
+    margin-right: 10px; 
   }
   
   .icon-header {
     vertical-align: middle;
     line-height: 1px;
-    font-size: 26px; /* Increase icon size */
+    font-size: 26px; 
   }
   
   .icon,
   .icon-header {
-    margin-right: 10px; /* Adjust spacing between icons */
+    margin-right: 10px; 
   }
   
