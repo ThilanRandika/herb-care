@@ -22,13 +22,14 @@ function UpdateDefaultGiftPackage() {
 
     const fetchPackage = async () => {
         try {
-            const response = await axios.get(`http://localhost:8070/defaultGiftpackage/default-gift-package/${id}`);
+            const response = await axios.get(`http://localhost:8070/defaultGiftpackage/default-gift-pack/${id}`);
             setPackageData(response.data);
         } catch (error) {
             console.error("Error fetching default gift package:", error);
-            alert("Error fetching default gift package");
+            alert("Error fetching default gift package: " + error.message); // Log specific error message
         }
     };
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -63,7 +64,12 @@ function UpdateDefaultGiftPackage() {
 
     return (
         <div>
-            <h3 className="GiftUpdate-header"><center>Update Default Gift Package Details</center></h3>
+            <br></br>
+            <div className="UDGPS_title_card">
+                <h3 className="UDGPS_title"><center>Default Gift Packages</center></h3>
+                <p className="UDGPS_title">Manage default gift packages</p>
+            </div>
+
             <div className="giftPackage-default-update">
             <form onSubmit={handleSubmit}>
                 <div>

@@ -1,0 +1,38 @@
+.seller-Home-dashboard-cards{
+    text-decoration: none;
+    color: inherit;
+
+}
+
+.seller-Home-dashboard-cards:hover{
+    color: inherit;
+}
+
+
+.seller-Home-dashboard{
+    display: flex;
+    margin-top: 50px;
+}
+
+.seller-Home-dashboard-left{
+    padding: 20px;
+    width: 66%;
+    justify-content: left;
+}
+
+.seller-Home-dashboard-right{
+    padding: 20px;
+    width: 34%;
+    justify-content: right;
+}
+
+.seller-Home-dashboard-cards{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.seller-Home-dashboard-carts{
+    margin-top: 20px;
+}

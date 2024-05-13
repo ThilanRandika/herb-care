@@ -1,0 +1,56 @@
+.staffDashBoard-home-allContents {
+    position: relative;
+    width: calc(100% - 280px);
+    left: 280px;
+    transition: .3s ease;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  
+  .staffDashBoard-home-stats {
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #333333;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+  }
+  
+  .staffDashBoard-home-stats-statCard {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+    cursor: pointer;
+    width: 25%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .staffDashBoard-home-stats-statCard-header {
+    text-align: center;
+  }
+  
+  .staffDashBoard-home-stats-statCard h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333333;
+  }
+  
+  .staffDashBoard-home-stats-statCard h2 {
+    font-weight: bold;
+    color: #FF6347; /* Red color */
+  }
+  

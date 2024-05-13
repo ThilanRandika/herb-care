@@ -1,0 +1,30 @@
+.seller-manager-dashboard{
+    display: flex;
+    position: relative;
+	width: calc(100% - 280px);
+	left: 280px;
+	transition: .3s ease;
+}
+
+.seller-manager-dashboard-left{
+    padding: 20px;
+    width: 66%;
+    justify-content: left;
+}
+
+.seller-manager-dashboard-right{
+    padding: 20px;
+    width: 34%;
+    justify-content: right;
+}
+
+.seller-manager-dashboard-cards{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.seller-manager-dashboard-carts{
+    margin-top: 20px;
+}

@@ -1,17 +1,21 @@
 .UD_title {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
+  color: #2A3C24;
+}
+
+.UD_title_card{
+  padding: 50px;
+  background-color: #CAD593;
+  margin-bottom: 30px;
 }
 
 .UD_UL {
   list-style-type: none;
-  padding: 0;
+  padding: 20px;
 }
 
 .UD_containor {
-  padding: 10px;
+  padding: 20px;
   margin: 20px auto; /* Center the container horizontally */
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -29,6 +33,7 @@
 .UD_descreiption,
 .UD_status {
   margin-bottom: 5px;
+  margin-left: 10px;
 }
 
 .UD_DTContainor {
@@ -42,7 +47,7 @@
 
 .CUS_btnDel {
   padding: 5px 10px;
-  background-color: #1c8c3e;
+  background-color: #143109;
   color: #fff;
   border: none;
   border-radius: 5px;

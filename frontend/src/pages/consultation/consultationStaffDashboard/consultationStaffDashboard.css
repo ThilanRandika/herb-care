@@ -1,0 +1,24 @@
+.consultationStaffDashboard-allContents{
+    position: relative;
+    width: calc(100% - 80px);
+    left: 80px;
+    transition: .3s ease;
+    margin-top: 20px;
+}
+
+.consultationStaffDashboard-stats{
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #333333;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+}

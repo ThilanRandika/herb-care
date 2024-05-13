@@ -6,17 +6,16 @@ import DiscussionLevelRequests from "../../../components/sellerPartnership/manag
 import RegisteredSellers from "../../../components/sellerPartnership/manager/RegisterdSellers/RegisteredSellers";
 import SellerRegisterForm from "../../../components/sellerPartnership/manager/sellerRegisterForm/SellerRegisterForm";
 import SellerDetailEdit from "../../../components/sellerPartnership/manager/sellerDetailEdit/SellerDetailEdit";
+import './sellerManagerDashboard.css'
+import SellerManagerDashboardPage from "../dashboardPage/SellerManagerDashboardPage";
 
 function SellerManagerDashboard() {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-1">
+      <div className="seller-manager-dashboard-container">
             <ManagerSideBar />
-          </div>
 
-          <div className="col-lg-11">
+          <div className="seller-manager-content-container">
             <Routes>
               <Route
                 exact
@@ -27,13 +26,23 @@ function SellerManagerDashboard() {
                 path="/discussionLevel"
                 element={<DiscussionLevelRequests />}
               />
+              <Route
+                exact
+                path="/pendingSellerRequest"
+                element={<PendingSellerRequests />}
+              />
+              <Route
+                exact
+                path="/SMdashboard"
+                element={<SellerManagerDashboardPage />}
+              />
               <Route exact path="/registeredSellers" element={<RegisteredSellers />} />
               <Route exact path="/sellerRegisterForm/:id" element={<SellerRegisterForm />} />
               <Route exact path="/sellerUpdateForm/:id" element={<SellerDetailEdit />} />
             </Routes>
-          </div>
         </div>
       </div>
+      
     </>
   );
 }

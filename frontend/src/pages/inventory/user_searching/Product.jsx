@@ -35,8 +35,10 @@ function Product() {
     }
   };
 
+  // console.log(product.name);
+
   const addToCart = () => {
-    axios.post('http://localhost:8070/Cart/add', { productId: id, quantity })
+    axios.post('http://localhost:8070/Cart/add', { productId: id, quantity, productname: product.name })
       .then((res) => {
         console.log(res.data); // Handle success response
       })
@@ -74,7 +76,9 @@ function Product() {
           </div>
           
         </div>
-        <Feedback productid={id} />
+
+     {/* <Feedback productid={id} /> */}
+
       </div>
     </div>
     

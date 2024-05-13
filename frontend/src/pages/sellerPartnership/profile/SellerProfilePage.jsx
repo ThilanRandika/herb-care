@@ -1,11 +1,13 @@
 import React from 'react'
+import './sellerProfilePage.css'
 import SellerProfile from '../../../components/sellerPartnership/Profile/SellerProfile'
 
 function SellerProfilePage() {
   return (
     <>
-    <div>SellerProfilePage</div>
+    <div className='seller-ProfilePage'>
     <SellerProfile/>
+    </div>
     </>
   )
 }

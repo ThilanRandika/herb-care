@@ -1,18 +1,7 @@
 .inventory-container {
-  display: flex;
+  position: relative;
+	width: calc(100% - 280px);
+	left: 280px;
+	transition: .3s ease;
 }
 
-.inventory-dashboard-nav-bar {
-  flex: 0 0 200px; /* Set the width of the navbar */
-  background-color:white; /* Background color of the navbar */
-  padding: 20px; /* Add some padding for better appearance */
-  height: 100vh; /* Set the height to 100% of the viewport height */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Align items vertically */
-}
-
-.DashBoard-pages {
-  flex: 1; /* Allow the content to take up the remaining space */
-  padding: 60px; /* Add padding for better appearance */
-}

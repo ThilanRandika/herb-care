@@ -72,3 +72,24 @@
   .rejectedConsultations-tbody tr{
     cursor: pointer;
   }
+
+
+.rejectedConsultations-thead th:nth-child(1),
+.rejectedConsultations-tbody td:nth-child(1) {
+  width: 15%;
+}
+
+.rejectedConsultations-thead th:nth-child(2),
+.rejectedConsultations-tbody td:nth-child(2) {
+  width: 15%;
+}
+
+.rejectedConsultations-thead th:nth-child(3),
+.rejectedConsultations-tbody td:nth-child(3) {
+  width: 30%;
+}
+
+.rejectedConsultations-thead th:nth-child(4),
+.rejectedConsultations-tbody td:nth-child(4) {
+  width: 20%;
+}

@@ -1,0 +1,38 @@
+
+  .main-staff-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    z-index: 2000;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    background-color: #333;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  .main-staff-sidebar-nav {
+    list-style-type: none;
+    padding: 20px;
+  }
+  
+  .main-staff-sidebar-item {
+    margin-bottom: 10px;
+  }
+  
+  .main-staff-sidebar-link {
+    display: block;
+    padding: 10px;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+  
+  .main-staff-sidebar-link:hover,
+  .main-staff-sidebar-link.active {
+    color: #fff;
+    background-color: #555;
+  }
+  
