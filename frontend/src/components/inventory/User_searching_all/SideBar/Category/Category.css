@@ -1,19 +1,21 @@
-.category-container {
+.User-search-category-container {
     display: flex;
     flex-direction: column;
   }
   
-  .category-option {
+  .User-search-category-option {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    font-size: 16px;
+
   }
   
-  .category-option input {
+  .User-search-category-option input {
     margin-right: 10px;
   }
   
-  .category-heading {
+  .User-search-category-heading {
     margin-bottom: 10px;
   }
   

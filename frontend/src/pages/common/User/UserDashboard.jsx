@@ -76,7 +76,7 @@ function StaffMainDashboard() {
                     <NavDropdown.Item as={Link} to="/Feedback&Complains/DisplayFeedbackGiftPackageUser" className="UDB_GiftPafeedHis">Gift Package Feedbacks</NavDropdown.Item>
                   </NavDropdown>
 
-                  <Nav.Link as={Link} to="" className="UDB_LOGOUT">LogOut</Nav.Link>
+                  <Nav.Link as={Link} to="/Login" className="UDB_LOGOUT">LogOut</Nav.Link>
                 </Nav>
                 {/* Your existing Form and Button elements */}
               </Offcanvas.Body>

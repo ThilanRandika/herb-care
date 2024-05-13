@@ -50,23 +50,24 @@ function Products({ searchQuery, priceRange, category }) {
   );
 
   return (
-    <div className="card-container">
+    <div className="User-searching-card-container">
+      
       {filteredProducts.map((product, index) => (
         <Link to={`/Product/${product._id}`} key={index}>
-          <section className="card">
+          <section className="User-searching-card">
             <div className="productCard-img-inventory">
               <img src={require(`../../../../../../BACKEND/uploads/${product.image}`)} className="card-img" alt={product.name} height={120} width={120}/>
             </div>
 
-            <div className="card-details">
-              <h3 className="card-title1">{product.name}</h3>
+            <div className="User-searching-card-details">
+              <h3 className="User-searching-card-title1">{product.name}</h3>
               
-              <section className="card-price">
-                <div className="price">
+              <section className="User-searching-card-price">
+                <div className="User-searching-price">
                   Rs. {product.price}
                 </div>
               </section>
-              <button className="add-to-cart-button1">Add to Cart</button>
+              <button className="User-searching-add-to-cart-button1">Add to Cart</button>
             </div>
           </section>
         </Link>

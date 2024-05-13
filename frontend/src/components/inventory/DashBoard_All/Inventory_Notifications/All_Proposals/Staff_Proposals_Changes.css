@@ -31,7 +31,7 @@
 .staff-proposals-update-button {
   margin: 0 5px;
   padding: 0.5rem 1rem;
-  background-color: #129a10;
+  background-color: #333333;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -39,7 +39,7 @@
   font-size: 1rem;
 }
 .staff-proposals-update-button:hover{
-  background-color: #095a07;
+  background-color: #4b4f4b;
 }
 
 .Inventory-approve-button,
@@ -50,7 +50,7 @@
 
 .Inventory-approve-button{
   padding: 0.5rem 1rem;
-  background-color: #129a10;
+  background-color: #333333;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -71,7 +71,7 @@
 
 .status-approved {
   font-weight: bold;
-  color: green;
+  color: #333333;
 }
 
 .status-rejected {

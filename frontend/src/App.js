@@ -1,16 +1,13 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 import Home from "./pages/common/home/Home";
 import Inventory_Dashboard from "./pages/inventory/Inventory_Dashboard/Inventory_Dashboard";
 
-import User_searching from "./pages/inventory/user_searching/User_searching"
+import User_searching from "./pages/inventory/user_searching/User_searching";
 import Producttesting from "./pages/inventory/Inventory_Dashboard/Producttesting";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import Product from "./pages/inventory/user_searching/Product";
 import Staff_Dashboard from "./pages/inventory/Staff_Inventory_Management/Staff_Dashboard";
 
@@ -30,7 +27,6 @@ import AddDefaultGiftPack from "./components/gift package/defaultGiftPackage/Add
 import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/DefaultGiftPackages";
 import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
 
-
 import MyOrders from "./pages/Order_Management/myOrders/MyOrders";
 
 import DisplayDefaultGiftPackages from "./components/gift package/customizeGiftPackage/DisplayDefaultGiftPackages";
@@ -39,6 +35,13 @@ import DisplayGiftPackOrders from "./components/gift package/giftPackageOrders/D
 import SinglePackageDetails from "./components/gift package/customizeGiftPackage/DisplaySingleDefaultGiftPackage";
 import UserDisplayOrder from "./pages/giftPackage/User/DisplayOrderUser";
 
+
+import ViewPackages from "./components/HolidayPackage/ViewPackages";
+import ManagePackages from "./components/HolidayPackage/ManagePackages";
+import StaffDashboard from "./components/HolidayPackage/StaffDashboard";
+import PackageDetails from "./components/HolidayPackage/PackageDetails";
+import BookingForm from "./components/HolidayPackage/BookingForm";
+import CreatePackage from "./components/HolidayPackage/CreatePackage";
 import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
 import UserDashboard from "./pages/common/User/UserDashboard";
@@ -68,17 +71,33 @@ function App() {
 
 
         <Route path="/sellerMainHome/*" element={<SellerMainHome />} />
-        <Route path="/sellerManagerDashboard/*" element={<SellerManagerDashboard />} />
-        <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard />} />
+        <Route
+          path="/sellerManagerDashboard/*"
+          element={<SellerManagerDashboard />}
+        />
+        <Route
+          path="/sellerStaffDashboard/*"
+          element={<SellerStaffDashboard />}
+        />
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
         <Route path="/consultation/*" element={<ConsultationsCustomer />} />
-        <Route path="/specialistInterface/*" element={<SpecialistInterface />} />
+        <Route
+          path="/specialistInterface/*"
+          element={<SpecialistInterface />}
+        />
         <Route path="/consultationStaff/*" element={<ConsultationStaff />} />
 
-      
+
+        <Route path="/StaffDashboard" element={<StaffDashboard />}></Route>
+        <Route path="/ViewPackages" element={<ViewPackages />}></Route>
+        <Route path="/ManagePackages" element={<ManagePackages />}></Route>
+        <Route path="/PackageDetails/:id" element={<PackageDetails />}></Route>
+        <Route path="/BookingForm" element={<BookingForm />}></Route>
+        <Route path="/CreatePackage" element={<CreatePackage />}></Route>
+
         <Route path="/staffGift/*" element={<GiftPackage_manage/>}></Route>
         <Route path="/add_Default_gift_pack" element={<AddDefaultGiftPack/>}></Route>
         <Route path="/Default_gift_packages" element={<DefaultGiftpackages/>}></Route>
@@ -106,12 +125,10 @@ function App() {
         <Route path="/cart" element={<Cart/>}></Route>
 
 
-        
+    
       </Routes>
     </BrowserRouter>
-
   );
 }
-
 
 export default App;

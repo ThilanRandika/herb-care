@@ -52,7 +52,7 @@ function Staff_Dashboard_Sidebar() {
           <NavLink
             className="seller-manager-sidebar-link"
             activeClassName="active"
-            to={"/staff/Inventory_Dashboard/Notifications"}
+            to={"/staff/Staff_Dashboard/Notifications"}
           >
             <BsListUl className="sidebar-icon" /> Notifications
           </NavLink>

@@ -20,9 +20,11 @@ function Home() {
   return (
     <>
 
+        <div className="home-customer-header">
+          <Header></Header>
+        </div>
       
       <div>
-      <Header></Header>
         <Banner/>
 
         <br></br>
