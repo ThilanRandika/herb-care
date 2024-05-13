@@ -45,12 +45,15 @@ function StaffUpdateProduct() {
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    // Check if the value is negative before updating the state
+    if ((name === 'price' || name === 'Manufactured_price' || name === 'quantity') && parseFloat(value) < 0) {
+      return; // Do not update state for negative values
+    }
+    setFormData({ ...formData, [name]: value });
   };
 
+  
   const handleImageChange = async (e) => {
     if (e.target.files.length > 0) {
       // If image is uploaded, set it in formData
