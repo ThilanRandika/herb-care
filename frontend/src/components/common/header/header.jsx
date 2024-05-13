@@ -60,7 +60,7 @@ class Header extends Component {
 			
 			    <div id="main-nav" class="collapse navbar-collapse">
 				    <ul class="navbar-nav ml-auto Headfro_ULLI">
-					    <li><Link to="/customer" class="nav-item nav-link active hed_fosiz">Home</Link></li>
+					    <li><Link to="/" class="nav-item nav-link active hed_fosiz">Home</Link></li>
 					    <li><Link to="/User_searching" class="nav-item nav-link hed_fosiz">Shop</Link></li>
 					    <li class="dropdown">
 						    <a href="#" class="nav-item nav-link" data-toggle="dropdown hed_fosiz">Special Packages</a>
