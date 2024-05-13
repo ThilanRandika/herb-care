@@ -11,9 +11,9 @@ const Price = ({ onPriceRangeChange }) => {
   };
 
   return (
-    <div className="price-container">
-      <h3 className="price-heading">Price Range:</h3>
-      <div className="price-option">
+    <div className="User-searching-price-container">
+      <h3 className="User-searching-price-heading">Price Range:</h3>
+      <div className="User-searching-price-option">
         <input
           type="radio"
           id="0-1000"
@@ -23,7 +23,7 @@ const Price = ({ onPriceRangeChange }) => {
         />
         <label htmlFor="0-1000">Rs.0 - Rs.1000</label>
       </div>
-      <div className="price-option">
+      <div className="User-searching-price-option">
         <input
           type="radio"
           id="1000-2000"
@@ -33,7 +33,7 @@ const Price = ({ onPriceRangeChange }) => {
         />
         <label htmlFor="1000-2000">Rs.1000 - Rs.2000</label>
       </div>
-      <div className="price-option">
+      <div className="User-searching-price-option">
         <input
           type="radio"
           id="2000-3000"
@@ -43,7 +43,7 @@ const Price = ({ onPriceRangeChange }) => {
         />
         <label htmlFor="2000-3000">Rs.2000 - Rs.3000</label>
       </div>
-      <div className="price-option">
+      <div className="User-searching-price-option">
         <input
           type="radio"
           id="3000-4000"
@@ -53,7 +53,7 @@ const Price = ({ onPriceRangeChange }) => {
         />
         <label htmlFor="3000-4000">Rs.3000 - Rs.4000</label>
       </div>
-      <div className="price-option">
+      <div className="User-searching-price-option">
         <input
           type="radio"
           id="4000-5000"
@@ -63,7 +63,7 @@ const Price = ({ onPriceRangeChange }) => {
         />
         <label htmlFor="4000-5000">Rs.4000 - Rs.5000</label>
       </div>
-      <div className="price-option">
+      <div className="User-searching-price-option">
         <input
           type="radio"
           id="above-5000"

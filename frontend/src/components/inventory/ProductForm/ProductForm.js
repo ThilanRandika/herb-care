@@ -17,11 +17,20 @@ function ProductForm() {
     ingredients: ''
   });
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // Check if the value is negative before updating the state
+    if ((name === 'price' || name === 'Manufactured_price' || name === 'quantity') && parseFloat(value) < 0) {
+      return; // Do not update state for negative values
+    }
     setFormData({ ...formData, [name]: value });
   };
-
+  
   const handleImageChange = (e) => {
     setFormData({ ...formData, imageFile: e.target.files[0] });
     console.log(e.target.files[0]);
@@ -56,6 +65,8 @@ function ProductForm() {
       console.error(error);
     }
   };
+
+  const today = new Date().toISOString().split('T')[0]; // Get today's date
 
   return (
     <div className="form-container-inventory-add">
@@ -102,11 +113,11 @@ function ProductForm() {
         </div>
         <div className="form-group-inventory-add">
           <label>Expire Date:</label>
-          <input type="date" name="expireDate" value={formData.expireDate} onChange={handleChange} required />
+          <input type="date" name="expireDate" value={formData.expireDate}   min={today} onChange={handleChange} required />
         </div>
         <div className="form-group-inventory-add">
           <label>Manufacture Date:</label>
-          <input type="date" name="manufactureDate" value={formData.manufactureDate} onChange={handleChange} required />
+          <input type="date" name="manufactureDate" value={formData.manufactureDate}  max={today} onChange={handleChange} required />
         </div>
         <div className="form-group-inventory-add">
           <label>Ingredients:</label>

@@ -211,7 +211,7 @@ export default function AllProducts() {
               <td className="product-table-data">{product.quantity}</td>
               <td className="product-table-data">{extractDate(product.expireDate)}</td>
               <td className="product-table-data">
-                <Link to={`/Inventory_Dashboard/UpdateProduct/${product._id}`}>
+                <Link to={`/manager/Inventory_Dashboard/UpdateProduct/${product._id}`}>
                   <button className="inventory-manager-update-btn">Update</button>
                 </Link>
               </td>

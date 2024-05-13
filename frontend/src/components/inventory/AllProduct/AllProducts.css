@@ -33,7 +33,7 @@
 
 .inventory-manager-update-btn {
   padding: 0.5rem 1rem;
-  background-color: #129a10;
+  background-color: #333333;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -52,7 +52,7 @@
 }
 
 .inventory-manager-update-btn:hover {
-  background-color: #095a07;
+  background-color: #4b4f4b;
 }
 
 .inventory-manager-delete-btn:hover {
@@ -70,7 +70,7 @@
 }
 
 .report-generate-button {
-  background-color: #4caf50; /* Green color */
+  background-color: #333333; /* Green color */
   color: white;
   padding: 10px 20px;
   border: none;
@@ -80,13 +80,13 @@
 }
 
 .report-generate-button:hover {
-  background-color: #095a07; /* Darker green color on hover */
+  background-color: #4b4f4b; /* Darker green color on hover */
 }
 
 .card2 {
   width: calc(25% - 10px);
   height: 150px; /* Adjusted height for the cards */
-  background-color: #43a243;
+  background-color: #333333;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px; /* Add margin between cards */

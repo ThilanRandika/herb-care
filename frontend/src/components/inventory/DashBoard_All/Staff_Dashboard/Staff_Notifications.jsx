@@ -34,6 +34,13 @@ export default function Staff_Notifications() {
     setFilteredApprovalProcesses(filtered);
   };
 
+
+    // Function to extract only the date part from the datetime string
+    const extractDate = (dateTimeString) => {
+      return dateTimeString.split("T")[0];
+    };
+  
+
   return (
     <div className="staff-notifications-container">
       <input
@@ -62,7 +69,7 @@ export default function Staff_Notifications() {
               <td className="staff-notifications-table-data">{approvalProcess.category}</td>
               <td className="staff-notifications-table-data">{approvalProcess.price}</td>
               <td className="staff-notifications-table-data">{approvalProcess.quantity}</td>
-              <td className="staff-notifications-table-data">{approvalProcess.expireDate}</td>
+              <td className="staff-notifications-table-data">{extractDate(approvalProcess.expireDate)}</td>
               <td className="staff-notifications-table-data-status">{approvalProcess.status}</td>
               <td className="staff-notifications-table-data-action">{approvalProcess.action}</td>
             </tr>
