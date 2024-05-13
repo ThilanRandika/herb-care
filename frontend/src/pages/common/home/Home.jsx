@@ -32,6 +32,13 @@ function Home() {
         <br></br>
 
         <GiftHomeBanner/>
+        <br />
+        <br />
+
+        <div className='seller-req' onClick={togglePopup}>
+          <img src={require(`../../../../../frontend/src/Images/logo/WhatsApp Image 2024-05-13 at 15.30.42_635bfe04.jpg`)} alt="" />
+        </div>
+        {isPopupVisible && <PartnershipRequest trigger={isPopupVisible} setPopupVisible={setPopupVisible} />}
 
         {/* <NavigationBar></NavigationBar> */}
 
