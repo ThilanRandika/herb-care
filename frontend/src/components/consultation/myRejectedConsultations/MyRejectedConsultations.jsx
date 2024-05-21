@@ -10,6 +10,7 @@ function MyRejectedConsultations(props) {
   const [refundStatuses, setRefundStatuses] = useState([]); // Store refund statuses
   const { user } = useContext(AuthContext); // get the customer ID from authentication context
   const [expandedAppointment, setExpandedAppointment] = useState(null); // Track expanded appointment
+  const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
         axios.get(`http://localhost:8070/consultAppointment/rejectedAppointments/${user._id}`)
@@ -17,9 +18,11 @@ function MyRejectedConsultations(props) {
                 console.log("Got data: ", res.data);
                 setRejectedAppointments(res.data);
                 setDataFetched(true); // Update state to indicate data has been fetched
+                setLoading(false); // Set loading to false after data is fetched
             })
             .catch((err) => {
                 console.log('Error getting cancelled appointments', err);
+                setLoading(false); // Set loading to false in case of error
             });
     }, [user._id]);
 
@@ -50,15 +53,26 @@ function MyRejectedConsultations(props) {
       setExpandedAppointment(expandedAppointment === index ? null : index);
     };
 
+  
+  // Render loading indicator if loading is true
+  if (loading) {
+    return (
+      <div className="specialistList-loading-container">
+        <div className="specialistList-loading-spinner"></div>
+        <div>Loading...</div>
+      </div>
+    );
+  }
 
+  // If not loading, render the page
   return (
     <div className='rejectedConsultations-allContents'>
       <h3 className='rejectedConsultations-header'>Rejected Consultations</h3>
       <table className='rejectedConsultations-table'>
         <thead className='rejectedConsultations-thead'>
         <tr>
-            <th>No.</th>
             <th>Date</th>
+            <th>Time</th>
             <th>Specialist</th>
             <th>Action</th>
         </tr>          
@@ -67,22 +81,23 @@ function MyRejectedConsultations(props) {
           {rejectedAppointments.map((appointment, index) => (
             <React.Fragment key={index}>
               <tr onClick={() => toggleExpandedDetails(index)}>
-              <td>{index + 1}</td>
               <td>{new Date(appointment.date).toLocaleDateString()}</td>
+              <td>{appointment.timeSlot}</td>
               <td>{appointment.specialistName}</td>
-              <td>
-                    {dataFetched && refundStatuses[index] !== undefined && (
-                      <>
-                        {!refundStatuses[index] && (
-                          <>
-                            <Link to={`../../refunds/addForm/${appointment._id}`} className="rejectedConsultations-link-btn">Apply refund</Link>
-                          </>
-                        )}
-                        {refundStatuses[index] && (
-                          <span>Refund already requested</span>
-                        )}
-                      </>
-                    )}
+                <td>
+                  {dataFetched && refundStatuses[index] !== undefined ? (
+                    <>
+                      {!refundStatuses[index] ? (
+                        <Link to={`../../refunds/addForm/${appointment._id}`} className="rejectedConsultations-link-btn">Apply refund</Link>
+                      ) : (
+                        <span>Refund already requested</span>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <span>Loading......</span>
+                    </>
+                  )}
                 </td>
               </tr>
               {expandedAppointment === index && (
@@ -98,7 +113,6 @@ function MyRejectedConsultations(props) {
                         )}
                         <p><strong>Type:</strong> {appointment.type}</p>
                         <p><strong>Appointment Amount:</strong> {appointment.appointmentAmount}</p>
-                        <p><strong>Time Slot:</strong> {appointment.timeSlot}</p>
                       
                       </div>
                       <div className="rejectedConsultations-expanded-details-innerContainer-right">

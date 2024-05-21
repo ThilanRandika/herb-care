@@ -1,5 +1,6 @@
-.giftPackage-default-all-container {
+.giftPackage-default-add {
     margin-top: 100px;
+    margin-bottom: 100px;
     justify-content: center;
     background-color: #F7F7F7;
     padding: 20px 20px;
@@ -10,11 +11,22 @@
     width: 80%;
   }
 
-.giftPackage-default-all-container .add{
-  padding:7px;
+.giftPackage-default-add .add{
+  padding:10px;
   font-size: 15px;
   background: #143109;
   color:#fff;
   cursor: pointer;
   border-radius: 10px;
+}
+
+.ADGPS_title_card{
+  padding: 50px;
+  background-color: #CAD593;
+  margin-bottom: 100px;
+}
+
+.ADGPS_title {
+  text-align: center;
+  color: #2A3C24;
 }

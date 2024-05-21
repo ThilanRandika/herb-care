@@ -27,7 +27,7 @@ router.post('/add/:productId', verifyToOther, upload.array('image', 10), async (
 
     const feedback = new Feedback({
       Customer: req.person.userId, // Assuming you have user authentication middleware
-      Order: req.body.Order,
+      Order: req.body.orders,
       Product: req.params.productId,
       ratings: req.body.ratings,
       message: req.body.message,
@@ -62,29 +62,17 @@ router.route("/get").get(verifyToOther, async (req, res) => {
 
 //Read - Display under the product
 //http://localhost:8070/feedback/get/:productId
-// router.get('/product/:productId', async (req, res) => {
-//   try {
-//     const feedback = await Feedback.find({ Product: req.params.productId });
-//     res.status(200).json(feedback);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send('Server Error');
-//   }
-// });
-
-router.get('/products/:productId', async (req, res) => {
-  const productId = req.params.productId;
+router.route('/feedbacks/:productId').get(async (req, res) => {
   try {
-    const product = await Product.findById(productId);
-    if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
-    }
-    res.json(product);
+    const productId = req.params.productId;
+    const feedbacks = await Feedback.find({ Product: productId }).populate('Customer', 'customer_name');
+    res.status(200).json(feedbacks);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 
 //Read - Display staff & manager dashbord
@@ -178,7 +166,7 @@ router.get('/feedback-summaries', async (req, res) => {
       {
         $project: {
           productName: '$product.name',
-          productImage: '$product.image_url',
+          productImage: '$product.image',
           ratings: 1,
           message: 1
         }
@@ -238,7 +226,6 @@ router.get('/download', async (req, res) => {
     res.status(500).json({ message: 'Failed to generate PDF' });
   }
 });
-
 
 
 module.exports = router;

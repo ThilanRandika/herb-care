@@ -1,24 +1,123 @@
-.products-container {
-  margin: 0 auto; /* Center the container horizontally */
-  max-width: 800px; /* Set a maximum width for the container */
-  padding: 20px; /* Add some padding to the container */
+.all-products-container {
+  margin: 0 auto;
+  width:90%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-table {
-  width: 100%; /* Make the table fill the container */
-  border-collapse: collapse; /* Collapse table borders */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-th, td {
-  padding: 8px; /* Add padding to table cells */
-  border-bottom: 1px solid #ddd; /* Add bottom border to table rows */
-  text-align: left; /* Align text to the left */
+.product-table-header {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  background-color: #f2f2f2;
 }
 
-th {
-  background-color: #f2f2f2; /* Set background color for table header */
+.product-table-data {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
+
+
 
 .search-input {
-  margin-bottom: 10px; /* Add some space below the search input */
+  margin-bottom: 10px;
+}
+
+.inventory-manager-update-btn {
+  padding: 0.5rem 1rem;
+  background-color: #333333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.inventory-manager-delete-btn {
+  padding: 0.5rem 1rem;
+  background-color: #e62f13;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.inventory-manager-update-btn:hover {
+  background-color: #4b4f4b;
+}
+
+.inventory-manager-delete-btn:hover {
+  background-color: #4b110a;
+}
+
+
+
+
+
+.report-generate-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+.report-generate-button {
+  background-color: #333333; /* Green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px; /* Suitable border radius */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.report-generate-button:hover {
+  background-color: #4b4f4b; /* Darker green color on hover */
+}
+
+.card2 {
+  width: calc(25% - 10px);
+  height: 150px; /* Adjusted height for the cards */
+  background-color: #333333;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px; /* Add margin between cards */
+  position: relative;
+}
+
+.out-of-stock-card {
+  background-color: #e62f13; 
+}
+
+.cards2-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.icon2 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  color: #f2f2f2;
+}
+
+.title2 {
+  margin-top: 20px;
+  color: #f2f2f2;
+}
+
+.count2 {
+  margin-top: 5px;
+  color: #f2f2f2;
 }

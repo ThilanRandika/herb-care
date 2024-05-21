@@ -25,6 +25,34 @@ export default function ViewAllProducts() {
     getProducts();
   }, []);
 
+  const handleDelete = async (product) => {
+    try {
+      const productToDelete = {
+        action: "Remove",
+        ProductID: product._id,
+        name: product.name,
+        category: product.category,
+        description: product.description,
+        price: product.price,
+        Manufactured_price: product.Manufactured_price,
+        discount: product.discount,
+        quantity: product.quantity,
+        image: product.image,
+        expireDate: product.expireDate,
+        manufactureDate: product.manufactureDate,
+        ingredients: product.ingredients
+      };
+  
+      await axios.post('http://localhost:8070/ApprovalProcess/addDelete', productToDelete);
+      
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      alert('Failed to delete product');
+    }
+  };
+  
+  
+
   // Handle search query change
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -35,43 +63,52 @@ export default function ViewAllProducts() {
     setFilteredProducts(filtered);
   };
 
+
+
+  // Function to extract only the date part from the datetime string
+  const extractDate = (dateTimeString) => {
+    return dateTimeString.split("T")[0];
+  };
+
+
   return (
-    <div className="products-container">
+    <div className="staff-products-container">
       <input
         type="text"
         placeholder="Search by product name..."
         value={searchQuery}
         onChange={handleSearchChange}
-        className="search-input"
+        className="staff-search-input"
       />
-      <table>
+      <table className="staff-product-table">
         <thead>
-          <tr>
+          <tr className="staff-product-table-header">
             <th>Product Name</th>
             <th>Category</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Expire Date</th>
-            <th>Update</th> {/* New column for update button */}
-            <th>Delete</th> {/* New column for delete button */}
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           {filteredProducts.map((product, index) => (
-            <tr key={index}>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>{product.price}</td>
-              <td>{product.quantity}</td>
-              <td>{product.expireDate}</td>
-              <td>
-                {/* Use Link to navigate to the update page with product id */}
-                <Link to={`/Inventory_Dashboard/UpdateProduct/${product._id}`}>
-                  <button>Update</button>
+            <tr key={index} >
+              <td className="staff-product-table-data">{product.name}</td>
+              <td className="staff-product-table-data">{product.category}</td>
+              <td className="staff-product-table-data">{product.price}</td>
+              <td className="staff-product-table-data">{product.quantity}</td>
+              <td className="staff-product-table-data">{extractDate(product.expireDate)}</td>
+              <td className="staff-product-table-data">
+                <Link to={`/staff/Staff_Dashboard/StaffUpdateProduct/${product._id}`}>
+                  <button className="staff-update-btn">Update</button>
                 </Link>
               </td>
-              <td>
-                <button>Delete</button> {/* onClick={() => handleDelete(product._id)} */}
+              <td className="staff-product-table-data">
+              
+                <button className="staff-delete-btn" onClick={() => handleDelete(product)}>Delete</button>
+
               </td>
             </tr>
           ))}

@@ -2,7 +2,7 @@
 
 /* Unique class for the main container */
 .AppointmentAddForm-container {
-  width: 100%;
+  width: 80%;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
 
 /* Unique class for the customer info section */
 .AppointmentAddForm-customerInfo {
-  width: 100%;
+  width: 80%;
 }
 
 /* Unique class for the specialist card */
@@ -72,6 +72,7 @@
 /* Unique class for the calendar and patient info section */
 .AppointmentAddForm-calendarAndPatientInfo {
   display: flex;
+  gap: 10px;
 }
 
 /* Unique class for the time slot button */
@@ -91,7 +92,7 @@
 
 /* Unique class for selected time slot button */
 .AppointmentAddForm-timeSlotButton.selected {
-  background-color: #007bff;
+  background-color: #329238;
   color: #fff;
 }
 
@@ -99,4 +100,45 @@
 .AppointmentAddForm-timeSlotButton.disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.AppointmentAddForm-date-cal{
+  margin-bottom: 20px;
+}
+
+.appointmentAddForm-submitBtn{
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #45a049;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.AppointmentAddForm-availableTime-btn{
+  margin-top: 5px;
+  padding: 10px 20px;
+  background-color: #45a049;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.AppointmentAddForm-error{
+  color: red;
+}
+
+.AppointmentAddForm-customerInfo-raw{
+  margin-bottom: 20px;
+}
+
+.AppointmentAddForm-patientGender{
+  display: flex;
+  gap: 10px;
+}
+
+.AppointmentAddForm-timeSlots{
+  margin-top: 20px;
 }

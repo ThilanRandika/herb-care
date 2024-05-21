@@ -13,6 +13,11 @@ function SellerSingleOrder() {
   const [editable, setEditable] = useState(false); // Track if the data is editable
   const [paymentMethod, setPaymentMethod] = useState("credit");
   const [address, setAddress] = useState("");
+  const [returnProducts, setReturnProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState({});
+  const [quantity, setQuantity] = useState('');
+  const [returnReason, setReturnReason] = useState('');
+  const [productImages, setProductImages] = useState([]);
 
   const handlePaymentMethodChange = (e) => {
     setPaymentMethod(e.target.value);
@@ -74,6 +79,11 @@ function SellerSingleOrder() {
   };
 
   const toggleReturnForm = () => {
+        setReturnProducts([]);
+        setSelectedProduct('');
+        setQuantity('');
+        setReturnReason('');
+        setProductImages([]);
     setShowReturnForm(!showReturnForm); // Toggles the state between true and false
   };
 
@@ -147,19 +157,86 @@ function SellerSingleOrder() {
   //   return totalPrice;
   // };
 
+
+  const handleAddToSubmit = (event) => {
+    event.preventDefault();
+
+    console.log(selectedProduct)
+    // Create a new FormData object
+    const formData = new FormData();
+    // Append product details to FormData
+    formData.append('productId', selectedProduct.productId);
+    formData.append('productName', selectedProduct.productName);
+    formData.append('quantity', quantity);
+    formData.append('returnReason', returnReason);
+    // Append all product images to FormData
+    for (let i = 0; i < productImages.length; i++) {
+      formData.append('productImages', productImages[i]);
+    }
+
+    console.log('return products sre'+returnProducts)
+
+    // Add the new return product to the array
+    setReturnProducts([...returnProducts, formData]);
+    // Clear the form fields
+    setSelectedProduct('');
+    setQuantity('');
+    setReturnReason('');
+    setProductImages([]);
+  };
+
+  const handleReturnSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      // Send all return products to the backend in one request
+      console.log(returnProducts)
+      const promises = returnProducts.map(formData =>
+
+      axios.put("http://localhost:8070/sellerOrder/returnProducts/"+orderId ,formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you have stored the token in localStorage
+        },
+      } )
+    );
+
+    await Promise.all(promises)
+      .then((res) => {
+        console.log('Return products submitted successfully:', res.data);
+
+        alert('Return products submitted successfully!');
+        
+        // Clear the form and state after successful submission
+        setReturnProducts([]);
+        setSelectedProduct('');
+        setQuantity('');
+        setReturnReason('');
+        setProductImages([]);
+      })
+      .catch((res) => {
+        console.error('Failed to submit return products:', res.statusText);
+      })
+    } catch (error) {
+      console.error('Error submitting return products:', error);
+    }
+  };
+
+
+
   return (
     <>
-      <div className="container-fluid d-flex justify-content-center align-items-center h-100">
+      <div className="container-fluid d-flex justify-content-center align-items-center h-100 " >
         <div className="row">
           <div className="col">
             {console.log(singleOrder)}
-            <div className=" container row d-flex justify-content-center align-items-center  py-5 h-100 vw-100 mb-5">
+            <div className=" container row d-flex justify-content-center align-items-center  py-5 h-100 mb-5" >
               <div className="d-flex justify-content-between align-items-center mb-5">
                 <div>
                   <h5 className="mb-0">
                     ORDER{" "}
                     <span className="text-primary font-weight-bold">
-                      #{singleOrder.id}
+                      #{singleOrder.orderViewId}
                     </span>
                   </h5>
                 </div>
@@ -627,49 +704,93 @@ function SellerSingleOrder() {
                   </div>
                 ))}
               ;
-              <button onClick={toggleOrderTracker}>Toggle Order Details</button>
+              <button onClick={toggleOrderTracker} className="seller-order-singleOrder-btn">Toggle Order Details</button>
               {singleOrder.status === "completed" && (
-                <div className="p-5">
+                  <div className="p-5">
                   <h3>Return Product details</h3>
-                  {showReturnForm ? ( // Conditionally render the return product form based on the state
-                    <form>
-                      {/* Add form fields for return product details */}
-                      {/* Example: */}
-
+                  {showReturnForm ? (
+                    <form onSubmit={handleAddToSubmit}>
                       <div className="col-12">
-                        <label htmlFor="address" className="billing-label">
+                        <label htmlFor="product" className="billing-label">
                           Product Name
                         </label>
-                        <input
-                          type="text"
+                        <select
+                          id="product"
                           className="billing-input form-control"
-                          id="address"
+                          value={selectedProduct.productId}
+                          onChange={(e) => {
+                            const productId = e.target.value;
+                            const selectedProduct = singleOrder.orderDetails.find(
+                              (product) => product.productId === productId
+                            );
+                          
+                            // Ensure selectedProduct is not undefined before setting state
+                            if (selectedProduct) {
+                              setSelectedProduct(selectedProduct); // Set the selected product
+                            } else {
+                              console.log(`Product with ID ${productId} not found.`);
+                            }
+                          }}
                           required
-                        />
+                        >
+                          <option value="">Select a product</option>
+                          {singleOrder.orderDetails.map((product) => (
+                            <option key={product.productId} value={product.productId}>
+                              {product.productName}
+                            </option>
+                          ))}
+                        </select>
                       </div>
-
+            
                       <div className="col-12">
-                        <label htmlFor="address" className="billing-label">
+                        <label htmlFor="quantity" className="billing-label">
                           Quantity
                         </label>
                         <input
                           type="text"
                           className="billing-input form-control"
-                          id="address"
+                          id="quantity"
+                          value={quantity}
+                          onChange={(e) => setQuantity(e.target.value)}
                           required
                         />
                       </div>
-
+            
                       <label htmlFor="returnReason">Return Reason</label>
                       <textarea
                         id="returnReason"
                         name="returnReason"
                         rows="4"
                         className="form-control"
+                        value={returnReason}
+                        onChange={(e) => setReturnReason(e.target.value)}
                       ></textarea>
+            
+                      <div className="col-12">
+                        <label htmlFor="productImages" className="billing-label">
+                          Product Images
+                        </label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="form-control-file"
+                          id="productImages"
+                          onChange={(e) => setProductImages([...productImages, ...e.target.files])}
+                          multiple
+                        />
+                      </div>
+            
                       <button type="submit" className="btn btn-primary mt-3">
-                        Submit Return
+                        Add to Submit
                       </button>
+                      <br/><br/>
+                      <button
+                        onClick={handleReturnSubmit}
+                        className="btn btn-primary"
+                      >
+                        Submit Return Details
+                      </button>
+                      <br/><br/>
                       <button
                         onClick={toggleReturnForm}
                         className="btn btn-primary"
@@ -679,17 +800,43 @@ function SellerSingleOrder() {
                     </form>
                   ) : (
                     <button
-                      onClick={toggleReturnForm}
+                      onClick={() => setShowReturnForm(true)}
                       className="btn btn-primary"
                     >
                       Add Return Product
                     </button>
                   )}
+                  {/* Display the list of selected return products */}
+                  {returnProducts.length > 0 && (
+                        <div className="seller-selected-return-products">
+                            <h4>Selected Return Products</h4>
+                            <div className="return-product-list">
+                                {returnProducts.map((product, index) => (
+                                    <div key={index} className="seller-selected-ret-card">
+                                        <div className="seller-selected-ret-product-details">
+                                            <p>
+                                                Product ID: {product.get('productId')}, 
+                                                Product Name: {product.get('productName')}, 
+                                                Quantity: {product.get('quantity')}, 
+                                                Return Reason: {product.get('returnReason')}
+                                            </p>
+                                        </div>
+                                        {/* Display uploaded images */}
+                                        <div className="seller-selected-ret-product-images">
+                                            {Array.from(product.getAll('productImages')).map((image, i) => (
+                                                <img key={i} src={URL.createObjectURL(image)} alt={`Product ${index + 1}`} className="seller-selected-ret-product-image" />
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
               )}
               {/* Update button */}
               {editable && (
-                <button onClick={updateOrder} className="btn btn-primary">
+                <button onClick={updateOrder} className="seller-order-singleOrder-btn">
                   Update Order
                 </button>
               )}

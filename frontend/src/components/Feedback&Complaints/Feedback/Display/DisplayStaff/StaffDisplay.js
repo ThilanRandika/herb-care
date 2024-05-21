@@ -10,26 +10,35 @@ const StarRating = ({ rating }) => {
   return <div>{stars}</div>;
 };
 
+const downloadFeedbacksPdf = async () => {
+  try {
+    const response = await axios.get('http://localhost:8070/feedback/download', {
+      responseType: 'blob', 
+    });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'feedbacks.pdf');
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  } catch (error) {
+    console.error('Error downloading PDF:', error);
+  }
+};
 
 const StaffDashboard = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [count, setCount] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const downloadFeedbacksPdf = async () => {
-    try {
-      const response = await axios.get('http://localhost:8070/feedback/download', {
-        responseType: 'blob', 
-      });
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'feedbacks.pdf');
-      document.body.appendChild(link);
-      link.click();
-      link.parentNode.removeChild(link);
-    } catch (error) {
-      console.error('Error downloading PDF:', error);
+  const searchFeedbacks = (feedback) => {
+    if (!searchQuery) {
+      return true; // Show all feedbacks if search query is empty
     }
+
+    const customerName = feedback.Customer.customer_name.toLowerCase();
+    return customerName.includes(searchQuery.toLowerCase());
   };
 
   useEffect(() => {
@@ -48,7 +57,7 @@ const StaffDashboard = () => {
 
     fetchFeedbacks();
   }, []);
-  
+
   useEffect(() => {
     axios.get('http://localhost:8070/feedback/count')
       .then(response => {
@@ -69,22 +78,41 @@ const StaffDashboard = () => {
     }
   };
 
-  return (
+  // Omitted code for brevity
+
+return (
+  <div>
+    <div className='FSD_title_card'>
+       <h1 className='FSD_title'>Feedback List</h1>
+       <p className='FSD_title'>Manage the feedbacks</p>
+    </div>
+    <br></br>
+
+    <input className='FSD_searchfeedback' type="text" placeholder="Search customer...." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+    
+    <button className='FSD_download_feedback_btn' onClick={downloadFeedbacksPdf}>Download Report</button>
     <div>
-      <br></br>
-      <h1 className='FSD_title'>Feedbacks Lists</h1>
-      <button className='FSD_downloadbtn' onClick={downloadFeedbacksPdf}>Download Report</button>
-      <div>
-        <h1 className='FSD_count'>Total Feedbacks: {count}</h1>
-      </div>
-      <div className='FSD_containor1'>
-        {feedbacks.map((feedback) => (
-          <div key={feedback._id} style={{ marginBottom: '20px' }} className='FSD_comntainor2'>
-            <h3 className='FSD_cusName'>Customer: {feedback.Customer.customer_name}</h3>
-            <p className='FSD_ratings'>Ratings: <StarRating rating={feedback.ratings} /></p>
-            <p className='FSD_message'>Message: {feedback.message}</p>
-            <p>
-              Images:{' '}
+      <h1 className='FSD_count'>Total Feedbacks: {count}</h1>
+    </div>
+    <table className='FSD_table'>
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Ratings</th>
+          <th>Message</th>
+          <th>Images</th>
+          <th>Droped <br></br>Date & Time</th>
+          <th>Updated <br></br>Date & Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {feedbacks.filter(searchFeedbacks).map((feedback) => (
+          <tr key={feedback._id}>
+            <td>{feedback.Customer.customer_name}</td>
+            <td><StarRating rating={feedback.ratings} /></td>
+            <td>{feedback.message}</td>
+            <td>
               {feedback.image ? (
                 <div className='FSD_image'>
                   {feedback.image.map((img, index) => (
@@ -99,24 +127,30 @@ const StaffDashboard = () => {
               ) : (
                 <span>No images</span>
               )}
-            </p>
-            <p className='FSD_date'>
-              Date: {new Date(feedback.createdAt).toLocaleDateString()} <br/>
-              Time: {new Date(feedback.createdAt).toLocaleTimeString()} <br/><br></br>
-              {feedback.updatedAt && (
-                <>
-                  Updated Date: {new Date(feedback.updatedAt).toLocaleDateString()} <br/>
-                  Updated Time: {new Date(feedback.updatedAt).toLocaleTimeString()}
-                </>
+            </td>
+            <td>
+              {new Date(feedback.createdAt).toLocaleDateString()}<br />
+              {new Date(feedback.createdAt).toLocaleTimeString()}
+            </td>
+            <td>
+              {feedback.updatedAt ? (
+              <>
+                  {new Date(feedback.updatedAt).toLocaleDateString()}<br />
+                  {new Date(feedback.updatedAt).toLocaleTimeString()}
+              </>
+              ) : (
+                <span>Not updated</span>
               )}
-            </p>
-            <button className='FSD_deletebtn' onClick={() => deleteFeedback(feedback._id)}>Delete</button>
-          </div>
+            </td>
+
+            <td><button className='FSD_deletebtn' onClick={() => deleteFeedback(feedback._id)}>Delete</button></td>
+          </tr>
         ))}
-      </div>
-      
-    </div>
-  );
+      </tbody>
+    </table>
+  </div>
+);
+
 };
 
 export default StaffDashboard;

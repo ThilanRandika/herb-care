@@ -8,7 +8,8 @@ import MainDash from '../../../components/inventory/DashBoard_All/MainDash/MainD
 import DashBoard_Sidebar from '../../../components/inventory/DashBoard_All/DashBoard_Sidebar/DashBoard_Sidebar';
 import ProductForm from '../../../components/inventory/ProductForm/ProductForm';
 import UpdateProduct from '../../../components/inventory/UpdateProduct/UpdateProduct';
-import StaffProposalsChanges from '../../../components/inventory/DashBoard_All/Inventory_Notifications/Staff_Proposals_Changes';
+import StaffProposalsChanges from '../../../components/inventory/DashBoard_All/Inventory_Notifications/All_Proposals/Staff_Proposals_Changes';
+import Staff_Proposal_Update from '../../../components/inventory/DashBoard_All/Inventory_Notifications/Single_Update_page/Staff_Proposal_Update';
 
 
 function Inventory_Dashboard() {
@@ -24,11 +25,11 @@ function Inventory_Dashboard() {
           <div className="DashBoard-pages">
 
           <Routes>
-            <Route path="/" element={<MainDash/>}></Route>
+            <Route path="/" element={<AllProducts/>}></Route>
             <Route path="/AddProduct" element={<ProductForm/>}></Route>
-            <Route path="/AllProducts" element={<AllProducts/>}></Route>
             <Route path="/Notifications" element={<StaffProposalsChanges/>}></Route>
             <Route path="/UpdateProduct/:id" element={<UpdateProduct/>}></Route>
+            <Route path="/UpdateProposals/:id" element={<Staff_Proposal_Update/>}></Route>
           </Routes>
           </div>
         </div>

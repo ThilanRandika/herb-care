@@ -4,6 +4,7 @@ import './sellerBag.css';
 import SellerCheckout from '../sellerCheckout/SellerCheckout';
 
 function SellerBag() {
+    const [loading, setLoading] = useState(true);
     const [items, setItems] = useState([]);
     const [selectedItems, setSelectedItems] = useState([]);
     const [editMode, setEditMode] = useState(false);
@@ -16,9 +17,11 @@ function SellerBag() {
             .then((res) => {
                 console.log(res.data);
                 setItems(res.data);
+                setLoading(false);
             })
             .catch((err) => {
                 console.log(err);
+                setLoading(false);
             });
     }, []);
 
@@ -110,12 +113,20 @@ function SellerBag() {
     return (
         <>
         <div className='seller-bag-container'>
+        {loading ? ( // Conditionally render loading indicator
+        <div style={{ margin: "25px" }}>
+          Loding...
+        </div>
+      ) : (
             <div className="bag-container">
+                <div className="bag-container-head">
                 <h1 className="bag-heading">Seller Bag</h1>
 
                 <button className="select-all-button" onClick={toggleSelectAll}>
                         {selectedItems.length === items.length ? 'Deselect All' : 'Select All'}
-                    </button>
+                </button>
+                </div>
+                <br />
 
                 {items.map((item, index) => (
                     // <div className="searchItem" key={index}>
@@ -160,7 +171,9 @@ function SellerBag() {
 
                     <div className="product-page" key={index}>
                         <div className="product-image">
-                            <img src="https://th.bing.com/th/id/R.415058df456a4e2fad958b7f05aa06a8?rik=sdiU4nxQeJtCwg&pid=ImgRaw&r=0" alt="" className="siImg" />
+                            <img src={require(`../../../../../BACKEND/uploads/${item.image}`)} 
+                            alt="" 
+                            className="siImg" />
                         </div>
                         <div className="product-details">
                             <div className="siDesc">
@@ -175,6 +188,7 @@ function SellerBag() {
 
                             <div className="siDetails">
                                 <div className="siDetailTexts">
+                                    <div>
                                     {editMode[item.item_id] ? (
                                         <>
                                             <h6>Add Quantity Changes</h6>
@@ -184,18 +198,23 @@ function SellerBag() {
                                                 onChange={(e) => updateQuantity(item.item_id, parseInt(e.target.value))}
                                             />
                                             <button className="update-button" onClick={() => handleUpdateItem(item.item_id)}>Update</button>
+                                            <button className="edit-button" onClick={() => handleToggleEditMode(item.item_id)}>{editMode[item.item_id] ? 'Done Editing' : 'Edit Bag'}</button>
                                         </>
                                     ) : (
                                         <>
+                                            <div style={{ display:'flex' }}>
                                             <input
                                                 type="checkbox"
-                                                className="select-checkbox"
+                                                className="seller-bag-checkbox"
                                                 checked={selectedItems.includes(item.item_id)}
                                                 onChange={() => toggleSelect(item.item_id)}
                                             />
+                                            <label className="seller-bag-checkbox-label">Select</label>
+                                            </div>
+                                            <button className="edit-button" onClick={() => handleToggleEditMode(item.item_id)}>{editMode[item.item_id] ? 'Done Editing' : 'Edit Bag'}</button>
                                         </>
                                     )}
-                                    <button className="edit-button" onClick={() => handleToggleEditMode(item.item_id)}>{editMode[item.item_id] ? 'Done Editing' : 'Edit Bag'}</button>
+                                    </div>
                                     <button className="remove-button" onClick={() => removeItem(item.item_id)}>Remove</button>
                                 </div>
                             </div>
@@ -213,6 +232,7 @@ function SellerBag() {
                 </div>
                 )}
             </div>
+            )}:
             </div>
         </>
     );

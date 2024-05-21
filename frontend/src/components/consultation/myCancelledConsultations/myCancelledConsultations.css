@@ -80,3 +80,25 @@
   width: 50%;
   padding: 20px;
 }
+
+
+/* Set fixed width for table columns */
+.cancelledConsultations-thead th:nth-child(1),
+.cancelledConsultations-tbody td:nth-child(1) {
+  width: 15%;
+}
+
+.cancelledConsultations-thead th:nth-child(2),
+.cancelledConsultations-tbody td:nth-child(2) {
+  width: 15%;
+}
+
+.cancelledConsultations-thead th:nth-child(3),
+.cancelledConsultations-tbody td:nth-child(3) {
+  width: 30%;
+}
+
+.cancelledConsultations-thead th:nth-child(4),
+.cancelledConsultations-tbody td:nth-child(4) {
+  width: 20%;
+}

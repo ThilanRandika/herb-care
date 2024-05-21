@@ -1,0 +1,49 @@
+/* OrderDisplay component styles */
+.DPOU_ti {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .DPOU_ULL {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .DPOU_ULL li {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  
+  .DPOU_Oname,
+  .DPOU_Oraddre,
+  .DPOU_orare,
+  .DPOU_orpos,
+  .DPOU_ormob,
+  .DPOU_ormeth,
+  .DPOU_ortoAm,
+  .DPOU_orpaysta,
+  .DPOU_orsta {
+    margin: 5px 0;
+  }
+  
+  .DPOU_canbtn {
+    background-color: #143109;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .DPOU_canbtn:hover {
+    background-color: #d32f2f;
+  }
+  

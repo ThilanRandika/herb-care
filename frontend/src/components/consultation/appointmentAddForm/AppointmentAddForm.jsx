@@ -28,6 +28,13 @@ function AppointmentAddForm(props) {
     patientGender: "",
     patientPhone: "",
   });
+  const [appointmentSubmitted, setAppointmentSubmitted] = useState(false);
+  const [errors, setErrors] = useState({
+    patientName: "",
+    patientAge: "",
+    patientGender: "",
+    patientPhone: "",
+  });
 
   useEffect(() => {
     if (props.selectedSpecialist) {
@@ -209,7 +216,51 @@ function AppointmentAddForm(props) {
       ...prevPatientInfo,
       [id]: value,
     }));
+
+    validateInput(id, value);
   };
+
+
+  
+  const validateInput = (id, value) => {
+    let errorMessage = "";
+  
+    switch (id) {
+      case "patientName":
+        errorMessage = value.trim() ? "" : "Patient name is required";
+        if (!errorMessage && !/^[a-zA-Z\s]*$/.test(value)) {
+          errorMessage = "Patient name should contain only letters and spaces";
+        }
+        break;
+      case "patientAge":
+        errorMessage = value.trim() && /^\d+$/.test(value) && parseInt(value, 10) >= 1 && parseInt(value, 10) <= 120
+          ? "" 
+          : "Invalid age (Age must be between 1 and 120)";
+        break;
+      case "patientPhone":
+        if (value.trim() === "") {
+          errorMessage = "Phone number is required";
+        } else if (!/^\d{10}$/.test(value.trim())) {
+          errorMessage = "Invalid phone number";
+        }
+        break;
+      default:
+        break;
+    }
+  
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [id]: errorMessage,
+    }));
+  };
+  
+
+
+
+  const isFormValid = () => {
+    return Object.values(errors).every((error) => error === "");
+  };
+
 
 
 
@@ -241,7 +292,15 @@ function AppointmentAddForm(props) {
       return date.getDate() === availabilityDate.getDate() &&
              date.getMonth() === availabilityDate.getMonth() &&
              date.getFullYear() === availabilityDate.getFullYear();
-    });
+    }) || isPastDate(date);
+  };
+
+
+
+  const isPastDate = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 for comparison
+    return date < today;
   };
 
 
@@ -257,6 +316,32 @@ function AppointmentAddForm(props) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    if (!user) {
+      // If user is not logged in, navigate to login page
+      navigator('../../login');
+      return;
+    }
+
+    // Check for empty fields
+    const emptyFields = Object.entries(patientInfo).filter(([key, value]) => value.trim() === '');
+    if (emptyFields.length > 0) {
+      const emptyFieldNames = emptyFields.map(([key, value]) => key);
+      alert(`Please fill in the following fields: ${emptyFieldNames.join(', ')}`);
+      return;
+    }
+
+    if (!isFormValid()) {
+      // Form validation failed, do not proceed with submission
+      return;
+    }
+
+    // Check if a time slot is selected
+    if (!selectedTimeSlot) {
+      // Display alert message
+      alert("Please select a date and search available time slots. Then you can see available time slots and select one of them.");
+      return;
+    }
 
     if (!props.selectedSpecialist) {
       console.error("Selected specialist is null");
@@ -300,7 +385,14 @@ function AppointmentAddForm(props) {
     }
     console.log("new appointment is",  newAppointment);
     axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
-      navigator('../myConsultations/myOngoingConsultations');
+      setAppointmentSubmitted(true); // Set appointmentSubmitted to true upon successful submission
+        const confirmation = window.confirm('Appointment submitted successfully! Do you want to navigate to the next screen?');
+        if (confirmation) {
+          navigator('../myConsultations/myOngoingConsultations');
+        }
+        // else {
+        //   window.location.reload(); // Reload the page if the user clicks cancel
+        // }
     }).catch((err)=>{
       console.error(err);
     })
@@ -338,75 +430,82 @@ function AppointmentAddForm(props) {
                   <div className="AppointmentAddForm-date-cal">
                     <Calendar onChange={handleDateChange} value={date} tileDisabled={isDateDisabled} />
                   </div>
-                  <button type="button" onClick={handleShowTimeSlots}>Search Available Time Slots</button> 
+                  <button type="button" className="AppointmentAddForm-availableTime-btn" onClick={handleShowTimeSlots}>Search Available Time Slots</button> 
                 </div>
 
-
-                <div className="AppointmentAddForm-customerInfo">
-                  <h4>Patient Info</h4>
-                  <div className="AppointmentAddForm-patientName">
-                    <label htmlFor="patientName" className="form-label">
-                      Patient Name
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="patientName"
-                      value={patientInfo.patientName}
-                      onChange={handlePatientInfoChange}
-                    />
-                  </div>
-                  <div className="AppointmentAddForm-patientPhone">
-                    <label htmlFor="patientPhone" className="form-label">
-                      Phone
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="patientPhone"
-                      value={patientInfo.patientPhone}
-                      onChange={handlePatientInfoChange}
-                    />
-                  </div>
-                  <div className="AppointmentAddForm-patientAge">
-                    <label htmlFor="patientAge" className="form-label">
-                      Age
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="patientAge"
-                      value={patientInfo.patientAge}
-                      onChange={handlePatientInfoChange}
-                    />
-                  </div>
-                  <div className="AppointmentAddForm-patientGender">
-                    <label className="form-label">Gender</label>
-                    <div>
+                {user ? (
+                  <div className="AppointmentAddForm-customerInfo">
+                    <h4>Patient Info</h4>
+                    <div className="AppointmentAddForm-patientName AppointmentAddForm-customerInfo-raw">
+                      <label htmlFor="patientName" className="form-label">
+                        Patient Name
+                      </label>
                       <input
-                        type="radio"
-                        id="male"
-                        name="gender"
-                        value="male"
-                        checked={patientInfo.patientGender === 'male'}
-                        onChange={handlePatientGenderChange}
+                        type="text"
+                        className="form-control"
+                        id="patientName"
+                        value={patientInfo.patientName}
+                        onChange={handlePatientInfoChange}
                       />
-                      <label htmlFor="male">Male</label>
+                      {errors.patientName && <span className="AppointmentAddForm-error">{errors.patientName}</span>}
                     </div>
-                    <div>
+                    <div className="AppointmentAddForm-patientPhone AppointmentAddForm-customerInfo-raw">
+                      <label htmlFor="patientPhone" className="form-label">
+                        Phone
+                      </label>
                       <input
-                        type="radio"
-                        id="female"
-                        name="gender"
-                        value="female"
-                        checked={patientInfo.patientGender === 'female'}
-                        onChange={handlePatientGenderChange}
+                        type="text"
+                        className="form-control"
+                        id="patientPhone"
+                        value={patientInfo.patientPhone}
+                        onChange={handlePatientInfoChange}
                       />
-                      <label htmlFor="female">Female</label>
+                      {errors.patientPhone && <span className="AppointmentAddForm-error">{errors.patientPhone}</span>}
                     </div>
-                  </div>
+                    <div className="AppointmentAddForm-patientAge AppointmentAddForm-customerInfo-raw">
+                      <label htmlFor="patientAge" className="form-label">
+                        Age
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="patientAge"
+                        value={patientInfo.patientAge}
+                        onChange={handlePatientInfoChange}
+                      />
+                      {errors.patientAge && <span className="AppointmentAddForm-error">{errors.patientAge}</span>}
+                    </div>
+                    <div className="AppointmentAddForm-patientGender AppointmentAddForm-customerInfo-raw">
+                      <label className="form-label">Gender : </label>
+                      <div>
+                        <input
+                          type="radio"
+                          id="male"
+                          name="gender"
+                          value="male"
+                          checked={patientInfo.patientGender === 'male'}
+                          onChange={handlePatientGenderChange}
+                        />
+                        <label htmlFor="male">Male</label>
+                      </div>
+                      <div>
+                        <input
+                          type="radio"
+                          id="female"
+                          name="gender"
+                          value="female"
+                          checked={patientInfo.patientGender === 'female'}
+                          onChange={handlePatientGenderChange}
+                        />
+                        <label htmlFor="female">Female</label>
+                      </div>
+                    </div>
 
-                </div>
+                  </div>
+                ) : null}
+
+
+                
 
               </div>
 
@@ -479,7 +578,7 @@ function AppointmentAddForm(props) {
                 )}
               
 
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="appointmentAddForm-submitBtn">Submit</button>
             </>
 
             

@@ -1,52 +1,67 @@
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 5rem;
-    margin-top: 2rem;
-    z-index: -2;
-    
-  }
+.User-searching-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  z-index: -2;
   
-  .card {
-    margin: 20px;
-    border: 2px solid #ededed;
-    padding: 20px;
-    cursor: pointer;
-    
-    
-  }
+}
+
+.User-searching-card {
+  margin: 20px;
+  border: 2px solid #ededed;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 200px; /* Set a fixed width for each card */
+  height: 300px; /* Set a fixed height for each card */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.User-searching-card-details {
+  padding: 10px; /* Add padding for better spacing */
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+.User-searching-card-img {
+  width: 70%; /* Set a fixed width for the image */
+  height: 70%; /* Maintain aspect ratio */
+}
+
+.User-searching-card-title1 {
+  margin-bottom: 1rem;
+  font-size: 16px;
+  color: inherit;
   
-  .card-img {
-    /*width: 13rem;
-    margin-bottom: 1rem;*/
-    width: 100%; 
-    height: auto;
-  }
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+}
+
+.User-searching-card-title1 h3{
+  text-decoration: none;
+}
+.User-searching-card-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  font-size: 16px;
   
-  .card-title {
-    margin-bottom: 1rem;
-  }
-  
-  .card-reviews {
-    margin-bottom: 1rem;
-    display: flex;
-  }
-  
-  .rating-star {
-    color: #d5ab55;
-  }
-  
-  .total-reviews {
-    font-size: 0.9rem;
-    margin-left: 10px;
-  }
-  
-  .card-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .bag-icon {
-    color: #535353;
-  }
+}
+
+.User-searching-add-to-cart-button1 {
+  background-color: #129a10; /* Set background color */
+  color: #fff; /* Set text color */
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.User-searching-add-to-cart-button1:hover {
+  background-color: #095a07; /* Change background color on hover */
+}
+
+.productCard-img-inventory{
+  width: 150px;
+  height: 150px;
+}

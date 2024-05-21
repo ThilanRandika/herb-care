@@ -2,44 +2,60 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 800px; /* Set a minimum height */
+  /* justify-content: center; */
+  min-height: 600px;
+  background-image: linear-gradient(#D9D9D9,#FFF);
 }
 
 .FHS_containor2 {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center; 
+  background-color: #F7F7F7;
+  border-radius: 15px;
+  margin-top: 80px;
+  /* margin-bottom: 10px; */
+  width: 700px; 
+  transform-style: preserve-3d;
+  animation: animate 5s linear infinite;
 }
+
 
 .FHS_feedback {
   display: none;
-  text-align: center;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
 }
 
 .FHS_feedback.visible {
-  display: block;
+  display: flex;
+  align-items: center;
+}
+
+.FHS_image_container {
+  flex: 0 0 auto;
+  margin-right: 20px; /* Adjust margin as needed */
 }
 
 .FHS_image {
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 10px;
+  border-radius: 5%;
+}
+
+.FHS_content_containor {
+  flex: 1 1 auto;
 }
 
 .FHS_Pname {
   font-weight: bold;
   margin-bottom: 5px;
+  text-align: left;
 }
 
 .FHS_ratings {
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .FHS_star {
@@ -53,5 +69,16 @@
 
 .FHS_message {
   font-style: italic;
-  color: #666;
+  color: #2A3C24;
+  text-align: left;
+  min-width: 90%; /* Adjust this value as needed */
+}
+
+@keyframes animate{
+  30%{
+    transform: perspective(1000px);
+  }
+  100%{
+    transform: perspective(1000px);
+  }
 }

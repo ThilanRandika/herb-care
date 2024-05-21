@@ -1,0 +1,53 @@
+.staff-notifications-container {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .staff-notifications-search {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+  }
+  
+  .staff-notifications-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .staff-notifications-table-header {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .staff-notifications-table-data{
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    font-size: 20px;
+    padding: 8px;
+  }
+  .staff-notifications-table-data-status {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: rgb(31, 146, 31);
+    font-weight: bold; 
+  }
+
+  .staff-notifications-table-data-action {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: rgb(31, 146, 31);
+    font-weight: bold; 
+  }
+  
+  
+  .staff-table-item {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  

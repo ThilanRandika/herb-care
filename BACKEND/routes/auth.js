@@ -4,6 +4,9 @@ const Seller = require('../models/sellerPartnership/Seller');
 const SellerProducts = require('../models/sellerPartnership/SellerProducts');
 const jwt  = require("jsonwebtoken");
 const Customer = require('../models/user/Customer');
+const Staff = require('../models/staff/staff');
+const Specialist = require('../models/consultation/Specialist');
+const Manager = require('../models/manager/manager');
 
 /*
 //Seller Login
@@ -43,8 +46,10 @@ router.route('/login').post(async (req, res) => {
     try {
       // Find the user based on the username (assuming unique usernames across different user types)
       const customer = await Customer.findOne({ email: req.body.username });
-      //const manager = await Manager.findOne({ username: req.body.username });
+      const manager = await Manager.findOne({ email: req.body.username });
+      const staff = await Staff.findOne({ username: req.body.username });
       //const staff = await Staff.findOne({ username: req.body.username });
+      const specialist = await Specialist.findOne({ email: req.body.username });
       const seller = await Seller.findOne({ sellerId: req.body.username });
 
       // Determine the user type
@@ -54,14 +59,21 @@ router.route('/login').post(async (req, res) => {
         userType = 'customer';
         userDetails = customer;
       } 
+
+      else if (specialist) {
+        userType = 'specialist';
+        userDetails = specialist;
+      } 
       
-      /*else if (manager) {
+      else if (manager) {
         userType = 'manager';
         userDetails = manager;
-      } else if (staff) {
+      } 
+
+      else if (staff) {
         userType = 'staff';
         userDetails = staff;
-      }*/
+      }
       
       else if (seller) {
         userType = 'seller';
@@ -88,6 +100,11 @@ router.route('/login').post(async (req, res) => {
           process.env.JWT
         );
 
+      }else if(userType === "specialist"){
+        token = jwt.sign(
+          { specialistId: specialist._id, userType: userType },
+          process.env.JWT
+        );
       }else {
 
         token = jwt.sign(
@@ -102,16 +119,19 @@ router.route('/login').post(async (req, res) => {
       let redirectURL = '/';
       switch(userType) {
         case 'customer':
-          redirectURL = '/customer';
+          redirectURL = '/';
           break;
         case 'manager':
-          redirectURL = '/admin/dashboard';
+          redirectURL = '/manager/Inventory_Dashboard';
           break;
         case 'staff':
-          redirectURL = '/staff/dashboard';
+          redirectURL = '/staff';
           break;
         case 'seller':
           redirectURL = '/sellerMainHome/sellerHome';
+          break;
+        case 'specialist':
+          redirectURL = '/specialistInterface/dashboard';
           break;
       }
   

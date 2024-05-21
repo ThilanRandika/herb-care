@@ -1,0 +1,96 @@
+.consultation-staff-refundRequests{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+/* staffRefundRequests.css */
+
+.refunds-appointment-details {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .refunds-appointment-details-left {
+    flex: 1;
+  }
+  
+  .refunds-appointment-details-right {
+    flex: 1;
+  }
+  
+  .staff-refund-requests-container {
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .staff-refund-requests-header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .staff-refund-requests-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .staff-refund-requests-table th,
+  .staff-refund-requests-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .staff-refund-requests-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .staff-refund-requests-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .staff-refund-requests-alert {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    color: #155724;
+  }
+  
+  .staff-refund-requests-complete-btn {
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .staff-refund-requests-complete-btn:hover {
+    background-color: #555454;
+  }
+  
+  .staff-refund-requests-view-btn {
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .staff-refund-requests-view-btn:hover {
+    background-color: #515151;
+  }
+  

@@ -1,0 +1,47 @@
+/* UpdateFeedbackGiftPackage.css */
+
+.DFGPU_utitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .UF_container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .DFGPU_rati {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .DFGPU_mess {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .DFGPU_imag {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .DFGPU_note {
+    color: red;
+    font-size: 1rem;
+  }
+  
+  .DFGPU_up {
+    background-color: #238552;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  
+  .DFGPU_up:hover {
+    background-color: #0cdb4d;
+    color: black;
+  }
+  

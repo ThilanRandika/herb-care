@@ -1,47 +1,41 @@
+// ManagerSideBar.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "./managerSideBar.css"; // Import CSS file for styling
 
 function ManagerSideBar() {
   return (
-    <>
-      <div className="col-lg-3 left-column">
-        <ul className="nav flex-column">
-          <li className="nav-item">
-            <Link
-              className="nav-link"
-              to={"/SellerManagerDashboard"}
-              aria-current="page"
-            >
-              Dashboard
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className="nav-link"
-              to={"/SellerManagerDashboard/pendingSellerRequest"}
-            >
-              Partnership Requests
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className="nav-link"
-              to={"/SellerManagerDashboard/discussionLevel"}
-            >
-              Discussion Level Requests
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className="nav-link "
-              to="/SellerManagerDashboard/registeredSellers"
-            >
-              Registered Sellers
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </>
+    <div className="seller-manager-sidebar">
+      <ul className="seller-manager-sidebar-nav">
+        <li className="seller-manager-sidebar-item">
+          <NavLink
+            className="seller-manager-sidebar-link"
+            activeClassName="active"
+            to={"/manager/SellerManagerDashboard/pendingSellerRequest"}
+          >
+            Partnership Requests
+          </NavLink>
+        </li>
+        <li className="seller-manager-sidebar-item">
+          <NavLink
+            className="seller-manager-sidebar-link"
+            activeClassName="active"
+            to={"/manager/SellerManagerDashboard/discussionLevel"}
+          >
+            Discussion Level Requests
+          </NavLink>
+        </li>
+        <li className="seller-manager-sidebar-item">
+          <NavLink
+            className="seller-manager-sidebar-link"
+            activeClassName="active"
+            to="/manager/SellerManagerDashboard/registeredSellers"
+          >
+            Registered Sellers
+          </NavLink>
+        </li>
+      </ul>
+    </div>
   );
 }
 

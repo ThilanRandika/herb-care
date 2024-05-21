@@ -1,75 +1,87 @@
-/* StaffDisplay.css */
-
 .FSD_title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  
-  
-  .FSD_containor1 {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative; /* Position the container relative */
-    padding-bottom: 40px; /* Add padding to make space for the delete button */
-  }
-  
-  .FSD_comntainor2 {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    margin-left: 100px;
-    margin-right: 100px;
-    position: relative; /* Position the container relative */
-  }
-  
-  .FSD_deletebtn {
-    position: absolute;
-    bottom: 10px; /* Position at the bottom */
-    right: 10px; /* Position at the right */
-    padding: 5px 10px;
-    background-color: #1f8b33;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 75px;
-    height: 45px;
-  }
-  
-  .FSD_deletebtn:hover {
-    background-color: #15e63b;
-  }
+  text-align: center;
+  color: #2A3C24;
+}
 
-  .gold {
-    color: gold;
-    font-size: 25px;
-  }
-  
-  .FSD_count {
-    font-size: 18px;
-    margin-bottom: 20px;
-    margin-left: 100px;
-    margin-top: 20px; /* Add margin to create space */
-  }
-  
-  .FSD_downloadbtn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #1f8b33;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 100px;
-    margin-bottom: 20px; /* Add margin to create space */
-  }
+.FSD_title_card{
+  padding: 50px;
+  background-color: #CAD593;
+}
 
-  .FSD_downloadbtn:hover {
-    background-color: #15e63b;
-  }
-  
-  
+.FSD_searchfeedback {
+  margin: 20px;
+  padding: 5px;
+  max-width: 250px; 
+}
+
+.FSD_download_feedback_btn {
+  margin: 10px;
+  padding: 5px 10px;
+  background-color: #143109;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 950px;
+}
+.FSD_download_feedback_btn:hover{
+  background-color: #15e63b;
+}
+
+.FSD_count {
+  text-align: left;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.FSD_table {
+  width: 98%;
+  border-collapse: collapse;
+  margin: 20px;
+}
+
+.FSD_table th, .FSD_table td {
+  padding: 5px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.FSD_table th {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+.FSD_table td {
+  vertical-align: top;
+}
+
+.FSD_image img {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.FSD_deletebtn {
+  padding: 5px 10px;
+  background-color: #143109;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.FSD_deletebtn:hover{
+  background-color: #15e63b;
+}
+
+.gold {
+  color: gold;
+}
+
+.FSD_table th:nth-child(2),
+.FSD_table td:nth-child(2) {
+  width: 150px; /* Adjust the width of the ratings column */
+}
+
+.FSD_table th:nth-child(3),
+.FSD_table td:nth-child(3) {
+  width: 200px; /* Adjust the width of the message column */
+}

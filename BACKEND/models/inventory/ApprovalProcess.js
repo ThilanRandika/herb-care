@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ApprovalProcessSchema = new Schema({
 
-  // Products attributes
+  // Product Proposal attributes
   name: {
     type: String,
     required: true,
@@ -63,7 +63,9 @@ const ApprovalProcessSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-
+  ProductID: {
+    type: String,
+  },
   inventory_Manager_comments: {
     type: String,
   },

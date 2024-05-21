@@ -53,8 +53,13 @@ const UserFeedback = ({ customerId }) => {
 
   return (
     <div>
+      <div className='FUD_history_card'>
+          <h2 className='FUD_history'>Feedback History</h2>
+          <p className='FUD_history'>Manage your submitted feedbacks</p>
+
+      </div>
+      
       <br></br>
-      <h2 className='FUD_history'>Feedback History</h2>
       <ul className='FUD_containor'>
         {feedback.map((item) => (
           <li key={item._id} className='FUD_containor2'>
@@ -69,7 +74,7 @@ const UserFeedback = ({ customerId }) => {
             ) : (
               <>
                 <strong className='FUD_ratings'>Ratings:</strong> <StarRating rating={item.ratings} /><br />
-                <strong className='FUD_message'>Message:</strong> {item.message}<br /><br/>
+                <strong className='FUD_message'>Message:</strong> <br></br> {item.message}<br /><br/>
                 {item.image && item.image.length > 0 && (
                   <div>
                     <strong className='FUD_image'>Images:</strong>
@@ -87,8 +92,11 @@ const UserFeedback = ({ customerId }) => {
                   Created Date: {new Date(item.createdAt).toLocaleDateString()} <br/>
                   Created Time: {new Date(item.createdAt).toLocaleTimeString()} <br/><br></br>
               </p>
+              <div className="FUD_btn_container">
                 <button className="FUD_deleteBtn" onClick={() => handleDelete(item._id)}>Delete</button>
                 <button className="FUD_editBtn" onClick={() => handleEdit(item._id)}>Edit</button>
+              </div>
+                
               </>
             )}
           </li>

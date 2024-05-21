@@ -1,31 +1,57 @@
 import React, { useEffect, useState } from 'react'
 import './appointmentRequests.css'
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+
 
 function AppointmentRequests(props) {
 
   const  [appointments, setAppointments] = useState([]);
   const [specialist, setSpecialist] = useState("");
   const [expandedAppointment, setExpandedAppointment] = useState(null);
+  const [loading, setLoading] = useState(true); // State to track loading status
+  const [successMessage, setSuccessMessage] = useState("");
+  const location = useLocation(); // Use useLocation to access the current URL location
 
   useEffect(() => {
     setSpecialist(props.specialistID);
   }, [props.specialistID]);
 
-  console.log("logged specialist: " + JSON.stringify(specialist));
-
   useEffect(() => {
-    axios.get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
+    const searchParams = new URLSearchParams(location.search);
+    const searchQuery = searchParams.get('search'); // Get the value of the 'search' parameter
+
+    axios
+      .get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
       .then((res) => {
-        console.log("Got data: ", res.data);
-        // Sort appointments by date before setting state
-        const sortedAppointments = res.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+        console.log('Got data:', res.data);
+        const filteredAppointments = searchQuery
+          ? res.data.filter(
+              (appointment) =>
+                appointment.patientInfo.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                appointment._id.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+          : res.data;
+        const sortedAppointments = filteredAppointments.sort((a, b) => new Date(a.date) - new Date(b.date));
         setAppointments(sortedAppointments);
+        setLoading(false);
       })
       .catch((err) => {
         console.log('Error getting pending appointments', err);
+        setLoading(false);
       });
-  }, []);
+  }, [location.search, props.specialistID]);
+
+
+
+  // Close success alert after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [successMessage]);
   
 
 
@@ -34,8 +60,8 @@ function AppointmentRequests(props) {
     axios.put(`http://localhost:8070/consultAppointment/rejectAppointment/${id}`)
         .then((res) => {
             console.log("Request rejected successfully", res.data);
-
-            
+            setSuccessMessage("Appointment rejected successfully!");
+            setExpandedAppointment(null); // Close all expanded appointment details
             axios.get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
               .then((res) => {
                   console.log("Got data: ", res.data);
@@ -58,6 +84,8 @@ function AppointmentRequests(props) {
     axios.put(`http://localhost:8070/consultAppointment/completeAppointment/${id}`)
       .then((res) => {
         console.log("Appointment completed successfully", res.data);
+        setSuccessMessage("Appointment completed successfully!");
+        setExpandedAppointment(null); // Close all expanded appointment details
         // Fetch appointments again to update the list
         axios.get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
           .then((res) => {
@@ -80,8 +108,21 @@ function AppointmentRequests(props) {
   };
 
 
+
+  // Render loading indicator if loading is true
+  if (loading) {
+    return (
+      <div className="specialistList-loading-container">
+        <div className="specialistList-loading-spinner"></div>
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
+  // If not loading, render the page
   return (
     <div className="appointmentRequests-container">
+      {successMessage && <div className="appointmentRequests-success-alert">{successMessage}</div>}
       <h1>Upcoming Appointments</h1>
       <table className="appointmentRequests-table">
         <thead>
@@ -109,6 +150,7 @@ function AppointmentRequests(props) {
                   <td colSpan="5">
                     <div className="appointmentRequests-expanded-details-innerContainer">
                       <div className="appointmentRequests-expanded-details-innerContainer-left">
+                        <p><strong>Appointment ID: </strong> {request._id}</p>
                         <p><strong>Date: </strong> {new Date(request.date).toLocaleDateString()}</p>
                         <p><strong>Time: </strong> {request.timeSlot}</p>
                         <p>{request.centerName ? request.centerName : "Virtual Session"}</p>

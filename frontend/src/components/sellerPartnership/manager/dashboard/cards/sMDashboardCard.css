@@ -1,0 +1,47 @@
+.smDashboard-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  width: 230px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow here */
+}
+
+
+  
+  .smDashboard-card-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .smDashboard-card-value {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .value-number {
+    vertical-align: top;
+  }
+  
+  .value-unit {
+    font-size: 24px;
+    vertical-align: top;
+  }
+  
+  .smDashboard-card-percentage-increase {
+    font-size: 18px;
+    font-weight: bold;
+    color: green;
+    margin-top: 10px;
+  }
+  
+  .percentage-sign {
+    font-size: 14px;
+    vertical-align: top;
+  }
+  
+  .percentage-number {
+    vertical-align: top;
+  }

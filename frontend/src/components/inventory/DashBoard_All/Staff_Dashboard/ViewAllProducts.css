@@ -1,0 +1,61 @@
+.staff-products-container {
+    margin: 0 auto;
+    width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .staff-product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .staff-product-table-header {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    background-color: #f2f2f2;
+    height: 60px;
+  }
+  
+  .staff-product-table-data {
+    padding: 8px;
+    font-size: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .staff-search-input {
+    margin-bottom: 20px;
+  }
+  
+  .staff-update-btn {
+    padding: 0.5rem 1rem;
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .staff-delete-btn {
+    padding: 0.5rem 1rem;
+    background-color: #e62f13;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .staff-update-btn:hover {
+    background-color: #4b4f4b;
+  }
+  
+  .staff-delete-btn:hover {
+    background-color: #4b110a;
+  }
+  

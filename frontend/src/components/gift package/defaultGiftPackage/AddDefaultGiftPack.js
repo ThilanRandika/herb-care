@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import "./AddDefaultGiftPack.css"
+import "./AddDefaultGiftPack.css";
 
 function AddDefaultGiftPack() {
     const [packageName, setPackageName] = useState("");
     const [description, setDescription] = useState("");
-    const [productIds, setProductIds] = useState([]);
-    const [products, setProducts] = useState([]); // State to store available products
+    const [products, setProducts] = useState("");
+    const [totalPrice, setTotalPrice] = useState("");
     const [images, setImages] = useState([]);
 
-    // Fetch available products from backend when component mounts
-    useEffect(() => {
-        async function fetchProducts() {
-            try {
-                const response = await axios.get("http://localhost:8070/defaultGiftpackage/products");
-                setProducts(response.data);
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            }
-        }
-        fetchProducts();
-    }, []);
-
-    
     const handlePackageNameChange = (event) => {
         setPackageName(event.target.value);
     };
@@ -31,18 +17,18 @@ function AddDefaultGiftPack() {
         setDescription(event.target.value);
     };
 
-    const handleProductChange = (event) => {
-        const selectedProducts = Array.from(event.target.selectedOptions, (option) => option.value);
-        setProductIds(selectedProducts);
+    const handleProductsChange = (event) => {
+        setProducts(event.target.value);
     };
 
-    const handleImageChange = (event) => {
-        // Convert FileList object to an array
-        const fileList = event.target.files;
-        // Set the images state to the array of files
+    const handleTotalPriceChange = (event) => {
+        setTotalPrice(event.target.value);
+    };
+
+    const handleImageChange = (e) => {
+        const fileList = Array.from(e.target.files);
         setImages(fileList);
     };
-    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -50,20 +36,24 @@ function AddDefaultGiftPack() {
             const formData = new FormData();
             formData.append("packageName", packageName);
             formData.append("description", description);
-            formData.append("productIds", JSON.stringify(productIds));
+            formData.append("products", products);
+            formData.append("totalPrice", totalPrice);
+
             images.forEach((image) => {
                 formData.append("images", image);
             });
+
             await axios.post("http://localhost:8070/defaultGiftpackage/addDefault-gift-package", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
             alert("Package added successfully");
-            // Clear form fields after successful submission
+
             setPackageName("");
             setDescription("");
-            setProductIds([]);
+            setProducts("");
+            setTotalPrice("");
             setImages([]);
         } catch (error) {
             console.error("Error adding package:", error);
@@ -72,33 +62,48 @@ function AddDefaultGiftPack() {
     };
 
     return (
-        <div className="giftPackage-default-all-container">
-            <h3>Create Default Gift Package</h3>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Package Name:</label>
-                    <input type="text" value={packageName} onChange={handlePackageNameChange} required />
-                </div>
-                <div>
-                    <label>Description:</label>
-                    <textarea value={description} onChange={handleDescriptionChange} required />
-                </div>
-                <div>
-                    <label>Select Products:</label>
-                    <select multiple onChange={handleProductChange} required>
-                        {products.map((product) => (
-                            <option key={product._id} value={product._id}>{product.name}</option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    <label>Upload Images:</label>
-                    <input type="file" multiple onChange={handleImageChange} required />
-                </div>
-                <div>
-                    <button type="submit">Add Package</button>
-                </div>
-            </form>
+
+        <div>
+            <br></br>
+            <div className="ADGPS_title_card">
+                <h3 className="ADGPS_title"><center>Default Gift Packages</center></h3>
+                <p className="ADGPS_title">Manage default gift packages</p>
+            </div>
+
+            <div className="giftPackage-default-add">
+
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Package Name:</label>
+                        <input type="text" value={packageName} onChange={handlePackageNameChange} required />
+                    </div>
+                    <br></br>
+                    <div>
+                        <label>Description:</label>
+                        <textarea value={description} onChange={handleDescriptionChange} required />
+                    </div>
+                    <br></br>
+                    <div>
+                        <label>Product List:</label>
+                        <textarea value={products} onChange={handleProductsChange} required />
+                    </div>
+                    <br></br>
+                    <div>
+                        <label>Package Total Price:</label>
+                        <input type="text" value={totalPrice} onChange={handleTotalPriceChange} required />
+                    </div>
+                    <br></br>
+                    <div>
+                        <label>Upload Images:</label>
+                        <br></br>
+                        <input type="file" multiple onChange={handleImageChange} accept="image/*" />
+                    </div>
+                    <br></br>
+                    <div>
+                        <button type="submit"className="add">Add Package</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

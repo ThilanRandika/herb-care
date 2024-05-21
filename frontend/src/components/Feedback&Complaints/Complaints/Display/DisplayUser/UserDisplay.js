@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './UserDisplay.css'
+import { ListGroup, Button } from 'react-bootstrap';
+import './UserDisplay.css';
 
 const UserDisplay = () => {
   const [complaints, setComplaints] = useState([]);
@@ -9,7 +10,6 @@ const UserDisplay = () => {
     const fetchComplaints = async () => {
       try {
         const response = await axios.get('http://localhost:8070/complaints/get');
-        console.log((response.data));
         setComplaints(response.data);
       } catch (error) {
         console.error(error);
@@ -30,27 +30,29 @@ const UserDisplay = () => {
 
   return (
     <div>
-      <br></br>
-      <h2 className='UD_title'>My Complaints</h2>
-      <ul className='UD_UL'>
+      <div className='UD_title_card'>
+        <h2 className='UD_title'>My Complaints</h2>
+        <p className='UD_title'>Manage your complaints</p>
+      </div>
+      
+      <br />
+      <ListGroup className='UD_UL'>
         {complaints.map((complaint) => (
-        <div className='UD_containor'>
-          <li key={complaint._id} >
+          <ListGroup.Item key={complaint._id} className='UD_containor'>
             <h4 className='UD_complaintsName'>{complaint.complaintsName}</h4>
-            <p className='UD_email'>Email : {complaint.email}</p>
-            <p className='UD_descreiption'>Description : {complaint.description}</p>
-            <p className='UD_status'>Status : {complaint.status}</p>
+            <p className='UD_email'><strong>Email:</strong> {complaint.email}</p>
+            <p className='UD_descreiption'><strong>Description:</strong> {complaint.description}</p>
+            <p className='UD_status'><strong>Status:</strong> {complaint.status}</p>
             <div className='UD_DTContainor'>
-            <p className='UD_date'>
-                Date: {new Date(complaint.createdAt).toLocaleDateString()} <br/>
-                Time: {new Date(complaint.createdAt).toLocaleTimeString()}
-            </p>
-            <button type="button" className="CUS_btnDel" onClick={() => handleDelete(complaint._id)}>Delete</button>
-          </div>
-          </li>
-          </div>  
+              <p className='UD_date' style={{ margin: '10px 0', color: 'gray', fontSize: '0.9rem' }}>
+                <strong>Date:</strong> {new Date(complaint.createdAt).toLocaleDateString()} <br />
+                <strong>Time:</strong> {new Date(complaint.createdAt).toLocaleTimeString()}
+              </p>
+              <Button className='CUS_btnDel' variant="danger" size="sm" style={{ marginLeft: '10px' }} onClick={() => handleDelete(complaint._id)}>Delete</Button>
+            </div>
+          </ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
     </div>
   );
 };
