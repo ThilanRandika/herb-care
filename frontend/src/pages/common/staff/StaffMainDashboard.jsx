@@ -66,6 +66,14 @@ function StaffMainDashboard() {
         Feedbacks / Complanes
       </Link>
     </li>
+    <li className="main-staff-sidebar-item">
+      <Link
+        className="main-staff-sidebar-link"
+        to="/StaffDashboard"
+      >
+        Holiday Packages
+      </Link>
+    </li>
     {/* Main Link with Sub-links */}
   </ul>
 </div>
