@@ -4,6 +4,8 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import axios from 'axios';
 import './Product.css';
 import Feedback from '../../../components/Feedback&Complaints/Feedback/Display/DisplayUnderProduct/displayUnderProduct';
+import Header from '../../../components/common/header/header';
+import Footer from '../../../components/common/footer/footer';
 
 function Product() {
   const { id } = useParams(); // Get the product id from the URL parameter
@@ -77,6 +79,10 @@ function Product() {
   return (
 
     <>
+
+      <div className="home-customer-header">
+        <Header></Header>
+      </div>
 
     {/* <div className="product-page-container">
       <div className="product-details-container">
@@ -209,12 +215,16 @@ function Product() {
           )}
         </div>
       </div>
-
-      <Feedback productid={id} />
+      
+      <div className="productPage-feedbacks">
+        <Feedback productid={id} />
+      </div>
 
       </div>
       
       )};
+
+    <Footer></Footer>
     </>
     
   );
