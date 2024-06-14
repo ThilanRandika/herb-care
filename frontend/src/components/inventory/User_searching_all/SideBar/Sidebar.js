@@ -6,14 +6,16 @@ import "./Sidebar.css";
 
 const Sidebar = ({ onPriceRangeChange, onCategoryChange }) => { 
   return (
-    <section className="sidebar">
-      <div className="logo-container">
-        <h1>🛒</h1>
-      </div>
-      
-      <Category onCategoryChange={onCategoryChange} /> 
+    <section className="products-userSearchingsidebar">
+
+      <div className="products-userSearchingsidebarcontents">
+        <Category onCategoryChange={onCategoryChange} /> 
+
+        <br></br>
     
-      <Price onPriceRangeChange={onPriceRangeChange} />
+        <Price onPriceRangeChange={onPriceRangeChange} />
+
+      </div>
     </section>
   );
 };
