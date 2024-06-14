@@ -45,12 +45,18 @@ function Product() {
   // console.log(product.name);
 
   const addToCart = () => {
-    axios.post('http://localhost:8070/Cart/add', { productId: id, quantity, productname: product.name })
+    axios
+      .post("http://localhost:8070/Cart/add/" + id, {
+        quantity: quantity,
+        price: product.Manufactured_price,
+        totalPrice: (quantity * product.Manufactured_price).toFixed(2),
+      })
       .then((res) => {
-        console.log(res.data); // Handle success response
+        console.log(res.data);
+        alert("Added to Bag");
       })
       .catch((err) => {
-        alert(err.message); // Handle error
+        console.log(err);
       });
   };
 

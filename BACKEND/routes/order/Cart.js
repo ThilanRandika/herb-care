@@ -1,35 +1,63 @@
 const Product = require("../../models/inventory/Product.js");
 const router = require("express").Router();
 const Cart = require("../../models/order/Cart.js");
+const { verifyToOther } = require("../../utils/veryfyToken.js");
 
-// Route to add a product to the cart
-router.post('/add', async (req, res) => {
-  try {
-    // Extract product ID and quantity from the request body
-    const { productId, quantity, productname } = req.body;
+// // Route to add a product to the cart
+// router.post('/add', async (req, res) => {
+//   try {
+//     // Extract product ID and quantity from the request body
+//     const { productId, quantity, productname } = req.body;
 
-    // Calculate total price (assuming product price is stored in the database)
-    const product = await Product.findById(productId);
-    const totalPrice = product.price * quantity;
+//     // Calculate total price (assuming product price is stored in the database)
+//     const product = await Product.findById(productId);
+//     const totalPrice = product.price * quantity;
 
-    // Create a new Cart document
-    const cartItem = new Cart({
-      product_id: productId,
-      name:productname,
-      quantity: quantity,
-      totalPrice: totalPrice,
-      status: 'inBag', // Assuming default status is 'inBag'
-    });
+//     // Create a new Cart document
+//     const cartItem = new Cart({
+//       product_id: productId,
+//       name:productname,
+//       quantity: quantity,
+//       totalPrice: totalPrice,
+//       status: 'inBag', // Assuming default status is 'inBag'
+//     });
 
-    // Save the cart item to the database
-    const savedCartItem = await cartItem.save();
+//     // Save the cart item to the database
+//     const savedCartItem = await cartItem.save();
 
-    // Respond with the saved cart item
-    res.status(200).json({ message: 'Product added to cart successfully', cartItem: savedCartItem });
-  } catch (error) {
-    // Handle errors
-    console.error(error);
-    res.status(500).json({ error: error});
+//     // Respond with the saved cart item
+//     res.status(200).json({ message: 'Product added to cart successfully', cartItem: savedCartItem });
+//   } catch (error) {
+//     // Handle errors
+//     console.error(error);
+//     res.status(500).json({ error: error});
+//   }
+// });
+
+
+//Add product to the bag
+router.route('/add/:productId').post(verifyToOther, async (req,res) => {
+  try{
+      const userId = req.person.userId;
+      const productId = req.params.productId;
+
+      const existingCartItem = await Cart.findOne({ customerId: userId, product_id: productId });
+
+      if (existingCartItem) {
+          // If the product already exists in the user's bag, update its quantity
+          existingCartItem.quantity += req.body.quantity; // Increase the quantity
+          existingCartItem.totalPrice = (existingCartItem.quantity * existingCartItem.price).toFixed(2); // Recalculate total price
+          await existingCartItem.save(); // Save the updated item
+          res.status(200).json(existingCartItem);
+      } else {
+          // If the product does not exist in the seller's bag, add it as a new item
+          const newCartItem = new Cart({customerId: userId, product_id: productId, ...req.body });
+          const savedCartItem = await newCartItem.save();  
+          res.status(200).json(savedCartItem);   
+      }
+  } catch(err){
+      console.log(err);
+      res.status(500).json({ error: 'Internal server error' });
   }
 });
 
