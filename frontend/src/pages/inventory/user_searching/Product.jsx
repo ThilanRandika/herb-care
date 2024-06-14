@@ -102,7 +102,7 @@ function Product() {
         </div>
 
 
-        <Feedback productid={id} />
+        
 
 
       </div>
@@ -209,7 +209,11 @@ function Product() {
           )}
         </div>
       </div>
+
+      <Feedback productid={id} />
+
       </div>
+      
       )};
     </>
     
