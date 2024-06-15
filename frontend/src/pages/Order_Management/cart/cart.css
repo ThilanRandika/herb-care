@@ -1,0 +1,13 @@
+.customerCh-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    position: fixed; /* Fixed position to overlay on top of the content */
+    z-index: 9999; /* Ensure it appears on top of other content */
+    left: calc(71% - 280px); /* Center horizontally */
+    top: 50%; /* Center vertically */
+    transform: translate(-50%, -50%); /* Center the modal */
+    width: 90%; /* Set width */
+    max-height: 95vh; /* Set maximum height */
+    overflow-y: auto;
+  }

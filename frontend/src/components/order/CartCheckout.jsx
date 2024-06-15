@@ -112,7 +112,7 @@ function CartCheckout({ selectedItems, onClose }) {
                         className="list-group-item d-flex justify-content-between lh-sm"
                         key={index}
                       >
-                        <div className="item-details">
+                        <div className="item-details item-details-name">
                           <h6 className="item-name my-0">
                             {product.details.product_name}
                           </h6>

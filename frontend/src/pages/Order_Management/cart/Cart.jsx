@@ -184,7 +184,7 @@ function Cart() {
                         <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
                         {showCheckoutModal && (
                             <div className="sellerCh">
-                            <div className="sellerCh-content">
+                            <div className="customerCh-content">
                                 <span className="close" onClick={handleCloseModal}>&times;</span>
                                 <CartCheckout selectedItems={selectedItems} userId={user._id}
                             onClose={handleCloseModal} />
