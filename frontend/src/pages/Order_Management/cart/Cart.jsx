@@ -89,9 +89,9 @@ function Cart() {
     const handleUpdateItem = (itemId) => {
         const newQuantity = updatedQuantities[itemId];
         if (newQuantity !== undefined) {
-            axios.put(`http://localhost:8070/sellerBag/updateQuantity/${itemId}`, { quantity: newQuantity })
+            axios.put(`http://localhost:8070/Cart/update/${itemId}`, { quantity: newQuantity })
                 .then((res) => {
-                    console.log(res.data);
+                    console.log("cart item updated", res.data);
                     refreshItems();
                 })
                 .catch((err) => {
@@ -166,6 +166,7 @@ function Cart() {
                                                             value={updatedQuantities[item._id] || item.quantity}
                                                             onChange={(e) => updateQuantity(item._id, parseInt(e.target.value))}
                                                         />
+                                                        <button className="update-button" onClick={() => handleUpdateItem(item.item_id)}>Update</button>
                                                         <button className="edit-button" onClick={() => handleToggleEditMode(item._id)}>{editMode[item._id] ? 'Done Editing' : 'Edit Bag'}</button>
                                                     </>
                                                 ) : (

@@ -103,17 +103,29 @@ router.delete('/remove/:id', async (req, res) => {
 });
 
 
-router.post('/update/:id', async (req, res) => {
-  const productId = req.params.id;
-  const pssquantity = req.body.quantity;
+// Update item quantity in cart
+router.put('/update/:id', async (req, res) => {
   try {
-    const updatedItem = await Cart.findByIdAndUpdate(productId, { quantity: pssquantity }, { new: true });
-    if (!updatedItem) {
-      return res.json({ message: "Item not found in cart." });
+    const itemId = req.params.id;
+    const { quantity } = req.body;
+
+    const cartItem = await Cart.findById(itemId);
+
+    if (!cartItem) {
+      return res.status(404).json({ error: 'Cart item not found' });
     }
-    res.json({ message: "Item quantity updated successfully.", item: updatedItem });
-  } catch (error) {
-    res.json({ message: "Error updating quantity of item in cart." });
+
+    // Update the quantity and total price
+    cartItem.quantity = quantity;
+    cartItem.totalPrice = (cartItem.price * quantity).toFixed(2);
+
+    // Save the updated item
+    await cartItem.save();
+
+    res.status(200).json(cartItem);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
