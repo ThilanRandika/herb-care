@@ -4,6 +4,8 @@ import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
 import SellerCheckout from '../../../components/sellerPartnership/sellerCheckout/SellerCheckout';
 import CartCheckout from '../../../components/order/CartCheckout';
+import Header from '../../../components/common/header/header';
+import Footer from '../../../components/common/footer/footer';
 
 function Cart() {
     const { user } = useContext(AuthContext); // get the customer ID from authentication context
@@ -109,6 +111,11 @@ function Cart() {
 
     return (
         <>
+
+        <div className="home-customer-header">
+          <Header></Header>
+        </div>
+
             <div className='seller-bag-container'>
                 {loading ? (
                     <div style={{ margin: "25px" }}>
@@ -194,6 +201,9 @@ function Cart() {
                     </div>
                 )}
             </div>
+            
+            <br /><br />
+            <Footer></Footer>
         </>
     );
 }
