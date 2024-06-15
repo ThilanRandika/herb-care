@@ -16,7 +16,7 @@ function Cart() {
     console.log("User is ", user._id);
 
     useEffect(() => {
-        axios.post(`http://localhost:8070/Cart/allcart`)
+        axios.get(`http://localhost:8070/Cart/user/${user._id}`)
             .then((res) => {
                 console.log(res.data);
                 if (res.data && Array.isArray(res.data.items)) {
@@ -64,10 +64,15 @@ function Cart() {
     };
 
     const refreshItems = () => {
-        axios.get('http://localhost:8070/Cart/allcart')
+        axios.get(`http://localhost:8070/Cart/user/${user._id}`)
             .then((res) => {
                 console.log(res.data);
-                setItems(res.data);
+                if (res.data && Array.isArray(res.data.items)) {
+                    setItems(res.data.items);
+                } else {
+                    console.error("Unexpected response format: ", res.data);
+                    setItems([]);
+                }
             })
             .catch((err) => {
                 console.log(err);

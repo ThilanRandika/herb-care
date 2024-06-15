@@ -88,7 +88,7 @@ router.post('/allcart', async (req, res) => {
 });
 
 
-router.post('/remove/:id', async (req, res) => {
+router.delete('/remove/:id', async (req, res) => {
   const productId = req.params.id;
   try {
     const removedItem = await Cart.findOneAndDelete({ _id: productId });
@@ -120,10 +120,32 @@ router.post('/update/:id', async (req, res) => {
 
 
 
+// New route to get cart items for a specific user
+router.get('/user/:customerId', async (req, res) => {
+  const customerId = req.params.customerId;
+  try {
+    // Fetch all items from the cart for the specified user
+    const items = await Cart.find({ customerId });
 
+    // Calculate total price
+    let totalPrice = 0;
+    for (const item of items) {
+      totalPrice += item.totalPrice;
+    }
 
+    // Add total price to the response JSON
+    const response = {
+      items: items,
+      totalPrice: totalPrice
+    };
 
-
+    // Send response
+    res.status(200).json(response);
+  } catch (error) {
+    console.error("Error fetching items from cart for user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 
 
