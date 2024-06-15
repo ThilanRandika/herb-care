@@ -24,6 +24,7 @@ function Cart() {
   const updateQuantity = (productId, quantity) => {
     axios.post(`http://localhost:8070/Cart/update/${productId}`, { quantity })
       .then(response => {
+        console.log(response.data)
         const updatedItem = response.data.item;
         const updatedItems = items.map(item => {
           if (item._id === updatedItem._id) {

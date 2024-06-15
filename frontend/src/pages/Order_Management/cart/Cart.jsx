@@ -7,15 +7,18 @@ function Cart() {
     const { user } = useContext(AuthContext); // get the customer ID from authentication context
     const [loading, setLoading] = useState(true);
     const [items, setItems] = useState([]);
-    const [alltotalcount, setalltotalcount] = useState(0);
     const [selectedItems, setSelectedItems] = useState([]);
-    const [editMode, setEditMode] = useState(false);
+    const [editMode, setEditMode] = useState({});
     const [updatedQuantities, setUpdatedQuantities] = useState({});
     const [showCheckoutModal, setShowCheckoutModal] = useState(false);
 
     console.log("User is ", user._id);
 
     useEffect(() => {
+        fetchCartItems();
+    }, [user._id]);
+
+    const fetchCartItems = () => {
         axios.get(`http://localhost:8070/Cart/user/${user._id}`)
             .then((res) => {
                 console.log(res.data);
@@ -31,14 +34,14 @@ function Cart() {
                 console.log(err);
                 setLoading(false);
             });
-    }, [user._id]);
+    };
 
     const removeItem = (id) => {
         axios.delete(`http://localhost:8070/Cart/remove/${id}`)
             .then((res) => {
                 console.log(res.data);
                 console.log("Deleted the item");
-                refreshItems();
+                fetchCartItems();
             })
             .catch((err) => {
                 console.log(err);
@@ -63,22 +66,6 @@ function Cart() {
         }
     };
 
-    const refreshItems = () => {
-        axios.get(`http://localhost:8070/Cart/user/${user._id}`)
-            .then((res) => {
-                console.log(res.data);
-                if (res.data && Array.isArray(res.data.items)) {
-                    setItems(res.data.items);
-                } else {
-                    console.error("Unexpected response format: ", res.data);
-                    setItems([]);
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
     const updateQuantity = (itemId, newQuantity) => {
         setUpdatedQuantities((prevQuantities) => ({
             ...prevQuantities,
@@ -92,7 +79,7 @@ function Cart() {
             axios.put(`http://localhost:8070/Cart/update/${itemId}`, { quantity: newQuantity })
                 .then((res) => {
                     console.log("cart item updated", res.data);
-                    refreshItems();
+                    fetchCartItems();
                 })
                 .catch((err) => {
                     console.log(err);
@@ -166,7 +153,7 @@ function Cart() {
                                                             value={updatedQuantities[item._id] || item.quantity}
                                                             onChange={(e) => updateQuantity(item._id, parseInt(e.target.value))}
                                                         />
-                                                        <button className="update-button" onClick={() => handleUpdateItem(item.item_id)}>Update</button>
+                                                        <button className="update-button" onClick={() => handleUpdateItem(item._id)}>Update</button>
                                                         <button className="edit-button" onClick={() => handleToggleEditMode(item._id)}>{editMode[item._id] ? 'Done Editing' : 'Edit Bag'}</button>
                                                     </>
                                                 ) : (
