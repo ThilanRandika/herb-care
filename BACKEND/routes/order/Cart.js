@@ -214,7 +214,7 @@ router.route('/checkout').get(async (req, res) => {
       });
 
       // Send the products grouped by seller as JSON response
-      res.status(200).json(productsBySeller);
+      res.status(200).json(products);
 
   } catch (err) {
       console.log(err);

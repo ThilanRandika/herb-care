@@ -9,6 +9,7 @@ function CartCheckout({ selectedItems, onClose }) {
   const [sellers, setSeller] = useState({});
   const [paymentMethod, setPaymentMethod] = useState("credit");
   const [address, setAddress] = useState("");
+  const [totalPrice, setTotalPrice] = useState("");
   const { user } = useContext(AuthContext); // get the customer ID from authentication context
 
   const navigator = useNavigate();
@@ -29,10 +30,11 @@ function CartCheckout({ selectedItems, onClose }) {
       .then((res) => {
         console.log(res.data);
         setSeller(user);
-        setAddress(res.data.seller.address || "");
+        setAddress(user.address || "");
         setProduct(res.data.products);
-        console.log(sellers);
-        console.log(products);
+        setTotalPrice(res.data.cart.totalPrice);
+        console.log("user", sellers);
+        console.log("products", products);
       })
       .catch((err) => {
         console.log(err);
@@ -129,7 +131,7 @@ function CartCheckout({ selectedItems, onClose }) {
                     <br />
                     <li className="list-group-item d-flex justify-content-between">
                       <span className="total-label">Total (LKR)</span>
-                      <strong className="total-amount">Rs.{sellers.totalPrice}</strong>
+                      <strong className="total-amount">Rs.{totalPrice}</strong>
                     </li>
                   </ul>
                 </ul>
