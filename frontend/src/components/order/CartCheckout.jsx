@@ -116,9 +116,6 @@ function CartCheckout({ selectedItems, onClose }) {
                           <h6 className="item-name my-0">
                             {product.details.product_name}
                           </h6>
-                          <small className="item-description text-muted">
-                            Brief description
-                          </small>
                         </div>
                         <span className="item-price text-muted">
                           {product.order.quantity}
@@ -138,7 +135,7 @@ function CartCheckout({ selectedItems, onClose }) {
               </div>
 
               <div className="col-md-7 col-lg-8">
-                <h4 className="mb-3">Company Details</h4>
+                <h4 className="mb-3">Customer Details</h4>
                 <form
                   className="needs-validation checkout-form"
                   noValidate
@@ -149,14 +146,14 @@ function CartCheckout({ selectedItems, onClose }) {
                     <div className="billing-address-form row g-3">
                       <div className="col-12">
                         <label htmlFor="firstName" className="billing-label">
-                          Company Name :
+                          Customer Name :
                         </label>
                         <input
                           type="text"
                           className="billing-input form-control"
                           id="firstName"
                           placeholder=""
-                          value={sellers.companyName}
+                          value={user.customer_name}
                           required
                         />
                         <div className="billing-feedback invalid-feedback">
@@ -228,11 +225,11 @@ function CartCheckout({ selectedItems, onClose }) {
                         className="form-check-input"
                         value="CreditCard"
                         onChange={handlePaymentMethodChange}
-                        checked={paymentMethod === "CreditCard"}
+                        checked={paymentMethod === "Card"}
                         required
                       />
                       <label className="form-check-label" htmlFor="credit">
-                        Credit card
+                        Card / QR payments
                       </label>
                     </div>
                     <div className="form-check">
@@ -243,26 +240,11 @@ function CartCheckout({ selectedItems, onClose }) {
                         className="form-check-input"
                         value="AccountTransaction"
                         onChange={handlePaymentMethodChange}
-                        checked={paymentMethod === "AccountTransaction"}
+                        checked={paymentMethod === "cod"}
                         required
                       />
                       <label className="form-check-label" htmlFor="cash">
-                        Account Transaction
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        id="paypal"
-                        name="paymentMethod"
-                        type="radio"
-                        className="form-check-input"
-                        value="PayOrder"
-                        onChange={handlePaymentMethodChange}
-                        checked={paymentMethod === "PayOrder"}
-                        required
-                      />
-                      <label className="form-check-label" htmlFor="paypal">
-                        Pay Order
+                        Cash on Delivery
                       </label>
                     </div>
                   </div>
