@@ -2,6 +2,8 @@ import './cart.css';
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
+import SellerCheckout from '../../../components/sellerPartnership/sellerCheckout/SellerCheckout';
+import CartCheckout from '../../../components/order/CartCheckout';
 
 function Cart() {
     const { user } = useContext(AuthContext); // get the customer ID from authentication context
@@ -180,6 +182,15 @@ function Cart() {
                             <div>No items found in the cart.</div>
                         )}
                         <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
+                        {showCheckoutModal && (
+                            <div className="sellerCh">
+                            <div className="sellerCh-content">
+                                <span className="close" onClick={handleCloseModal}>&times;</span>
+                                <CartCheckout selectedItems={selectedItems} userId={user._id}
+                            onClose={handleCloseModal} />
+                            </div>
+                        </div>
+                        )}
                     </div>
                 )}
             </div>

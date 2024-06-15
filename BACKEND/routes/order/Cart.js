@@ -162,4 +162,67 @@ router.get('/user/:customerId', async (req, res) => {
 
 
 
+router.route('/checkout').get(async (req, res) => {
+  try {
+      const selectedItems = req.query.selectedItems;
+      console.log(selectedItems)
+
+      // Get all products in the cart for the specific seller
+      const cart = await Cart.find({ _id: { $in: selectedItems } }).populate('product_id');
+      const itemCount =  cart.length;
+
+      const totalPrice = cart.reduce((total, item) => total + item.totalPrice, 0);
+      
+      // Initialize an object to store products grouped by seller
+      const products = {
+          cart: {
+              itemCount: itemCount,
+              totalPrice: totalPrice
+          },
+          products:[]
+      };
+
+      // Iterate through the sellerBags and group products by seller
+      cart.forEach(cart => {
+          const { product_id, price, totalPrice, quantity } = cart;
+          const { name, image_url } = product_id;
+
+          // Create a new object for the seller if it doesn't exist
+          // if (!productsBySeller[sellerId]) {
+          //     productsBySeller[sellerId] = {
+          //         address: sellerAddress,
+          //         products: []
+          //     };
+          // }
+
+          // Push product details to the seller's products array
+          const product = {
+              details: {
+                  product_name: name,
+                  product_image: image_url,
+              },
+              order: {
+                  product_Id:  product_id,
+                  product_price: price,
+                  total_price: totalPrice,
+                  quantity: quantity
+              }
+          };
+
+          products.products.push(product);
+
+      });
+
+      // Send the products grouped by seller as JSON response
+      res.status(200).json(productsBySeller);
+
+  } catch (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
+
 module.exports = router;
