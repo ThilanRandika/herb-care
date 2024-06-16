@@ -36,9 +36,9 @@ const { verifyToOther } = require("../../utils/veryfyToken.js");
 
 
 //Add product to the bag
-router.route('/add/:productId').post(verifyToOther, async (req,res) => {
+router.route('/add/:productId').post( async (req,res) => {
   try{
-      const userId = req.person.userId;
+      const userId = req.body.userId;
       const productId = req.params.productId;
 
       const existingCartItem = await Cart.findOne({ customerId: userId, product_id: productId });

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { AuthContext } from '../../../context/AuthContext';
 import axios from 'axios';
 import './Product.css';
 import Feedback from '../../../components/Feedback&Complaints/Feedback/Display/DisplayUnderProduct/displayUnderProduct';
@@ -14,6 +15,7 @@ function Product() {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [error, setError] = useState("");
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     axios.get(`https://herb-care-pzwv.onrender.com/Product/${id}`)
@@ -47,6 +49,7 @@ function Product() {
   const addToCart = () => {
     axios
       .post(`https://herb-care-pzwv.onrender.com/Cart/add/${id}`, {
+        userId: user._id,
         quantity: quantity,
         price: product.Manufactured_price,
         totalPrice: (quantity * product.Manufactured_price).toFixed(2),

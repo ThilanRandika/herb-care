@@ -1,5 +1,6 @@
 import "./Products.css";
 import React, { useState, useEffect } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,6 +8,7 @@ function Products({ searchQuery, priceRange, category }) {
   const [products, setProducts] = useState([]);
   const [summaries, setSummaries] = useState([]);
   const [loading, setLoading] = useState(true); // State to track loading status
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     function getProducts() {
@@ -85,6 +87,7 @@ function Products({ searchQuery, priceRange, category }) {
   const addToCart = (product) => {
     axios
       .post("https://herb-care-pzwv.onrender.com/Cart/add/" + product._id, {
+        userId: user._id,
         quantity: 1,
         price: product.Manufactured_price,
         totalPrice: (1 * product.Manufactured_price).toFixed(2),
