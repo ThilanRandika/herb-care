@@ -10,7 +10,8 @@ function Recommended() {
   return (
     <>
       <div>
-        <h2 className="recommended-title-custom">Recommended</h2>
+        <p></p>
+        {/* <h2 className="recommended-title-custom">Recommended</h2> */}
         <div className="recommended-flex-custom">
           
           <button className="recommended-button-custom" title="All Products" onClick={handleAllProductsClick}>All Products</button>

@@ -1,0 +1,5 @@
+.item-details-name{
+    overflow: hidden; /* Hide overflow content */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+    width: 30%;
+}

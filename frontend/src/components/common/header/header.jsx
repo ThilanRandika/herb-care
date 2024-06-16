@@ -72,7 +72,7 @@ class Header extends Component {
 					    <li><Link to="/consultation/homeConsultation" class="nav-item nav-link hed_fosiz">Consultation</Link></li>
               <li><Link to="#" class="nav-item nav-link hed_fosiz">About Us</Link></li>
 
-              <li><Link to="#" class="nav-item nav-link hed_fosiz headeee_loLOinf"><img width="30" height="30" src="https://img.icons8.com/sf-regular-filled/48/1A1A1A/shopping-cart.png" alt="shopping-cart--v1"/></Link></li>
+              <li><Link to="/cart" class="nav-item nav-link hed_fosiz headeee_loLOinf"><img width="30" height="30" src="https://img.icons8.com/sf-regular-filled/48/1A1A1A/shopping-cart.png" alt="shopping-cart--v1"/></Link></li>
               
               <li><Link to="/User" class="nav-item nav-link hed_fosiz ">profile</Link></li>
 					    <li><Link to="Login" class="nav-item nav-link hed_fosiz ">Login</Link></li>

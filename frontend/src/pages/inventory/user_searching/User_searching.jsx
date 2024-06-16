@@ -10,6 +10,7 @@ import { Route, Routes } from 'react-router-dom';
 import Product from './Product';
 
 import "./User_searching.css"; // Import CSS for User_searching component
+import Header from '../../../components/common/header/header';
 
 function User_searching() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,6 +31,7 @@ function User_searching() {
 
   return (
     <>
+    <Header></Header>
       <div className="user-searching-container">
         <div className="User-searching-sidebar">
           {/* Pass handlePriceRangeChange function to Sidebar */}
