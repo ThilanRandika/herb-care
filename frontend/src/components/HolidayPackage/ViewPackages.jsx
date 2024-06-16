@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "./Header";
+import Header from '../common/header/header';
+import Footer from '../common/footer/footer';
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -45,6 +46,7 @@ const ViewPackages = () => {
           ))}
         </Row>
       </Container>
+      <Footer></Footer>
     </Container>
   );
 };

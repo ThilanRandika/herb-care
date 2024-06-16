@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom"; // Update import statement
-import Header from "./Header";
+import Header from '../common/header/header';
+import Footer from '../common/footer/footer';
 import {
   Container,
   Row,
@@ -155,6 +156,7 @@ const PackageDetails = () => {
           </Row>
         </Container>
       )}
+      <Footer></Footer>
     </Container>
   );
 };
