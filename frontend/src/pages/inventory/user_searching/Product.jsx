@@ -46,7 +46,7 @@ function Product() {
 
   const addToCart = () => {
     axios
-      .post(`https://herb-care-pzwv.onrender.com/Cart/add/${id}` + id, {
+      .post(`https://herb-care-pzwv.onrender.com/Cart/add/${id}`, {
         quantity: quantity,
         price: product.Manufactured_price,
         totalPrice: (quantity * product.Manufactured_price).toFixed(2),
