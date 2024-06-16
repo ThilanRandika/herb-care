@@ -28,6 +28,7 @@ import DefaultGiftpackages from "./components/gift package/defaultGiftPackage/De
 import UpdateDefaultGiftPackage from "./components/gift package/defaultGiftPackage/UpdateDefaultGiftPackage";
 
 import MyOrders from "./pages/Order_Management/myOrders/MyOrders";
+import Cart from "./pages/Order_Management/cart/Cart";
 
 import DisplayDefaultGiftPackages from "./components/gift package/customizeGiftPackage/DisplayDefaultGiftPackages";
 import PlaceOrder from "./components/gift package/giftPackageOrders/PlaceOrder";
@@ -46,7 +47,6 @@ import StaffMainDashboard from "./pages/common/staff/StaffMainDashboard";
 import ManagerDashboard from "./pages/common/manager/ManagerDashboard";
 import UserDashboard from "./pages/common/User/UserDashboard";
 import RegisterPage from "./pages/common/register/RegisterPage";
-import Cart from "./pages/Order_Management/Cart";
 
 import ManageServices from "./components/HolidayPackage/ManageServices";
 

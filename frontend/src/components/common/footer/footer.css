@@ -115,7 +115,7 @@ body{margin-top:20px;}
     background-image: -webkit-linear-gradient(0deg, #ffbd27 0%, #feb000 100%);
     background-image: -ms-linear-gradient(0deg, #ffbd27 0%, #feb000 100%);
     /* box-shadow: 2.5px 4.33px 15px 0px rgba(170, 174, 127); */
-    z-index: 1;
+    z-index: 0;
 }
 .deneb_cta .cta_wrapper:after {
     content: "";
