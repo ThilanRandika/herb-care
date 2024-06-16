@@ -230,6 +230,12 @@
 .customer-product-list-description {
   font-size: 14px;
   margin-bottom: 8px;
+  white-space: nowrap;
+  color: #888787;
+}
+
+.customer-product-list-description span{
+  color: #000;
 }
 
 .customer-product-list-add-to-cart-button-container{

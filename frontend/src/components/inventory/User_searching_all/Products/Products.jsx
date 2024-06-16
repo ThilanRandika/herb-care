@@ -5,19 +5,34 @@ import axios from 'axios';
 
 function Products({ searchQuery, priceRange, category }) {
   const [products, setProducts] = useState([]);
+  const [summaries, setSummaries] = useState([]);
+  const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
     function getProducts() {
       axios.get("http://localhost:8070/Product/")
         .then((res) => {
           setProducts(res.data);
+          setLoading(false);
+          console.log(products)
         })
         .catch((err) => {
           alert(err.message);
         });
     }
 
+    const fetchFeedbackSummaries = async () => {
+      try {
+        const response = await axios.get('http://localhost:8070/feedback/feedback-summaries');
+        setSummaries(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getProducts();
+    fetchFeedbackSummaries();
   }, []);
 
   const filterByPriceRange = (price, range) => {
@@ -42,12 +57,55 @@ function Products({ searchQuery, priceRange, category }) {
   const filterByCategory = (productCategory, selectedCategory) => {
     return selectedCategory === "" || productCategory === selectedCategory;
   };
+  
+  const getProductRating = (productName) => {
+    const productSummary = summaries.find(summary => summary.productName === productName);
+    return productSummary ? productSummary.ratings : 0;
+  };
 
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
     filterByPriceRange(product.price, priceRange) &&
     filterByCategory(product.category, category) // Apply category filter
   );
+
+
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className={i <= rating ? 'FHS_star gold' : 'FHS_star'}>
+          &#9733;
+        </span>
+      );
+    }
+    return stars;
+  };
+
+  const addToCart = (product) => {
+    axios
+      .post("http://localhost:8070/Cart/add/" + product._id, {
+        quantity: 1,
+        price: product.Manufactured_price,
+        totalPrice: (1 * product.Manufactured_price).toFixed(2),
+      })
+      .then((res) => {
+        console.log(res.data);
+        alert("Added to Bag");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  if (loading) {
+    return (
+      <div className="specialistList-loading-container">
+        <div className="specialistList-loading-spinner"></div>
+        <div>Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="User-searching-card-container">
@@ -86,7 +144,8 @@ function Products({ searchQuery, priceRange, category }) {
                   <div class="customer-product-list-info1">
                     <div class="customer-product-list-info2">
                       <div class="customer-product-list-name">{product.name}</div>
-                      <div class="customer-product-list-description">{product.category}</div>
+                      <div class="customer-product-list-description"><span>Category: </span>{product.category}</div>
+                      <div className='FHS_ratings'>ratings: {renderStars(getProductRating(product.name))}</div>
                     </div>
                     <div class="customer-product-list-price">
                       Rs.{product.Manufactured_price}
@@ -105,7 +164,7 @@ function Products({ searchQuery, priceRange, category }) {
                       </Link>
                     </div>
                     <div className="customer-product-list-add-to-cart-cart-button">
-                      <img width="30" height="30" src="https://img.icons8.com/sf-regular-filled/48/1A1A1A/shopping-cart.png" alt="shopping-cart--v1"/>
+                      <img width="30" height="30" src="https://img.icons8.com/sf-regular-filled/48/1A1A1A/shopping-cart.png" alt="shopping-cart--v1" onClick={() => addToCart(product)}/>
                     </div>
                   </div>
                 </div>
