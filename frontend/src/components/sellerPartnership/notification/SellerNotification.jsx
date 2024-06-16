@@ -11,7 +11,7 @@ function SellerNotification() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8070/sellerNotification/getNotifications")
+        axios.get("https://herb-care-pzwv.onrender.com/sellerNotification/getNotifications")
         .then((res) => {
             setSeller(res.data);
             console.log(res.data)
@@ -23,7 +23,7 @@ function SellerNotification() {
     } , [])
 
     const refreshPage = () => {
-            axios.get("http://localhost:8070/sellerNotification/getNotifications")
+            axios.get("https://herb-care-pzwv.onrender.com/sellerNotification/getNotifications")
             .then((res) => {
                 setSeller(res.data);
                 console.log(res.data)
@@ -34,7 +34,7 @@ function SellerNotification() {
     }
 
     const handleUnReadNotification = () => {
-            axios.put("http://localhost:8070/sellerNotification/markAsReadNotification")
+            axios.put("https://herb-care-pzwv.onrender.com/sellerNotification/markAsReadNotification")
             .then((res) => {
                 console.log('Marked as read successfully');
                 console.log(res.data)
@@ -46,7 +46,7 @@ function SellerNotification() {
     };
 
     const deleteReadNotification = () => {
-        axios.put("http://localhost:8070/sellerNotification/deleteNotification")
+        axios.put("https://herb-care-pzwv.onrender.com/sellerNotification/deleteNotification")
         .then((res) => {
             console.log('Delete notifications');
             console.log(res.data)

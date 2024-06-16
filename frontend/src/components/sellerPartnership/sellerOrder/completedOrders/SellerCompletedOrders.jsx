@@ -7,7 +7,7 @@ function SellerCompletedOrders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-      axios.get('http://localhost:8070/sellerOrder/sellerCompletedOrders')
+      axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/sellerCompletedOrders')
       .then((res) => {
           console.log(res.data);
           setOrders(res.data);

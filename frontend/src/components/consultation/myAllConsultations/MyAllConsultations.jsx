@@ -12,7 +12,7 @@ function MyAllConsultations() {
     const [loading, setLoading] = useState(true); // State to track loading status 
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/getAppointmentsForCus/${user._id}`)
+        axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/getAppointmentsForCus/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setAppointments(res.data);

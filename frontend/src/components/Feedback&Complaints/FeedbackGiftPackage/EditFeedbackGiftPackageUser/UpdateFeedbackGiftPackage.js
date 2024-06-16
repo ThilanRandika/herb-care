@@ -23,7 +23,7 @@ const UpdateFeedbackGiftPackage = ({ feedbackId, ratings, message, onUpdate }) =
     });
 
     try {
-      await axios.put(`http://localhost:8070/feedbackGiftPackage/update/${feedbackId}`, formData, {
+      await axios.put(`https://herb-care-pzwv.onrender.com/feedbackGiftPackage/update/${feedbackId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`,

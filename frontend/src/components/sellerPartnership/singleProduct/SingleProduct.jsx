@@ -14,7 +14,7 @@ function SingleProduct() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8070/sellerProducts/products/` + Id)
+      .get(`https://herb-care-pzwv.onrender.com/sellerProducts/products/` + Id)
       .then((res) => {
         console.log(res.data);
         setProduct(res.data);
@@ -29,7 +29,7 @@ function SingleProduct() {
 
   const addToBag = () => {
     axios
-      .post("http://localhost:8070/sellerBag/addToBag/" + Id, {
+      .post("https://herb-care-pzwv.onrender.com/sellerBag/addToBag/" + Id, {
         quantity: quantity,
         price: product.calculatedPrice,
         totalPrice: (quantity * product.calculatedPrice).toFixed(2),

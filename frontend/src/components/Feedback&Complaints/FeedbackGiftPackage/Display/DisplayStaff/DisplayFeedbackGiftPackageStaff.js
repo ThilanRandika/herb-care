@@ -27,7 +27,7 @@ const AdminFeedbackList = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedbackgiftpackage/get/all');
+        const response = await axios.get('https://herb-care-pzwv.onrender.com/feedbackgiftpackage/get/all');
         setFeedbacks(response.data.feedbacks);
       } catch (error) {
         console.error('Error fetching feedbacks:', error);
@@ -36,7 +36,7 @@ const AdminFeedbackList = () => {
 
     const fetchTotalFeedbacksCount = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedbackgiftpackage/count/feedbacks');
+        const response = await axios.get('https://herb-care-pzwv.onrender.com/feedbackgiftpackage/count/feedbacks');
         setTotalFeedbacksCount(response.data.totalFeedbacksCount);
       } catch (error) {
         console.error('Error fetching total feedbacks count:', error);
@@ -49,7 +49,7 @@ const AdminFeedbackList = () => {
 
   const handleDeleteFeedback = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/feedbackgiftpackage/delete/${id}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/feedbackgiftpackage/delete/${id}`);
       setFeedbacks((prevFeedbacks) => prevFeedbacks.filter((feedback) => feedback._id !== id));
     } catch (error) {
       console.error('Error deleting feedback:', error);
@@ -58,7 +58,7 @@ const AdminFeedbackList = () => {
 
   const handleDownloadPDF = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/feedbackgiftpackage/download/pdf', { responseType: 'blob' });
+      const response = await axios.get('https://herb-care-pzwv.onrender.com/feedbackgiftpackage/download/pdf', { responseType: 'blob' });
       const url = window.URL.createObjectURL(response.data);
       const link = document.createElement('a');
       link.href = url;

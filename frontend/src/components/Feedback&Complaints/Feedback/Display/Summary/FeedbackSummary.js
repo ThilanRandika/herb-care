@@ -9,7 +9,7 @@ const FeedbackSummaries = () => {
   useEffect(() => {
     const fetchFeedbackSummaries = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedback/feedback-summaries');
+        const response = await axios.get('https://herb-care-pzwv.onrender.com/feedback/feedback-summaries');
         setSummaries(response.data);
       } catch (error) {
         console.error(error);

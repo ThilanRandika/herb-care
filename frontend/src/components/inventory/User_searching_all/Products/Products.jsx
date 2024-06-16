@@ -10,7 +10,7 @@ function Products({ searchQuery, priceRange, category }) {
 
   useEffect(() => {
     function getProducts() {
-      axios.get("http://localhost:8070/Product/")
+      axios.get("https://herb-care-pzwv.onrender.com/Product/")
         .then((res) => {
           setProducts(res.data);
           setLoading(false);
@@ -23,7 +23,7 @@ function Products({ searchQuery, priceRange, category }) {
 
     const fetchFeedbackSummaries = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedback/feedback-summaries');
+        const response = await axios.get('https://herb-care-pzwv.onrender.com/feedback/feedback-summaries');
         setSummaries(response.data);
         setLoading(false);
       } catch (error) {
@@ -84,7 +84,7 @@ function Products({ searchQuery, priceRange, category }) {
 
   const addToCart = (product) => {
     axios
-      .post("http://localhost:8070/Cart/add/" + product._id, {
+      .post("https://herb-care-pzwv.onrender.com/Cart/add/" + product._id, {
         quantity: 1,
         price: product.Manufactured_price,
         totalPrice: (1 * product.Manufactured_price).toFixed(2),

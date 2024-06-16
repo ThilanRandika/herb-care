@@ -11,7 +11,7 @@ const ComplaintsList = () => {
 
   const downloadComplaintsPdf = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/complaints/download', {
+      const response = await axios.get('https://herb-care-pzwv.onrender.com/complaints/download', {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -30,8 +30,8 @@ const ComplaintsList = () => {
     const fetchData = async () => {
       try {
         const [complaintsResponse, totalCountResponse] = await Promise.all([
-          axios.get("http://localhost:8070/complaints/"),
-          axios.get("http://localhost:8070/complaints/count")
+          axios.get("https://herb-care-pzwv.onrender.com/complaints/"),
+          axios.get("https://herb-care-pzwv.onrender.com/complaints/count")
         ]);
 
         setComplaints(complaintsResponse.data);
@@ -47,7 +47,7 @@ const ComplaintsList = () => {
 
   const handleStatusChange = async (complaintId, newStatus) => {
     try {
-      await axios.put(`http://localhost:8070/complaints/${complaintId}`, { status: newStatus });
+      await axios.put(`https://herb-care-pzwv.onrender.com/complaints/${complaintId}`, { status: newStatus });
       setComplaints(prevComplaints =>
         prevComplaints.map(complaint =>
           complaint._id === complaintId ? { ...complaint, status: newStatus } : complaint
@@ -60,7 +60,7 @@ const ComplaintsList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/complaints/delete/${id}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/complaints/delete/${id}`);
       setComplaints(prevComplaints => prevComplaints.filter(complaint => complaint._id !== id));
     } catch (error) {
       console.error(error);

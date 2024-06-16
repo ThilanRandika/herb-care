@@ -23,7 +23,7 @@ function PartnershipRequest(props) {
   const Submit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8070/sellerPartnershipRequest/add", sellerRequest);
+      await axios.post("https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/add", sellerRequest);
       console.log(sellerRequest)
       // alert("Requst Added Successfully");
       setSellerRequest("");

@@ -53,7 +53,7 @@ function ProductForm() {
       formDataToSend.append('manufactureDate', formData.manufactureDate);
       formDataToSend.append('ingredients', formData.ingredients);
 
-      await axios.post('http://localhost:8070/Product/add', formDataToSend, {
+      await axios.post('https://herb-care-pzwv.onrender.com/Product/add', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }

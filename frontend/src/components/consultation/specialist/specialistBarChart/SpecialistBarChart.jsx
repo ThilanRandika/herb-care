@@ -12,7 +12,7 @@ function SpecialistBarChart() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointmentsCountForNext7Days/${user._id}`);
+                const response = await axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/getOngoingAppointmentsCountForNext7Days/${user._id}`);
                 setAppointmentsData(response.data);
                 setLoading(false);
             } catch (error) {

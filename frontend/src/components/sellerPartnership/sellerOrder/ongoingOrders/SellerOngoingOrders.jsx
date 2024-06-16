@@ -7,7 +7,7 @@ function SellerOngoingOrders() {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8070/sellerOrder/ongoingOrders')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/ongoingOrders')
         .then((res) => {
             console.log(res.data);
             setOrders(res.data);
@@ -20,7 +20,7 @@ function SellerOngoingOrders() {
 
     const handleGenerateOrderInvoice = async (orderId) => {
         try {
-          const response = await axios.get(`http://localhost:8070/sellerOrder/generateOrderInvoice/${orderId}`, {
+          const response = await axios.get(`https://herb-care-pzwv.onrender.com/sellerOrder/generateOrderInvoice/${orderId}`, {
             responseType: 'blob', // Receive response as Blob (binary data)
           });
       

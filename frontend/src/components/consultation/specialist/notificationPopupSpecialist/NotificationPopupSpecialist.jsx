@@ -8,7 +8,7 @@ function NotificationPopupSpecialist({ onClose, setUnreadNotificationCount }) {
   const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
-    fetch(`http://localhost:8070/specialistNotifications/all/${user._id}`)
+    fetch(`https://herb-care-pzwv.onrender.com/specialistNotifications/all/${user._id}`)
       .then(response => response.json())
       .then(data => {
         setNotifications(data);
@@ -27,7 +27,7 @@ function NotificationPopupSpecialist({ onClose, setUnreadNotificationCount }) {
   };
 
   const handleMarkAllAsRead = () => {
-    fetch(`http://localhost:8070/specialistNotifications/markAllAsRead/${user._id}`, {
+    fetch(`https://herb-care-pzwv.onrender.com/specialistNotifications/markAllAsRead/${user._id}`, {
       method: 'PUT',
     })
     .then(response => {
@@ -36,7 +36,7 @@ function NotificationPopupSpecialist({ onClose, setUnreadNotificationCount }) {
         setNotifications(notifications.map(notification => ({ ...notification, notificationStatus: 'Read' })));
   
         // Fetch updated unread notifications count
-        fetch(`http://localhost:8070/specialistNotifications/unreadCount/${user._id}`)
+        fetch(`https://herb-care-pzwv.onrender.com/specialistNotifications/unreadCount/${user._id}`)
           .then(response => response.json())
           .then(data => {
             // Update unread notifications count state

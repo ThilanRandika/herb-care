@@ -11,7 +11,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 // Allow requests from the specified origin
 const corsOptions = {
-    origin: 'http://localhost:3000', // Change this to your frontend URL
+    origin: 'https://herbcare.rfidstore.tech', // Change this to your frontend URL
     credentials: true, // Include credentials (cookies, authorization headers, etc.)
   };
   

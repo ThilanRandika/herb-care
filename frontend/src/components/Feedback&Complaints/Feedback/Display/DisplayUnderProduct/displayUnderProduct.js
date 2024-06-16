@@ -20,7 +20,7 @@ const FeedbackUnderProduct = (props) => {
 
   useEffect(() => {
     // Fetch feedbacks for the product
-    axios.get(`http://localhost:8070/feedback/feedbacks/${props.productid}`)
+    axios.get(`https://herb-care-pzwv.onrender.com/feedback/feedbacks/${props.productid}`)
       .then(response => {
         setFeedbacks(response.data);
       })

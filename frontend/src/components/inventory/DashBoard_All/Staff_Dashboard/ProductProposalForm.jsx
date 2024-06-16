@@ -53,7 +53,7 @@ function ApprovalProcessForm() {
       formDataToSend.append('ingredients', formData.ingredients);
       formDataToSend.append('action', 'Add'); // Set action to "Add"
 
-      await axios.post('http://localhost:8070/ApprovalProcess/addProposal', formDataToSend, {
+      await axios.post('https://herb-care-pzwv.onrender.com/ApprovalProcess/addProposal', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }

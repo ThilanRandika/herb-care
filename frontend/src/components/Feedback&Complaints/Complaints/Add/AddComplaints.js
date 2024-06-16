@@ -14,7 +14,7 @@ const ComplaintForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`http://localhost:8070/complaints/add/${productId}`, {
+            const response = await axios.post(`https://herb-care-pzwv.onrender.com/complaints/add/${productId}`, {
                 orderId,
                 complaintsName,
                 email,

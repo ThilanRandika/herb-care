@@ -21,7 +21,7 @@ function SpecialistProfile() {
 
     const fetchSpecialistData = () => {
         // Fetch specialist data by ID
-        axios.get(`http://localhost:8070/specialist/${user._id}`)
+        axios.get(`https://herb-care-pzwv.onrender.com/specialist/${user._id}`)
             .then(response => {
                 setSpecialistData(response.data);
             })
@@ -39,7 +39,7 @@ function SpecialistProfile() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Send updated specialist data to backend for updating
-        axios.put(`http://localhost:8070/specialist/update/${user._id}`, specialistData)
+        axios.put(`https://herb-care-pzwv.onrender.com/specialist/update/${user._id}`, specialistData)
             .then(response => {
                 console.log('Specialist data updated successfully:', response.data);
                 setEditing(false); // Exit editing mode

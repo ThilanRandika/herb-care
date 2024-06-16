@@ -29,7 +29,7 @@ function AvailabilitySettingPage(props) {
     // Fetch all center names when the component mounts
     const fetchCenters = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/center/all');
+        const response = await axios.get('https://herb-care-pzwv.onrender.com/center/all');
         setCenters(response.data);
       } catch (error) {
         console.error('Failed to fetch centers:', error);
@@ -71,7 +71,7 @@ function AvailabilitySettingPage(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:8070/availability/add', formData);
+      await axios.post('https://herb-care-pzwv.onrender.com/availability/add', formData);
       console.log('Availability added successfully!');
       props.setIsNewAvailabilitySubmitted (true);
     } catch (error) {

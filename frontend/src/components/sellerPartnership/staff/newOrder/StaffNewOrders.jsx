@@ -9,7 +9,7 @@ function StaffNewOrders() {
     const navigator = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8070/sellerOrder/pendingOrders')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/pendingOrders')
             .then((res) => {
                 console.log(res.data);
                 setOrders(res.data);
@@ -25,7 +25,7 @@ function StaffNewOrders() {
     };
 
     const handleAcceptOrder = (id) => {
-        axios.put('http://localhost:8070/sellerOrder/acceptOrder/' + id)
+        axios.put('https://herb-care-pzwv.onrender.com/sellerOrder/acceptOrder/' + id)
             .then((res) => {
                 alert("The Order has been accepted");
                 console.log(res.data);
@@ -37,7 +37,7 @@ function StaffNewOrders() {
     };
 
     const handleRejectOrder = (id) => {
-        axios.delete('http://localhost:8070/sellerOrder/rejectPendingOrder/' + id)
+        axios.delete('https://herb-care-pzwv.onrender.com/sellerOrder/rejectPendingOrder/' + id)
             .then((res) => {
                 alert("The Order has been rejected");
                 console.log(res.data);

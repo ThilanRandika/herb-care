@@ -10,7 +10,7 @@ export default function Staff_Notifications() {
   useEffect(() => {
     function getApprovalProcesses() {
       axios
-        .get("http://localhost:8070/ApprovalProcess/")
+        .get("https://herb-care-pzwv.onrender.com/ApprovalProcess/")
         .then((res) => {
           console.log(res.data); // Assuming the data is in res.data
           setApprovalProcesses(res.data); // Set the approval processes state with fetched data

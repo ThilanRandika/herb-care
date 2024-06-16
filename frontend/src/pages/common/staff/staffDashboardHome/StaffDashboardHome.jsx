@@ -17,7 +17,7 @@ function StaffDashboardHome() {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8070/complaints/count')
+    axios.get('https://herb-care-pzwv.onrender.com/complaints/count')
       .then(response => {
         setComplaintCount(response.data.count);
       })
@@ -27,7 +27,7 @@ function StaffDashboardHome() {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8070/feedback/count')
+    axios.get('https://herb-care-pzwv.onrender.com/feedback/count')
       .then(response => {
         setFeedbackCount(response.data.count);
       })
@@ -38,7 +38,7 @@ function StaffDashboardHome() {
 
   const fetchRefundCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/refund/incompleteRefundsCount");
+      const response = await fetch("https://herb-care-pzwv.onrender.com/refund/incompleteRefundsCount");
       if (response.ok) {
         const data = await response.json();
         setRefundCount(data.count);
@@ -52,7 +52,7 @@ function StaffDashboardHome() {
 
   const fetchPendingWholesaleOrdersCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/sellerOrder/pendingOrders/count");
+      const response = await fetch("https://herb-care-pzwv.onrender.com/sellerOrder/pendingOrders/count");
       if (response.ok) {
         const data = await response.json();
         setPendingWholesaleOrdersCount(data.pendingOrdersCount);
@@ -66,7 +66,7 @@ function StaffDashboardHome() {
 
   const fetchPendingGiftPackageOrdersCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/giftPackageOrder/pendingOrders/count");
+      const response = await fetch("https://herb-care-pzwv.onrender.com/giftPackageOrder/pendingOrders/count");
       if (response.ok) {
         const data = await response.json();
         setPendingGiftPackageOrdersCount(data.pendingOrdersCount);

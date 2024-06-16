@@ -28,7 +28,7 @@ const EditPackages = () => {
 
   const fetchPackages = async () => {
     try {
-      const response = await axios.get("http://localhost:8070/packages");
+      const response = await axios.get("https://herb-care-pzwv.onrender.com/packages");
       setPackages(response.data);
     } catch (error) {
       console.error("Error fetching packages:", error);
@@ -53,7 +53,7 @@ const EditPackages = () => {
   const handleSaveEdit = async () => {
     try {
       await axios.patch(
-        `http://localhost:8070/packages/${selectedPackage._id}`,
+        `https://herb-care-pzwv.onrender.com/packages/${selectedPackage._id}`,
         editedPackage
       );
       setShowEdit(false);
@@ -72,7 +72,7 @@ const EditPackages = () => {
 
   const handleConfirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8070/packages/${deletePackageId}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/packages/${deletePackageId}`);
       setShowDeleteConfirm(false);
       fetchPackages();
     } catch (error) {

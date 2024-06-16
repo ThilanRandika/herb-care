@@ -32,7 +32,7 @@ function AddProduct() {
     e.preventDefault();
     try {
       // Post the form data to the backend
-      await axios.post("http://localhost:8070/Product/add", formData);
+      await axios.post("https://herb-care-pzwv.onrender.com/Product/add", formData);
 
       // If successful, display a success message and navigate to the desired page
       alert("Product Added Successfully");

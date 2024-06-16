@@ -9,7 +9,7 @@ const OrderDisplay = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/giftPackageOrder/orders');
+        const response = await axios.get('https://herb-care-pzwv.onrender.com/giftPackageOrder/orders');
         setOrders(response.data.orders);
       } catch (error) {
         console.error('Failed to fetch orders:', error);
@@ -21,7 +21,7 @@ const OrderDisplay = () => {
 
   const handleCancelOrder = async (orderId) => {
     try {
-      await axios.delete(`http://localhost:8070/giftPackageOrder/cancelGiftPackageOrders/${orderId}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/giftPackageOrder/cancelGiftPackageOrders/${orderId}`);
       // Update the orders state after deletion
       setOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
     } catch (error) {

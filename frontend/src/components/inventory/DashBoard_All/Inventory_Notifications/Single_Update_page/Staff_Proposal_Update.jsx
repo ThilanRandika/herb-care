@@ -19,7 +19,7 @@ function Staff_Proposal_Update() {
     });
   
     useEffect(() => {
-      axios.get(`http://localhost:8070/ApprovalProcess/${id}`)
+      axios.get(`https://herb-care-pzwv.onrender.com/ApprovalProcess/${id}`)
         .then((res) => {
           setProposal(res.data.approval); // Assuming the data is in res.data.approval
           setFormData({
@@ -64,7 +64,7 @@ function Staff_Proposal_Update() {
         } else {
           try {
             // If no image uploaded, fetch previous image from database
-            const response = await axios.get(`http://localhost:8070/ApprovalProcess/${id}`);
+            const response = await axios.get(`https://herb-care-pzwv.onrender.com/ApprovalProcess/${id}`);
             const previousImage = response.data.approval.image; // Fix the variable name here
             // Set previous image in formData
             setFormData({ ...formData, image: previousImage });

@@ -43,7 +43,7 @@ function AddDefaultGiftPack() {
                 formData.append("images", image);
             });
 
-            await axios.post("http://localhost:8070/defaultGiftpackage/addDefault-gift-package", formData, {
+            await axios.post("https://herb-care-pzwv.onrender.com/defaultGiftpackage/addDefault-gift-package", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

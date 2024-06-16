@@ -12,7 +12,7 @@ const StarRating = ({ rating }) => {
 
 const downloadFeedbacksPdf = async () => {
   try {
-    const response = await axios.get('http://localhost:8070/feedback/download', {
+    const response = await axios.get('https://herb-care-pzwv.onrender.com/feedback/download', {
       responseType: 'blob', 
     });
     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -44,7 +44,7 @@ const StaffDashboard = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedback/');
+        const response = await axios.get('https://herb-care-pzwv.onrender.com/feedback/');
         if (response.data && response.data.feedbacks) {
           setFeedbacks(response.data.feedbacks);
         } else {
@@ -59,7 +59,7 @@ const StaffDashboard = () => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8070/feedback/count')
+    axios.get('https://herb-care-pzwv.onrender.com/feedback/count')
       .then(response => {
         setCount(response.data.count);
       })
@@ -70,7 +70,7 @@ const StaffDashboard = () => {
 
   const deleteFeedback = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/feedback/delete/${id}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/feedback/delete/${id}`);
       setFeedbacks((prevFeedbacks) => prevFeedbacks.filter((feedback) => feedback._id !== id));
       setCount((prevCount) => prevCount - 1); // Decrement the count by 1
     } catch (error) {

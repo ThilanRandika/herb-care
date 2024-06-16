@@ -17,7 +17,7 @@ function SellerAppointment() {
     };
 
     axios
-      .post("http://localhost:8070/sellerAppointments/creatAppoinment", newAppointment)
+      .post("https://herb-care-pzwv.onrender.com/sellerAppointments/creatAppoinment", newAppointment)
       .then((res) => {
         alert("Your Appointment has been placed successfully!");
         console.log(res.data);

@@ -13,7 +13,7 @@ function MyRejectedConsultations(props) {
   const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/rejectedAppointments/${user._id}`)
+        axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/rejectedAppointments/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRejectedAppointments(res.data);
@@ -41,7 +41,7 @@ function MyRejectedConsultations(props) {
   
     const hasRefund = async (appointmentId) => {
       try {
-        const response = await axios.get(`http://localhost:8070/refund/checkExistingRefund/${appointmentId}`);
+        const response = await axios.get(`https://herb-care-pzwv.onrender.com/refund/checkExistingRefund/${appointmentId}`);
         return response.data.hasRefund;
       } catch (error) {
         console.error('Error checking existing refund:', error);

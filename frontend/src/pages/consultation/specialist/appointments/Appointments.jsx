@@ -16,7 +16,7 @@ function Appointments(props) {
 
   useEffect(() => {
     // Fetch appointments history when the component mounts
-    axios.get(`http://localhost:8070/consultAppointment/getIncompleteAppointments/${props.specialistID}`)
+    axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/getIncompleteAppointments/${props.specialistID}`)
       .then((res) => {
         console.log("Got appointment history data: ", res.data);
         // Sort appointments by date in descending order

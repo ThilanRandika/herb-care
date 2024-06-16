@@ -24,7 +24,7 @@ const Register = () => {
         contact_num: contactNumber,
     }
     
-    axios.post('http://localhost:8070/customer/register', newCustomer)
+    axios.post('https://herb-care-pzwv.onrender.com/customer/register', newCustomer)
     .then((res)=>{
         console.log(res);
         alert("Registration Success!")

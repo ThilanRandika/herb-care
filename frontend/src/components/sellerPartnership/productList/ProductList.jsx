@@ -13,7 +13,7 @@ function ProductList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8070/sellerProducts/products")
+      .get("https://herb-care-pzwv.onrender.com/sellerProducts/products")
       .then((res) => {
         console.log(res.data);
         setProductList(res.data.products);

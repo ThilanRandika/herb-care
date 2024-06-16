@@ -12,7 +12,7 @@ function SpecialistList(props) {
 
   useEffect(()=>{
     
-    axios.get('http://localhost:8070/specialist/all')
+    axios.get('https://herb-care-pzwv.onrender.com/specialist/all')
     .then((res) => {
       setSpecialists(res.data);
       setLoading(false); // Set loading to false after data is fetched

@@ -9,7 +9,7 @@ const UserFeedbackGiftpackage = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/feedbackGiftPackage/');
+      const response = await axios.get('https://herb-care-pzwv.onrender.com/feedbackGiftPackage/');
       console.log(response.data); // Make sure this logs an array of feedbacks
       setFeedbacks(response.data.feedbacks);
     } catch (error) {
@@ -25,7 +25,7 @@ const UserFeedbackGiftpackage = () => {
 
   const handleDelete = async (feedbackId) => {
     try {
-      await axios.delete(`http://localhost:8070/feedbackGiftPackage/delete/${feedbackId}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/feedbackGiftPackage/delete/${feedbackId}`);
       setFeedbacks((prevFeedbacks) => prevFeedbacks.filter((item) => item._id !== feedbackId));
     } catch (error) {
       console.error(error);

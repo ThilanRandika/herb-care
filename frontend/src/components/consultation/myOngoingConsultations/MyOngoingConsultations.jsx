@@ -12,7 +12,7 @@ function MyOngoingConsultations() {
   const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
-    axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
+    axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/getOngoingAppointments/${user._id}`)
       .then((res) => {
         console.log("Got data: ", res.data);
         setOnGoingAppointments(res.data);
@@ -25,10 +25,10 @@ function MyOngoingConsultations() {
   }, []);
 
   const handleCancel = (id) => {
-    axios.put(`http://localhost:8070/consultAppointment/cancelAppointment/${id}`)
+    axios.put(`https://herb-care-pzwv.onrender.com/consultAppointment/cancelAppointment/${id}`)
       .then((res) => {
         console.log("Request cancelled successfully", res.data);
-        axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
+        axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/getOngoingAppointments/${user._id}`)
           .then((res) => {
             console.log("Got data: ", res.data);
             setOnGoingAppointments(res.data);
@@ -47,7 +47,7 @@ function MyOngoingConsultations() {
   
   const handleGenerateInvoice = async (appointmentId) => {
     try {
-      const response = await axios.get(`http://localhost:8070/consultAppointment/generateInvoice/${appointmentId}`, {
+      const response = await axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/generateInvoice/${appointmentId}`, {
         responseType: 'blob', // Receive response as Blob (binary data)
       });
   

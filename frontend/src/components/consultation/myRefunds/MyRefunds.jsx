@@ -10,7 +10,7 @@ function MyRefunds(props) {
     const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/refund/customerRefunds/${user._id}`)
+        axios.get(`https://herb-care-pzwv.onrender.com/refund/customerRefunds/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRefunds(res.data);
@@ -24,7 +24,7 @@ function MyRefunds(props) {
 
     const fetchAppointmentDetails = async (appointmentId) => {
         try {
-            const response = await axios.get(`http://localhost:8070/consultAppointment/getAppointment/${appointmentId}`);
+            const response = await axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/getAppointment/${appointmentId}`);
             return response.data;
         } catch (error) {
             console.error('Error getting appointment details:', error);

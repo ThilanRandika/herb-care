@@ -19,7 +19,7 @@ function SellerCheckout({ selectedItems, onClose }) {
 
     console.log(selectedItems)
     axios
-      .get("http://localhost:8070/sellerOrder/checkout",  {
+      .get("https://herb-care-pzwv.onrender.com/sellerOrder/checkout",  {
         params: {
           selectedItems: selectedItems
         }
@@ -56,7 +56,7 @@ function SellerCheckout({ selectedItems, onClose }) {
     };
 
     axios
-      .post("http://localhost:8070/sellerOrder/placeOrder", newOrder)
+      .post("https://herb-care-pzwv.onrender.com/sellerOrder/placeOrder", newOrder)
       .then((res) => {
         alert("Your order has been placed successfully!");
         console.log(res.data);

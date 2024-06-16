@@ -24,21 +24,21 @@ const PackageDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8070/packages/${id}`)
+      .get(`https://herb-care-pzwv.onrender.com/packages/${id}`)
       .then((response) => {
         const responseData = response.data;
         setPackageDetails(responseData);
 
         Promise.all(
           responseData.defaultServices.map((serviceId) =>
-            axios.get(`http://localhost:8070/services/${serviceId}`)
+            axios.get(`https://herb-care-pzwv.onrender.com/services/${serviceId}`)
           )
         ).then((responses) => {
           setDefaultServices(responses.map((res) => res.data));
 
           Promise.all(
             responseData.addOnServices.map((serviceId) =>
-              axios.get(`http://localhost:8070/services/${serviceId}`)
+              axios.get(`https://herb-care-pzwv.onrender.com/services/${serviceId}`)
             )
           ).then((addOnResponses) => {
             setAddOnServices(addOnResponses.map((res) => res.data));

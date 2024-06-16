@@ -21,7 +21,7 @@ const UserFeedback = ({ customerId }) => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/feedback/get');
+      const response = await axios.get('https://herb-care-pzwv.onrender.com/feedback/get');
       console.log(response.data);
       setFeedback(response.data);
     } catch (error) {
@@ -35,7 +35,7 @@ const UserFeedback = ({ customerId }) => {
 
   const handleDelete = async (feedbackId) => {
     try {
-      await axios.delete(`http://localhost:8070/feedback/delete/${feedbackId}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/feedback/delete/${feedbackId}`);
       setFeedback((prevFeedback) => prevFeedback.filter((item) => item._id !== feedbackId));
     } catch (error) {
       console.error(error);

@@ -11,7 +11,7 @@ function MyOrders() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`http://localhost:8070/order/getOrdersForUser/${user._id}`);
+                const response = await axios.get(`https://herb-care-pzwv.onrender.com/order/getOrdersForUser/${user._id}`);
                 setOrders(response.data);
             } catch (error) {
                 console.error('Error fetching orders:', error);
@@ -25,9 +25,9 @@ function MyOrders() {
 
     const cancelOrder = async (orderId) => {
         try {
-            await axios.put(`http://localhost:8070/order/cancelOrder/${orderId}`);
+            await axios.put(`https://herb-care-pzwv.onrender.com/order/cancelOrder/${orderId}`);
             // Refetch orders after cancellation
-            const response = await axios.get(`http://localhost:8070/order/getOrdersForUser/${user._id}`);
+            const response = await axios.get(`https://herb-care-pzwv.onrender.com/order/getOrdersForUser/${user._id}`);
             setOrders(response.data);
         } catch (error) {
             console.error('Error cancelling order:', error);

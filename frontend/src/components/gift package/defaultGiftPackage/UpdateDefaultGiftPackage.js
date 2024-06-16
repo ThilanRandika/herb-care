@@ -22,7 +22,7 @@ function UpdateDefaultGiftPackage() {
 
     const fetchPackage = async () => {
         try {
-            const response = await axios.get(`http://localhost:8070/defaultGiftpackage/default-gift-pack/${id}`);
+            const response = await axios.get(`https://herb-care-pzwv.onrender.com/defaultGiftpackage/default-gift-pack/${id}`);
             setPackageData(response.data);
         } catch (error) {
             console.error("Error fetching default gift package:", error);
@@ -49,7 +49,7 @@ function UpdateDefaultGiftPackage() {
                 totalPrice: packageData.totalPrice
             };
 
-            await axios.put(`http://localhost:8070/defaultGiftpackage/updateDefault-gift-package/${id}`, updatedPackageData);
+            await axios.put(`https://herb-care-pzwv.onrender.com/defaultGiftpackage/updateDefault-gift-package/${id}`, updatedPackageData);
             alert("Package updated successfully");
         } catch (error) {
             console.error("Error updating default gift package:", error);

@@ -20,7 +20,7 @@ function Product() {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:8070/Product/${id}`)
+    axios.get(`https://herb-care-pzwv.onrender.com/Product/${id}`)
       .then((res) => {
         setProduct(res.data.product);
         setFormData({
@@ -73,7 +73,7 @@ function Product() {
     } else {
       try {
         // If no image uploaded, fetch previous image from database
-        const response = await axios.get(`http://localhost:8070/Product/${id}`);
+        const response = await axios.get(`https://herb-care-pzwv.onrender.com/Product/${id}`);
         const previousImage = response.data.product.image;
         // Set previous image in formData
         setFormData({ ...formData, image: previousImage });
@@ -103,7 +103,7 @@ function Product() {
       formDataToSend.append('action', 'Update'); // Set action to "Update"
       formDataToSend.append('ProductID', id);
       
-      await axios.put(`http://localhost:8070/Product/update/${id}`, formDataToSend, {
+      await axios.put(`https://herb-care-pzwv.onrender.com/Product/update/${id}`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }

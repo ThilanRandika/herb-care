@@ -13,7 +13,7 @@ function StaffRefundRequests() {
 
     const fetchRefundRequests = async () => {
         try {
-            const response = await axios.get(`http://localhost:8070/refund/pendingRefunds`);
+            const response = await axios.get(`https://herb-care-pzwv.onrender.com/refund/pendingRefunds`);
             setRefundRequests(response.data);
         } catch (error) {
             console.error('Error getting refund requests', error);
@@ -22,7 +22,7 @@ function StaffRefundRequests() {
 
     const handleMarkAsCompleted = async (refundId) => {
         try {
-            await axios.put(`http://localhost:8070/refund/completeRefund/${refundId}`);
+            await axios.put(`https://herb-care-pzwv.onrender.com/refund/completeRefund/${refundId}`);
             setShowAlert(true); // Show success alert
             // Re-fetch refund requests after marking as completed
             fetchRefundRequests();
@@ -38,7 +38,7 @@ function StaffRefundRequests() {
 
     const fetchAppointmentDetails = async (appointmentId) => {
         try {
-            const response = await axios.get(`http://localhost:8070/consultAppointment/getAppointment/${appointmentId}`);
+            const response = await axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/getAppointment/${appointmentId}`);
             return response.data;
         } catch (error) {
             console.error('Error getting appointment details:', error);

@@ -12,7 +12,7 @@ function CalenderSpecialistAvailabilitiesDashBoard() {
 
   useEffect(() => {
     // Fetch ongoing appointment dates from the backend
-    fetch(`http://localhost:8070/consultAppointment/getOngoingAppointmentDates/${user._id}`)
+    fetch(`https://herb-care-pzwv.onrender.com/consultAppointment/getOngoingAppointmentDates/${user._id}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);

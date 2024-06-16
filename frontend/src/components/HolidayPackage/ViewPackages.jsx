@@ -10,7 +10,7 @@ const ViewPackages = () => {
   useEffect(() => {
     // Fetch packages from backend on component mount
     axios
-      .get("http://localhost:8070/packages")
+      .get("https://herb-care-pzwv.onrender.com/packages")
       .then((response) => {
         setPackages(response.data);
       })

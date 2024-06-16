@@ -16,7 +16,7 @@ function Product() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:8070/Product/${id}`)
+    axios.get(`https://herb-care-pzwv.onrender.com/Product/${id}`)
       .then((res) => {
         setProduct({
           ...res.data.product,
@@ -46,7 +46,7 @@ function Product() {
 
   const addToCart = () => {
     axios
-      .post("http://localhost:8070/Cart/add/" + id, {
+      .post(`https://herb-care-pzwv.onrender.com/Cart/add/${id}` + id, {
         quantity: quantity,
         price: product.Manufactured_price,
         totalPrice: (quantity * product.Manufactured_price).toFixed(2),
@@ -64,7 +64,7 @@ function Product() {
     return <div className="loading-container">Loading...</div>;
   }
 
-  const imageUrl = `http://localhost:8070/${product.image}`;
+  const imageUrl = `https://herb-care-pzwv.onrender.com/${product.image}`;
 
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value);

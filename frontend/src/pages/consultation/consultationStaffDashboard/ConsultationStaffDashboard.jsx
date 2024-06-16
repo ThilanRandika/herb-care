@@ -18,7 +18,7 @@ function ConsultationStaffDashboard() {
 
   const fetchRefundCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/refund/incompleteRefundsCount");
+      const response = await fetch("https://herb-care-pzwv.onrender.com/refund/incompleteRefundsCount");
       if (response.ok) {
         const data = await response.json();
         setPendingRefundCount(data.count);
@@ -32,7 +32,7 @@ function ConsultationStaffDashboard() {
 
   const fetchAllRefundCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/refund/allRefundsCount");
+      const response = await fetch("https://herb-care-pzwv.onrender.com/refund/allRefundsCount");
       if (response.ok) {
         const data = await response.json();
         setAllRefundCount(data.count);
@@ -46,7 +46,7 @@ function ConsultationStaffDashboard() {
 
   const fetchCompletedRefundCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/refund/completeRefundsCount");
+      const response = await fetch("https://herb-care-pzwv.onrender.com/refund/completeRefundsCount");
       if (response.ok) {
         const data = await response.json();
         setCompletedRefundCount(data.count);

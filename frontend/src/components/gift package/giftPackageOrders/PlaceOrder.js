@@ -23,7 +23,7 @@ const PlaceOrder = () => {
 
 
   useEffect(()=>{
-    axios.get(`http://localhost:8070/giftPackageOrder/get/${packageId}`)
+    axios.get(`https://herb-care-pzwv.onrender.com/giftPackageOrder/get/${packageId}`)
     .then((res)=>{
       console.log(res.data.newOrder.orderAddress)
       setOrderName(res.data.newOrder.orderName)
@@ -42,7 +42,7 @@ const PlaceOrder = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(`http://localhost:8070/giftPackageOrder/create/${packageId}`, {
+      const response = await axios.post(`https://herb-care-pzwv.onrender.com/giftPackageOrder/create/${packageId}`, {
         packageId,
         orderName,
         orderAddress,

@@ -14,7 +14,7 @@ export default function AllProducts() {
   useEffect(() => {
     function getProducts() {
       axios
-        .get("http://localhost:8070/Product/")
+        .get("https://herb-care-pzwv.onrender.com/Product/")
         .then((res) => {
           console.log(res.data);
           setProducts(res.data);
@@ -38,7 +38,7 @@ export default function AllProducts() {
 
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`http://localhost:8070/Product/delete/${productId}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/Product/delete/${productId}`);
       // Remove the deleted product from the state
       setFilteredProducts(filteredProducts.filter((product) => product._id !== productId));
       setProducts(products.filter((product) => product._id !== productId));

@@ -12,22 +12,22 @@ function SpecialistDashboard(props) {
   const [todayAppointmentsCount, setTodayAppointmentsCount] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:8070/consultAppointment/getOngoingAppointmentsCount/${user._id}`)
+    fetch(`https://herb-care-pzwv.onrender.com/consultAppointment/getOngoingAppointmentsCount/${user._id}`)
       .then(response => response.json())
       .then(data => setOngoingAppointmentsCount(data.count))
       .catch(error => console.error('Error fetching ongoing appointments count:', error));
 
-    fetch(`http://localhost:8070/consultAppointment/getAllAppointmentsCount/${user._id}`)
+    fetch(`https://herb-care-pzwv.onrender.com/consultAppointment/getAllAppointmentsCount/${user._id}`)
       .then(response => response.json())
       .then(data => setAllAppointmentsCount(data.count))
       .catch(error => console.error('Error fetching all appointments count:', error));
 
-    fetch(`http://localhost:8070/consultAppointment/getCompletedAppointmentsCount/${user._id}`)
+    fetch(`https://herb-care-pzwv.onrender.com/consultAppointment/getCompletedAppointmentsCount/${user._id}`)
       .then(response => response.json())
       .then(data => setCompletedAppointmentsCount(data.count))
       .catch(error => console.error('Error fetching completed appointments count:', error));
 
-    fetch(`http://localhost:8070/consultAppointment/getTodaysAppointmentsCount/${user._id}`)
+    fetch(`https://herb-care-pzwv.onrender.com/consultAppointment/getTodaysAppointmentsCount/${user._id}`)
       .then(response => response.json())
       .then(data => setTodayAppointmentsCount(data.count))
       .catch(error => console.error('Error fetching today appointments count:', error));

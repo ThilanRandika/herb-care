@@ -12,7 +12,7 @@ export default function StaffProposalsChanges() {
   useEffect(() => {
     function getProposals() {
       axios
-        .get("http://localhost:8070/ApprovalProcess/")
+        .get("https://herb-care-pzwv.onrender.com/ApprovalProcess/")
         .then((res) => {
           console.log(res.data); // Assuming the data is in res.data
           setProposals(res.data); // Set the proposals state with fetched data
@@ -39,7 +39,7 @@ export default function StaffProposalsChanges() {
   // Function to handle approval or rejection of proposal
   const handleAction = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:8070/ApprovalProcess/${id}`, { status: newStatus });
+      await axios.put(`https://herb-care-pzwv.onrender.com/ApprovalProcess/${id}`, { status: newStatus });
       // Update the status in the state
       setStatusChanges({ ...statusChanges, [id]: newStatus });
     } catch (error) {

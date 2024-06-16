@@ -11,7 +11,7 @@ export default function ViewAllProducts() {
   useEffect(() => {
     function getProducts() {
       axios
-        .get("http://localhost:8070/Product/")
+        .get("https://herb-care-pzwv.onrender.com/Product/")
         .then((res) => {
           console.log(res.data); // Assuming the data is in res.data
           setProducts(res.data); // Set the products state with fetched data
@@ -43,7 +43,7 @@ export default function ViewAllProducts() {
         ingredients: product.ingredients
       };
   
-      await axios.post('http://localhost:8070/ApprovalProcess/addDelete', productToDelete);
+      await axios.post('https://herb-care-pzwv.onrender.com/ApprovalProcess/addDelete', productToDelete);
       
     } catch (error) {
       console.error('Error deleting product:', error);

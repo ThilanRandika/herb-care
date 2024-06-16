@@ -11,7 +11,7 @@ function Cart() {
   }, []);
 
   const fetchCartItems = () => {
-    axios.post('http://localhost:8070/Cart/allcart')
+    axios.post('https://herb-care-pzwv.onrender.com/Cart/allcart')
       .then(response => {
         setItems(response.data.items);
         setalltotalcount(response.data.totalPrice);
@@ -22,7 +22,7 @@ function Cart() {
   };
 
   const updateQuantity = (productId, quantity) => {
-    axios.post(`http://localhost:8070/Cart/update/${productId}`, { quantity })
+    axios.post(`https://herb-care-pzwv.onrender.com/Cart/update/${productId}`, { quantity })
       .then(response => {
         console.log(response.data)
         const updatedItem = response.data.item;
@@ -40,7 +40,7 @@ function Cart() {
   }
 
   const removeItem = (productId) => {
-    axios.post(`http://localhost:8070/Cart/remove/${productId}`)
+    axios.post(`https://herb-care-pzwv.onrender.com/Cart/remove/${productId}`)
       .then(response => {
         const updatedItems = items.filter(item => item._id !== productId);
         setItems(updatedItems);

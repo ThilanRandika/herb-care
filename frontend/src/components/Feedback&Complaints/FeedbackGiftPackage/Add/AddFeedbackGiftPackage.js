@@ -39,7 +39,7 @@ const FeedbackForm = () => {
     });
 
     try {
-      await axios.post(`http://localhost:8070/feedbackGiftPackage/add/${packageId}`, formData, {
+      await axios.post(`https://herb-care-pzwv.onrender.com/feedbackGiftPackage/add/${packageId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

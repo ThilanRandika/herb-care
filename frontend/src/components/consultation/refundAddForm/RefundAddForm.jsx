@@ -25,7 +25,7 @@ function RefundAddForm() {
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        const response = await axios.get(`http://localhost:8070/consultAppointment/getAppointment/${appointmentId}`);
+        const response = await axios.get(`https://herb-care-pzwv.onrender.com/consultAppointment/getAppointment/${appointmentId}`);
         setAppointment(response.data);
         setRefund({ ...refund, appointment: appointmentId });
       } catch (error) {
@@ -40,7 +40,7 @@ function RefundAddForm() {
   useEffect(() => {
     const fetchRefundInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:8070/refund/refundInfo/${appointmentId}`);
+        const response = await axios.get(`https://herb-care-pzwv.onrender.com/refund/refundInfo/${appointmentId}`);
         setRefundInfo(response.data);
       } catch (error) {
         console.error('Error fetching appointment:', error);
@@ -70,7 +70,7 @@ function RefundAddForm() {
       appointmentId: refund.appointment,
       bankAccountDetails: refund.bankAccountDetails,
     }
-    axios.post('http://localhost:8070/refund/add', newRefund).then((res)=>{
+    axios.post('https://herb-care-pzwv.onrender.com/refund/add', newRefund).then((res)=>{
       alert('Refund request submitted successfully!'); // Show success alert
       navigator('../../refunds/myRefunds');
     }).catch((err)=>{

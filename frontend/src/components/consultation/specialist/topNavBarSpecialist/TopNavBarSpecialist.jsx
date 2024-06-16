@@ -25,7 +25,7 @@ function TopNavBarSpecialist({ isNotificationVisible, setNotificationVisible, un
   }, [user._id]); // Fetch count whenever user ID changes
 
   const fetchUnreadNotificationCount = () => {
-    fetch(`http://localhost:8070/specialistNotifications/unreadCount/${user._id}`)
+    fetch(`https://herb-care-pzwv.onrender.com/specialistNotifications/unreadCount/${user._id}`)
       .then(response => response.json())
       .then(data => {
         setUnreadNotificationCount(data.unreadCount);

@@ -38,7 +38,7 @@ const FeedbackForm = () => {
     
 
     try {
-      await axios.post(`http://localhost:8070/feedback/add/${productId}`, formData, {
+      await axios.post(`https://herb-care-pzwv.onrender.com/feedback/add/${productId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you have stored the token in localStorage

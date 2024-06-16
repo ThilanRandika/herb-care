@@ -9,7 +9,7 @@ const UserDisplay = () => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/complaints/get');
+        const response = await axios.get('https://herb-care-pzwv.onrender.com/complaints/get');
         setComplaints(response.data);
       } catch (error) {
         console.error(error);
@@ -21,7 +21,7 @@ const UserDisplay = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/complaints/delete/${id}`);
+      await axios.delete(`https://herb-care-pzwv.onrender.com/complaints/delete/${id}`);
       setComplaints((prevComplaints) => prevComplaints.filter((complaint) => complaint._id !== id));
     } catch (error) {
       console.error(error);

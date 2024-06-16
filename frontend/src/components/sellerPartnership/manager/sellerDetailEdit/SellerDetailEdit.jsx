@@ -15,7 +15,7 @@ function SellerDetailEdit() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/seller/oneSeller/${id}`)
+        axios.get(`https://herb-care-pzwv.onrender.com/seller/oneSeller/${id}`)
             .then((res) => {
                 setSellerDetails(res.data.seller);
                 setProductDetails(res.data.mergedProducts);
@@ -63,7 +63,7 @@ function SellerDetailEdit() {
             Products: productDetails.map(product => product.Products)
         };
         console.log(updatedSeller)
-        axios.put('http://localhost:8070/seller/updateSeller/' + id, updatedSeller)
+        axios.put('https://herb-care-pzwv.onrender.com/seller/updateSeller/' + id, updatedSeller)
         .then((res)=>{
             console.log(res.data)
             alert("Seller updated Successfully");

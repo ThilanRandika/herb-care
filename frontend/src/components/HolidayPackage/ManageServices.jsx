@@ -32,7 +32,7 @@ const ManageServices = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await axios.get("http://localhost:8070/services");
+      const response = await axios.get("https://herb-care-pzwv.onrender.com/services");
       setServices(response.data);
     } catch (error) {
       console.error("Error fetching services:", error);
@@ -41,7 +41,7 @@ const ManageServices = () => {
 
   const handleAddService = async () => {
     try {
-      await axios.post("http://localhost:8070/services", newService);
+      await axios.post("https://herb-care-pzwv.onrender.com/services", newService);
       setShowAddModal(false);
       setNewService({
         category: "",
@@ -74,7 +74,7 @@ const ManageServices = () => {
   const handleSaveEdit = async () => {
     try {
       await axios.patch(
-        `http://localhost:8070/services/${selectedService._id}`,
+        `https://herb-care-pzwv.onrender.com/services/${selectedService._id}`,
         selectedService
       );
       setShowEditModal(false);
@@ -89,7 +89,7 @@ const ManageServices = () => {
   const handleDeleteService = async () => {
     try {
       await axios.delete(
-        `http://localhost:8070/services/${selectedService._id}`
+        `https://herb-care-pzwv.onrender.com/services/${selectedService._id}`
       );
       fetchServices();
       handleCloseDeleteModal();
