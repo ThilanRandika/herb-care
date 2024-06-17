@@ -26,8 +26,8 @@ function Cart() {
         axios.get(`https://herb-care-pzwv.onrender.com/Cart/user/${user._id}`)
             .then((res) => {
                 console.log(res.data);
-                if (res.data && Array.isArray(res.data.items)) {
-                    setItems(res.data.items);
+                if (res.data && Array.isArray(res.data)) {
+                    setItems(res.data);
                 } else {
                     console.error("Unexpected response format: ", res.data);
                     setItems([]);
