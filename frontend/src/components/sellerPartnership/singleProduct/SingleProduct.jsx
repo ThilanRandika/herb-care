@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./singleProduct.css";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
 
 function SingleProduct() {
   const { Id } = useParams();
@@ -11,10 +12,11 @@ function SingleProduct() {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [error, setError] = useState("");
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     axios
-      .get(`https://herb-care-pzwv.onrender.com/sellerProducts/products/` + Id)
+      .get(`https://herb-care-pzwv.onrender.com/sellerProducts/products/${Id}/${user.sellerId}`)
       .then((res) => {
         console.log(res.data);
         setProduct(res.data);
