@@ -3,6 +3,7 @@ import './availabilities.css';
 import axios from 'axios';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import config from '../../../../config';
 
 function Availabilities(props) {
   const [availabilities, setAvailabilities] = useState([]);
@@ -37,7 +38,7 @@ function Availabilities(props) {
   const fetchAvailabilities = async () => {
     try {
       await formatDate(value); // Format the date before fetching availabilities
-      const response = await axios.get(`http://localhost:8070/availability/getAvailabilitiesByDateAndSpecialist`, {
+      const response = await axios.get(`${config.BASE_URL}/availability/getAvailabilitiesByDateAndSpecialist`, {
         params: {
           date: formattedDate,
           specialistId: props.specialistID
@@ -51,7 +52,7 @@ function Availabilities(props) {
           return { ...availability, centerName: null };
         } else {
           // Fetch center object only if availability.center is not null
-          const centerResponse = await axios.get(`http://localhost:8070/center/${availability.center}`);
+          const centerResponse = await axios.get(`${config.BASE_URL}/center/${availability.center}`);
           const centerName = centerResponse.data.name;
           return { ...availability, centerName };
         }

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import "./login.css"; // Updated filename to follow convention
 import companyLogo from '../../../Images/logo/HerbCare Logo.png';
+import config from "../../../config";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -25,7 +26,7 @@ const Login = () => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("http://localhost:8070/auth/login", credentials);
+      const res = await axios.post(`${config.BASE_URL}/auth/login`, credentials);
       console.log(res.data.user);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.user });
       console.log(res.data.redirect);

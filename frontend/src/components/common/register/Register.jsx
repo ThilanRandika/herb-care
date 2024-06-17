@@ -3,6 +3,7 @@ import './register.css';
 import { Link, useNavigate } from 'react-router-dom';
 import companyLogo from '../../../Images/logo/HerbCare Logo.png';
 import axios from 'axios';
+import config from '../../../config';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -24,7 +25,7 @@ const Register = () => {
         contact_num: contactNumber,
     }
     
-    axios.post('http://localhost:8070/customer/register', newCustomer)
+    axios.post(`${config.BASE_URL}/customer/register`, newCustomer)
     .then((res)=>{
         console.log(res);
         alert("Registration Success!")

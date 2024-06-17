@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './FeedbackSummary.css';
+import config from "../../../../../config";
 
 const FeedbackSummaries = () => {
   const [summaries, setSummaries] = useState([]);
@@ -9,7 +10,7 @@ const FeedbackSummaries = () => {
   useEffect(() => {
     const fetchFeedbackSummaries = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedback/feedback-summaries');
+        const response = await axios.get(`${config.BASE_URL}/feedback/feedback-summaries`);
         setSummaries(response.data);
       } catch (error) {
         console.error(error);

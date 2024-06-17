@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './myRefunds.css';
 import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
+import config from '../../../config';
 
 function MyRefunds(props) {
     const [refunds, setRefunds] = useState([]);
@@ -10,7 +11,7 @@ function MyRefunds(props) {
     const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/refund/customerRefunds/${user._id}`)
+        axios.get(`${config.BASE_URL}/refund/customerRefunds/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRefunds(res.data);
@@ -24,7 +25,7 @@ function MyRefunds(props) {
 
     const fetchAppointmentDetails = async (appointmentId) => {
         try {
-            const response = await axios.get(`http://localhost:8070/consultAppointment/getAppointment/${appointmentId}`);
+            const response = await axios.get(`${config.BASE_URL}/consultAppointment/getAppointment/${appointmentId}`);
             return response.data;
         } catch (error) {
             console.error('Error getting appointment details:', error);

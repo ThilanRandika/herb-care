@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
 import './myOrders.css';
 import { Link } from 'react-router-dom';
+import config from '../../../config';
 
 function MyOrders() {
     const { user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ function MyOrders() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`http://localhost:8070/order/getOrdersForUser/${user._id}`);
+                const response = await axios.get(`${config.BASE_URL}/order/getOrdersForUser/${user._id}`);
                 setOrders(response.data);
             } catch (error) {
                 console.error('Error fetching orders:', error);
@@ -25,9 +26,9 @@ function MyOrders() {
 
     const cancelOrder = async (orderId) => {
         try {
-            await axios.put(`http://localhost:8070/order/cancelOrder/${orderId}`);
+            await axios.put(`${config.BASE_URL}/order/cancelOrder/${orderId}`);
             // Refetch orders after cancellation
-            const response = await axios.get(`http://localhost:8070/order/getOrdersForUser/${user._id}`);
+            const response = await axios.get(`${config.BASE_URL}/order/getOrdersForUser/${user._id}`);
             setOrders(response.data);
         } catch (error) {
             console.error('Error cancelling order:', error);

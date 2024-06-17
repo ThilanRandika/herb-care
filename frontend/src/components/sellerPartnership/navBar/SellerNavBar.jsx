@@ -9,7 +9,7 @@ function SellerNavBar() {
   // const [unreadNotifications, setUnreadNotifications] = useState(0); // Example initial count
 
   // useEffect(() => {
-  //   axios.get("http://localhost:8070/sellerNotification/unReadCount")
+  //   axios.get("https://herb-care-pzwv.onrender.com/sellerNotification/unReadCount")
   //   .then((res) => {
   //     console.log('Successfully retrieved unread   notifications count', res.data);
   //     setUnreadNotifications(res.data.unreadCount);

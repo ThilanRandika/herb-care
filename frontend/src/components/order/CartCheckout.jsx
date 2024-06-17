@@ -3,6 +3,7 @@ import "./cartCheckout.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import config from "../../config";
 
 function CartCheckout({ selectedItems, onClose }) {
   const [products, setProduct] = useState([]);
@@ -22,7 +23,7 @@ function CartCheckout({ selectedItems, onClose }) {
 
     console.log(selectedItems)
     axios
-      .get("http://localhost:8070/cart/checkout",  {
+      .get(`${config.BASE_URL}/cart/checkout`,  {
         params: {
           selectedItems: selectedItems
         }
@@ -60,7 +61,7 @@ function CartCheckout({ selectedItems, onClose }) {
     };
 
     axios
-      .post("http://localhost:8070/sellerOrder/placeOrder", newOrder)
+      .post(`${config.BASE_URL}/sellerOrder/placeOrder`, newOrder)
       .then((res) => {
         alert("Your order has been placed successfully!");
         console.log(res.data);

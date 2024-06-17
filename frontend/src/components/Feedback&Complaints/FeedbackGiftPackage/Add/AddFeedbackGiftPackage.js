@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './AddFeedbackGiftPackage.css';
 import { useLocation } from 'react-router-dom';
+import config from "../../../../config";
 
 const StarRatingInput = ({ value, onChange }) => {
   const stars = Array.from({ length: 5 }, (_, index) => (
@@ -39,7 +40,7 @@ const FeedbackForm = () => {
     });
 
     try {
-      await axios.post(`http://localhost:8070/feedbackGiftPackage/add/${packageId}`, formData, {
+      await axios.post(`${config.BASE_URL}/feedbackGiftPackage/add/${packageId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

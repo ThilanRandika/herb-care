@@ -12,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import Header from "./Header";
+import config from "../../config";
 
 const EditPackages = () => {
   const [packages, setPackages] = useState([]);
@@ -28,7 +29,7 @@ const EditPackages = () => {
 
   const fetchPackages = async () => {
     try {
-      const response = await axios.get("http://localhost:8070/packages");
+      const response = await axios.get(`${config.BASE_URL}/packages`);
       setPackages(response.data);
     } catch (error) {
       console.error("Error fetching packages:", error);
@@ -53,7 +54,7 @@ const EditPackages = () => {
   const handleSaveEdit = async () => {
     try {
       await axios.patch(
-        `http://localhost:8070/packages/${selectedPackage._id}`,
+        `${config.BASE_URL}/packages/${selectedPackage._id}`,
         editedPackage
       );
       setShowEdit(false);
@@ -72,7 +73,7 @@ const EditPackages = () => {
 
   const handleConfirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8070/packages/${deletePackageId}`);
+      await axios.delete(`${config.BASE_URL}/packages/${deletePackageId}`);
       setShowDeleteConfirm(false);
       fetchPackages();
     } catch (error) {

@@ -1,7 +1,6 @@
 const Product = require("../../models/inventory/Product.js");
 const router = require("express").Router();
 const Cart = require("../../models/order/Cart.js");
-const { verifyToOther } = require("../../utils/veryfyToken.js");
 
 // // Route to add a product to the cart
 // router.post('/add', async (req, res) => {
@@ -36,9 +35,9 @@ const { verifyToOther } = require("../../utils/veryfyToken.js");
 
 
 //Add product to the bag
-router.route('/add/:productId').post(verifyToOther, async (req,res) => {
+router.route('/add/:productId').post( async (req,res) => {
   try{
-      const userId = req.person.userId;
+      const userId = req.body.userId;
       const productId = req.params.productId;
 
       const existingCartItem = await Cart.findOne({ customerId: userId, product_id: productId });
@@ -139,20 +138,42 @@ router.get('/user/:customerId', async (req, res) => {
     // Fetch all items from the cart for the specified user
     const items = await Cart.find({ customerId });
 
+    const productIds = items.map((product) => product.product_id);
+
+    const mergedItems = [];
+
     // Calculate total price
-    let totalPrice = 0;
-    for (const item of items) {
-      totalPrice += item.totalPrice;
+    // let totalPrice = 0;
+    // for (const item of items) {
+    //   totalPrice += item.totalPrice;
+    // }
+
+    for (const productId of productIds) {
+      const product = await Product.findById(productId);
+  
+      console.log(productId);
+  
+      if (product) {
+        const cartItem = await Cart.findOne({
+          product_id: productId,
+          customerId: customerId,
+        });
+  
+        mergedItems.push({
+          ...product._doc,
+          item_id: cartItem._id,
+          quantity: cartItem.quantity,
+          price: cartItem.price,
+          totalPrice: cartItem.totalPrice,
+        });
+  
+      } else {
+        console.log(`Product with ID ${productId} not found.`);
+      }
     }
 
-    // Add total price to the response JSON
-    const response = {
-      items: items,
-      totalPrice: totalPrice
-    };
-
     // Send response
-    res.status(200).json(response);
+    res.status(200).json(mergedItems);
   } catch (error) {
     console.error("Error fetching items from cart for user:", error);
     res.status(500).json({ error: "Internal server error" });

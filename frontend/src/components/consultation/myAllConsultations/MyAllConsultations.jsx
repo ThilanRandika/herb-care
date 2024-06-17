@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './myAllConsultations.css';
 import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
+import config from '../../../config';
 
 function MyAllConsultations() {
     const [appointments, setAppointments] = useState([]);
@@ -12,7 +13,7 @@ function MyAllConsultations() {
     const [loading, setLoading] = useState(true); // State to track loading status 
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/getAppointmentsForCus/${user._id}`)
+        axios.get(`${config.BASE_URL}/consultAppointment/getAppointmentsForCus/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setAppointments(res.data);

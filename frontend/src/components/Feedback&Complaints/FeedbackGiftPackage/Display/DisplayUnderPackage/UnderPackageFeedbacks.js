@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './UnderPackageFeedbacks.css'
+import config from "../../../../../config";
 
 // Function to generate star icons based on rating value
 const generateStars = (rating) => {
@@ -23,7 +24,7 @@ const FeedbackList = (props) => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get(`http://localhost:8070/feedbackGiftPackage/singleFeedback/${props.packageId}`);   
+        const response = await axios.get(`${config.BASE_URL}/feedbackGiftPackage/singleFeedback/${props.packageId}`);   
         setFeedbacks(response.data);
         setLoading(false);
       } catch (error) {

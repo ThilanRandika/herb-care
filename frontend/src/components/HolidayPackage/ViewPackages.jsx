@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "./Header";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import config from "../../config";
 
 const ViewPackages = () => {
   const [packages, setPackages] = useState([]);
@@ -10,7 +11,7 @@ const ViewPackages = () => {
   useEffect(() => {
     // Fetch packages from backend on component mount
     axios
-      .get("http://localhost:8070/packages")
+      .get(`${config.BASE_URL}/packages`)
       .then((response) => {
         setPackages(response.data);
       })

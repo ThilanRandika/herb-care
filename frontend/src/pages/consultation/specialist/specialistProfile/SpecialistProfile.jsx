@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import './specialistProfile.css';
 import axios from 'axios';
 import { AuthContext } from '../../../../context/AuthContext';
+import config from '../../../../config';
 
 function SpecialistProfile() {
     const { user } = useContext(AuthContext);
@@ -21,7 +22,7 @@ function SpecialistProfile() {
 
     const fetchSpecialistData = () => {
         // Fetch specialist data by ID
-        axios.get(`http://localhost:8070/specialist/${user._id}`)
+        axios.get(`${config.BASE_URL}/specialist/${user._id}`)
             .then(response => {
                 setSpecialistData(response.data);
             })
@@ -39,7 +40,7 @@ function SpecialistProfile() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Send updated specialist data to backend for updating
-        axios.put(`http://localhost:8070/specialist/update/${user._id}`, specialistData)
+        axios.put(`${config.BASE_URL}/specialist/update/${user._id}`, specialistData)
             .then(response => {
                 console.log('Specialist data updated successfully:', response.data);
                 setEditing(false); // Exit editing mode

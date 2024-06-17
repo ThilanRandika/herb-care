@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './DisplayFeedbackGiftPackage.css';
 import UpdateFeedbackGiftPackage from '../../EditFeedbackGiftPackageUser/UpdateFeedbackGiftPackage';
+import config from "../../../../../config";
 
 const UserFeedbackGiftpackage = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -9,7 +10,7 @@ const UserFeedbackGiftpackage = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/feedbackGiftPackage/');
+      const response = await axios.get(`${config.BASE_URL}/feedbackGiftPackage/`);
       console.log(response.data); // Make sure this logs an array of feedbacks
       setFeedbacks(response.data.feedbacks);
     } catch (error) {
@@ -25,7 +26,7 @@ const UserFeedbackGiftpackage = () => {
 
   const handleDelete = async (feedbackId) => {
     try {
-      await axios.delete(`http://localhost:8070/feedbackGiftPackage/delete/${feedbackId}`);
+      await axios.delete(`${config.BASE_URL}/feedbackGiftPackage/delete/${feedbackId}`);
       setFeedbacks((prevFeedbacks) => prevFeedbacks.filter((item) => item._id !== feedbackId));
     } catch (error) {
       console.error(error);

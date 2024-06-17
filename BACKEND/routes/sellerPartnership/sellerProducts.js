@@ -1,14 +1,14 @@
 const Product = require("../../models/inventory/Product.js");
 const SellerProducts = require("../../models/sellerPartnership/SellerProducts.js");
-const { verifySellerToOther } = require("../../utils/veryfyToken.js");
 
 const router = require("express").Router();
 
 //READ - view all products
-router.route("/products").get(verifySellerToOther, async (req, res) => {
+router.route("/products/:sellerId").get( async (req, res) => {
   try {
+    console.log(req.params.sellerId);
     //get products related to the seller
-    const sellerId = req.person.sellerId;
+    const sellerId = req.params.sellerId;
     const sellerProducts = await SellerProducts.find({ sellerId: sellerId });
 
     //get all details about that products
@@ -76,11 +76,11 @@ router.route("/products").get(verifySellerToOther, async (req, res) => {
 
 //READ - view details of one specific product
 router
-  .route("/products/:productId")
-  .get(verifySellerToOther, async (req, res) => {
+  .route("/products/:sellerId/:productId")
+  .get(async (req, res) => {
     try {
       //get product detail from seller product table
-      const sellerId = req.person.sellerId;
+      const sellerId = req.params.sellerId;
       const productId = req.params.productId;
 
       const sellerProduct = await SellerProducts.findOne({
@@ -92,8 +92,8 @@ router
       const product = await Product.findById(productId);
 
       const calculatedPrice =
-        ((100 - sellerProduct.price_margine) * product.price) /
-        100;
+  ((100 - sellerProduct.price_margine) * product.price) /
+  100;
 
       //merge product details
       const mergedProduct = {

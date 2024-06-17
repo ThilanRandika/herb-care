@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './UpdateFeedback.css'
+import config from "../../../../config";
 
 const UpdateFeedback = ({ feedbackId, ratings, message, onUpdate }) => {
   const [newRatings, setNewRatings] = useState(ratings);
@@ -23,7 +24,7 @@ const UpdateFeedback = ({ feedbackId, ratings, message, onUpdate }) => {
     });
 
     try {
-      await axios.put(`http://localhost:8070/feedback/update/${feedbackId}`, formData, {
+      await axios.put(`${config.BAE_URL}/feedback/update/${feedbackId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`,

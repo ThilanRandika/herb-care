@@ -2,6 +2,7 @@ import "./specialistList.css";
 import SpecialistCard from "../../../components/consultation/specialistCard/SpecialistCard";
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import config from "../../../config";
 
 function SpecialistList(props) {
 
@@ -12,7 +13,7 @@ function SpecialistList(props) {
 
   useEffect(()=>{
     
-    axios.get('http://localhost:8070/specialist/all')
+    axios.get(`${config.BASE_URL}/specialist/all`)
     .then((res) => {
       setSpecialists(res.data);
       setLoading(false); // Set loading to false after data is fetched

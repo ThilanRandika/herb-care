@@ -6,6 +6,7 @@ import SellerCheckout from '../../../components/sellerPartnership/sellerCheckout
 import CartCheckout from '../../../components/order/CartCheckout';
 import Header from '../../../components/common/header/header';
 import Footer from '../../../components/common/footer/footer';
+import config from '../../../config';
 
 function Cart() {
     const { user } = useContext(AuthContext); // get the customer ID from authentication context
@@ -23,11 +24,11 @@ function Cart() {
     }, [user._id]);
 
     const fetchCartItems = () => {
-        axios.get(`http://localhost:8070/Cart/user/${user._id}`)
+        axios.get(`${config.BASE_URL}/Cart/user/${user._id}`)
             .then((res) => {
                 console.log(res.data);
-                if (res.data && Array.isArray(res.data.items)) {
-                    setItems(res.data.items);
+                if (res.data && Array.isArray(res.data)) {
+                    setItems(res.data);
                 } else {
                     console.error("Unexpected response format: ", res.data);
                     setItems([]);
@@ -41,7 +42,7 @@ function Cart() {
     };
 
     const removeItem = (id) => {
-        axios.delete(`http://localhost:8070/Cart/remove/${id}`)
+        axios.delete(`${config.BASE_URL}/Cart/remove/${id}`)
             .then((res) => {
                 console.log(res.data);
                 console.log("Deleted the item");
@@ -66,7 +67,7 @@ function Cart() {
         if (selectedItems.length === items.length) {
             setSelectedItems([]);
         } else {
-            setSelectedItems(items.map(item => item._id));
+            setSelectedItems(items.map(item => item.item_id));
         }
     };
 
@@ -80,7 +81,7 @@ function Cart() {
     const handleUpdateItem = (itemId) => {
         const newQuantity = updatedQuantities[itemId];
         if (newQuantity !== undefined) {
-            axios.put(`http://localhost:8070/Cart/update/${itemId}`, { quantity: newQuantity })
+            axios.put(`${config.BASE_URL}/Cart/update/${itemId}`, { quantity: newQuantity })
                 .then((res) => {
                     console.log("cart item updated", res.data);
                     fetchCartItems();
@@ -154,16 +155,16 @@ function Cart() {
                                     <div className="siDetails">
                                         <div className="siDetailTexts">
                                             <div>
-                                                {editMode[item._id] ? (
+                                                {editMode[item.item_id] ? (
                                                     <>
                                                         <h6>Add Quantity Changes</h6>
                                                         <input
                                                             type="number"
-                                                            value={updatedQuantities[item._id] || item.quantity}
-                                                            onChange={(e) => updateQuantity(item._id, parseInt(e.target.value))}
+                                                            value={updatedQuantities[item.item_id] || item.quantity}
+                                                            onChange={(e) => updateQuantity(item.item_id, parseInt(e.target.value))}
                                                         />
-                                                        <button className="update-button" onClick={() => handleUpdateItem(item._id)}>Update</button>
-                                                        <button className="edit-button" onClick={() => handleToggleEditMode(item._id)}>{editMode[item._id] ? 'Done Editing' : 'Edit Bag'}</button>
+                                                        <button className="update-button" onClick={() => handleUpdateItem(item.item_id)}>Update</button>
+                                                        <button className="edit-button" onClick={() => handleToggleEditMode(item.item_id)}>{editMode[item.item_id] ? 'Done Editing' : 'Edit Bag'}</button>
                                                     </>
                                                 ) : (
                                                     <>
@@ -171,16 +172,16 @@ function Cart() {
                                                             <input
                                                                 type="checkbox"
                                                                 className="seller-bag-checkbox"
-                                                                checked={selectedItems.includes(item._id)}
-                                                                onChange={() => toggleSelect(item._id)}
+                                                                checked={selectedItems.includes(item.item_id)}
+                                                                onChange={() => toggleSelect(item.item_id)}
                                                             />
                                                             <label className="seller-bag-checkbox-label">Select</label>
                                                         </div>
-                                                        <button className="edit-button" onClick={() => handleToggleEditMode(item._id)}>{editMode[item._id] ? 'Done Editing' : 'Edit Bag'}</button>
+                                                        <button className="edit-button" onClick={() => handleToggleEditMode(item.item_id)}>{editMode[item.item_id] ? 'Done Editing' : 'Edit Bag'}</button>
                                                     </>
                                                 )}
                                             </div>
-                                            <button className="remove-button" onClick={() => removeItem(item._id)}>Remove</button>
+                                            <button className="remove-button" onClick={() => removeItem(item.item_id)}>Remove</button>
                                         </div>
                                     </div>
                                 </div>

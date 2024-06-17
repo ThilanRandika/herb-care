@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import config from "../../../config";
 
 
 function AppointmentAddForm(props) {
@@ -112,7 +113,7 @@ function AppointmentAddForm(props) {
   useEffect(() => {
     const fetchCenterInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:8070/center/${center}`);
+        const response = await axios.get(`${config.BASE_URL}/center/${center}`);
         setCenterInfo(response.data);
       } catch (error) {
         console.error("Error fetching center information:", error);
@@ -132,7 +133,7 @@ function AppointmentAddForm(props) {
 
   const fetchAvailabilities = async () => {
     try {
-      const response = await axios.get(`http://localhost:8070/availability/getAvailabilities/${props.selectedSpecialist._id}`);
+      const response = await axios.get(`${config.BASE_URL}/availability/getAvailabilities/${props.selectedSpecialist._id}`);
       setAvailabilities(response.data);
     } catch (error) {
       console.error("Error fetching availabilities:", error);
@@ -142,7 +143,7 @@ function AppointmentAddForm(props) {
 
   const fetchAvailabilitiesForSelectedDate = async () => {
     try {
-      const response = await axios.get(`http://localhost:8070/availability/getAvailabilitiesByDateAndSpecialist?date=${date}&specialistId=${props.selectedSpecialist._id}`);
+      const response = await axios.get(`${config.BASE_URL}/availability/getAvailabilitiesByDateAndSpecialist?date=${date}&specialistId=${props.selectedSpecialist._id}`);
       setAvailabilitiesForSelectedDate(response.data);
 
     } catch (error) {
@@ -384,7 +385,7 @@ function AppointmentAddForm(props) {
       patientInfo: patientInfo
     }
     console.log("new appointment is",  newAppointment);
-    axios.post('http://localhost:8070/consultAppointment/add', newAppointment).then((res)=>{
+    axios.post(`${config.BASE_URL}/consultAppointment/add`, newAppointment).then((res)=>{
       setAppointmentSubmitted(true); // Set appointmentSubmitted to true upon successful submission
         const confirmation = window.confirm('Appointment submitted successfully! Do you want to navigate to the next screen?');
         if (confirmation) {

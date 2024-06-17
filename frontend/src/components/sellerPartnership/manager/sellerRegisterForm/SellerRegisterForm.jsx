@@ -31,7 +31,7 @@ function SellerRegisterForm() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/sellerPartnershipRequest/add/${id}`)
+        axios.get(`https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/add/${id}`)
             .then((res) => {
                 setSellerDetails(res.data);
             })
@@ -39,7 +39,7 @@ function SellerRegisterForm() {
                 console.log('Error getting seller details', err);
             });
 
-        axios.get('http://localhost:8070/product')
+        axios.get('https://herb-care-pzwv.onrender.com/product')
             .then((res) => {
                 setProductDetails(res.data);
             })
@@ -100,7 +100,7 @@ function SellerRegisterForm() {
         formData.append("seller_agreement", sellerAgreement);
 
         console.log(formData)
-        axios.post('http://localhost:8070/seller/addSeller', formData)
+        axios.post('https://herb-care-pzwv.onrender.com/seller/addSeller', formData)
         .then((res)=>{
             console.log(res.data)
             alert("Seller Added Successfully");

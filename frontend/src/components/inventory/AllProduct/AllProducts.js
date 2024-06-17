@@ -5,6 +5,7 @@ import { FaCubes, FaDollarSign, FaShoppingCart, FaTags } from "react-icons/fa"; 
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import logoImage from "../../../Images/logo/Herb_Care_Logo.png"; // Import your logo image
 import "./AllProducts.css";
+import config from "../../../config";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ export default function AllProducts() {
   useEffect(() => {
     function getProducts() {
       axios
-        .get("http://localhost:8070/Product/")
+        .get(`${config.BASE_URL}/Product/`)
         .then((res) => {
           console.log(res.data);
           setProducts(res.data);
@@ -38,7 +39,7 @@ export default function AllProducts() {
 
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`http://localhost:8070/Product/delete/${productId}`);
+      await axios.delete(`${config.BASE_URL}/Product/delete/${productId}`);
       // Remove the deleted product from the state
       setFilteredProducts(filteredProducts.filter((product) => product._id !== productId));
       setProducts(products.filter((product) => product._id !== productId));

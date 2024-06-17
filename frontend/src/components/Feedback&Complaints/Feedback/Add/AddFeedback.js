@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './AddFeedback.css';
 import { useLocation } from 'react-router-dom';
+import config from "../../../../config";
 
 const FeedbackForm = () => {
   const [ratings, setRatings] = useState(0);
@@ -38,7 +39,7 @@ const FeedbackForm = () => {
     
 
     try {
-      await axios.post(`http://localhost:8070/feedback/add/${productId}`, formData, {
+      await axios.post(`${config.BASE_URL}/feedback/add/${productId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you have stored the token in localStorage

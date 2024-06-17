@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './AddComplaints.css'
 import { useLocation } from 'react-router-dom';
+import config from "../../../../config";
 
 const ComplaintForm = () => {
     const [complaintsName, setComplaintsName] = useState('');
@@ -14,7 +15,7 @@ const ComplaintForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`http://localhost:8070/complaints/add/${productId}`, {
+            const response = await axios.post(`${config.BASE_URL}/complaints/add/${productId}`, {
                 orderId,
                 complaintsName,
                 email,

@@ -1,16 +1,19 @@
 import "./Products.css";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import config from "../../../../config";
 
 function Products({ searchQuery, priceRange, category }) {
   const [products, setProducts] = useState([]);
   const [summaries, setSummaries] = useState([]);
   const [loading, setLoading] = useState(true); // State to track loading status
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     function getProducts() {
-      axios.get("http://localhost:8070/Product/")
+      axios.get(`${config.BASE_URL}/Product/`)
         .then((res) => {
           setProducts(res.data);
           setLoading(false);
@@ -23,7 +26,7 @@ function Products({ searchQuery, priceRange, category }) {
 
     const fetchFeedbackSummaries = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedback/feedback-summaries');
+        const response = await axios.get('${config.BASE_URL}/feedback/feedback-summaries');
         setSummaries(response.data);
         setLoading(false);
       } catch (error) {
@@ -84,7 +87,8 @@ function Products({ searchQuery, priceRange, category }) {
 
   const addToCart = (product) => {
     axios
-      .post("http://localhost:8070/Cart/add/" + product._id, {
+      .post(`${config.BASE_URL}/Cart/add/${product._id}` , {
+        userId: user._id,
         quantity: 1,
         price: product.Manufactured_price,
         totalPrice: (1 * product.Manufactured_price).toFixed(2),
@@ -94,7 +98,7 @@ function Products({ searchQuery, priceRange, category }) {
         alert("Added to Bag");
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error adding to cart:", err);
       });
   };
 

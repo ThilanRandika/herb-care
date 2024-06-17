@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./DisplayGiftPackOrders.css";
+import config from "../../../config";
 
 function DisplayGiftPackOrders() {
   const [orders, setOrders] = useState([]);
@@ -18,7 +19,7 @@ function DisplayGiftPackOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/giftPackageOrder/displayGiftPackageOrders');
+        const response = await axios.get(`${config.BASE_URL}/giftPackageOrder/displayGiftPackageOrders`);
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -30,11 +31,11 @@ function DisplayGiftPackOrders() {
   const updateOrderStatus = async (orderId, newStatus, newPaymentStatus) => {
     try {
       await axios.put(
-        `http://localhost:8070/giftPackageOrder/updateStatus/${orderId}`,
+        `${config.BASE_URL}/giftPackageOrder/updateStatus/${orderId}`,
         { newStatus, newPaymentStatus }
       );
       // Refresh the orders list after updating status
-      const response = await axios.get('http://localhost:8070/giftPackageOrder/displayGiftPackageOrders');
+      const response = await axios.get(`${config.BASE_URL}/giftPackageOrder/displayGiftPackageOrders`);
       setOrders(response.data);
     } catch (error) {
       console.error("Error updating order status:", error);
@@ -60,7 +61,7 @@ function DisplayGiftPackOrders() {
 
   const cancelOrder = async (orderId) => {
     try {
-      await axios.delete(`http://localhost:8070/giftPackageOrder/cancelGiftPackageOrders/${orderId}`);
+      await axios.delete(`${config.BASE_URL}/giftPackageOrder/cancelGiftPackageOrders/${orderId}`);
       const updatedOrders = orders.filter(order => order._id !== orderId);
       setOrders(updatedOrders);
     } catch (error) {
