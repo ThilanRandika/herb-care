@@ -5,7 +5,6 @@ const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt'); // For password hashing
 const Seller = require('../../models/sellerPartnership/Seller');
-const { verifySellerToOther } = require('../../utils/veryfyToken');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -60,9 +59,9 @@ router.post('/update', upload.single('avatar'), async (req, res) => {
 });
 
 
-router.route('/profile').get(verifySellerToOther, async (req, res) => {
+router.route('/profile/:sellerId').get( async (req, res) => {
   try {
-    const sellerId = req.person.sellerId;
+    const sellerId = req.params.sellerId;
 
     // Use await to ensure the result is resolved before proceeding
     const seller = await Seller.findOne({ sellerId: sellerId });
