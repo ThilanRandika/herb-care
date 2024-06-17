@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer'); // For handling file uploads
 const path = require('path');
 const fs = require('fs');
-const bcrypt = require('bcrypt'); // For password hashing
+const bcrypt = require('bcryptjs'); // For password hashing
 const Seller = require('../../models/sellerPartnership/Seller');
 
 const storage = multer.diskStorage({
@@ -85,6 +85,7 @@ router.route('/profile/:sellerId').get( async (req, res) => {
       tax_id: seller.tax_id,
     };
 
+    console.log(sellerData);
     // Send the modified data as JSON response
     res.status(200).json(sellerData);
   } catch (err) {

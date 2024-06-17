@@ -6,6 +6,7 @@ const router = require("express").Router();
 //READ - view all products
 router.route("/products/:sellerId").get( async (req, res) => {
   try {
+    console.log(req.params.sellerId);
     //get products related to the seller
     const sellerId = req.params.sellerId;
     const sellerProducts = await SellerProducts.find({ sellerId: sellerId });
@@ -91,8 +92,8 @@ router
       const product = await Product.findById(productId);
 
       const calculatedPrice =
-        ((100 - sellerProduct.price_margine) * product.price) /
-        100;
+  ((100 - sellerProduct.price_margine) * product.price) /
+  100;
 
       //merge product details
       const mergedProduct = {
