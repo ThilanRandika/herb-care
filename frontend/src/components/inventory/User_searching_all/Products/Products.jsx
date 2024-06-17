@@ -1,6 +1,6 @@
 import "./Products.css";
-import React, { useState, useEffect } from 'react';
-import { AuthContext } from '../../../context/AuthContext';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -86,7 +86,7 @@ function Products({ searchQuery, priceRange, category }) {
 
   const addToCart = (product) => {
     axios
-      .post("https://herb-care-pzwv.onrender.com/Cart/add/" + product._id, {
+      .post(`https://herb-care-pzwv.onrender.com/Cart/add/${product._id}` , {
         userId: user._id,
         quantity: 1,
         price: product.Manufactured_price,
@@ -97,7 +97,7 @@ function Products({ searchQuery, priceRange, category }) {
         alert("Added to Bag");
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error adding to cart:", err);
       });
   };
 

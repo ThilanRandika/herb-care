@@ -1,7 +1,6 @@
 const Product = require("../../models/inventory/Product.js");
 const router = require("express").Router();
 const Cart = require("../../models/order/Cart.js");
-const { verifyToOther } = require("../../utils/veryfyToken.js");
 
 // // Route to add a product to the cart
 // router.post('/add', async (req, res) => {
