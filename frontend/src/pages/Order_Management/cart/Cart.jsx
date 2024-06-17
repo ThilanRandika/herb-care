@@ -66,7 +66,7 @@ function Cart() {
         if (selectedItems.length === items.length) {
             setSelectedItems([]);
         } else {
-            setSelectedItems(items.map(item => item._id));
+            setSelectedItems(items.map(item => item.item_id));
         }
     };
 
@@ -154,16 +154,16 @@ function Cart() {
                                     <div className="siDetails">
                                         <div className="siDetailTexts">
                                             <div>
-                                                {editMode[item._id] ? (
+                                                {editMode[item.item_id] ? (
                                                     <>
                                                         <h6>Add Quantity Changes</h6>
                                                         <input
                                                             type="number"
-                                                            value={updatedQuantities[item._id] || item.quantity}
-                                                            onChange={(e) => updateQuantity(item._id, parseInt(e.target.value))}
+                                                            value={updatedQuantities[item.item_id] || item.quantity}
+                                                            onChange={(e) => updateQuantity(item.item_id, parseInt(e.target.value))}
                                                         />
-                                                        <button className="update-button" onClick={() => handleUpdateItem(item._id)}>Update</button>
-                                                        <button className="edit-button" onClick={() => handleToggleEditMode(item._id)}>{editMode[item._id] ? 'Done Editing' : 'Edit Bag'}</button>
+                                                        <button className="update-button" onClick={() => handleUpdateItem(item.item_id)}>Update</button>
+                                                        <button className="edit-button" onClick={() => handleToggleEditMode(item.item_id)}>{editMode[item.item_id] ? 'Done Editing' : 'Edit Bag'}</button>
                                                     </>
                                                 ) : (
                                                     <>
@@ -171,16 +171,16 @@ function Cart() {
                                                             <input
                                                                 type="checkbox"
                                                                 className="seller-bag-checkbox"
-                                                                checked={selectedItems.includes(item._id)}
-                                                                onChange={() => toggleSelect(item._id)}
+                                                                checked={selectedItems.includes(item.item_id)}
+                                                                onChange={() => toggleSelect(item.item_id)}
                                                             />
                                                             <label className="seller-bag-checkbox-label">Select</label>
                                                         </div>
-                                                        <button className="edit-button" onClick={() => handleToggleEditMode(item._id)}>{editMode[item._id] ? 'Done Editing' : 'Edit Bag'}</button>
+                                                        <button className="edit-button" onClick={() => handleToggleEditMode(item.item_id)}>{editMode[item.item_id] ? 'Done Editing' : 'Edit Bag'}</button>
                                                     </>
                                                 )}
                                             </div>
-                                            <button className="remove-button" onClick={() => removeItem(item._id)}>Remove</button>
+                                            <button className="remove-button" onClick={() => removeItem(item.item_id)}>Remove</button>
                                         </div>
                                     </div>
                                 </div>
