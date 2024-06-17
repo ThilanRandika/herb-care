@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './staffDashboardHome.css';
 import axios from 'axios';
+import config from '../../../../config';
 
 function StaffDashboardHome() {
   const [refundCount, setRefundCount] = useState(0);
@@ -17,7 +18,7 @@ function StaffDashboardHome() {
   }, []);
 
   useEffect(() => {
-    axios.get('https://herb-care-pzwv.onrender.com/complaints/count')
+    axios.get(`${config.BASE_URL}/complaints/count`)
       .then(response => {
         setComplaintCount(response.data.count);
       })
@@ -27,7 +28,7 @@ function StaffDashboardHome() {
   }, []);
 
   useEffect(() => {
-    axios.get('https://herb-care-pzwv.onrender.com/feedback/count')
+    axios.get(`${config.BASE_URL}/feedback/count`)
       .then(response => {
         setFeedbackCount(response.data.count);
       })
@@ -38,7 +39,7 @@ function StaffDashboardHome() {
 
   const fetchRefundCount = async () => {
     try {
-      const response = await fetch("https://herb-care-pzwv.onrender.com/refund/incompleteRefundsCount");
+      const response = await fetch(`${config.BASE_URL}/refund/incompleteRefundsCount`);
       if (response.ok) {
         const data = await response.json();
         setRefundCount(data.count);
@@ -52,7 +53,7 @@ function StaffDashboardHome() {
 
   const fetchPendingWholesaleOrdersCount = async () => {
     try {
-      const response = await fetch("https://herb-care-pzwv.onrender.com/sellerOrder/pendingOrders/count");
+      const response = await fetch(`${config.BASE_URL}/sellerOrder/pendingOrders/count`);
       if (response.ok) {
         const data = await response.json();
         setPendingWholesaleOrdersCount(data.pendingOrdersCount);
@@ -66,7 +67,7 @@ function StaffDashboardHome() {
 
   const fetchPendingGiftPackageOrdersCount = async () => {
     try {
-      const response = await fetch("https://herb-care-pzwv.onrender.com/giftPackageOrder/pendingOrders/count");
+      const response = await fetch(`${config.BASE_URL}/giftPackageOrder/pendingOrders/count`);
       if (response.ok) {
         const data = await response.json();
         setPendingGiftPackageOrdersCount(data.pendingOrdersCount);

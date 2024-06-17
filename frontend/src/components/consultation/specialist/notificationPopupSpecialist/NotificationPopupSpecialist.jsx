@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../../../context/AuthContext';
 import './notificationPopupSpecialist.css';
+import config from '../../../../config';
 
 function NotificationPopupSpecialist({ onClose, setUnreadNotificationCount }) {
   const { user } = useContext(AuthContext);
@@ -8,7 +9,7 @@ function NotificationPopupSpecialist({ onClose, setUnreadNotificationCount }) {
   const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
-    fetch(`https://herb-care-pzwv.onrender.com/specialistNotifications/all/${user._id}`)
+    fetch(`${config.BASE_URL}/specialistNotifications/all/${user._id}`)
       .then(response => response.json())
       .then(data => {
         setNotifications(data);
@@ -27,7 +28,7 @@ function NotificationPopupSpecialist({ onClose, setUnreadNotificationCount }) {
   };
 
   const handleMarkAllAsRead = () => {
-    fetch(`https://herb-care-pzwv.onrender.com/specialistNotifications/markAllAsRead/${user._id}`, {
+    fetch(`${config.BASE_URL}/specialistNotifications/markAllAsRead/${user._id}`, {
       method: 'PUT',
     })
     .then(response => {
@@ -36,7 +37,7 @@ function NotificationPopupSpecialist({ onClose, setUnreadNotificationCount }) {
         setNotifications(notifications.map(notification => ({ ...notification, notificationStatus: 'Read' })));
   
         // Fetch updated unread notifications count
-        fetch(`https://herb-care-pzwv.onrender.com/specialistNotifications/unreadCount/${user._id}`)
+        fetch(`${config.BASE_URL}/specialistNotifications/unreadCount/${user._id}`)
           .then(response => response.json())
           .then(data => {
             // Update unread notifications count state
