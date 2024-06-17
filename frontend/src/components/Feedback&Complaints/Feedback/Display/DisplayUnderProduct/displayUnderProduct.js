@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './displayUnderProduct.css';
+import config from "../../../../../config";
 
 // Function to generate star icons based on rating value
 const generateStars = (rating) => {
@@ -20,7 +21,7 @@ const FeedbackUnderProduct = (props) => {
 
   useEffect(() => {
     // Fetch feedbacks for the product
-    axios.get(`https://herb-care-pzwv.onrender.com/feedback/feedbacks/${props.productid}`)
+    axios.get(`${config.BASE_URL}/feedback/feedbacks/${props.productid}`)
       .then(response => {
         setFeedbacks(response.data);
       })
