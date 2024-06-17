@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./ViewAllProducts.css"; // Import CSS file for styling
+import config from "../../../../config";
 
 export default function ViewAllProducts() {
   const [products, setProducts] = useState([]);
@@ -11,7 +12,7 @@ export default function ViewAllProducts() {
   useEffect(() => {
     function getProducts() {
       axios
-        .get("http://localhost:8070/Product/")
+        .get("https://herb-care-pzwv.onrender.com/Product/")
         .then((res) => {
           console.log(res.data); // Assuming the data is in res.data
           setProducts(res.data); // Set the products state with fetched data
@@ -43,7 +44,7 @@ export default function ViewAllProducts() {
         ingredients: product.ingredients
       };
   
-      await axios.post('http://localhost:8070/ApprovalProcess/addDelete', productToDelete);
+      await axios.post(`${config.BASE_URL}/ApprovalProcess/addDelete`, productToDelete);
       
     } catch (error) {
       console.error('Error deleting product:', error);

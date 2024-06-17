@@ -9,7 +9,7 @@ function StaffDeliveryOrders() {
     const navigator = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8070/sellerOrder/onDeliveryOrders')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/onDeliveryOrders')
             .then((res) => {
                 console.log(res.data)
                 setOrders(res.data);
@@ -25,7 +25,7 @@ function StaffDeliveryOrders() {
     };
 
     const handleCompletedProcess = (id) => {
-        axios.put('http://localhost:8070/sellerOrder/completed/' + id)
+        axios.put('https://herb-care-pzwv.onrender.com/sellerOrder/completed/' + id)
             .then((res) => {
                 alert("The Order has been completed");
                 console.log(res.data)

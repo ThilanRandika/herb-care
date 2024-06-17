@@ -12,6 +12,7 @@ import {
   Form,
 } from "react-bootstrap";
 import { FaHotel, FaMapMarkerAlt } from "react-icons/fa";
+import config from "../../config";
 
 const PackageDetails = () => {
   const navigate = useNavigate(); // Update hook usage
@@ -24,21 +25,21 @@ const PackageDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8070/packages/${id}`)
+      .get(`${config.BASE_URL}/packages/${id}`)
       .then((response) => {
         const responseData = response.data;
         setPackageDetails(responseData);
 
         Promise.all(
           responseData.defaultServices.map((serviceId) =>
-            axios.get(`http://localhost:8070/services/${serviceId}`)
+            axios.get(`${config.BASE_URL}/services/${serviceId}`)
           )
         ).then((responses) => {
           setDefaultServices(responses.map((res) => res.data));
 
           Promise.all(
             responseData.addOnServices.map((serviceId) =>
-              axios.get(`http://localhost:8070/services/${serviceId}`)
+              axios.get(`${config.BASE_URL}/services/${serviceId}`)
             )
           ).then((addOnResponses) => {
             setAddOnServices(addOnResponses.map((res) => res.data));

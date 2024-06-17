@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './myOngoingConsultations.css';
 import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
+import config from '../../../config';
 
 function MyOngoingConsultations() {
   const [onGoingAppointments, setOnGoingAppointments] = useState([]);
@@ -12,7 +13,7 @@ function MyOngoingConsultations() {
   const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
-    axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
+    axios.get(`${config.BASE_URL}/consultAppointment/getOngoingAppointments/${user._id}`)
       .then((res) => {
         console.log("Got data: ", res.data);
         setOnGoingAppointments(res.data);
@@ -25,10 +26,10 @@ function MyOngoingConsultations() {
   }, []);
 
   const handleCancel = (id) => {
-    axios.put(`http://localhost:8070/consultAppointment/cancelAppointment/${id}`)
+    axios.put(`${config.BASE_URL}/consultAppointment/cancelAppointment/${id}`)
       .then((res) => {
         console.log("Request cancelled successfully", res.data);
-        axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointments/${user._id}`)
+        axios.get(`${config.BASE_URL}/consultAppointment/getOngoingAppointments/${user._id}`)
           .then((res) => {
             console.log("Got data: ", res.data);
             setOnGoingAppointments(res.data);
@@ -47,7 +48,7 @@ function MyOngoingConsultations() {
   
   const handleGenerateInvoice = async (appointmentId) => {
     try {
-      const response = await axios.get(`http://localhost:8070/consultAppointment/generateInvoice/${appointmentId}`, {
+      const response = await axios.get(`${config.BASE_URL}/consultAppointment/generateInvoice/${appointmentId}`, {
         responseType: 'blob', // Receive response as Blob (binary data)
       });
   

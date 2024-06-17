@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './StaffDisplay.css';
+import config from "../../../../../config";
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -12,7 +13,7 @@ const StarRating = ({ rating }) => {
 
 const downloadFeedbacksPdf = async () => {
   try {
-    const response = await axios.get('http://localhost:8070/feedback/download', {
+    const response = await axios.get(`${config.BASE_URL}/feedback/download`, {
       responseType: 'blob', 
     });
     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -44,7 +45,7 @@ const StaffDashboard = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedback/');
+        const response = await axios.get(`${config.BASE_URL}/feedback/`);
         if (response.data && response.data.feedbacks) {
           setFeedbacks(response.data.feedbacks);
         } else {
@@ -59,7 +60,7 @@ const StaffDashboard = () => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8070/feedback/count')
+    axios.get(`${config.BASE_URL}/feedback/count`)
       .then(response => {
         setCount(response.data.count);
       })
@@ -70,7 +71,7 @@ const StaffDashboard = () => {
 
   const deleteFeedback = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/feedback/delete/${id}`);
+      await axios.delete(`${config.BASE_URL}/feedback/delete/${id}`);
       setFeedbacks((prevFeedbacks) => prevFeedbacks.filter((feedback) => feedback._id !== id));
       setCount((prevCount) => prevCount - 1); // Decrement the count by 1
     } catch (error) {

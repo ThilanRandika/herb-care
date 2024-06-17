@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './StaffUpdateProduct.css';
+import config from '../../../../config';
 
 function StaffUpdateProduct() {
   const { id } = useParams(); // Get the product id from the URL parameter
@@ -20,7 +21,7 @@ function StaffUpdateProduct() {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:8070/Product/${id}`)
+    axios.get(`${config.BASE_URL}/Product/${id}`)
       .then((res) => {
         setProduct(res.data.product);
         setFormData({
@@ -61,7 +62,7 @@ function StaffUpdateProduct() {
     } else {
       try {
         // If no image uploaded, fetch previous image from database
-        const response = await axios.get(`http://localhost:8070/Product/${id}`);
+        const response = await axios.get(`${config.BASE_URL}/Product/${id}`);
         const previousImage = response.data.product.image;
         // Set previous image in formData
         setFormData({ ...formData, image: previousImage });
@@ -94,7 +95,7 @@ function StaffUpdateProduct() {
       formDataToSend.append('action', 'Update'); // Set action to "Update"
       formDataToSend.append('ProductID', id);
       
-      await axios.post(`http://localhost:8070/ApprovalProcess/updateProposal`, formDataToSend, {
+      await axios.post(`${config.BASE_URL}/ApprovalProcess/updateProposal`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }

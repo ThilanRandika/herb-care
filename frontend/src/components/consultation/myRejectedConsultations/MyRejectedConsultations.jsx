@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
+import config from '../../../config';
 
 function MyRejectedConsultations(props) {
   const  [rejectedAppointments, setRejectedAppointments] = useState([]);
@@ -13,7 +14,7 @@ function MyRejectedConsultations(props) {
   const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/rejectedAppointments/${user._id}`)
+        axios.get(`${config.BASE_URL}/consultAppointment/rejectedAppointments/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setRejectedAppointments(res.data);
@@ -41,7 +42,7 @@ function MyRejectedConsultations(props) {
   
     const hasRefund = async (appointmentId) => {
       try {
-        const response = await axios.get(`http://localhost:8070/refund/checkExistingRefund/${appointmentId}`);
+        const response = await axios.get(`${config.BASE_URL}/refund/checkExistingRefund/${appointmentId}`);
         return response.data.hasRefund;
       } catch (error) {
         console.error('Error checking existing refund:', error);

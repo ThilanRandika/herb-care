@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import "./AddProduct.css";
+import config from "../../../config";
 
 function AddProduct() {
   // State variables to hold form data and selected image
@@ -32,7 +33,7 @@ function AddProduct() {
     e.preventDefault();
     try {
       // Post the form data to the backend
-      await axios.post("http://localhost:8070/Product/add", formData);
+      await axios.post(`${config.BASE_URL}/Product/add`, formData);
 
       // If successful, display a success message and navigate to the desired page
       alert("Product Added Successfully");

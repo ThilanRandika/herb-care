@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './DisplayFeedbackGiftPackageStaff.css';
+import config from "../../../../../config";
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -27,7 +28,7 @@ const AdminFeedbackList = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedbackgiftpackage/get/all');
+        const response = await axios.get(`${config.BASE_URL}/feedbackgiftpackage/get/all`);
         setFeedbacks(response.data.feedbacks);
       } catch (error) {
         console.error('Error fetching feedbacks:', error);
@@ -36,7 +37,7 @@ const AdminFeedbackList = () => {
 
     const fetchTotalFeedbacksCount = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/feedbackgiftpackage/count/feedbacks');
+        const response = await axios.get(`${config.BASE_URL}/feedbackgiftpackage/count/feedbacks`);
         setTotalFeedbacksCount(response.data.totalFeedbacksCount);
       } catch (error) {
         console.error('Error fetching total feedbacks count:', error);
@@ -49,7 +50,7 @@ const AdminFeedbackList = () => {
 
   const handleDeleteFeedback = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/feedbackgiftpackage/delete/${id}`);
+      await axios.delete(`${config.BASE_URL}/feedbackgiftpackage/delete/${id}`);
       setFeedbacks((prevFeedbacks) => prevFeedbacks.filter((feedback) => feedback._id !== id));
     } catch (error) {
       console.error('Error deleting feedback:', error);
@@ -58,7 +59,7 @@ const AdminFeedbackList = () => {
 
   const handleDownloadPDF = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/feedbackgiftpackage/download/pdf', { responseType: 'blob' });
+      const response = await axios.get(`${config.BASE_URL}/feedbackgiftpackage/download/pdf`, { responseType: 'blob' });
       const url = window.URL.createObjectURL(response.data);
       const link = document.createElement('a');
       link.href = url;

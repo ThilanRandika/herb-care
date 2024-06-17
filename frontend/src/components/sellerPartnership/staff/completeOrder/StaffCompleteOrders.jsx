@@ -9,7 +9,7 @@ function StaffCompleteOrders() {
     const navigator = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8070/sellerOrder/completedOrders')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/completedOrders')
             .then((res) => {
                 console.log(res.data)
                 setOrders(res.data);

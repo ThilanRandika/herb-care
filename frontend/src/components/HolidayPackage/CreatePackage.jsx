@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Container, Form, Alert } from "react-bootstrap";
+import config from "../../config";
 
 const CreatePackage = () => {
   // State variables for form inputs and messages
@@ -20,7 +21,7 @@ const CreatePackage = () => {
   // Fetch services from backend on component mount
   useEffect(() => {
     axios
-      .get("http://localhost:8070/services")
+      .get(`${config.BASE_URL}/services`)
       .then((response) => {
         // Separate default and add-on services
         const defaultServices = response.data.filter(
@@ -89,7 +90,7 @@ const CreatePackage = () => {
 
     // Send package data to backend to create package
     axios
-      .post("http://localhost:8070/packages", packageData)
+      .post(`${config.BASE_URL}/packages`, packageData)
       .then((response) => {
         setSuccessMessage("Package created successfully");
         setErrorMessage("");

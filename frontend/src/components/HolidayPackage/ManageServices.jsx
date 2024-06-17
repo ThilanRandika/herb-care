@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Header from "./Header";
+import config from "../../config";
 
 const ManageServices = () => {
   const [services, setServices] = useState([]);
@@ -32,7 +33,7 @@ const ManageServices = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await axios.get("http://localhost:8070/services");
+      const response = await axios.get(`${config.BASE_URL}/services`);
       setServices(response.data);
     } catch (error) {
       console.error("Error fetching services:", error);
@@ -41,7 +42,7 @@ const ManageServices = () => {
 
   const handleAddService = async () => {
     try {
-      await axios.post("http://localhost:8070/services", newService);
+      await axios.post(`${config.BASE_URL}/services`, newService);
       setShowAddModal(false);
       setNewService({
         category: "",
@@ -74,7 +75,7 @@ const ManageServices = () => {
   const handleSaveEdit = async () => {
     try {
       await axios.patch(
-        `http://localhost:8070/services/${selectedService._id}`,
+        `${config.BASE_URL}/services/${selectedService._id}`,
         selectedService
       );
       setShowEditModal(false);
@@ -89,7 +90,7 @@ const ManageServices = () => {
   const handleDeleteService = async () => {
     try {
       await axios.delete(
-        `http://localhost:8070/services/${selectedService._id}`
+        `${config.BASE_URL}/services/${selectedService._id}`
       );
       fetchServices();
       handleCloseDeleteModal();

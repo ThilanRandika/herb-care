@@ -9,7 +9,7 @@ function DiscussionLevelRequests() {
     const [discussions, setDiscussions] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8070/sellerPartnershipRequest/allSellerReqDis')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/allSellerReqDis')
             .then((res) => {
                 setDiscussions(res.data);
             })
@@ -19,7 +19,7 @@ function DiscussionLevelRequests() {
     }, []);
 
     const handleReject = (id) => {
-        axios.delete(`http://localhost:8070/sellerPartnershipRequest/rejectReq/${id}`)
+        axios.delete(`https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/rejectReq/${id}`)
             .then((res) => {
                 setDiscussions(prevRequests => prevRequests.filter(request => request._id !== id));
             })

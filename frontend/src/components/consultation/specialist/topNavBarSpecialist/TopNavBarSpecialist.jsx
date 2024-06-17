@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import font
 import { faBell } from '@fortawesome/free-solid-svg-icons'; // Import faBell icon
 import Logo from '../../../../Images/logo/HerbCare Logo.png'; // Import the logo
 import { useNavigate } from 'react-router-dom';
+import config from '../../../../config';
 
 function TopNavBarSpecialist({ isNotificationVisible, setNotificationVisible, unreadNotificationCount, setUnreadNotificationCount }) {
   const { user, logout } = useContext(AuthContext);
@@ -25,7 +26,7 @@ function TopNavBarSpecialist({ isNotificationVisible, setNotificationVisible, un
   }, [user._id]); // Fetch count whenever user ID changes
 
   const fetchUnreadNotificationCount = () => {
-    fetch(`http://localhost:8070/specialistNotifications/unreadCount/${user._id}`)
+    fetch(`${config.BASE_URL}/specialistNotifications/unreadCount/${user._id}`)
       .then(response => response.json())
       .then(data => {
         setUnreadNotificationCount(data.unreadCount);

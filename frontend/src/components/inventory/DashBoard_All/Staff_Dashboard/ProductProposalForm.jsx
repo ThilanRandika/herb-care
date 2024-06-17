@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ProductProposalForm.css'; 
+import config from '../../../../config';
 
 function ApprovalProcessForm() {
   const [formData, setFormData] = useState({
@@ -53,7 +54,7 @@ function ApprovalProcessForm() {
       formDataToSend.append('ingredients', formData.ingredients);
       formDataToSend.append('action', 'Add'); // Set action to "Add"
 
-      await axios.post('http://localhost:8070/ApprovalProcess/addProposal', formDataToSend, {
+      await axios.post(`${config.BASE_URL}/ApprovalProcess/addProposal`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }

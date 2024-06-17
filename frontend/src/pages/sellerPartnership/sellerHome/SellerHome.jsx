@@ -18,7 +18,7 @@ function SellerHome() {
 
       useEffect(() => {
 
-        axios.get('http://localhost:8070/sellerHome/completedOrders/count')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerHome/completedOrders/count')
         .then((res)=> {
           console.log(res.data)
           setCompleteCount(res.data)
@@ -27,7 +27,7 @@ function SellerHome() {
           console.log(err)
         })
 
-        axios.get('http://localhost:8070/sellerHome/all/processingOrders/count')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerHome/all/processingOrders/count')
         .then((res)=> {
           console.log(res.data)
           setProcessingCount(res.data)
@@ -36,7 +36,7 @@ function SellerHome() {
           console.log(err)
         })
         
-        axios.get('http://localhost:8070/sellerHome/totalOrderedAmount')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerHome/totalOrderedAmount')
         .then((res)=> {
           console.log(res.data)
           setAmounts(res.data)
@@ -45,7 +45,7 @@ function SellerHome() {
           console.log(err)
         })
 
-        // axios.get('http://localhost:8070/sellerHome/orders/months/count')
+        // axios.get('https://herb-care-pzwv.onrender.com/sellerHome/orders/months/count')
         // .then((res)=> {
         //   console.log(res.data.lineData)
         //   setLineData(res.data.lineData)
@@ -54,7 +54,7 @@ function SellerHome() {
         //   console.log(err)
         // })
 
-        axios.get('http://localhost:8070/sellerHome/quantity/months/count')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerHome/quantity/months/count')
         .then((res)=> {
           console.log(res.data.columnData)
           setColumnData(res.data.columnData)

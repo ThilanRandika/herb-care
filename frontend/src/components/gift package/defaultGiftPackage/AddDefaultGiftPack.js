@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AddDefaultGiftPack.css";
+import config from "../../../config";
 
 function AddDefaultGiftPack() {
     const [packageName, setPackageName] = useState("");
@@ -43,7 +44,7 @@ function AddDefaultGiftPack() {
                 formData.append("images", image);
             });
 
-            await axios.post("http://localhost:8070/defaultGiftpackage/addDefault-gift-package", formData, {
+            await axios.post(`${config.BASE_URL}/defaultGiftpackage/addDefault-gift-package`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

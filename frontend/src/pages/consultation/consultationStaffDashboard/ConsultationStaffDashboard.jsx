@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './consultationStaffDashboard.css';
+import config from '../../../config';
 
 function ConsultationStaffDashboard() {
 
@@ -18,7 +19,7 @@ function ConsultationStaffDashboard() {
 
   const fetchRefundCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/refund/incompleteRefundsCount");
+      const response = await fetch(`${config.BASE_URL}/refund/incompleteRefundsCount`);
       if (response.ok) {
         const data = await response.json();
         setPendingRefundCount(data.count);
@@ -32,7 +33,7 @@ function ConsultationStaffDashboard() {
 
   const fetchAllRefundCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/refund/allRefundsCount");
+      const response = await fetch(`${config.BASE_URL}/refund/allRefundsCount`);
       if (response.ok) {
         const data = await response.json();
         setAllRefundCount(data.count);
@@ -46,7 +47,7 @@ function ConsultationStaffDashboard() {
 
   const fetchCompletedRefundCount = async () => {
     try {
-      const response = await fetch("http://localhost:8070/refund/completeRefundsCount");
+      const response = await fetch(`${config.BASE_URL}/refund/completeRefundsCount`);
       if (response.ok) {
         const data = await response.json();
         setCompletedRefundCount(data.count);

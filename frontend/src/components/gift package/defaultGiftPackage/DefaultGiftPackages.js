@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./DefaultGiftPackages.css";
+import config from "../../../config";
 
 
 function DisplayDefaultGiftPackages() {
@@ -10,7 +11,7 @@ function DisplayDefaultGiftPackages() {
     useEffect(() => {
         async function fetchDefaultGiftPackages() {
             try {
-                const response = await axios.get("http://localhost:8070/defaultGiftpackage/default-gift-packages");
+                const response = await axios.get(`${config.BASE_URL}/defaultGiftpackage/default-gift-packages`);
                 setDefaultGiftPackages(response.data);
             } catch (error) {
                 console.error("Error fetching default gift packages:", error);
@@ -22,7 +23,7 @@ function DisplayDefaultGiftPackages() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8070/defaultGiftpackage/deleteDefault-gift-packages/${id}`);
+            await axios.delete(`${config.BASE_URL}/defaultGiftpackage/deleteDefault-gift-packages/${id}`);
             alert("Default gift package deleted successfully");
             // Update displayed list after deletion
             setDefaultGiftPackages(defaultGiftPackages.filter((pkg) => pkg._id !== id));

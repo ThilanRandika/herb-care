@@ -3,6 +3,7 @@ import './specialistBarChart.css';
 import { AuthContext } from '../../../../context/AuthContext';
 import axios from 'axios';
 import Chart from 'react-apexcharts';
+import config from '../../../../config';
 
 function SpecialistBarChart() {
     const { user } = useContext(AuthContext);
@@ -12,7 +13,7 @@ function SpecialistBarChart() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8070/consultAppointment/getOngoingAppointmentsCountForNext7Days/${user._id}`);
+                const response = await axios.get(`${config.BASE_URL}/consultAppointment/getOngoingAppointmentsCountForNext7Days/${user._id}`);
                 setAppointmentsData(response.data);
                 setLoading(false);
             } catch (error) {

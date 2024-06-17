@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './PlaceOrder.css';
 import Header from '../../common/header/header';
 import Footer from '../../common/footer/footer';
+import config from "../../../config";
 
 const PlaceOrder = () => {
   const [orderName, setOrderName] = useState('');
@@ -23,7 +24,7 @@ const PlaceOrder = () => {
 
 
   useEffect(()=>{
-    axios.get(`http://localhost:8070/giftPackageOrder/get/${packageId}`)
+    axios.get(`${config.BASE_URL}/giftPackageOrder/get/${packageId}`)
     .then((res)=>{
       console.log(res.data.newOrder.orderAddress)
       setOrderName(res.data.newOrder.orderName)
@@ -42,7 +43,7 @@ const PlaceOrder = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(`http://localhost:8070/giftPackageOrder/create/${packageId}`, {
+      const response = await axios.post(`${config.BASE_URL}/giftPackageOrder/create/${packageId}`, {
         packageId,
         orderName,
         orderAddress,

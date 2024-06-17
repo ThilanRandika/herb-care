@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './DisplayPackageOderUser.css';
 import { Link } from 'react-router-dom';
+import config from "../../../config";
 
 const OrderDisplay = () => {
   const [orders, setOrders] = useState([]);
@@ -9,7 +10,7 @@ const OrderDisplay = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/giftPackageOrder/orders');
+        const response = await axios.get(`${config.BASE_URL}/giftPackageOrder/orders`);
         setOrders(response.data.orders);
       } catch (error) {
         console.error('Failed to fetch orders:', error);
@@ -21,7 +22,7 @@ const OrderDisplay = () => {
 
   const handleCancelOrder = async (orderId) => {
     try {
-      await axios.delete(`http://localhost:8070/giftPackageOrder/cancelGiftPackageOrders/${orderId}`);
+      await axios.delete(`${config.BASE_URL}/giftPackageOrder/cancelGiftPackageOrders/${orderId}`);
       // Update the orders state after deletion
       setOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
     } catch (error) {

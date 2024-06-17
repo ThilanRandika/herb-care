@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Staff_Notifications.css"; // Import CSS file for styling
+import config from "../../../../config";
 
 export default function Staff_Notifications() {
   const [approvalProcesses, setApprovalProcesses] = useState([]);
@@ -10,7 +11,7 @@ export default function Staff_Notifications() {
   useEffect(() => {
     function getApprovalProcesses() {
       axios
-        .get("http://localhost:8070/ApprovalProcess/")
+        .get(`${config.BASE_URL}/ApprovalProcess/`)
         .then((res) => {
           console.log(res.data); // Assuming the data is in res.data
           setApprovalProcesses(res.data); // Set the approval processes state with fetched data

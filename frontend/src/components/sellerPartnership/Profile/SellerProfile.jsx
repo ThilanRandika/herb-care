@@ -11,7 +11,7 @@ function SellerProfile() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8070/sellerProfile/profile')
+    axios.get(`https://herb-care-pzwv.onrender.com/sellerProfile/profile/${user.sellerId}`)
     .then((res)=> {
       const data = { ...res.data };
       delete data.client; // Remove the circular reference property
@@ -24,7 +24,7 @@ function SellerProfile() {
   }, []);
 
   const update= () =>{
-    axios.get('http://localhost:8070/sellerProfile/profile')
+    axios.get('https://herb-care-pzwv.onrender.com/sellerProfile/profile')
     .then((res)=> {
       const data = { ...res.data };
       delete data.client; // Remove the circular reference property
@@ -67,7 +67,7 @@ function SellerProfile() {
     formData.append('website', editedUser.website);
     formData.append('newPassword', newPassword);
 
-    axios.post('http://localhost:8070/sellerProfile/update', formData, {
+    axios.post('https://herb-care-pzwv.onrender.com/sellerProfile/update', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -95,7 +95,7 @@ function SellerProfile() {
             <div className="col-md-3 pt-0">
               <div className="seller-profile-card-body">
                 <div className="seller-profile-avatar-container">
-                <img src={require(`../../../../../BACKEND/routes/sellerPartnership/uploads/images/${user.profile_Image}`)} alt="Profile" className="seller-profile-avatar" />
+                <img src="https://th.bing.com/th/id/OIP._FJFJqCgfY1GSl100ui2SQAAAA?rs=1&pid=ImgDetMain" alt="Profile" className="seller-profile-avatar" />
                 </div>
                 <div className="seller-profile-info">
                   <label className="seller-profile-btn">

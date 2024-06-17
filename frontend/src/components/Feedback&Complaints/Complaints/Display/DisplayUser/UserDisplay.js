@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ListGroup, Button } from 'react-bootstrap';
 import './UserDisplay.css';
+import config from "../../../../../config";
 
 const UserDisplay = () => {
   const [complaints, setComplaints] = useState([]);
@@ -9,7 +10,7 @@ const UserDisplay = () => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/complaints/get');
+        const response = await axios.get(`${config.BASE_URL}/complaints/get`);
         setComplaints(response.data);
       } catch (error) {
         console.error(error);
@@ -21,7 +22,7 @@ const UserDisplay = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/complaints/delete/${id}`);
+      await axios.delete(`${config.BASE_URL}/complaints/delete/${id}`);
       setComplaints((prevComplaints) => prevComplaints.filter((complaint) => complaint._id !== id));
     } catch (error) {
       console.error(error);

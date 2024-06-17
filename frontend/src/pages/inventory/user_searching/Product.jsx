@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { AuthContext } from '../../../context/AuthContext';
 import axios from 'axios';
 import './Product.css';
 import Feedback from '../../../components/Feedback&Complaints/Feedback/Display/DisplayUnderProduct/displayUnderProduct';
 import Header from '../../../components/common/header/header';
 import Footer from '../../../components/common/footer/footer';
+import config from '../../../config';
 
 function Product() {
   const { id } = useParams(); // Get the product id from the URL parameter
@@ -14,9 +16,10 @@ function Product() {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [error, setError] = useState("");
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    axios.get(`http://localhost:8070/Product/${id}`)
+    axios.get(`${config.BASE_URL}/Product/${id}`)
       .then((res) => {
         setProduct({
           ...res.data.product,
@@ -46,7 +49,8 @@ function Product() {
 
   const addToCart = () => {
     axios
-      .post("http://localhost:8070/Cart/add/" + id, {
+      .post(`${config.BASE_URL}/Cart/add/${id}`, {
+        userId: user._id,
         quantity: quantity,
         price: product.Manufactured_price,
         totalPrice: (quantity * product.Manufactured_price).toFixed(2),
@@ -64,7 +68,7 @@ function Product() {
     return <div className="loading-container">Loading...</div>;
   }
 
-  const imageUrl = `http://localhost:8070/${product.image}`;
+  const imageUrl = `${config.BASE_URL}/${product.image}`;
 
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value);

@@ -7,7 +7,7 @@ function PendingSellerRequests() {
     const [openOrder, setOpenOrder] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:8070/sellerPartnershipRequest/allSellerReq')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/allSellerReq')
             .then((res) => {
                 setRequests(res.data);
             })
@@ -21,7 +21,7 @@ function PendingSellerRequests() {
     };
 
     const handleApprove = (id) => {
-        axios.put(`http://localhost:8070/sellerPartnershipRequest/reqAprove/${id}`)
+        axios.put(`https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/reqAprove/${id}`)
             .then((res) => {
                 setRequests(prevRequests => prevRequests.filter(request => request._id !== id));
             })
@@ -31,7 +31,7 @@ function PendingSellerRequests() {
     };
 
     const handleReject = (id) => {
-        axios.delete(`http://localhost:8070/sellerPartnershipRequest/rejectReq/${id}`)
+        axios.delete(`https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/rejectReq/${id}`)
             .then((res) => {
                 setRequests(prevRequests => prevRequests.filter(request => request._id !== id));
             })

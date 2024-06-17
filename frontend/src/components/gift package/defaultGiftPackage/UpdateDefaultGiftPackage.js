@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./UpdateDefaultGiftPackage.css"
+import config from "../../../config";
 
 function UpdateDefaultGiftPackage() {
     const { id } = useParams();
@@ -22,7 +23,7 @@ function UpdateDefaultGiftPackage() {
 
     const fetchPackage = async () => {
         try {
-            const response = await axios.get(`http://localhost:8070/defaultGiftpackage/default-gift-pack/${id}`);
+            const response = await axios.get(`${config.BASE_URL}/defaultGiftpackage/default-gift-pack/${id}`);
             setPackageData(response.data);
         } catch (error) {
             console.error("Error fetching default gift package:", error);
@@ -49,7 +50,7 @@ function UpdateDefaultGiftPackage() {
                 totalPrice: packageData.totalPrice
             };
 
-            await axios.put(`http://localhost:8070/defaultGiftpackage/updateDefault-gift-package/${id}`, updatedPackageData);
+            await axios.put(`${config.BASE_URL}/defaultGiftpackage/updateDefault-gift-package/${id}`, updatedPackageData);
             alert("Package updated successfully");
         } catch (error) {
             console.error("Error updating default gift package:", error);

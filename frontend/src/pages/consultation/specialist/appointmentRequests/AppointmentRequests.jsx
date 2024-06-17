@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './appointmentRequests.css'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import config from '../../../../config';
 
 
 function AppointmentRequests(props) {
@@ -22,7 +23,7 @@ function AppointmentRequests(props) {
     const searchQuery = searchParams.get('search'); // Get the value of the 'search' parameter
 
     axios
-      .get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
+      .get(`${config.BASE_URL}/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
       .then((res) => {
         console.log('Got data:', res.data);
         const filteredAppointments = searchQuery
@@ -57,12 +58,12 @@ function AppointmentRequests(props) {
 
 
   const handleReject = (id) => {
-    axios.put(`http://localhost:8070/consultAppointment/rejectAppointment/${id}`)
+    axios.put(`${config.BASE_URL}/consultAppointment/rejectAppointment/${id}`)
         .then((res) => {
             console.log("Request rejected successfully", res.data);
             setSuccessMessage("Appointment rejected successfully!");
             setExpandedAppointment(null); // Close all expanded appointment details
-            axios.get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
+            axios.get(`${config.BASE_URL}/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
               .then((res) => {
                   console.log("Got data: ", res.data);
                   setAppointments(res.data);
@@ -81,13 +82,13 @@ function AppointmentRequests(props) {
 
 
   const handleComplete = (id) => {
-    axios.put(`http://localhost:8070/consultAppointment/completeAppointment/${id}`)
+    axios.put(`${config.BASE_URL}/consultAppointment/completeAppointment/${id}`)
       .then((res) => {
         console.log("Appointment completed successfully", res.data);
         setSuccessMessage("Appointment completed successfully!");
         setExpandedAppointment(null); // Close all expanded appointment details
         // Fetch appointments again to update the list
-        axios.get(`http://localhost:8070/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
+        axios.get(`${config.BASE_URL}/consultAppointment/getUpcomingAppointments/${props.specialistID}`)
           .then((res) => {
               console.log("Got data: ", res.data);
                 setAppointments(res.data);

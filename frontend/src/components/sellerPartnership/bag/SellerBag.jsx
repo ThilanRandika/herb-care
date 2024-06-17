@@ -13,7 +13,7 @@ function SellerBag() {
     const [showCheckoutModal, setShowCheckoutModal] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:8070/sellerBag/allBag')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerBag/allBag')
             .then((res) => {
                 console.log(res.data);
                 setItems(res.data);
@@ -26,7 +26,7 @@ function SellerBag() {
     }, []);
 
     const removeItem = (id) => {
-        axios.delete(`http://localhost:8070/sellerBag/deleteItem/${id}`)
+        axios.delete(`https://herb-care-pzwv.onrender.com/sellerBag/deleteItem/${id}`)
             .then((res) => {
                 console.log(res.data);
                 console.log("delete the item");
@@ -56,7 +56,7 @@ function SellerBag() {
     };
 
     const refreshItems = () => {
-        axios.get('http://localhost:8070/sellerBag/allBag')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerBag/allBag')
             .then((res) => {
                 console.log(res.data);
                 setItems(res.data);
@@ -76,7 +76,7 @@ function SellerBag() {
     const handleUpdateItem = (itemId) => {
         const newQuantity = updatedQuantities[itemId];
         if (newQuantity !== undefined) {
-            axios.put(`http://localhost:8070/sellerBag/updateQuantity/${itemId}`, { quantity: newQuantity })
+            axios.put(`https://herb-care-pzwv.onrender.com/sellerBag/updateQuantity/${itemId}`, { quantity: newQuantity })
                 .then((res) => {
                     console.log(res.data);
                     refreshItems();

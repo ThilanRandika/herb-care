@@ -3,9 +3,8 @@ const router = express.Router();
 const multer = require('multer'); // For handling file uploads
 const path = require('path');
 const fs = require('fs');
-const bcrypt = require('bcrypt'); // For password hashing
+const bcrypt = require('bcryptjs'); // For password hashing
 const Seller = require('../../models/sellerPartnership/Seller');
-const { verifySellerToOther } = require('../../utils/veryfyToken');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -60,9 +59,9 @@ router.post('/update', upload.single('avatar'), async (req, res) => {
 });
 
 
-router.route('/profile').get(verifySellerToOther, async (req, res) => {
+router.route('/profile/:sellerId').get( async (req, res) => {
   try {
-    const sellerId = req.person.sellerId;
+    const sellerId = req.params.sellerId;
 
     // Use await to ensure the result is resolved before proceeding
     const seller = await Seller.findOne({ sellerId: sellerId });
@@ -86,6 +85,7 @@ router.route('/profile').get(verifySellerToOther, async (req, res) => {
       tax_id: seller.tax_id,
     };
 
+    console.log(sellerData);
     // Send the modified data as JSON response
     res.status(200).json(sellerData);
   } catch (err) {

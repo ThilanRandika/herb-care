@@ -9,7 +9,7 @@ function RegisteredSellers() {
     const [sellers, setSellers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8070/seller/all')
+        axios.get('https://herb-care-pzwv.onrender.com/seller/all')
             .then((res) => {
                 setSellers(res.data);
             })
@@ -19,11 +19,11 @@ function RegisteredSellers() {
     }, []);
 
     const handleDownloadPDF = () => {
-        window.open('http://localhost:8070/seller/all?format=pdf');
+        window.open('https://herb-care-pzwv.onrender.com/seller/all?format=pdf');
     };
 
     const handleReject = (id) => {
-        axios.delete(`http://localhost:8070/seller/deleteSeller/${id}`)
+        axios.delete(`https://herb-care-pzwv.onrender.com/seller/deleteSeller/${id}`)
             .then((res) => {
                 setSellers(prevSellers => prevSellers.filter(seller => seller.sellerId !== id));
             })

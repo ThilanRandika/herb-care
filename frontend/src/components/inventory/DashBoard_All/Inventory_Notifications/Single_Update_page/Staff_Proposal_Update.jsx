@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import config from '../../../../../config';
 
 function Staff_Proposal_Update() {
     const { id } = useParams(); // Get the proposal id from the URL parameter
@@ -19,7 +20,7 @@ function Staff_Proposal_Update() {
     });
   
     useEffect(() => {
-      axios.get(`http://localhost:8070/ApprovalProcess/${id}`)
+      axios.get(`${config.BASE_URL}/ApprovalProcess/${id}`)
         .then((res) => {
           setProposal(res.data.approval); // Assuming the data is in res.data.approval
           setFormData({
@@ -64,7 +65,7 @@ function Staff_Proposal_Update() {
         } else {
           try {
             // If no image uploaded, fetch previous image from database
-            const response = await axios.get(`http://localhost:8070/ApprovalProcess/${id}`);
+            const response = await axios.get(`${config.BASE_URL}/ApprovalProcess/${id}`);
             const previousImage = response.data.approval.image; // Fix the variable name here
             // Set previous image in formData
             setFormData({ ...formData, image: previousImage });

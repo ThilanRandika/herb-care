@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './calenderSpecialistAvailabilitiesDashBoard.css';
 import { AuthContext } from '../../../../context/AuthContext';
+import config from '../../../../config';
 
 function CalenderSpecialistAvailabilitiesDashBoard() {
   const [ongoingAppointmentDates, setOngoingAppointmentDates] = useState([]);
@@ -12,7 +13,7 @@ function CalenderSpecialistAvailabilitiesDashBoard() {
 
   useEffect(() => {
     // Fetch ongoing appointment dates from the backend
-    fetch(`http://localhost:8070/consultAppointment/getOngoingAppointmentDates/${user._id}`)
+    fetch(`${config.BASE_URL}/consultAppointment/getOngoingAppointmentDates/${user._id}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);

@@ -4,6 +4,7 @@ import axios from 'axios';
 import RefundAddForm from '../refundAddForm/RefundAddForm';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
+import config from '../../../config';
 
 function MyCancelledConsultations(props) {
 
@@ -15,7 +16,7 @@ function MyCancelledConsultations(props) {
   const [loading, setLoading] = useState(true); // State to track loading status
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/consultAppointment/cancelledAppointments/${user._id}`)
+        axios.get(`${config.BASE_URL}/consultAppointment/cancelledAppointments/${user._id}`)
             .then((res) => {
                 console.log("Got data: ", res.data);
                 setCancelledAppointments(res.data);
@@ -43,7 +44,7 @@ function MyCancelledConsultations(props) {
   
     const hasRefund = async (appointmentId) => {
       try {
-        const response = await axios.get(`http://localhost:8070/refund/checkExistingRefund/${appointmentId}`);
+        const response = await axios.get(`${config.BASE_URL}/refund/checkExistingRefund/${appointmentId}`);
         return response.data.hasRefund;
       } catch (error) {
         console.error('Error checking existing refund:', error);

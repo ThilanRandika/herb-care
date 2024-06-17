@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ProductForm.css'; // Import your CSS file
+import config from '../../../config';
 
 function ProductForm() {
   const [formData, setFormData] = useState({
@@ -53,7 +54,7 @@ function ProductForm() {
       formDataToSend.append('manufactureDate', formData.manufactureDate);
       formDataToSend.append('ingredients', formData.ingredients);
 
-      await axios.post('http://localhost:8070/Product/add', formDataToSend, {
+      await axios.post(`${config.BASE_URL}/Product/add`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
         }

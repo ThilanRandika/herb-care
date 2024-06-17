@@ -8,7 +8,7 @@ function SellerApprovelPendingOrders() {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8070/sellerOrder/sellerPendingOrders')
+        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/sellerPendingOrders')
         .then((res) => {
             console.log(res.data);
             setOrders(res.data);

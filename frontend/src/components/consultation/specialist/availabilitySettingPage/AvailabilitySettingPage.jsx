@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './availabilitySettingPage.css';
 import axios from 'axios';
+import config from '../../../../config';
 
 function AvailabilitySettingPage(props) {
   const [centers, setCenters] = useState([]);
@@ -29,7 +30,7 @@ function AvailabilitySettingPage(props) {
     // Fetch all center names when the component mounts
     const fetchCenters = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/center/all');
+        const response = await axios.get(`${config.BASE_URL}/center/all`);
         setCenters(response.data);
       } catch (error) {
         console.error('Failed to fetch centers:', error);
@@ -71,7 +72,7 @@ function AvailabilitySettingPage(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:8070/availability/add', formData);
+      await axios.post(`${config.BASE_URL}/availability/add`, formData);
       console.log('Availability added successfully!');
       props.setIsNewAvailabilitySubmitted (true);
     } catch (error) {

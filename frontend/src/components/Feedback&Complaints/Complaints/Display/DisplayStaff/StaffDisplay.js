@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './StaffDisplay.css';
+import config from "../../../../../config";
 
 const ComplaintsList = () => {
   const [complaints, setComplaints] = useState([]);
@@ -11,7 +12,7 @@ const ComplaintsList = () => {
 
   const downloadComplaintsPdf = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/complaints/download', {
+      const response = await axios.get(`${config.BASE_URL}/complaints/download`, {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -30,8 +31,8 @@ const ComplaintsList = () => {
     const fetchData = async () => {
       try {
         const [complaintsResponse, totalCountResponse] = await Promise.all([
-          axios.get("http://localhost:8070/complaints/"),
-          axios.get("http://localhost:8070/complaints/count")
+          axios.get(`${config.BASE_URL}/complaints/`),
+          axios.get(`${config.BASE_URL}/complaints/count`)
         ]);
 
         setComplaints(complaintsResponse.data);
@@ -47,7 +48,7 @@ const ComplaintsList = () => {
 
   const handleStatusChange = async (complaintId, newStatus) => {
     try {
-      await axios.put(`http://localhost:8070/complaints/${complaintId}`, { status: newStatus });
+      await axios.put(`${config.BASE_URL}/complaints/${complaintId}`, { status: newStatus });
       setComplaints(prevComplaints =>
         prevComplaints.map(complaint =>
           complaint._id === complaintId ? { ...complaint, status: newStatus } : complaint
@@ -60,7 +61,7 @@ const ComplaintsList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/complaints/delete/${id}`);
+      await axios.delete(`${config.BASE_URL}/complaints/delete/${id}`);
       setComplaints(prevComplaints => prevComplaints.filter(complaint => complaint._id !== id));
     } catch (error) {
       console.error(error);
