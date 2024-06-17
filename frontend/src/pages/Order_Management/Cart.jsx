@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Cart.css";
+import config from '../../config';
 
 function Cart() {
   const [items, setItems] = useState([]);
@@ -11,7 +12,7 @@ function Cart() {
   }, []);
 
   const fetchCartItems = () => {
-    axios.post('https://herb-care-pzwv.onrender.com/Cart/allcart')
+    axios.post(`${config.BASE_URL}/Cart/allcart`)
       .then(response => {
         setItems(response.data.items);
         setalltotalcount(response.data.totalPrice);
@@ -22,7 +23,7 @@ function Cart() {
   };
 
   const updateQuantity = (productId, quantity) => {
-    axios.post(`https://herb-care-pzwv.onrender.com/Cart/update/${productId}`, { quantity })
+    axios.post(`${config.BASE_URL}/Cart/update/${productId}`, { quantity })
       .then(response => {
         console.log(response.data)
         const updatedItem = response.data.item;
@@ -40,7 +41,7 @@ function Cart() {
   }
 
   const removeItem = (productId) => {
-    axios.post(`https://herb-care-pzwv.onrender.com/Cart/remove/${productId}`)
+    axios.post(`${config.BASE_URL}/Cart/remove/${productId}`)
       .then(response => {
         const updatedItems = items.filter(item => item._id !== productId);
         setItems(updatedItems);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./ViewAllProducts.css"; // Import CSS file for styling
+import config from "../../../../config";
 
 export default function ViewAllProducts() {
   const [products, setProducts] = useState([]);
@@ -43,7 +44,7 @@ export default function ViewAllProducts() {
         ingredients: product.ingredients
       };
   
-      await axios.post('https://herb-care-pzwv.onrender.com/ApprovalProcess/addDelete', productToDelete);
+      await axios.post(`${config.BASE_URL}/ApprovalProcess/addDelete`, productToDelete);
       
     } catch (error) {
       console.error('Error deleting product:', error);

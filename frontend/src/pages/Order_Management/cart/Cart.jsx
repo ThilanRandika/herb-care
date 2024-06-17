@@ -6,6 +6,7 @@ import SellerCheckout from '../../../components/sellerPartnership/sellerCheckout
 import CartCheckout from '../../../components/order/CartCheckout';
 import Header from '../../../components/common/header/header';
 import Footer from '../../../components/common/footer/footer';
+import config from '../../../config';
 
 function Cart() {
     const { user } = useContext(AuthContext); // get the customer ID from authentication context
@@ -23,7 +24,7 @@ function Cart() {
     }, [user._id]);
 
     const fetchCartItems = () => {
-        axios.get(`https://herb-care-pzwv.onrender.com/Cart/user/${user._id}`)
+        axios.get(`${config.BASE_URL}/Cart/user/${user._id}`)
             .then((res) => {
                 console.log(res.data);
                 if (res.data && Array.isArray(res.data)) {
@@ -41,7 +42,7 @@ function Cart() {
     };
 
     const removeItem = (id) => {
-        axios.delete(`https://herb-care-pzwv.onrender.com/Cart/remove/${id}`)
+        axios.delete(`${config.BASE_URL}/Cart/remove/${id}`)
             .then((res) => {
                 console.log(res.data);
                 console.log("Deleted the item");
@@ -80,7 +81,7 @@ function Cart() {
     const handleUpdateItem = (itemId) => {
         const newQuantity = updatedQuantities[itemId];
         if (newQuantity !== undefined) {
-            axios.put(`https://herb-care-pzwv.onrender.com/Cart/update/${itemId}`, { quantity: newQuantity })
+            axios.put(`${config.BASE_URL}/Cart/update/${itemId}`, { quantity: newQuantity })
                 .then((res) => {
                     console.log("cart item updated", res.data);
                     fetchCartItems();

@@ -7,6 +7,7 @@ import './Product.css';
 import Feedback from '../../../components/Feedback&Complaints/Feedback/Display/DisplayUnderProduct/displayUnderProduct';
 import Header from '../../../components/common/header/header';
 import Footer from '../../../components/common/footer/footer';
+import config from '../../../config';
 
 function Product() {
   const { id } = useParams(); // Get the product id from the URL parameter
@@ -18,7 +19,7 @@ function Product() {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    axios.get(`https://herb-care-pzwv.onrender.com/Product/${id}`)
+    axios.get(`${config.BASE_URL}/Product/${id}`)
       .then((res) => {
         setProduct({
           ...res.data.product,
@@ -48,7 +49,7 @@ function Product() {
 
   const addToCart = () => {
     axios
-      .post(`https://herb-care-pzwv.onrender.com/Cart/add/${id}`, {
+      .post(`${config.BASE_URL}/Cart/add/${id}`, {
         userId: user._id,
         quantity: quantity,
         price: product.Manufactured_price,
@@ -67,7 +68,7 @@ function Product() {
     return <div className="loading-container">Loading...</div>;
   }
 
-  const imageUrl = `https://herb-care-pzwv.onrender.com/${product.image}`;
+  const imageUrl = `${config.BASE_URL}/${product.image}`;
 
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value);

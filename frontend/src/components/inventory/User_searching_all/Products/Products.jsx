@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import config from "../../../../config";
 
 function Products({ searchQuery, priceRange, category }) {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ function Products({ searchQuery, priceRange, category }) {
 
   useEffect(() => {
     function getProducts() {
-      axios.get("https://herb-care-pzwv.onrender.com/Product/")
+      axios.get(`${config.BASE_URL}/Product/`)
         .then((res) => {
           setProducts(res.data);
           setLoading(false);
@@ -25,7 +26,7 @@ function Products({ searchQuery, priceRange, category }) {
 
     const fetchFeedbackSummaries = async () => {
       try {
-        const response = await axios.get('https://herb-care-pzwv.onrender.com/feedback/feedback-summaries');
+        const response = await axios.get('${config.BASE_URL}/feedback/feedback-summaries');
         setSummaries(response.data);
         setLoading(false);
       } catch (error) {
@@ -86,7 +87,7 @@ function Products({ searchQuery, priceRange, category }) {
 
   const addToCart = (product) => {
     axios
-      .post(`https://herb-care-pzwv.onrender.com/Cart/add/${product._id}` , {
+      .post(`${config.BASE_URL}/Cart/add/${product._id}` , {
         userId: user._id,
         quantity: 1,
         price: product.Manufactured_price,
