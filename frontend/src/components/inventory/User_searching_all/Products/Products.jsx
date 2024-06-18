@@ -26,7 +26,7 @@ function Products({ searchQuery, priceRange, category }) {
 
     const fetchFeedbackSummaries = async () => {
       try {
-        const response = await axios.get('${config.BASE_URL}/feedback/feedback-summaries');
+        const response = await axios.get(`${config.BASE_URL}/feedback/feedback-summaries`);
         setSummaries(response.data);
         setLoading(false);
       } catch (error) {
