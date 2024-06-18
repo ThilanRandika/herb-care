@@ -53,6 +53,7 @@ import ManageServices from "./components/HolidayPackage/ManageServices";
 
 import ContactUs from "./pages/common/contactUs/ContactUs";
 import AboutUs from "./pages/inventory/AboutUs/about_us";
+import CustomerSingleOrder from "./pages/Order_Management/customerSingleOrder/CutomerSingleOrder";
 
 function App() {
   return (
@@ -106,6 +107,7 @@ function App() {
 
 
         <Route path="/myOrders/*" element={<MyOrders />} />
+        <Route path="/customerOneOrder/:id" element={<CustomerSingleOrder />} />
           
 
         <Route path="/Update_default_gift_packages/:id" element={<UpdateDefaultGiftPackage/>}></Route>
