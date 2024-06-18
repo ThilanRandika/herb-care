@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './sellerNotification.css'
 import { Tabs } from  "antd";
 import axios from 'axios';
 import './sellerNotification.css'
+import { AuthContext } from '../../../context/AuthContext';
+import config from "../../../config";
 
 
 function SellerNotification() {
 
     const [seller, setSeller] = useState({});
+    const { user } = useContext(AuthContext)
 
 
     useEffect(() => {
-        axios.get("https://herb-care-pzwv.onrender.com/sellerNotification/getNotifications")
+        axios.get(`${config.BASE_URL}/sellerNotification/getNotifications/${user.sellerId}`)
         .then((res) => {
             setSeller(res.data);
             console.log(res.data)
@@ -23,7 +26,7 @@ function SellerNotification() {
     } , [])
 
     const refreshPage = () => {
-            axios.get("https://herb-care-pzwv.onrender.com/sellerNotification/getNotifications")
+            axios.get(`${config.BASE_URL}/sellerNotification/getNotifications/${user.sellerId}`)
             .then((res) => {
                 setSeller(res.data);
                 console.log(res.data)
@@ -34,7 +37,7 @@ function SellerNotification() {
     }
 
     const handleUnReadNotification = () => {
-            axios.put("https://herb-care-pzwv.onrender.com/sellerNotification/markAsReadNotification")
+            axios.put(`${config.BASE_URL}/sellerNotification/markAsReadNotification/${user.sellerId}`)
             .then((res) => {
                 console.log('Marked as read successfully');
                 console.log(res.data)
@@ -46,7 +49,7 @@ function SellerNotification() {
     };
 
     const deleteReadNotification = () => {
-        axios.put("https://herb-care-pzwv.onrender.com/sellerNotification/deleteNotification")
+        axios.put(`${config.BASE_URL}/sellerNotification/deleteNotification/${user.sellerId}`)
         .then((res) => {
             console.log('Delete notifications');
             console.log(res.data)
