@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./partnershipRequest.css";
 import axios from "axios";
+import config from "../../../config";
 
 function PartnershipRequest(props) {
   const [sellerRequest, setSellerRequest] = useState({
@@ -23,7 +24,7 @@ function PartnershipRequest(props) {
   const Submit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/add", sellerRequest);
+      await axios.post(`${config.BASE_URL}/sellerPartnershipRequest/add`, sellerRequest);
       console.log(sellerRequest)
       // alert("Requst Added Successfully");
       setSellerRequest("");

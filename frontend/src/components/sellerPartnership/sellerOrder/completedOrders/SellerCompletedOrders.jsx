@@ -1,13 +1,16 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../pendingOrders/sellerApprovelPendingOrders.css'; // Import shared CSS file
+import { AuthContext } from '../../../../context/AuthContext';
+import config from "../../../../config";
 
 function SellerCompletedOrders() {
   const [orders, setOrders] = useState([]);
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
-      axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/sellerCompletedOrders')
+      axios.get(`${config.BASE_URL}/sellerOrder/sellerCompletedOrders/${user.sellerId}`)
       .then((res) => {
           console.log(res.data);
           setOrders(res.data);

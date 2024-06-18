@@ -5,10 +5,10 @@ const moment = require('moment');
 
 const router = require("express").Router();
 
-router.route('/completedOrders/count').get(verifySellerToOther, async(req,res) => {
+router.route('/completedOrders/count/:sellerId').get( async(req,res) => {
 
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         const count = await SellerOrder.countDocuments({sellerId: sellerId, status:"completed"});
 
@@ -20,9 +20,9 @@ router.route('/completedOrders/count').get(verifySellerToOther, async(req,res) =
 })
 
 
-router.route('/all/processingOrders/count').get(verifySellerToOther, async(req, res) => {
+router.route('/all/processingOrders/count/:sellerId').get(verifySellerToOther, async(req, res) => {
     try {
-      const sellerId = req.person.sellerId;
+      const sellerId = req.params.sellerId;
   
       const count = await SellerOrder.countDocuments({
         sellerId: sellerId,
@@ -37,9 +37,9 @@ router.route('/all/processingOrders/count').get(verifySellerToOther, async(req, 
   });
 
 
-  router.route('/totalOrderedAmount').get(verifySellerToOther, async (req, res) => {
+  router.route('/totalOrderedAmount/:sellerId').get(verifySellerToOther, async (req, res) => {
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
     
         // Aggregate pipeline to group orders by status and calculate total amounts
         const ordersByStatus = await SellerOrder.aggregate([
@@ -65,9 +65,9 @@ router.route('/all/processingOrders/count').get(verifySellerToOther, async(req, 
 
 
 
-router.route('/orders/months/count').get(verifySellerToOther, async(req,res) => {
+router.route('/orders/months/count/:sellerId').get(verifySellerToOther, async(req,res) => {
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         const currentMonth = moment().startOf('month');
 
@@ -106,9 +106,9 @@ router.route('/orders/months/count').get(verifySellerToOther, async(req,res) => 
 })
 
 
-router.route('/quantity/months/count').get(verifySellerToOther, async (req, res) => {
+router.route('/quantity/months/count/:sellerId').get( async (req, res) => {
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         const currentMonth = moment().startOf('month');
 

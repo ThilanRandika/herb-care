@@ -2,7 +2,6 @@ const Seller = require("../../models/sellerPartnership/Seller.js");
 const SellerProducts = require("../../models/sellerPartnership/SellerProducts.js");
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-const { verifySeller } = require("../../utils/veryfyToken.js");
 const emailSender = require('../../emailSender.js');
 const PartnershipRequest = require("../../models/sellerPartnership/SellerPartnershipRequest.js");
 const Product = require("../../models/inventory/Product.js");
@@ -219,7 +218,7 @@ router.route("/oneSeller/:sellerId").get( async (req, res) => {
 });
 
 //READ - get one seller detail FOR Profile edit
-router.route("/oneSeller/:sellerId").get(verifySeller, async (req, res) => {
+router.route("/oneSeller/:sellerId").get( async (req, res) => {
   try {
     const sellerId = req.params.sellerId;
     //get seler details
