@@ -86,6 +86,10 @@ function Products({ searchQuery, priceRange, category }) {
   };
 
   const addToCart = (product) => {
+    if (!user){
+      alert("Please login to add to cart");
+      return;
+    }
     axios
       .post(`${config.BASE_URL}/Cart/add/${product._id}` , {
         userId: user._id,
