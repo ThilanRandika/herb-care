@@ -1,11 +1,67 @@
 const Order = require("../../models/order/Order.js");
 const router = require("express").Router();
 
-// Get all orders for a specific user
-router.route("/getOrdersForUser/:userId").get(async (req, res) => {
+
+router.route("/getOngoingOrdersForUser/:userId").get(async (req, res) => {
+
+  const userId = req.params.userId;
   try {
-    const orders = await Order.find({ userId: req.params.userId });
-    res.status(200).json(orders);
+    const ongoingStatuses = ["pending", "processing", "readyToDelivery", "onDelivery"];
+    const orders = await Order.find({
+      userId: userId,
+      status: { $in: ongoingStatuses }
+    });
+
+    const completedOrdersCount = await Order.countDocuments({
+      userId: userId,
+      status: "completed"
+    });
+
+    // Fetch cancelled orders count
+    const cancelledOrdersCount = await Order.countDocuments({
+      userId,
+      status: "cancelled"
+    });
+
+    ongoingOrders = orders.map(order => {
+      return {
+        id: order._id,
+        status: order.status,
+        price: order.totalPrice,
+        paymentMethod: order.payment,
+        date: order.datePlaced
+      }
+    })
+    res.status(200).json({
+      ongoingOrders: ongoingOrders,
+      completedOrdersCount: completedOrdersCount,
+      cancelledOrdersCount: cancelledOrdersCount
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Failed to retrieve orders" });
+  }
+});
+
+router.route("/getCompleteOrdersForUser/:userId").get(async (req, res) => {
+
+  const userId = req.params.userId;
+  try {
+    const orders = await Order.find({
+      userId: userId,
+      status: "completed"
+    });
+    
+    completeOrders = orders.map(order => {
+      return {
+        id: order._id,
+        status: order.status,
+        price: order.totalPrice,
+        paymentMethod: order.payment,
+        date: order.datePlaced
+      }
+    })
+    res.status(200).json(completeOrders);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to retrieve orders" });
@@ -13,17 +69,34 @@ router.route("/getOrdersForUser/:userId").get(async (req, res) => {
 });
 
 
-// Get an order by its ID
-router.route("/getOrderById/:id").get(async (req, res) => {
+//get one order detail
+router.route('/getOneOrder/:orderId').get( async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id);
-    if (!order) {
-      return res.status(404).json({ message: "Order not found" });
-    }
-    res.status(200).json(order);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Failed to retrieve order" });
+      const orderId = req.params.orderId;
+      const singleOrder = await Order.findById(orderId).populate('products.product');
+      // Format the data according to the provided format
+      const formattedOrder = {
+          
+              id: singleOrder._id, // Assuming MongoDB automatically generates IDs for SellersingleOrder
+              address: singleOrder.shippingAddress, // Assuming sellerId represents the customer in this context
+              date: singleOrder.datePlaced, // Assuming createdAt represents the singleOrder date
+              price: singleOrder.totalPrice.toFixed(2), // Assuming totalPrice is a number
+              status: singleOrder.status,
+              paymentMethod: singleOrder.payment, 
+              orderDetails: singleOrder.products.map(product => ({
+                  productId: product.product._id,
+                  productName: product.product.name,
+                  quantity: product.quantity,
+                  price: product.pricePerItem.toFixed(2),
+                  totalPrice: (product.quantity * product.pricePerItem).toFixed(2)
+              }))
+         
+      }
+
+      res.status(200).json(formattedOrder);
+  } catch (error) {
+      console.error('Error fetching single orders:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
