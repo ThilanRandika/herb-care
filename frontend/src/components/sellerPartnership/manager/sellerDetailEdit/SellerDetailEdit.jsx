@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import './sellerDetailEdit.css'
+import config from "../../../../config";
 
 
 function SellerDetailEdit() {
@@ -15,7 +16,7 @@ function SellerDetailEdit() {
 
 
     useEffect(() => {
-        axios.get(`https://herb-care-pzwv.onrender.com/seller/oneSeller/${id}`)
+        axios.get(`${config.BASE_URL}/seller/oneSeller/${id}`)
             .then((res) => {
                 setSellerDetails(res.data.seller);
                 setProductDetails(res.data.mergedProducts);
@@ -63,7 +64,7 @@ function SellerDetailEdit() {
             Products: productDetails.map(product => product.Products)
         };
         console.log(updatedSeller)
-        axios.put('https://herb-care-pzwv.onrender.com/seller/updateSeller/' + id, updatedSeller)
+        axios.put(`${config.BASE_URL}/seller/updateSeller/` + id, updatedSeller)
         .then((res)=>{
             console.log(res.data)
             alert("Seller updated Successfully");
