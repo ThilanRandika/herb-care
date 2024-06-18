@@ -137,7 +137,286 @@ router.route("/add").post(async (req, res) => {
     }
   });
 
+
+  //get all pending orders
+  router.route("/getAllPendingOrders").get(async (req, res) => {
+    try {
+      const pendingOrders = await Order.find({ status: "pending" });
   
+      const formattedOrders = pendingOrders.map(order => {
+        return {
+          id: order._id,
+          userId: order.userId,
+          status: order.status,
+          price: order.totalPrice,
+          paymentMethod: order.payment,
+          date: order.datePlaced,
+          shippingAddress: order.shippingAddress,
+          contactNumber: order.contactNumber,
+          products: order.products.map(product => ({
+            productId: product.product,
+            quantity: product.quantity,
+            pricePerItem: product.pricePerItem
+          }))
+        };
+      });
+  
+      res.status(200).json(formattedOrders);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve pending orders" });
+    }
+  });
+
+
+  //Set the State of All Pending Orders to Processing
+  router.route("/setAllPendingToProcessing").put(async (req, res) => {
+    try {
+      const updatedOrders = await Order.updateMany(
+        { status: "pending" },
+        { $set: { status: "processing" } }
+      );
+  
+      if (updatedOrders.modifiedCount === 0) {
+        return res.status(404).json({ message: "No pending orders found" });
+      }
+  
+      res.status(200).json({ message: "All pending orders set to processing" });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to update orders to processing" });
+    }
+  });
+
+
+
+
+  //set order to processing
+  router.route("/setOrderToProcessing/:id").put(async (req, res) => {
+    try {
+      const orderId = req.params.id;
+  
+      // Find the order by its ID and update the status to "processing"
+      const updatedOrder = await Order.findByIdAndUpdate(
+        orderId,
+        { $set: { status: "processing" } },
+        { new: true } // To return the updated document
+      );
+  
+      if (!updatedOrder) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+  
+      res.status(200).json(updatedOrder);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to update order to processing" });
+    }
+  });
+
+
+
+  //get all processing orders
+  router.route("/getAllProcessingOrders").get(async (req, res) => {
+    try {
+      const pendingOrders = await Order.find({ status: "processing" });
+  
+      const formattedOrders = pendingOrders.map(order => {
+        return {
+          id: order._id,
+          userId: order.userId,
+          status: order.status,
+          price: order.totalPrice,
+          paymentMethod: order.payment,
+          date: order.datePlaced,
+          shippingAddress: order.shippingAddress,
+          contactNumber: order.contactNumber,
+          products: order.products.map(product => ({
+            productId: product.product,
+            quantity: product.quantity,
+            pricePerItem: product.pricePerItem
+          }))
+        };
+      });
+  
+      res.status(200).json(formattedOrders);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve processing orders" });
+    }
+  });
+  
+  
+  //set order to readyToDelivery
+  router.route("/setOrderToReadyToDelivery/:id").put(async (req, res) => {
+    try {
+      const orderId = req.params.id;
+  
+      // Find the order by its ID and update the status to "readyToDelivery"
+      const updatedOrder = await Order.findByIdAndUpdate(
+        orderId,
+        { $set: { status: "readyToDelivery" } },
+        { new: true } // To return the updated document
+      );
+  
+      if (!updatedOrder) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+  
+      res.status(200).json(updatedOrder);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to update order to readyToDelivery" });
+    }
+  });
+
+  
+
+  //get all ready to delivery orders
+  router.route("/getAllReadyToDeliveryOrders").get(async (req, res) => {
+    try {
+      const pendingOrders = await Order.find({ status: "readyToDelivery" });
+  
+      const formattedOrders = pendingOrders.map(order => {
+        return {
+          id: order._id,
+          userId: order.userId,
+          status: order.status,
+          price: order.totalPrice,
+          paymentMethod: order.payment,
+          date: order.datePlaced,
+          shippingAddress: order.shippingAddress,
+          contactNumber: order.contactNumber,
+          products: order.products.map(product => ({
+            productId: product.product,
+            quantity: product.quantity,
+            pricePerItem: product.pricePerItem
+          }))
+        };
+      });
+  
+      res.status(200).json(formattedOrders);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve ready to delivery orders" });
+    }
+  });
+
+
+
+
+  //set order to onDelivery
+  router.route("/setOrderToOnDelivery/:id").put(async (req, res) => {
+    try {
+      const orderId = req.params.id;
+  
+      // Find the order by its ID and update the status to "onDelivery"
+      const updatedOrder = await Order.findByIdAndUpdate(
+        orderId,
+        { $set: { status: "onDelivery" } },
+        { new: true } // To return the updated document
+      );
+  
+      if (!updatedOrder) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+  
+      res.status(200).json(updatedOrder);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to update order to onDelivery" });
+    }
+  });
+
+
+
+  //get all onDelivery orders
+  router.route("/getAllOnDeliveryOrders").get(async (req, res) => {
+    try {
+      const pendingOrders = await Order.find({ status: "onDelivery" });
+  
+      const formattedOrders = pendingOrders.map(order => {
+        return {
+          id: order._id,
+          userId: order.userId,
+          status: order.status,
+          price: order.totalPrice,
+          paymentMethod: order.payment,
+          date: order.datePlaced,
+          shippingAddress: order.shippingAddress,
+          contactNumber: order.contactNumber,
+          products: order.products.map(product => ({
+            productId: product.product,
+            quantity: product.quantity,
+            pricePerItem: product.pricePerItem
+          }))
+        };
+      });
+  
+      res.status(200).json(formattedOrders);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve onDelivery orders" });
+    }
+  });
+
+
+
+
+  //set order to completed
+  router.route("/setOrderToCompleted/:id").put(async (req, res) => {
+    try {
+      const orderId = req.params.id;
+  
+      // Find the order by its ID and update the status to "completed"
+      const updatedOrder = await Order.findByIdAndUpdate(
+        orderId,
+        { $set: { status: "completed" } },
+        { new: true } // To return the updated document
+      );
+  
+      if (!updatedOrder) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+  
+      res.status(200).json(updatedOrder);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to update order to completed" });
+    }
+  });
+
+
+
+  //get all completed orders
+  router.route("/getAllCompletedOrders").get(async (req, res) => {
+    try {
+      const pendingOrders = await Order.find({ status: "completed" });
+  
+      const formattedOrders = pendingOrders.map(order => {
+        return {
+          id: order._id,
+          userId: order.userId,
+          status: order.status,
+          price: order.totalPrice,
+          paymentMethod: order.payment,
+          date: order.datePlaced,
+          shippingAddress: order.shippingAddress,
+          contactNumber: order.contactNumber,
+          products: order.products.map(product => ({
+            productId: product.product,
+            quantity: product.quantity,
+            pricePerItem: product.pricePerItem
+          }))
+        };
+      });
+      res.status(200).json(formattedOrders);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve completed orders" });
+    }
+  });
+
 
 //   router.get('/top-rated-products', async (req, res) => {
 //     try {
