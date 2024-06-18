@@ -48,6 +48,10 @@ function Product() {
   // console.log(product.name);
 
   const addToCart = () => {
+    if (!user){
+      alert("Please login to add to cart");
+      return;
+    }
     axios
       .post(`${config.BASE_URL}/Cart/add/${id}`, {
         userId: user._id,
