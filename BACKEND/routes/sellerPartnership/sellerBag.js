@@ -4,9 +4,9 @@ const { verifySellerToOther } = require("../../utils/veryfyToken.js");
 const router = require("express").Router();
 
 //Add product to the bag
-router.route('/addToBag/:productId').post(verifySellerToOther, async (req,res) => {
+router.route('/addToBag/:productId/:sellerId').post( async (req,res) => {
   try{
-      const sellerId = req.person.sellerId;
+      const sellerId = req.params.sellerId;
       const productId = req.params.productId;
 
       const existingBagItem = await SellerBag.findOne({ sellerId: sellerId, product_id: productId });
@@ -31,9 +31,9 @@ router.route('/addToBag/:productId').post(verifySellerToOther, async (req,res) =
 
 
 //View all bag Items for logged seller
-router.route('/allBag').get(verifySellerToOther, async (req, res) => {
+router.route('/allBag/:sellerId').get( async (req, res) => {
     try{
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         const bagItems = await SellerBag.find({sellerId: sellerId});
 
@@ -72,7 +72,7 @@ router.route('/allBag').get(verifySellerToOther, async (req, res) => {
 });
 
 
-router.route('/updateQuantity/:itemId').put(verifySellerToOther, async (req, res) => {
+router.route('/updateQuantity/:itemId').put( async (req, res) => {
   try {
       const itemId = req.params.itemId;
       const { quantity } = req.body;

@@ -5,9 +5,9 @@ const router = require("express").Router();
 
 
 
-router.route('/getNotifications').get(verifySellerToOther, async(req, res) => {
+router.route('/getNotifications/:sellerId').get( async(req, res) => {
     try{
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
         const seller = await Seller.findOne({ sellerId: sellerId });
 
         res.status(200).json(seller);
@@ -17,9 +17,9 @@ router.route('/getNotifications').get(verifySellerToOther, async(req, res) => {
 });
 
 //get unread count
-router.route("/unReadCount").get(verifySellerToOther, async (req, res) => {
+router.route("/unReadCount/:sellerId").get( async (req, res) => {
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
         const seller = await Seller.findOne({ sellerId });
 
         if (!seller) {
@@ -37,9 +37,9 @@ router.route("/unReadCount").get(verifySellerToOther, async (req, res) => {
 });
 
 
-router.route('/markAsReadNotification').put(verifySellerToOther, async (req, res) => {
+router.route('/markAsReadNotification/:sellerId').put( async (req, res) => {
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
         const seller = await Seller.findOne({ sellerId: sellerId });
 
         const unRead = seller.unread_notification;
@@ -68,9 +68,9 @@ router.route('/markAsReadNotification').put(verifySellerToOther, async (req, res
 
 
 //Delete Bag Item
-router.route('/deleteNotification').put(verifySellerToOther, async(req, res) => {
+router.route('/deleteNotification/:sellerId').put( async(req, res) => {
     try{
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
         const seller = await Seller.findOne({ sellerId: sellerId });
 
         await Seller.findOneAndUpdate(
