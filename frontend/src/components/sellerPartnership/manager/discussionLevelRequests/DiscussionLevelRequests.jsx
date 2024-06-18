@@ -4,12 +4,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './discussionLevelRequests.css'; // Import the CSS file for styling
+import config from "../../../../config";
 
 function DiscussionLevelRequests() {
     const [discussions, setDiscussions] = useState([]);
 
     useEffect(() => {
-        axios.get('https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/allSellerReqDis')
+        axios.get(`${config.BASE_URL}/sellerPartnershipRequest/allSellerReqDis`)
             .then((res) => {
                 setDiscussions(res.data);
             })
@@ -19,7 +20,7 @@ function DiscussionLevelRequests() {
     }, []);
 
     const handleReject = (id) => {
-        axios.delete(`https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/rejectReq/${id}`)
+        axios.delete(`${config.BASE_URL}/sellerPartnershipRequest/rejectReq/${id}`)
             .then((res) => {
                 setDiscussions(prevRequests => prevRequests.filter(request => request._id !== id));
             })
