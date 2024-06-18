@@ -8,6 +8,8 @@ import ProductSummary from "../../../components/Feedback&Complaints/Feedback/Dis
 import { Link } from 'react-router-dom';
 import Banner from '../../../components/common/Banner/Banner'
 import GiftHomeBanner from '../../../components/gift package/GiftHomeBanner/GiftHomeBanner'
+import Categories from '../../../components/common/categories/Categories';
+import ProductCardsRating from '../../../components/common/productCards1/ProductCardsRating';
 
 function Home() {
 
@@ -29,9 +31,19 @@ function Home() {
 
         <br></br>
         <br></br>
+
+        <Categories/>
+
+        <br></br>
+        <br></br>
         <br></br>
 
         <GiftHomeBanner/>
+        <br />
+        <br />
+
+        <ProductCardsRating/>
+
         <br />
         <br />
 

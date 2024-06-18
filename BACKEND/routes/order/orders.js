@@ -1,3 +1,5 @@
+const Product = require("../../models/inventory/Product.js");
+const Feedback = require("../../models/Feedback&Complaints/feedback.js");
 const Order = require("../../models/order/Order.js");
 const router = require("express").Router();
 
@@ -408,13 +410,62 @@ router.route("/add").post(async (req, res) => {
           }))
         };
       });
-  
       res.status(200).json(formattedOrders);
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "Failed to retrieve completed orders" });
     }
   });
+
+
+//   router.get('/top-rated-products', async (req, res) => {
+//     try {
+//         const topProducts = await Feedback.aggregate([
+//             {
+//                 $group: {
+//                     _id: "$Product",
+//                     averageRating: { $avg: "$ratings" }
+//                 }
+//             },
+//             {
+//                 $sort: { averageRating: -1 } // Descending order by averageRating
+//             },
+//             {
+//                 $limit: 4
+//             }
+//         ]);
+
+//         const productIds = topProducts.map(product => product._id); // Extracting Product ObjectIds
+
+//         // Fetch products based on the extracted Product ObjectIds
+//         const products = await Product.find({ _id: { $in: productIds } });
+
+//         // Send response with top rated products
+//         res.json(products);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ message: 'Server Error' });
+//     }
+// });
+
+
+router.get('/top-rated-products', async (req, res) => {
+  try {
+      // Fetch 4 random products
+      const products = await Product.aggregate([
+          { $sample: { size: 4 } }
+      ]);
+
+      res.json(products);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
+
+
 
   
 
