@@ -9,6 +9,7 @@ import DisplayFeedback_staff from "../../Feedback&complaints/Feedback/DisplaySta
 import './staffMainDashboard.css'
 import StaffDashboardHome from './staffDashboardHome/StaffDashboardHome'
 import DisplayGiftPackage_Staff from '../../Feedback&complaints/FeedbackGiftPackage/DisplayStaffGiftPackageFeedback'
+import StaffOrders from '../../Order_Management/staffOrders/StaffOrders'
 
 function StaffMainDashboard() {
   return (
@@ -24,6 +25,14 @@ function StaffMainDashboard() {
         aria-current="page"
       >
         Dashboard
+      </Link>
+    </li>
+    <li className="main-staff-sidebar-item">
+      <Link
+        className="main-staff-sidebar-link"
+        to={"/staff/staffOrders/dashboard"}
+      >
+        Orders
       </Link>
     </li>
     <li className="main-staff-sidebar-item">
@@ -81,6 +90,7 @@ function StaffMainDashboard() {
    
       <Routes>
         <Route path="/" element={<StaffDashboardHome />}></Route>
+        <Route path="/staffOrders/*" element={<StaffOrders/>}></Route>
         <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
         <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard/>} />
         <Route path="/consultationStaff/*" element={<ConsultationStaffDashboard/>} />
