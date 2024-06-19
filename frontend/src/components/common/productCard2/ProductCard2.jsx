@@ -56,10 +56,10 @@ function ProductCard2() {
         <div className='product-card-2-left'>
           {products.map((product, index) => (
             <div className="home-product2-list-card" key={index}>
-              <div className="customer-product-list-image">
+              <div className="home-product2-list-image">
                 <img
                   src={require(`../../../../../BACKEND/uploads/${product.image}`)}
-                  className="customer-product-list-image"
+                  className="home-product2-list-image"
                   alt="Product"
                 />
               </div>
@@ -89,12 +89,12 @@ function ProductCard2() {
         </div>
         <div className='product-card-2-right'>
           <div className='image-container'>
-            <img src='https://th.bing.com/th/id/OIP.61_Ed7geh4FS2KLh5QXkZQHaE8?w=263&h=184&c=7&r=0&o=5&dpr=1.1&pid=1.7' alt='' />
-            <div className="image-text-overlay">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, amet.</div>
+            <img src={require(`../../../../src/Images/giftImages/gift_1.png`)} alt='' />
+            {/* <div className="image-text-overlay">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, amet.</div> */}
           </div>
           <div className='image-container'>
-            <img src='https://th.bing.com/th/id/OIP.U0SfqHcCr4A3TEW4cIDGOQHaEI?w=327&h=182&c=7&r=0&o=5&dpr=1.1&pid=1.7' alt='' />
-            <div className="image-text-overlay">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, soluta!</div>
+            <img src={require(`../../../../src/Images/giftImages/gift_2.png`)} alt='' />
+            {/* <div className="image-text-overlay">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, soluta!</div> */}
           </div>
         </div>
       </div>
