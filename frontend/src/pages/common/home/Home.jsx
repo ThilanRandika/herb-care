@@ -10,6 +10,7 @@ import Banner from '../../../components/common/Banner/Banner'
 import GiftHomeBanner from '../../../components/gift package/GiftHomeBanner/GiftHomeBanner'
 import Categories from '../../../components/common/categories/Categories';
 import ProductCardsRating from '../../../components/common/productCards1/ProductCardsRating';
+import ProductCard2 from '../../../components/common/productCard2/ProductCard2';
 
 function Home() {
 
@@ -46,6 +47,7 @@ function Home() {
 
         <br />
         <br />
+        
 
         <div className='seller-req' onClick={togglePopup}>
           <img src={require(`../../../../../frontend/src/Images/logo/WhatsApp Image 2024-05-13 at 15.30.42_635bfe04.jpg`)} alt="" />
@@ -53,6 +55,7 @@ function Home() {
         {isPopupVisible && <PartnershipRequest trigger={isPopupVisible} setPopupVisible={setPopupVisible} />}
 
         {/* <NavigationBar></NavigationBar> */}
+        <ProductCard2/>
 
         <br></br>
         <br></br>
