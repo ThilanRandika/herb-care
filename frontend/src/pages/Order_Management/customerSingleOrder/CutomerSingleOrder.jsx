@@ -7,7 +7,6 @@ function CustomerSingleOrder() {
   return (
     <>
     <Header/>
-    <div>customerSingleOrder</div>
     <CustomerOneOrder/>
     <Footer/>
     </>

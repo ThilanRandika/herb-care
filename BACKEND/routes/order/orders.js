@@ -75,6 +75,7 @@ router.route("/getCompleteOrdersForUser/:userId").get(async (req, res) => {
 router.route('/getOneOrder/:orderId').get( async (req, res) => {
   try {
       const orderId = req.params.orderId;
+      console.log(orderId)
       const singleOrder = await Order.findById(orderId).populate('products.product');
       // Format the data according to the provided format
       const formattedOrder = {
@@ -104,16 +105,53 @@ router.route('/getOneOrder/:orderId').get( async (req, res) => {
 
 
 // Add a new order
-router.route("/add").post(async (req, res) => {
-    const newOrder = new Order(req.body);
+// router.route("/add").post(async (req, res) => {
+//     const newOrder = new Order(req.body);
+//     try {
+//       const savedOrder = await newOrder.save();
+//       res.status(200).json(savedOrder);
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json({ message: "Failed to add order" });
+//     }
+//   });
+
+
+  router.route('/placeOrder/:userId').post( async (req, res) => {
     try {
-      const savedOrder = await newOrder.save();
-      res.status(200).json(savedOrder);
+        const userId = req.params.userId;
+
+        // Extract data from request body
+        const { user, products } = req.body;
+        const { totalPrice, payment, address, contactNumber } = user;
+
+        // Create products array for Order schema
+        const productsArray = products.map(product => ({
+            product: product.productId, // Assuming you have a productId for each product
+            quantity: product.quantity,
+            pricePerItem: product.pricePerItem
+        }));
+
+        // Create a new Order instance
+        const newOrder = new Order({
+            userId,
+            products: productsArray,
+            totalPrice,
+            payment,
+            shippingAddress: address,
+            contactNumber
+        });
+
+        // Save the order to the database
+        const savedOrder = await newOrder.save();
+        res.status(200).json(savedOrder);
+        
     } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: "Failed to add order" });
+        console.error(err);
+        res.status(500).json({ error: "Failed to place order" });
     }
-  });
+});
+
 
 
 
