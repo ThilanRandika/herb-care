@@ -1,0 +1,82 @@
+/* Center the product card container */
+.product-card-2-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh; /* Adjust height as necessary */
+}
+
+.product-card-2-container {
+    display: flex;
+    width: 70%; /* Adjust the width as necessary */
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.product-card-2-left {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Set the gap between product cards to 10px */
+}
+
+.product-card-2-right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    gap: 16px; /* Adjust the gap between images */
+    border-radius: 20px;
+    position: relative; /* Ensure positioned elements are relative to this container */
+}
+
+.product-card-2-right .image-container {
+    flex: 1; /* Make the image container take up equal space */
+    position: relative; /* Needed for the overlay text */
+    width: 100%; /* Ensure the image container takes up the full width */
+    height: 50%; /* Ensure the image container takes up half the height */
+}
+
+.product-card-2-right img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.home-product2-list-card {
+    width: calc(50% - 5px); /* Adjust width calculation for the 10px gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* .image-text-overlay {
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    bottom: 0; 
+    left: 0; 
+    width: 60%; 
+    background-color: rgb(77, 153, 1);
+    padding: 10px; 
+    border-radius: 0 10px 0 0;
+    pointer-events: none; 
+} */
+
+.home-product2-list-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
