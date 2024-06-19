@@ -39,11 +39,13 @@
 .product-card-2-right .image-container {
     flex: 1; /* Make the image container take up equal space */
     position: relative; /* Needed for the overlay text */
+    width: 100%; /* Ensure the image container takes up the full width */
+    height: 50%; /* Ensure the image container takes up half the height */
 }
 
 .product-card-2-right img {
     width: 100%;
-    height: 100%; /* Make the image fill the container */
+    height: auto;
     object-fit: cover;
 }
 
@@ -57,14 +59,24 @@
     transition: 0.3s;
 }
 
-.image-text-overlay {
+/* .image-text-overlay {
     position: absolute;
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust position to center */
-    pointer-events: none; /* Ensure the text doesn't interfere with interactions */
+    bottom: 0; 
+    left: 0; 
+    width: 60%; 
+    background-color: rgb(77, 153, 1);
+    padding: 10px; 
+    border-radius: 0 10px 0 0;
+    pointer-events: none; 
+} */
+
+.home-product2-list-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 16px;
 }
