@@ -18,8 +18,8 @@ function Banner() {
     };
 
     const slides = [
-        { imageUrl: "https://th.bing.com/th/id/OIP.UI8hAS1X-bj-35Li9ZxYvQHaIN?pid=ImgDet&w=199&h=220&c=7&dpr=1.1", productCount: 1260, categoryCount: 35 },
-        { imageUrl: "https://th.bing.com/th/id/OIP.UI8hAS1X-bj-35Li9ZxYvQHaIN?pid=ImgDet&w=199&h=220&c=7&dpr=1.1", productCount: 1500, categoryCount: 40 }
+        { imageUrl: "home_bannerImg1.png", productCount: 1260, categoryCount: 35 },
+        { imageUrl: "home_bannerImg1.png", productCount: 1500, categoryCount: 40 }
     ];
 
     return (
@@ -33,7 +33,7 @@ function Banner() {
                 <Slider {...settings}>
                     {slides.map((slide, index) => (
                         <div key={index} className="slide">
-                            <img src={slide.imageUrl} alt={`Slide ${index}`} />
+                            <img src={require(`../../../Images/home/${slide.imageUrl}`)} alt={`Slide ${index}`} />
                         </div>
                     ))}
                 </Slider>

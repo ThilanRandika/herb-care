@@ -59,19 +59,31 @@
     transition: 0.3s;
 }
 
-/* .image-text-overlay {
+.image-text-overlay-1 {
     position: absolute;
-    color: white;
-    font-size: 18px;
+    color: rgb(7, 76, 8);
+    font-size: 24px;
     font-weight: bold;
-    bottom: 0; 
-    left: 0; 
+    bottom: 130px; 
+    left: 40px; 
     width: 60%; 
-    background-color: rgb(77, 153, 1);
     padding: 10px; 
     border-radius: 0 10px 0 0;
     pointer-events: none; 
-} */
+}
+
+.image-text-overlay-2 {
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    bottom: 130px; 
+    left: 40px; 
+    width: 60%; 
+    padding: 10px; 
+    border-radius: 0 10px 0 0;
+    pointer-events: none; 
+}
 
 .home-product2-list-image {
     width: 100%;
