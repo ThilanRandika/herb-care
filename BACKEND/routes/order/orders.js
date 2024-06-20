@@ -186,15 +186,17 @@ router.route('/getOneOrder/:orderId').get( async (req, res) => {
           id: order._id,
           userId: order.userId,
           status: order.status,
-          price: order.totalPrice,
+          price: order.totalPrice.toFixed(2),
           paymentMethod: order.payment,
           date: order.datePlaced,
           shippingAddress: order.shippingAddress,
           contactNumber: order.contactNumber,
-          products: order.products.map(product => ({
+          orderDetails: order.products.map(product => ({
+            productName: product.productName,
             productId: product.product,
             quantity: product.quantity,
-            pricePerItem: product.pricePerItem
+            price: product.pricePerItem,
+            totalPrice: (product.quantity * product.pricePerItem).toFixed(2)
           }))
         };
       });
@@ -264,15 +266,17 @@ router.route('/getOneOrder/:orderId').get( async (req, res) => {
           id: order._id,
           userId: order.userId,
           status: order.status,
-          price: order.totalPrice,
+          price: order.totalPrice.toFixed(2),
           paymentMethod: order.payment,
           date: order.datePlaced,
           shippingAddress: order.shippingAddress,
           contactNumber: order.contactNumber,
-          products: order.products.map(product => ({
+          orderDetails: order.products.map(product => ({
+            productName: product.productName,
             productId: product.product,
             quantity: product.quantity,
-            pricePerItem: product.pricePerItem
+            price: product.pricePerItem,
+            totalPrice: (product.quantity * product.pricePerItem).toFixed(2)
           }))
         };
       });
@@ -320,15 +324,17 @@ router.route('/getOneOrder/:orderId').get( async (req, res) => {
           id: order._id,
           userId: order.userId,
           status: order.status,
-          price: order.totalPrice,
+          price: order.totalPrice.toFixed(2),
           paymentMethod: order.payment,
           date: order.datePlaced,
           shippingAddress: order.shippingAddress,
           contactNumber: order.contactNumber,
-          products: order.products.map(product => ({
+          orderDetails: order.products.map(product => ({
+            productName: product.productName,
             productId: product.product,
             quantity: product.quantity,
-            pricePerItem: product.pricePerItem
+            price: product.pricePerItem,
+            totalPrice: (product.quantity * product.pricePerItem).toFixed(2)
           }))
         };
       });
@@ -378,15 +384,17 @@ router.route('/getOneOrder/:orderId').get( async (req, res) => {
           id: order._id,
           userId: order.userId,
           status: order.status,
-          price: order.totalPrice,
+          price: order.totalPrice.toFixed(2),
           paymentMethod: order.payment,
           date: order.datePlaced,
           shippingAddress: order.shippingAddress,
           contactNumber: order.contactNumber,
-          products: order.products.map(product => ({
+          orderDetails: order.products.map(product => ({
+            productName: product.productName,
             productId: product.product,
             quantity: product.quantity,
-            pricePerItem: product.pricePerItem
+            price: product.pricePerItem,
+            totalPrice: (product.quantity * product.pricePerItem).toFixed(2)
           }))
         };
       });
@@ -436,15 +444,17 @@ router.route('/getOneOrder/:orderId').get( async (req, res) => {
           id: order._id,
           userId: order.userId,
           status: order.status,
-          price: order.totalPrice,
+          price: order.totalPrice.toFixed(2),
           paymentMethod: order.payment,
           date: order.datePlaced,
           shippingAddress: order.shippingAddress,
           contactNumber: order.contactNumber,
-          products: order.products.map(product => ({
+          orderDetails: order.products.map(product => ({
+            productName: product.productName,
             productId: product.product,
             quantity: product.quantity,
-            pricePerItem: product.pricePerItem
+            price: product.pricePerItem,
+            totalPrice: (product.quantity * product.pricePerItem).toFixed(2)
           }))
         };
       });

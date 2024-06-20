@@ -66,7 +66,7 @@ const Header = () => {
             />
             <button
               type="button"
-              className="navbar-toggler collapsed"
+              className="navbar-toggler collapsed mainNavCollapseButton"
               data-toggle="collapse"
               data-target="#main-nav"
             >

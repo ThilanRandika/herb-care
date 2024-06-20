@@ -110,13 +110,14 @@
   border: none;
   cursor: pointer;
   outline: none;
+  color: #000;
 }
 .home-header-body .navbar .navbar-toggler .menu-icon-bar {
   position: absolute;
   left: 15px;
   right: 15px;
   height: 2px;
-  background-color: #fff;
+  background-color: #000000;
   opacity: 0;
   -webkit-transform: translateY(-1px);
   -ms-transform: translateY(-1px);
@@ -211,7 +212,7 @@
   }
   .home-header-body .navbar-nav {
     padding: 0 20px;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: rgba(255, 255, 255, 0.9);
   }
   .home-header-body .navbar.fixed-top .navbar-nav {
     background: transparent;
