@@ -81,7 +81,6 @@ function StaffDashboardHome() {
 
   return (
     <div className='staffDashBoard-home-allContents'>
-      <h1>Staff Dashboard</h1>
       <div className="staffDashBoard-home-stats">
         <Link to="/staff/consultationStaff/refundRequests" className="staffDashBoard-home-stats-statCard" style={{ textDecoration: 'none', color: 'inherit' }}>
           <div className="staffDashBoard-home-stats-statCard-header">
