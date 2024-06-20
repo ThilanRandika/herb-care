@@ -1,38 +1,16 @@
+.staff-interface-main-container {
+  display: flex;
+  flex-direction: row;
+}
 
-  .main-staff-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 280px;
-    height: 100%;
-    z-index: 2000;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    background-color: #333;
-    margin: 10px;
-    border-radius: 10px;
-  }
-  
-  .main-staff-sidebar-nav {
-    list-style-type: none;
-    padding: 20px;
-  }
-  
-  .main-staff-sidebar-item {
-    margin-bottom: 10px;
-  }
-  
-  .main-staff-sidebar-link {
-    display: block;
-    padding: 10px;
-    color: #fff;
-    border-radius: 10px;
-    text-decoration: none;
-  }
-  
-  .main-staff-sidebar-link:hover,
-  .main-staff-sidebar-link.active {
-    color: #fff;
-    background-color: #555;
-  }
-  
+.staff-interface-sidebar-container {
+  flex: 0 0 250px; /* Adjust the width of the sidebar as needed */
+  background-color: #f4f4f4; /* Optional: Set a background color for the sidebar */
+  border-right: 1px solid #ccc; /* Optional: Add a border to separate the sidebar and content */
+}
+
+.staff-interface-pages-container {
+  flex: 1;
+  background-color: #fff; /* Optional: Set a background color for the content area */
+}
+

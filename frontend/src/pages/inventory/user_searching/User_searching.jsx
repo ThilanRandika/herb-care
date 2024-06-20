@@ -3,6 +3,7 @@ import SearchBar from '../../../components/inventory/User_searching_all/Search_B
 import Products from '../../../components/inventory/User_searching_all/Products/Products';
 import Recommended from '../../../components/inventory/User_searching_all/Recommended/Recommended';
 import Sidebar from '../../../components/inventory/User_searching_all/SideBar/Sidebar';
+import Footer from '../../../components/common/footer/footer';
 
 import Cart from '../../Order_Management/Cart';
 
@@ -31,7 +32,7 @@ function User_searching() {
 
   return (
     <>
-    <Header></Header>
+      <Header></Header>
       <div className="user-searching-container">
         <div className="User-searching-sidebar">
           {/* Pass handlePriceRangeChange function to Sidebar */}
@@ -42,8 +43,10 @@ function User_searching() {
           <SearchBar onSearch={handleSearch}/>
           <Recommended/>
           <Products searchQuery={searchQuery} priceRange={selectedPriceRange} category={selectedCategory}  />
+          
         </div>
       </div>
+      <Footer></Footer>
 
       <Routes>
         <Route path="/Product/:id" element={< Product/>} />

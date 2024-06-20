@@ -1,26 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import "./Banner.css";
-import banner1 from "../../../../src/Images/bannerImages/1.png";
-import banner2 from "../../../../src/Images/bannerImages/2.png";
+import React from 'react';
+import Slider from "react-slick";
+import './Banner.css';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
-function Banner (){
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentImageIndex(prevIndex => (prevIndex + 1) % 2); // Change 2 to the number of images you have
-        }, 5000); // Change 5000 to 5 seconds (in milliseconds)
 
-        return () => clearInterval(intervalId);
-    }, []);
+function Banner() {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+    };
 
-    const images = [banner1, banner2]; // Add more images as needed
+    const slides = [
+        { imageUrl: "https://th.bing.com/th/id/OIP.UI8hAS1X-bj-35Li9ZxYvQHaIN?pid=ImgDet&w=199&h=220&c=7&dpr=1.1", productCount: 1260, categoryCount: 35 },
+        { imageUrl: "https://th.bing.com/th/id/OIP.UI8hAS1X-bj-35Li9ZxYvQHaIN?pid=ImgDet&w=199&h=220&c=7&dpr=1.1", productCount: 1500, categoryCount: 40 }
+    ];
 
-    return(
-        <div className='HPB_image'>
-            <img src={images[currentImageIndex]} alt='main banner'/>
+    return (
+        <div className="banner-container">
+            <div className="banner-text">
+                <h1>Neque Quisquam Qui Dolorem</h1>
+                <p>Lorem Ipsum Dolor Sit Amet Consectetur Aliquam Tristique Scelerisque Vulputate. Pellentesque.</p>
+                <button className="explore-button">Explore More</button>
+            </div>
+            <div className="banner-slider">
+                <Slider {...settings}>
+                    {slides.map((slide, index) => (
+                        <div key={index} className="slide">
+                            <img src={slide.imageUrl} alt={`Slide ${index}`} />
+                        </div>
+                    ))}
+                </Slider>
+                <div className="fixed-statements">
+                    <div className="product-count top-left">
+                        <div className="content">
+                            <span className="icon">🌿</span>
+                            <span className="lText">Lorem Ipsum Dolor</span>
+                            <span className="lCount">1260</span>
+                        </div>
+                    </div>
+                    <div className="category-count bottom-right">
+                        <div className="content">
+                            <span className="icon">🌿</span>
+                            <span className="rText">Lorem Ipsum Dolor</span>
+                            <span className="rCount">35</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Banner;

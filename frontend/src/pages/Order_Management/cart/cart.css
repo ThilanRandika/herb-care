@@ -1,14 +1,192 @@
-.customerCh-content {
+/* .customerCh-content {
     background-color: #fefefe;
     padding: 20px;
     border: 1px solid #888;
-    position: fixed; /* Fixed position to overlay on top of the content */
-    z-index: 9999; /* Ensure it appears on top of other content */
-    left: calc(71% - 280px); /* Center horizontally */
-    top: 50%; /* Center vertically */
-    transform: translate(-50%, -50%); /* Center the modal */
-    width: 80%; /* Set width */
-    max-height: 95vh; /* Set maximum height */
+    position: fixed; 
+    z-index: 9999; 
+    left: calc(71% - 280px); 
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-height: 95vh; 
     overflow-y: auto;
     margin-top: 50px;
+  } */
+
+  .customer-cart-main-container {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 30px;
+
   }
+
+  .customer-cart-h3 {
+    font-size: 16px;
+}
+.customer-cart-text-navy {
+    color: #1ab394;
+}
+.customer-cart-cart-product-imitation {
+    text-align: center;
+    padding-top: 30px;
+    height: 80px;
+    width: 80px;
+    background-color: #f8f8f9;
+}
+.customer-cart-product-imitation-xl {
+    padding: 120px 0;
+}
+.customer-cart-product-desc {
+    padding: 20px;
+    position: relative;
+}
+.customer-cart-ecommerce .customer-cart-tag-list {
+    padding: 0;
+}
+.customer-cart-ecommerce .customer-cart-fa-star {
+    color: #d1dade;
+}
+.customer-cart-ecommerce .customer-cart-fa-star.active {
+    color: #f8ac59;
+}
+.customer-cart-ecommerce .customer-cart-note-editor {
+    border: 1px solid #e7eaec;
+}
+.customer-cart-shoping-cart-table {
+    margin-bottom: 0;
+}
+.customer-cart-shoping-cart-table tr td {
+    border: none;
+    text-align: right;
+}
+.customer-cart-shoping-cart-table tr td.customer-cart-desc,
+.customer-cart-shoping-cart-table tr td:first-child {
+    text-align: left;
+}
+.customer-cart-shoping-cart-table tr td:last-child {
+    width: 80px;
+}
+.customer-cart-ibox {
+    clear: both;
+    margin-bottom: 25px;
+    margin-top: 0;
+    padding: 0;
+}
+.customer-cart-ibox.collapsed .customer-cart-ibox-content {
+    display: none;
+}
+.customer-cart-ibox:after,
+.customer-cart-ibox:before {
+    display: table;
+}
+.customer-cart-ibox-title {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #ffffff;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 3px 0 0;
+    color: inherit;
+    margin-bottom: 0;
+    padding: 14px 15px 7px;
+    min-height: 48px;
+}
+.customer-cart-ibox-content {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+}
+.customer-cart-ibox-footer {
+    color: inherit;
+    border-top: 1px solid #e7eaec;
+    font-size: 90%;
+    background: #ffffff;
+    padding: 10px 15px;
+}
+
+.customer-cart-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.customer-cart-product-image {
+    width: 70px;
+}
+
+.customer-cart-product-image img {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+
+  .customer-cart-siDetails {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  .customer-cart-siDetailTexts {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .customer-cart-select-container {
+    padding: 10px;
+  }
+
+  .customer-cart-price {
+    padding: 10px 10px 3px 10px
+  }
+
+  .customer-cart-related-prdcts {
+    overflow-x: auto;
+  }
+
+  .customer-cart-client-more {
+    text-align: center; /* Center the content */
+    margin-top: 10px; /* Add some space above the link */
+}
+
+.customer-cart-client-more a {
+    display: inline-block; /* Make the link an inline-block element */
+    padding: 5px 10px; /* Add some padding for a clickable area */
+    color: #007bff; /* Change link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make the text bold */
+    border: 1px solid #007bff; /* Add a border around the link */
+    border-radius: 4px; /* Round the corners */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and color changes */
+}
+
+.customer-cart-client-more a:hover {
+    background-color: #007bff; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+}
+
+.customer-cart-product-name h3 {
+    margin: 0; /* Remove default margin */
+}
+
+.customer-cart-product-name h3 a {
+    color: inherit; /* Inherit color from parent */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: color 0.3s ease; /* Smooth transition for color changes */
+}
+
+.customer-cart-product-name h3 a:hover {
+    color: #206514; /* Optional: Change color on hover */
+}
