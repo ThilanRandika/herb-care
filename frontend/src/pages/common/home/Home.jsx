@@ -11,6 +11,7 @@ import GiftHomeBanner from '../../../components/gift package/GiftHomeBanner/Gift
 import Categories from '../../../components/common/categories/Categories';
 import ProductCardsRating from '../../../components/common/productCards1/ProductCardsRating';
 import ProductCard2 from '../../../components/common/productCard2/ProductCard2';
+import Banner2 from '../../../components/common/Banner2/Banner2';
 
 function Home() {
 
@@ -55,6 +56,10 @@ function Home() {
         {isPopupVisible && <PartnershipRequest trigger={isPopupVisible} setPopupVisible={setPopupVisible} />}
 
         {/* <NavigationBar></NavigationBar> */}
+        <br />
+        <br />
+        <Banner2/>
+        <br />
         <ProductCard2/>
 
         <br></br>
