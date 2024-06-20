@@ -55,6 +55,7 @@ import ContactUs from "./pages/common/contactUs/ContactUs";
 import AboutUs from "./pages/inventory/AboutUs/about_us";
 import CustomerSingleOrder from "./pages/Order_Management/customerSingleOrder/CutomerSingleOrder";
 import BlogsPage from "./pages/common/Blogs/BlogsPage";
+import SellerRegistrationPage from "./pages/common/sellerRegister/SellerRegistrationPage";
 
 function App() {
   return (
@@ -130,6 +131,8 @@ function App() {
         <Route path="/cart" element={<Cart/>}></Route>
 
         <Route path="/blogsHome/*" element={<BlogsPage/>}></Route>
+
+        <Route path="/partnershipRequestForm" element={<SellerRegistrationPage/>}></Route>
 
         <Route path="/manageServices" element={<ManageServices/>}></Route>
 
