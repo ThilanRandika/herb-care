@@ -26,7 +26,7 @@ function Products({ searchQuery, priceRange, category }) {
 
     const fetchFeedbackSummaries = async () => {
       try {
-        const response = await axios.get('${config.BASE_URL}/feedback/feedback-summaries');
+        const response = await axios.get(`${config.BASE_URL}/feedback/feedback-summaries`);
         setSummaries(response.data);
         setLoading(false);
       } catch (error) {
@@ -86,6 +86,10 @@ function Products({ searchQuery, priceRange, category }) {
   };
 
   const addToCart = (product) => {
+    if (!user){
+      alert("Please login to add to cart");
+      return;
+    }
     axios
       .post(`${config.BASE_URL}/Cart/add/${product._id}` , {
         userId: user._id,

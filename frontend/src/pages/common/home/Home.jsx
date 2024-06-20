@@ -8,6 +8,10 @@ import ProductSummary from "../../../components/Feedback&Complaints/Feedback/Dis
 import { Link } from 'react-router-dom';
 import Banner from '../../../components/common/Banner/Banner'
 import GiftHomeBanner from '../../../components/gift package/GiftHomeBanner/GiftHomeBanner'
+import Categories from '../../../components/common/categories/Categories';
+import ProductCardsRating from '../../../components/common/productCards1/ProductCardsRating';
+import ProductCard2 from '../../../components/common/productCard2/ProductCard2';
+import Banner2 from '../../../components/common/Banner2/Banner2';
 
 function Home() {
 
@@ -29,18 +33,37 @@ function Home() {
 
         <br></br>
         <br></br>
+
+        <Categories/>
+
+        <br></br>
+        <br></br>
         <br></br>
 
         <GiftHomeBanner/>
         <br />
         <br />
 
-        <div className='seller-req' onClick={togglePopup}>
-          <img src={require(`../../../../../frontend/src/Images/logo/WhatsApp Image 2024-05-13 at 15.30.42_635bfe04.jpg`)} alt="" />
-        </div>
-        {isPopupVisible && <PartnershipRequest trigger={isPopupVisible} setPopupVisible={setPopupVisible} />}
+        <ProductCardsRating/>
+
+        <br />
+        <br />
+        
+        <Link to="/partnershipRequestForm" >
+          <div class="center-container">
+            <div className='seller-req' onClick={togglePopup}>
+              <img src={require(`../../../../../frontend/src/Images/logo/WhatsApp Image 2024-05-13 at 15.30.42_635bfe04.jpg`)} alt="" />
+              <button class="seller-request-button">Join Now</button>
+            </div>
+          </div>
+        </Link>
 
         {/* <NavigationBar></NavigationBar> */}
+        <br />
+        <br />
+        <Banner2/>
+        <br />
+        <ProductCard2/>
 
         <br></br>
         <br></br>

@@ -1,0 +1,157 @@
+.customer-approvel-pending-orders-container {
+    padding: 20px;
+  }
+
+  .customer-ongoing-order-header {
+    margin-left: 25px;
+  }
+
+  .my-ongoing-orders-all-contents {
+    display: flex;
+  }
+  
+  .customer-order-history-heading {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  .customer-order-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customer-order-history-table th,
+  .customer-order-history-table td {
+    padding: 12px;
+    border: none;
+    text-align: left;
+  }
+  
+  .customer-order-history-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .customer-order-history-table tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+  
+  .customer-order-actions button,
+  .customer-view-order-link {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .customer-order-actions button:hover,
+  .customer-view-order-link:hover {
+    background-color: #03570a;
+    color: #ffffff;
+  }
+  
+  .customer-view-order-invoice {
+    background-color: #e00b0b;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .customer-view-order-invoice:hover {
+    background-color: #580c0c;
+    color: #ffffff;
+  }
+  
+  /* a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a:hover {
+    color: #45a049;
+  } */
+  
+  .customer-order-id,
+  .customer-order-price,
+  .customer-payment-method,
+  .customer-order-status,
+  .customer-order-date,
+  .customer-order-actions {
+    width: 15%;
+  }
+  
+  .customer-order-status-pending {
+    color: #ff9800; /* Orange color for pending status */
+  }
+  
+  .customer-order-status-processing {
+    color: #9000ff; /* Green color for confirmed status */
+  }
+  
+  .customer-order-status-readyToDelivery {
+    color: #2e4cf5; /* Red color for cancelled status */
+  }
+  
+  .customer-order-status-onDelivery {
+    color: #50b0ff; /* Blue color for delivered status */
+  }
+  
+  .customer-order-status-completed {
+    color: #4CAF50; /* Blue color for delivered status */
+  }
+
+  .no-orders-message {
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin-top: 20px;
+}
+
+.customer-ongoing-order-container {
+    width: 85%;
+    padding: 30px;
+}
+
+.order-summary-boxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 15%;
+}
+
+.order-summary-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary-box p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.order-summary-box h3 {
+    font-size: 2em;
+    color: #333;
+}

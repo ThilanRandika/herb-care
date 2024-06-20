@@ -3,30 +3,39 @@ const mongoose = require('mongoose');
 
 // Define the schema for Order
 const OrderSchema = new mongoose.Schema({
-    orderId: {
-        type: String,
-        unique: true,
-        required: true
-    },
     userId: {
         type: String,
         required: true
     },
-    productId: {
-        type: String,
-        required: true
+    products: [
+    {
+        product: {
+        type: mongoose.Types.ObjectId,
+        ref: "Product",
+        required: true,
+        },
+        productName: String,
+        quantity: Number,
+        pricePerItem: Number,
     },
-    quantity: {
+    ],
+    totalPrice: {
         type: Number,
-        required: true
+        required: true,
+    },
+    status: {
+        type: String,
+        required: true,
+        enum: ["pending", "processing", "readyToDelivery" , "onDelivery" , "completed" , "cancelled"],
+        default: "pending",
     },
     datePlaced: {
         type: Date,
         default: Date.now
     },
-    username: {
-        type: String,
-        required: true
+    payment: {
+      type: String,
+      required: true,
     },
     shippingAddress: {
         type: String,
@@ -36,10 +45,6 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    status: {
-        type: String,
-        required: true
-    }
 });
 // OrderSchema.pre('save', async function(next) {
 //     // Hash the username if it exists

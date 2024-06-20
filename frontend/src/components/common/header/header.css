@@ -5,7 +5,7 @@
 } */
 .home-header-body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.6rem;
+  /* font-size: 1.6rem; */
   font-weight: 400;
 }
 .home-header-body h1 {
@@ -110,13 +110,14 @@
   border: none;
   cursor: pointer;
   outline: none;
+  color: #000;
 }
 .home-header-body .navbar .navbar-toggler .menu-icon-bar {
   position: absolute;
   left: 15px;
   right: 15px;
   height: 2px;
-  background-color: #fff;
+  background-color: #000000;
   opacity: 0;
   -webkit-transform: translateY(-1px);
   -ms-transform: translateY(-1px);
@@ -211,7 +212,7 @@
   }
   .home-header-body .navbar-nav {
     padding: 0 20px;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: rgba(255, 255, 255, 0.9);
   }
   .home-header-body .navbar.fixed-top .navbar-nav {
     background: transparent;
@@ -342,4 +343,40 @@
 .home-header-body #main-nav .headeee_loLOinf{
   margin-left: 200px;
   color: black;
+}
+
+.mainNavbar-top-nav-bar-user-info{
+  position: relative;
+  margin-top: 25px;
+  margin-left: 10px;
+}
+
+.mainNavbar-top-nav-bar-user-info-toggle{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mainNavbar-top-nav-bar-user-info-dropdown{
+  position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.mainNavbar-top-nav-bar-user-info-toggle span{
+  margin-right: 10px;
+}
+
+.mainNavbar-top-nav-bar-user-info-dropdown button{
+  background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.mainNav-loginBtn{
+  margin-left: 400%;
 }
