@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
 import './sellerRegisterForm.css'; // Import the CSS file for styling
+import config from "../../../../config";
 
 function SellerRegisterForm() {
     const { id } = useParams();
@@ -31,7 +32,7 @@ function SellerRegisterForm() {
 
 
     useEffect(() => {
-        axios.get(`https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/add/${id}`)
+        axios.get(`${config.BASE_URL}/sellerPartnershipRequest/add/${id}`)
             .then((res) => {
                 setSellerDetails(res.data);
             })
@@ -39,7 +40,7 @@ function SellerRegisterForm() {
                 console.log('Error getting seller details', err);
             });
 
-        axios.get('https://herb-care-pzwv.onrender.com/product')
+        axios.get(`${config.BASE_URL}/product`)
             .then((res) => {
                 setProductDetails(res.data);
             })
@@ -100,7 +101,7 @@ function SellerRegisterForm() {
         formData.append("seller_agreement", sellerAgreement);
 
         console.log(formData)
-        axios.post('https://herb-care-pzwv.onrender.com/seller/addSeller', formData)
+        axios.post(`${config.BASE_URL}/seller/addSeller`, formData)
         .then((res)=>{
             console.log(res.data)
             alert("Seller Added Successfully");

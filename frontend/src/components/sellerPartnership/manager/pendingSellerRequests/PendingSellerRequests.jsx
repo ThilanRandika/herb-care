@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './pendingSellerRequests.css';
+import config from "../../../../config";
 
 function PendingSellerRequests() {
     const [requests, setRequests] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
 
     useEffect(() => {
-        axios.get('https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/allSellerReq')
+        axios.get(`${config.BASE_URL}/sellerPartnershipRequest/allSellerReq`)
             .then((res) => {
                 setRequests(res.data);
             })
@@ -21,7 +22,7 @@ function PendingSellerRequests() {
     };
 
     const handleApprove = (id) => {
-        axios.put(`https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/reqAprove/${id}`)
+        axios.put(`${config.BASE_URL}/sellerPartnershipRequest/reqAprove/${id}`)
             .then((res) => {
                 setRequests(prevRequests => prevRequests.filter(request => request._id !== id));
             })
@@ -31,7 +32,7 @@ function PendingSellerRequests() {
     };
 
     const handleReject = (id) => {
-        axios.delete(`https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/rejectReq/${id}`)
+        axios.delete(`${config.BASE_URL}/sellerPartnershipRequest/rejectReq/${id}`)
             .then((res) => {
                 setRequests(prevRequests => prevRequests.filter(request => request._id !== id));
             })

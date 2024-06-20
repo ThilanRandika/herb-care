@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./sellerCheckout.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import config from "../../../config";
+import { AuthContext } from '../../../context/AuthContext';
 
 function SellerCheckout({ selectedItems, onClose }) {
   const [products, setProduct] = useState([]);
   const [sellers, setSeller] = useState({});
   const [paymentMethod, setPaymentMethod] = useState("credit");
   const [address, setAddress] = useState("");
+  const { user } = useContext(AuthContext)
 
   const navigator = useNavigate();
 
@@ -19,7 +22,7 @@ function SellerCheckout({ selectedItems, onClose }) {
 
     console.log(selectedItems)
     axios
-      .get("https://herb-care-pzwv.onrender.com/sellerOrder/checkout",  {
+      .get(`${config.BASE_URL}/sellerOrder/checkout/${user.sellerId}`,  {
         params: {
           selectedItems: selectedItems
         }
@@ -56,7 +59,7 @@ function SellerCheckout({ selectedItems, onClose }) {
     };
 
     axios
-      .post("https://herb-care-pzwv.onrender.com/sellerOrder/placeOrder", newOrder)
+      .post(`${config.BASE_URL}/sellerOrder/placeOrder/${user.sellerId}`, newOrder)
       .then((res) => {
         alert("Your order has been placed successfully!");
         console.log(res.data);
