@@ -165,7 +165,7 @@ function CustomerOneOrder() {
 
   return (
     <>
-      <div className="container-fluid d-flex justify-content-center align-items-center h-100 cutomer-sin-order">
+      <div className="container-fluid d-flex justify-content-center align-items-center cutomer-sin-order">
         <div className="row">
           <div className="col">
             <div className="d-flex justify-content-between align-items-center mb-5">
