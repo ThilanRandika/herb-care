@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import './sellerHome.css'
 import SMDashboardCard from "../../../components/sellerPartnership/manager/dashboard/cards/SMDashboardCard";
 import SellerManagerBarChart from "../../../components/sellerPartnership/manager/dashboard/charts/barcharts/SellerManagerBarChart";
@@ -6,6 +6,8 @@ import SellerManagerDonutChart from "../../../components/sellerPartnership/manag
 import SellerManagerRadarChart from "../../../components/sellerPartnership/manager/dashboard/charts/radarChart/SellerManagerRadarChart";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { AuthContext } from '../../../context/AuthContext';
+import config from "../../../config";
 
 function SellerHome() {
   const [radarData, setRadarData] = useState({ series: [], labels: [] });
@@ -14,11 +16,12 @@ function SellerHome() {
   const [amounts, setAmounts] = useState([]);
   const [lineData, setLineData] = useState([]);
   const [columnData, setColumnData] = useState([]);
+  const { user } = useContext(AuthContext)
 
 
       useEffect(() => {
 
-        axios.get('https://herb-care-pzwv.onrender.com/sellerHome/completedOrders/count')
+        axios.get(`${config.BASE_URL}/sellerHome/completedOrders/count/${user.sellerId}`)
         .then((res)=> {
           console.log(res.data)
           setCompleteCount(res.data)
@@ -27,7 +30,7 @@ function SellerHome() {
           console.log(err)
         })
 
-        axios.get('https://herb-care-pzwv.onrender.com/sellerHome/all/processingOrders/count')
+        axios.get(`${config.BASE_URL}/sellerHome/all/processingOrders/count/${user.sellerId}`)
         .then((res)=> {
           console.log(res.data)
           setProcessingCount(res.data)
@@ -36,7 +39,7 @@ function SellerHome() {
           console.log(err)
         })
         
-        axios.get('https://herb-care-pzwv.onrender.com/sellerHome/totalOrderedAmount')
+        axios.get(`${config.BASE_URL}/sellerHome/totalOrderedAmount/${user.sellerId}`)
         .then((res)=> {
           console.log(res.data)
           setAmounts(res.data)
@@ -45,7 +48,7 @@ function SellerHome() {
           console.log(err)
         })
 
-        // axios.get('https://herb-care-pzwv.onrender.com/sellerHome/orders/months/count')
+        // axios.get('${config.BASE_URL}/sellerHome/orders/months/count/${user.sellerId}')
         // .then((res)=> {
         //   console.log(res.data.lineData)
         //   setLineData(res.data.lineData)
@@ -54,7 +57,7 @@ function SellerHome() {
         //   console.log(err)
         // })
 
-        axios.get('https://herb-care-pzwv.onrender.com/sellerHome/quantity/months/count')
+        axios.get(`${config.BASE_URL}/sellerHome/quantity/months/count/${user.sellerId}`)
         .then((res)=> {
           console.log(res.data.columnData)
           setColumnData(res.data.columnData)

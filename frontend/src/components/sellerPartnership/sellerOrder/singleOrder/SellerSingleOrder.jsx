@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./sellerSingleOrder.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import config from "../../../../config";
+import { AuthContext } from '../../../../context/AuthContext';
 
 function SellerSingleOrder() {
   const { orderId } = useParams();
   console.log(orderId);
+  const { user } = useContext(AuthContext)
 
   const [singleOrder, setSingleOrder] = useState({ orderDetails: [] });
   const [showOrderTracker, setShowOrderTracker] = useState(false);
@@ -26,7 +29,7 @@ function SellerSingleOrder() {
   useEffect(() => {
     console.log("useEffect runs with orderId:", orderId);
     axios
-      .get("https://herb-care-pzwv.onrender.com/sellerOrder/getOneOrder/" + orderId)
+      .get(`${config.BASE_URL}/sellerOrder/getOneOrder/${orderId}/${user.sellerId}`)
       .then((res) => {
         console.log(res.data);
         setSingleOrder(res.data);
@@ -54,7 +57,7 @@ function SellerSingleOrder() {
 
   const refreshItems = () => {
     axios
-      .get("https://herb-care-pzwv.onrender.com/sellerOrder/getOneOrder/" + orderId)
+      .get(`${config.BASE_URL}/sellerOrder/getOneOrder/${orderId}/${user.sellerId}`)
       .then((res) => {
         console.log(res.data);
         setSingleOrder(res.data);
@@ -112,7 +115,7 @@ function SellerSingleOrder() {
 
     axios
       .put(
-        "https://herb-care-pzwv.onrender.com/sellerOrder/updateOrder/" + orderId,
+        `${config.BASE_URL}/sellerOrder/updateOrder/${orderId}/${user.sellerId}`,
         updatedOrder
       )
       .then((res) => {
@@ -193,7 +196,7 @@ function SellerSingleOrder() {
       console.log(returnProducts)
       const promises = returnProducts.map(formData =>
 
-      axios.put("https://herb-care-pzwv.onrender.com/sellerOrder/returnProducts/"+orderId ,formData, {
+      axios.put(`${config.BASE_URL}/sellerOrder/returnProducts/`+orderId ,formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you have stored the token in localStorage

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from "../../../context/AuthContext";
 import './sellerProfile.css';
 import axios from 'axios';
+import config from "../../../config";
 
 function SellerProfile() {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ function SellerProfile() {
 
   useEffect(() => {
 
-    axios.get(`https://herb-care-pzwv.onrender.com/sellerProfile/profile/${user.sellerId}`)
+    axios.get(`${config.BASE_URL}/sellerProfile/profile/${user.sellerId}`)
     .then((res)=> {
       const data = { ...res.data };
       delete data.client; // Remove the circular reference property
@@ -24,7 +25,7 @@ function SellerProfile() {
   }, []);
 
   const update= () =>{
-    axios.get('https://herb-care-pzwv.onrender.com/sellerProfile/profile')
+    axios.get(`${config.BASE_URL}/sellerProfile/profile`)
     .then((res)=> {
       const data = { ...res.data };
       delete data.client; // Remove the circular reference property
@@ -67,7 +68,7 @@ function SellerProfile() {
     formData.append('website', editedUser.website);
     formData.append('newPassword', newPassword);
 
-    axios.post('https://herb-care-pzwv.onrender.com/sellerProfile/update', formData, {
+    axios.post(`${config.BASE_URL}/sellerProfile/update`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

@@ -1,0 +1,35 @@
+.categories-list {
+    display: flex;
+    align-items: center; /* Center items horizontally */
+    justify-content: center;
+    padding: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+  .category-card {
+    width: 270px; /* Adjust as needed */
+    height: auto;
+    text-align: center;
+    padding: 5px;
+    
+  }
+  
+  .category-card img {
+    width: 100%;
+    height: 270px; /* Adjust as needed */
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .category-text {
+    width: 25%;
+    padding-right: 10px;
+  }
+
+  .category-cards {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    
+  }

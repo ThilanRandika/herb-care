@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './sellerHeader.css'
 import {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify} from 'react-icons/bs'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../../../context/AuthContext';
+import config from "../../../config";
 
 function SellerHeader() {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [unreadNotifications, setUnreadNotifications] = useState(0); // Example initial count
+    const { user } = useContext(AuthContext)
 
   useEffect(() => {
-    axios.get("https://herb-care-pzwv.onrender.com/sellerNotification/unReadCount")
+    axios.get(`${config.BASE_URL}/sellerNotification/unReadCount/${user.sellerId}`)
     .then((res) => {
       console.log('Successfully retrieved unread   notifications count', res.data);
       setUnreadNotifications(res.data.unreadCount);

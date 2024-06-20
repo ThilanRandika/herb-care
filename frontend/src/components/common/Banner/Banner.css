@@ -1,7 +1,154 @@
-.HPB_image img {
-    max-width: 100%;
-    height: auto; /* Ensures the image maintains its aspect ratio */
-    display: block; /* Ensures the image is displayed as a block element */
-    margin: 0 auto; /* Centers the image horizontally */
+
+
+.banner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+    padding-left: 130px;
+    padding-right: 130px;
+    padding-bottom: 40px;
 }
 
+.banner-text {
+    flex: 1;
+    padding-left: 130px;
+    padding-right: 20px;
+    width: 50%;
+}
+
+.banner-text h1 {
+    font-size: 3em;
+    color: #2f3e46;
+}
+
+.banner-text p {
+    font-size: 1.2em;
+    color: #52616b;
+}
+
+.explore-button {
+    background-color: #6d9773;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: #567d5b;
+}
+
+.banner-slider {
+    flex: 1;
+    position: relative;
+    width: 50%; /* Adjust the width as needed */
+    height: 400px; /* Set a specific height */
+    max-width: 500px; /* Set a maximum width */
+    max-height: 700px; /* Set a maximum height */
+    padding-right: 130px;
+}
+
+.fixed-statements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Ensure the fixed statements do not interfere with the slider */
+}
+
+.product-count {
+    position: absolute;
+    background: rgb(241, 251, 243);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    pointer-events: all; /* Ensure the fixed statements are clickable */
+    border: 2px solid #6d9773;
+}
+
+.category-count {
+    position: absolute;
+    background: rgb(27, 63, 37);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    pointer-events: all; /* Ensure the fixed statements are clickable */
+    border: 2px solid #fff;
+}
+
+.top-left {
+    top: 100px; /* Adjust as needed */
+    left: -60px; /* Adjust as needed */
+}
+
+.bottom-right {
+    bottom: 100px; /* Adjust as needed */
+    right: -40px; /* Adjust as needed */
+}
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.rText {
+    font-size: 1em;
+    color: rgb(254, 254, 254);
+    margin-right: 10px;
+}
+
+.rCount {
+    font-size: 1.2em;
+    color: rgb(254, 254, 254);
+}
+
+.lText {
+    font-size: 1em;
+    color: #2f3e46;
+    margin-right: 10px;
+}
+
+.lCount {
+    font-size: 1.2em;
+    color: #6d9773;
+}
+
+.slide {
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover; /* Ensure the image covers the slide container */
+}
+
+@media (max-width: 768px) {
+    .banner-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .banner-slider {
+        width: 100%;
+        height: auto;
+    }
+
+    .banner-text {
+        padding-right: 0;
+        text-align: center;
+    }
+}

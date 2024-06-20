@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./DisplayDefaultGiftPackages.css";
 import Footer from '../../common/footer/footer'
 import Header from "../../common/header/header";
+import config from "../../../config";
 
 function DisplayDefaultGiftPackages() {
   const [defaultGiftPackages, setDefaultGiftPackages] = useState([]);
@@ -13,7 +14,7 @@ function DisplayDefaultGiftPackages() {
   useEffect(() => {
     async function fetchDefaultGiftPackages() {
       try {
-        const response = await axios.get("https://herb-care-pzwv.onrender.com/defaultGiftpackage/default-gift-packages");
+        const response = await axios.get(`${config.BASE_URL}/defaultGiftpackage/default-gift-packages`);
         setDefaultGiftPackages(response.data);
       } catch (error) {
         console.error("Error fetching default gift packages:", error);

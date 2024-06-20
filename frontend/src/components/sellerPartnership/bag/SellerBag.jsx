@@ -1,7 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './sellerBag.css';
 import SellerCheckout from '../sellerCheckout/SellerCheckout';
+import { AuthContext } from '../../../context/AuthContext';
+import config from "../../../config";
 
 function SellerBag() {
     const [loading, setLoading] = useState(true);
@@ -9,11 +11,11 @@ function SellerBag() {
     const [selectedItems, setSelectedItems] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [updatedQuantities, setUpdatedQuantities] = useState({});
-
+    const { user } = useContext(AuthContext)
     const [showCheckoutModal, setShowCheckoutModal] = useState(false);
 
     useEffect(() => {
-        axios.get('https://herb-care-pzwv.onrender.com/sellerBag/allBag')
+        axios.get(`${config.BASE_URL}/sellerBag/allBag/${user.sellerId}`)
             .then((res) => {
                 console.log(res.data);
                 setItems(res.data);
@@ -26,7 +28,7 @@ function SellerBag() {
     }, []);
 
     const removeItem = (id) => {
-        axios.delete(`https://herb-care-pzwv.onrender.com/sellerBag/deleteItem/${id}`)
+        axios.delete(`${config.BASE_URL}/sellerBag/deleteItem/${id}`)
             .then((res) => {
                 console.log(res.data);
                 console.log("delete the item");
@@ -56,7 +58,7 @@ function SellerBag() {
     };
 
     const refreshItems = () => {
-        axios.get('https://herb-care-pzwv.onrender.com/sellerBag/allBag')
+        axios.get(`${config.BASE_URL}/sellerBag/allBag/${user.sellerId}`)
             .then((res) => {
                 console.log(res.data);
                 setItems(res.data);
@@ -76,7 +78,7 @@ function SellerBag() {
     const handleUpdateItem = (itemId) => {
         const newQuantity = updatedQuantities[itemId];
         if (newQuantity !== undefined) {
-            axios.put(`https://herb-care-pzwv.onrender.com/sellerBag/updateQuantity/${itemId}`, { quantity: newQuantity })
+            axios.put(`${config.BASE_URL}/sellerBag/updateQuantity/${itemId}`, { quantity: newQuantity })
                 .then((res) => {
                     console.log(res.data);
                     refreshItems();
