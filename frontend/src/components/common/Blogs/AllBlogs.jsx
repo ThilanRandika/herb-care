@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import './allBlogs.css';
 import { Link } from 'react-router-dom';
+import blogImg1 from '../../../Images/blogImages/blog_image1.png';
+import blogImg2 from '../../../Images/blogImages/blog_image2.png';
+import blogImg3 from '../../../Images/blogImages/blog_image3.png';
+
+
 
 const blogs = [
   {
@@ -8,70 +13,70 @@ const blogs = [
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.qDvAlhidTBzXiGyDfq_O0gHaE7&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg1
   },
   {
     id: 2,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.cvWkJCV0vFdxr0m8ZYtwgwHaHw&w=244&h=255&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg2
   },
   {
     id: 3,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.QVBY30VqTi-tlYt_BaoGqAHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg3
   },
   {
     id: 4,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.pGBobbM9oi38MfRAXA6ucAHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg1
   },
   {
     id: 5,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.MBlOJPg-beF5E6q2yR5k9gAAAA&w=204&h=306&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg2
   },
   {
     id: 1,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.qDvAlhidTBzXiGyDfq_O0gHaE7&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg3
   },
   {
     id: 2,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.cvWkJCV0vFdxr0m8ZYtwgwHaHw&w=244&h=255&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg1
   },
   {
     id: 3,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.QVBY30VqTi-tlYt_BaoGqAHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg2
   },
   {
     id: 4,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'https://th.bing.com/th?id=OIP.Z_PIeIRDajXPmZHROt-T_QHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2',
-    imageUrl: 'https://th.bing.com/th?id=OIP.pGBobbM9oi38MfRAXA6ucAHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg3
   },
   {
     id: 5,
     date: 'January 16, 2024',
     title: 'Lorem Ipsum Dolor Sit',
     description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
-    imageUrl: 'https://th.bing.com/th?id=OIP.MBlOJPg-beF5E6q2yR5k9gAAAA&w=204&h=306&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
+    imageUrl: blogImg1
   }
 ];
 

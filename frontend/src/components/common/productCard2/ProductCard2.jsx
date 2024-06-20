@@ -89,12 +89,12 @@ function ProductCard2() {
         </div>
         <div className='product-card-2-right'>
           <div className='image-container'>
-            <img src={require(`../../../../src/Images/giftImages/gift_1.png`)} alt='' />
-            {/* <div className="image-text-overlay">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, amet.</div> */}
+            <img src={require(`../../../../src/Images/home/home_sideImg1.png`)} alt='' />
+            <div className="image-text-overlay-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, amet.</div>
           </div>
           <div className='image-container'>
-            <img src={require(`../../../../src/Images/giftImages/gift_2.png`)} alt='' />
-            {/* <div className="image-text-overlay">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, soluta!</div> */}
+            <img src={require(`../../../../src/Images/home/home_sideImg2.png`)} alt='' />
+            <div className="image-text-overlay-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, soluta!</div>
           </div>
         </div>
       </div>
