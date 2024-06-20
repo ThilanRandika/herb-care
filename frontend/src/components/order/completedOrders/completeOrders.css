@@ -1,0 +1,55 @@
+.no-orders-message {
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin-top: 20px;
+}
+
+.customer-complete-order-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.customer-complete-order-history-table th,
+.customer-complete-order-history-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.customer-complete-order-history-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.customer-complete-order-history-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.customer-complete-order-history-table tr:hover {
+    background-color: #ddd;
+}
+
+.customer-complete-order-status-completed {
+    color: green;
+}
+
+.my-orders-order-actions-fc {
+    display: flex;
+    gap: 10px;
+}
+
+.FEEDandCOM_Dash4 {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.FEEDandCOM_Dash4:hover {
+    background-color: #45a049;
+}
+

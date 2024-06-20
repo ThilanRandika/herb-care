@@ -4,6 +4,7 @@ import "./productList.css";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
 import { AuthContext } from "../../../context/AuthContext";
+import config from "../../../config";
 
 function ProductList() {
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ function ProductList() {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-      axios.get(`https://herb-care-pzwv.onrender.com/sellerProducts/products/${user.sellerId}`)
+      axios.get(`${config.BASE_URL}/sellerProducts/products/${user.sellerId}`)
         .then((res) => {
           console.log(res.data);
           setProductList(res.data.products);

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './staffDeliveryOrders.css'
+import config from "../../../../config";
 
 function StaffDeliveryOrders() {
     const [openOrder, setOpenOrder] = useState(null);
@@ -9,7 +10,7 @@ function StaffDeliveryOrders() {
     const navigator = useNavigate();
 
     useEffect(() => {
-        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/onDeliveryOrders')
+        axios.get(`${config.BASE_URL}/sellerOrder/onDeliveryOrders`)
             .then((res) => {
                 console.log(res.data)
                 setOrders(res.data);
@@ -25,7 +26,7 @@ function StaffDeliveryOrders() {
     };
 
     const handleCompletedProcess = (id) => {
-        axios.put('https://herb-care-pzwv.onrender.com/sellerOrder/completed/' + id)
+        axios.put(`${config.BASE_URL}/sellerOrder/completed/` + id)
             .then((res) => {
                 alert("The Order has been completed");
                 console.log(res.data)

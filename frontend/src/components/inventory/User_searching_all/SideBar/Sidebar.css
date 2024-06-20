@@ -1,6 +1,6 @@
 .products-userSearchingsidebar {
   width: 225px;
-  position: fixed;
+  /* position: fixed; */
   height: 100vh; /* Set height to 100% of viewport height */
   left: 0; /* Align to the left of the viewport */
   bottom: 0; /* Align to the bottom of the viewport */
@@ -9,8 +9,8 @@
   flex-direction: column;
   align-items: center; /* Optional: Add background color */
   padding-top: 20px; /* Optional: Add padding to the top */
-  border-right: 2px;
-  border-right-style: solid;
+  /* border-right: 2px;
+  border-right-style: solid; */
 }
 
 .products-userSearchingsidebarcontents{

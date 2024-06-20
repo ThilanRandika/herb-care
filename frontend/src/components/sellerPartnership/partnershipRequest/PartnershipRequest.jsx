@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./partnershipRequest.css";
 import axios from "axios";
+import config from "../../../config";
+import { Link } from "react-router-dom";
 
-function PartnershipRequest(props) {
+function PartnershipRequest() {
   const [sellerRequest, setSellerRequest] = useState({
     email: "",
     seller_name: "",
@@ -23,27 +25,26 @@ function PartnershipRequest(props) {
   const Submit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://herb-care-pzwv.onrender.com/sellerPartnershipRequest/add", sellerRequest);
+      await axios.post(`${config.BASE_URL}/sellerPartnershipRequest/add`, sellerRequest);
       console.log(sellerRequest)
       // alert("Requst Added Successfully");
-      setSellerRequest("");
-      props.setPopupVisible(false);
+      setSellerRequest("")
     } catch (error) {
       alert(error.message);
     }
   };
 
-  return props.trigger ? (
+  return (
     <>
       <div className="popup">
         <div className="popup-inner">
 
-          <button
+          {/* <button
             className="close-btn"
             onClick={() => props.setPopupVisible(false)}
           >
             close
-          </button>
+          </button> */}
 
           <form onSubmit={Submit}>
             <div className="mb-3">
@@ -154,7 +155,7 @@ function PartnershipRequest(props) {
         </div>
       </div>
     </>
-  ) : null; 
+  ) 
 }
 
 export default PartnershipRequest;

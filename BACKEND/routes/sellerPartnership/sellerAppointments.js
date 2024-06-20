@@ -4,10 +4,10 @@ const { verifySellerToOther } = require("../../utils/veryfyToken");
 const router = require("express").Router();
 
 
-router.route('/creatAppoinment').post(verifySellerToOther, async(req, res) => {
+router.route('/creatAppoinment/:sellerId').post( async(req, res) => {
     try{
         const { topic, discription } = req.body;
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         const newAppointment = new SellerAppointment({
             sellerId,

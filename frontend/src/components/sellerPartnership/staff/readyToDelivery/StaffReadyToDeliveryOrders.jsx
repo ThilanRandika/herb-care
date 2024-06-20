@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './staffReadyToDeliveryOrders.css'
+import config from "../../../../config";
 
 function StaffReadyToDeliveryOrders() {
     const [openOrder, setOpenOrder] = useState(null);
@@ -9,7 +10,7 @@ function StaffReadyToDeliveryOrders() {
     const navigator = useNavigate();
 
     useEffect(() => {
-        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/readyToDeliveryOrders')
+        axios.get(`${config.BASE_URL}/sellerOrder/readyToDeliveryOrders`)
             .then((res)=> {
                 console.log(res.data)
                 setOrders(res.data);
@@ -25,7 +26,7 @@ function StaffReadyToDeliveryOrders() {
     };
 
     const handleDeliveryProcess = (id)=> {
-        axios.put('https://herb-care-pzwv.onrender.com/sellerOrder/onDelivery/' + id)
+        axios.put(`${config.BASE_URL}/sellerOrder/onDelivery/` + id)
             .then((res) =>{
                 alert("The Order has been delivery");
                 console.log(res.data)
