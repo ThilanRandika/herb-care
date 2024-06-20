@@ -9,9 +9,9 @@ const PDFDocument = require('pdfkit');
 const multer = require('multer');
 
 //Press the place order button
-router.route('/checkout').get(verifySellerToOther, async (req, res) => {
+router.route('/checkout/:sellerId').get( async (req, res) => {
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
         const selectedItems = req.query.selectedItems;
         console.log(selectedItems)
 
@@ -80,9 +80,9 @@ router.route('/checkout').get(verifySellerToOther, async (req, res) => {
 
 
 // 1. Place Order Functionality
-router.route('/placeOrder').post(verifySellerToOther, async (req, res) => {
+router.route('/placeOrder/:sellerId').post( async (req, res) => {
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         // Calculate total price of the order
         
@@ -524,9 +524,9 @@ router.route('/completedOrders').get( async (req, res) => {
 });
 
 
-router.route("/sellerPendingOrders").get(verifySellerToOther, async(req, res) => {
+router.route("/sellerPendingOrders/:sellerId").get( async(req, res) => {
     try{
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         const orders = await SellerOrder.find({sellerId: sellerId, status:"pending"}); 
         
@@ -552,10 +552,10 @@ router.route("/sellerPendingOrders").get(verifySellerToOther, async(req, res) =>
 
 
 //get one order detail
-router.route('/getOneOrder/:orderId').get(verifySellerToOther, async (req, res) => {
+router.route('/getOneOrder/:orderId/:sellerId').get( async (req, res) => {
     try {
         // Find pending orders from SellerOrder model
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
         const orderId = req.params.orderId;
         console.log(orderId)
         const singleOrder = await SellerOrder.findById(orderId).populate('products.product');
@@ -593,9 +593,9 @@ router.route('/getOneOrder/:orderId').get(verifySellerToOther, async (req, res) 
 });
 
 
-router.route("/ongoingOrders").get(verifySellerToOther, async (req, res) => {
+router.route("/ongoingOrders/:sellerId").get( async (req, res) => {
     try {
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         const orders = await SellerOrder.find({
             sellerId: sellerId,
@@ -625,9 +625,9 @@ router.route("/ongoingOrders").get(verifySellerToOther, async (req, res) => {
 });
 
 
-router.route("/sellerCompletedOrders").get(verifySellerToOther, async(req, res) => {
+router.route("/sellerCompletedOrders/:sellerId").get( async(req, res) => {
     try{
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
 
         const orders = await SellerOrder.find({sellerId: sellerId, status:"completed"}); 
         
@@ -703,10 +703,10 @@ const storage = multer.diskStorage({
 
 
 
-router.route("/generateOrderInvoice/:id").get(verifySellerToOther, async(req, res) => {
+router.route("/generateOrderInvoice/:id/:sellerId").get( async(req, res) => {
     try {
         // Fetch order details from the database
-        const sellerId = req.person.sellerId;
+        const sellerId = req.params.sellerId;
         const order = await SellerOrder.findById(req.params.id).populate('products.product');
         const seller = await Seller.findOne({sellerId: sellerId});
 

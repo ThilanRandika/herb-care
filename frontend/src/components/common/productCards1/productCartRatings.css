@@ -1,0 +1,18 @@
+.home-product-cards-container {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+}
+
+.home-product-list-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    width: 300px;
+    transition: 0.3s;
+  }

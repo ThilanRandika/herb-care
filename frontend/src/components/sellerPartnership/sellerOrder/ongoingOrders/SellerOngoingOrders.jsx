@@ -1,13 +1,16 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../pendingOrders/sellerApprovelPendingOrders.css'; // Import shared CSS file
+import { AuthContext } from '../../../../context/AuthContext';
+import config from "../../../../config";
 
 function SellerOngoingOrders() {
     const [orders, setOrders] = useState([]);
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
-        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/ongoingOrders')
+        axios.get(`${config.BASE_URL}/sellerOrder/ongoingOrders/${user.sellerId}`)
         .then((res) => {
             console.log(res.data);
             setOrders(res.data);
@@ -20,7 +23,7 @@ function SellerOngoingOrders() {
 
     const handleGenerateOrderInvoice = async (orderId) => {
         try {
-          const response = await axios.get(`https://herb-care-pzwv.onrender.com/sellerOrder/generateOrderInvoice/${orderId}`, {
+          const response = await axios.get(`${config.BASE_URL}/sellerOrder/generateOrderInvoice/${orderId}/${user.sellerId}`, {
             responseType: 'blob', // Receive response as Blob (binary data)
           });
       

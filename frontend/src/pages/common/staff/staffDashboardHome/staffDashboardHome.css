@@ -1,11 +1,4 @@
-.staffDashBoard-home-allContents {
-    position: relative;
-    width: calc(100% - 280px);
-    left: 280px;
-    transition: .3s ease;
-    margin-left: 20px;
-    margin-top: 20px;
-  }
+
   
   .staffDashBoard-home-stats {
     display: flex;

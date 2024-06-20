@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './staffNewOrders.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import config from "../../../../config";
 
 function StaffNewOrders() {
     const [openOrder, setOpenOrder] = useState(null);
@@ -9,7 +10,7 @@ function StaffNewOrders() {
     const navigator = useNavigate();
 
     useEffect(() => {
-        axios.get('https://herb-care-pzwv.onrender.com/sellerOrder/pendingOrders')
+        axios.get(`${config.BASE_URL}/sellerOrder/pendingOrders`)
             .then((res) => {
                 console.log(res.data);
                 setOrders(res.data);
@@ -25,7 +26,7 @@ function StaffNewOrders() {
     };
 
     const handleAcceptOrder = (id) => {
-        axios.put('https://herb-care-pzwv.onrender.com/sellerOrder/acceptOrder/' + id)
+        axios.put(`${config.BASE_URL}/sellerOrder/acceptOrder/` + id)
             .then((res) => {
                 alert("The Order has been accepted");
                 console.log(res.data);
@@ -37,7 +38,7 @@ function StaffNewOrders() {
     };
 
     const handleRejectOrder = (id) => {
-        axios.delete('https://herb-care-pzwv.onrender.com/sellerOrder/rejectPendingOrder/' + id)
+        axios.delete(`${config.BASE_URL}/sellerOrder/rejectPendingOrder/` + id)
             .then((res) => {
                 alert("The Order has been rejected");
                 console.log(res.data);
