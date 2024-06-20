@@ -66,7 +66,7 @@ const Header = () => {
             />
             <button
               type="button"
-              className="navbar-toggler collapsed"
+              className="navbar-toggler collapsed mainNavCollapseButton"
               data-toggle="collapse"
               data-target="#main-nav"
             >
@@ -107,6 +107,11 @@ const Header = () => {
                 <li>
                   <Link to="/consultation/homeConsultation" className="nav-item nav-link hed_fosiz">
                     Consultation
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/blogsHome/blogs" className="nav-item nav-link hed_fosiz">
+                    Blogs
                   </Link>
                 </li>
                 <li>

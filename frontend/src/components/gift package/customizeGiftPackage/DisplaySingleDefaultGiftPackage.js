@@ -5,6 +5,7 @@ import "./DisplaySingleDefaultGiftPackage.css"
 import FeedbackGiftPAck from '../../../components/Feedback&Complaints/FeedbackGiftPackage/Display/DisplayUnderPackage/UnderPackageFeedbacks';
 import Header from '../../common/header/header';
 import Footer from '../../common/footer/footer';
+import config from "../../../config";
 
 const DisplaySingleDefaultGiftPackage = () => {
     const [packageData, setPackageData] = useState(null);
@@ -16,7 +17,7 @@ const DisplaySingleDefaultGiftPackage = () => {
     useEffect(() => {
         const fetchPackage = async () => {
             try {
-                const response = await axios.get(`https://herb-care-pzwv.onrender.com/defaultGiftpackage/${packageId}`);
+                const response = await axios.get(`${config.BASE_URL}/defaultGiftpackage/${packageId}`);
                 setPackageData(response.data);
             } catch (error) {
                 console.error('Error fetching package:', error);
