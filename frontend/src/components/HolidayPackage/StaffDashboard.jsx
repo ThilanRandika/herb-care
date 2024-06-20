@@ -15,6 +15,9 @@ const StaffDashboard = () => {
   };
 
   return (
+
+    
+
     <Container fluid>
       <Row className="bg-primary text-white py-3 mb-3">
         <Col className="text-center">
@@ -37,7 +40,7 @@ const StaffDashboard = () => {
             <Row>
               <Col md={4}>
                 {showPackages && (
-                  <Link to="/ManagePackages" className="text-decoration-none">
+                  <Link to="managePackages" className="text-decoration-none">
                     <Card
                       className="mb-3 custom-card"
                       style={{ width: "100%", height: "100%" }}
@@ -56,7 +59,7 @@ const StaffDashboard = () => {
               </Col>
               <Col md={4}>
                 {showServices && (
-                  <Link to="/manageServices" className="text-decoration-none">
+                  <Link to="/staff/staffHolidayPackages/manageServices/" className="text-decoration-none">
                     <Card
                       className="mb-3 custom-card"
                       style={{ width: "100%", height: "100%" }}
@@ -75,7 +78,7 @@ const StaffDashboard = () => {
               </Col>
               <Col md={4}>
                 {showBookings && (
-                  <Link to="/holiday-bookings" className="text-decoration-none">
+                  <Link to="/staff/staffHolidayPackages/holidayBookings/" className="text-decoration-none">
                     <Card
                       className="mb-3 custom-card"
                       style={{ width: "100%", height: "100%" }}
