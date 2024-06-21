@@ -64,16 +64,13 @@ function ProductCard2() {
                 />
               </div>
               <div className="customer-product-list-details">
-                <div className="customer-product-list-info1">
                   <div className="customer-product-list-info2">
                     <div className="customer-product-list-name">{product.name}</div>
-                    <div className="customer-product-list-description"><span>Category: </span>{product.category}</div>
-                    <div className='FHS_ratings'>ratings: {renderStars(getProductRating(product.name))}</div>
-                  </div>
                   <div className="customer-product-list-price">
                     Rs.{product.Manufactured_price}
                   </div>
-                </div>
+                    <div className='FHS_ratings'>{renderStars(getProductRating(product.name))} (105)</div>
+                  </div>
                 <div className="customer-product-list-add-to-cart-button-container">
                   <div>
                     <Link to={`/Product/${product._id}`}>
