@@ -149,16 +149,13 @@ function Products({ searchQuery, priceRange, category }) {
                   />
                 </div>
                 <div class="customer-product-list-details">
-                  <div class="customer-product-list-info1">
                     <div class="customer-product-list-info2">
                       <div class="customer-product-list-name">{product.name}</div>
-                      <div class="customer-product-list-description"><span>Category: </span>{product.category}</div>
-                      <div className='FHS_ratings'>ratings: {renderStars(getProductRating(product.name))}</div>
+                      <div class="customer-product-list-price">
+                        Rs.{product.Manufactured_price}
+                      </div>
+                      <div className='FHS_ratings'>{renderStars(getProductRating(product.name))} (105)</div>
                     </div>
-                    <div class="customer-product-list-price">
-                      Rs.{product.Manufactured_price}
-                    </div>
-                  </div>
                   {/* <div class="customer-product-list-description">DESCRIPTION</div>
               <div class="customer-product-list-description">
                 {product.description}

@@ -16,3 +16,31 @@
     width: 300px;
     transition: 0.3s;
   }
+
+  @media (max-width: 768px) {
+    .home-product-cards-container {
+        
+        overflow-x: auto;
+    }
+
+    .home-product-list-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 10px;
+        margin-right: 20px;
+        cursor: pointer;
+        margin-bottom: 16px;
+        width: 350px;
+        transition: 0.3s;
+      }
+
+      .home-customer-product-list-image {
+        width: 100%;
+        height: 270px;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        margin-bottom: 16px;
+      }
+}

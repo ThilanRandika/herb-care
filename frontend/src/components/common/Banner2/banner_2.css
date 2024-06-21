@@ -4,3 +4,11 @@
     display: block; /* Ensures the image is displayed as a block element */
     margin: 0 auto; /* Centers the image horizontally */
 }
+
+@media (max-width: 768px) {
+    
+    .HPB_image img {
+        max-width: 100%;
+        height: 300px; /* Ensures the image maintains its aspect ratio */
+    }
+}

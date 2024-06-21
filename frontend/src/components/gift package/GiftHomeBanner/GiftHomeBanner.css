@@ -7,3 +7,10 @@
     border-radius: 15px;
 }
 
+@media (max-width: 768px) {
+    .GHPB_image img {
+        height: 300px;
+    }
+
+}
+
