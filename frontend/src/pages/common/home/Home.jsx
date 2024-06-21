@@ -12,6 +12,8 @@ import Categories from '../../../components/common/categories/Categories';
 import ProductCardsRating from '../../../components/common/productCards1/ProductCardsRating';
 import ProductCard2 from '../../../components/common/productCard2/ProductCard2';
 import Banner2 from '../../../components/common/Banner2/Banner2';
+import BannerGirl from '../../../components/common/BannerGirl/BannerGirl';
+import HomeBlogs from '../../../components/common/homeBlogs/HomeBlogs';
 
 function Home() {
 
@@ -64,11 +66,13 @@ function Home() {
         <Banner2/>
         <br />
         <ProductCard2/>
-
         <br></br>
         <br></br>
+        <BannerGirl/>
         <br></br>
       <ProductSummary />
+      <br />
+      <HomeBlogs/>
       <Footer></Footer>
 
       </div>
