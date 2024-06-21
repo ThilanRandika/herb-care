@@ -139,16 +139,31 @@
 @media (max-width: 768px) {
     .banner-container {
         flex-direction: column;
-        padding: 20px;
+        padding: 5px;
     }
 
     .banner-slider {
-        width: 100%;
+        width: 80%;
         height: auto;
     }
 
     .banner-text {
-        padding-right: 0;
-        text-align: center;
+        width:80%;
+        padding: 5px;
+        text-align: left;
+    }
+
+    .product-count {
+        padding: 5px;
+    }
+
+    .top-left {
+        top: 30px; /* Adjust as needed */
+        left: -35px; /* Adjust as needed */
+    }
+    
+    .bottom-right {
+        bottom: 30px; /* Adjust as needed */
+        right:-30px; /* Adjust as needed */
     }
 }

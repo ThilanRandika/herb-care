@@ -57,7 +57,7 @@ function ProductCardsRating() {
     <div className='home-product-cards-container'>
     {products.map((product, index) => (
     <div class="home-product-list-card" key={index}>
-                <div class="customer-product-list-image">
+                <div class="home-customer-product-list-image">
                   <img
                     src={require(`../../../../../BACKEND/uploads/${product.image}`)}
                     className="customer-product-list-image"
@@ -65,16 +65,13 @@ function ProductCardsRating() {
                   />
                 </div>
                 <div class="customer-product-list-details">
-                  <div class="customer-product-list-info1">
                     <div class="customer-product-list-info2">
                       <div class="customer-product-list-name">{product.name}</div>
-                      <div class="customer-product-list-description"><span>Category: </span>{product.category}</div>
-                      <div className='FHS_ratings'>ratings: {renderStars(getProductRating(product.name))}</div>
-                    </div>
                     <div class="customer-product-list-price">
                       Rs.{product.Manufactured_price}
                     </div>
-                  </div>
+                      <div className='FHS_ratings'>{renderStars(getProductRating(product.name))} (105)</div>
+                    </div>
                   {/* <div class="customer-product-list-description">DESCRIPTION</div>
               <div class="customer-product-list-description">
                 {product.description}
