@@ -64,16 +64,13 @@ function ProductCard2() {
                 />
               </div>
               <div className="customer-product-list-details">
-                <div className="customer-product-list-info1">
                   <div className="customer-product-list-info2">
                     <div className="customer-product-list-name">{product.name}</div>
-                    <div className="customer-product-list-description"><span>Category: </span>{product.category}</div>
-                    <div className='FHS_ratings'>ratings: {renderStars(getProductRating(product.name))}</div>
-                  </div>
                   <div className="customer-product-list-price">
                     Rs.{product.Manufactured_price}
                   </div>
-                </div>
+                    <div className='FHS_ratings'>{renderStars(getProductRating(product.name))} (105)</div>
+                  </div>
                 <div className="customer-product-list-add-to-cart-button-container">
                   <div>
                     <Link to={`/Product/${product._id}`}>
@@ -89,12 +86,12 @@ function ProductCard2() {
         </div>
         <div className='product-card-2-right'>
           <div className='image-container'>
-            <img src={require(`../../../../src/Images/giftImages/gift_1.png`)} alt='' />
-            {/* <div className="image-text-overlay">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, amet.</div> */}
+            <img src={require(`../../../../src/Images/home/home_sideImg1.png`)} alt='' />
+            <div className="image-text-overlay-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, amet.</div>
           </div>
           <div className='image-container'>
-            <img src={require(`../../../../src/Images/giftImages/gift_2.png`)} alt='' />
-            {/* <div className="image-text-overlay">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, soluta!</div> */}
+            <img src={require(`../../../../src/Images/home/home_sideImg2.png`)} alt='' />
+            <div className="image-text-overlay-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, soluta!</div>
           </div>
         </div>
       </div>

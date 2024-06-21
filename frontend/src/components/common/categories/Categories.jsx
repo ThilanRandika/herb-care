@@ -6,15 +6,15 @@ function Categories() {
     const categoriesData = [
         {
           name: 'Skin Care',
-          image: 'https://th.bing.com/th/id/OIP.hzwtk7xoNaGH3yQAhWhJIwHaJQ?w=146&h=181&c=7&r=0&o=5&dpr=1.1&pid=1.7', // Placeholder, replace with actual image paths
+          image: 'Home_categories3.png', // Placeholder, replace with actual image paths
         },
         {
           name: 'Body Care',
-          image: 'https://th.bing.com/th/id/OIP.qDvAlhidTBzXiGyDfq_O0gHaE7?w=234&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7',
+          image: 'Home_categories2.png',
         },
         {
           name: 'Hair Care',
-          image: 'https://th.bing.com/th/id/OIP.zOyMKTQXccv6qNHPfoqLrQHaEK?w=291&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7',
+          image: 'Home_categories1.png',
         }
       ];
 
@@ -27,7 +27,7 @@ function Categories() {
         <div className='category-cards'>
         {categoriesData.map((category, index) => (
         <div className="category-card" key={index}>
-        <img src={category.image} alt={category.name} />
+        <img src={require(`../../../Images/home/${category.image}`)} alt={category.name} />
         <h5>{category.name}</h5>
       </div>
       ))}

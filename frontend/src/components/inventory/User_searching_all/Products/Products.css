@@ -160,16 +160,16 @@
   }
 }
 
+
+
 .customer-product-list-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  margin: 20px;
-  padding: 20px;
+  padding: 20px 10px 20px 10px;
   cursor: pointer;
-  margin-bottom: 16px;
-  width: 300px;
+  width: 280px;
   transition: 0.3s;
 }
 
@@ -177,10 +177,10 @@
 
 .customer-product-list-image {
   width: 100%;
-  height: 200px;
+  height: 270px;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 16px;
 }
 
@@ -204,10 +204,9 @@
 }
 
 .customer-product-list-price {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: right;
-  color: #ff5733;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0c3d04;
 }
 
 .customer-product-list-id {
@@ -217,15 +216,18 @@
 }
 
 .customer-product-list-name {
-  font-size: 18px; /* Decrease font size */
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif; /* Add this line */
+  font-size: 16px; /* Decrease font size */
+  font-weight: 600;
   margin-bottom: 8px;
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow content */
-  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
   width: 90%; /* Specify width */
-  display: block;
 }
+
 
 .customer-product-list-description {
   font-size: 14px;
@@ -243,19 +245,22 @@
 }
 
 .customer-product-list-add-to-cart-button {
-  background-color: #4caf50;
   white-space: nowrap;
-  color: white;
+  color: rgb(2, 56, 2);
+  background-color: #fff;
   border: none;
   border-radius: 10px;
   padding: 8px 16px;
   font-size: 14px;
   cursor: pointer;
   width: 100%;
+  border: 2px solid #6c757d;
 }
 
 .customer-product-list-add-to-cart-button:hover{
   background-color: #063d08;
+  color: #fff;
+  border: 2px solid #ffffff;
 }
 
 .customer-product-list-add-to-cart-cart-button{
