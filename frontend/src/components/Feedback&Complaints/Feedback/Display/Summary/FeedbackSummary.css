@@ -82,3 +82,18 @@
     transform: perspective(1000px);
   }
 }
+
+@media (max-width: 768px) {
+
+  .FHS_containor1 {
+    min-height: 380px;
+  }
+  .FHS_containor2 {
+    width: 80%;
+  }
+
+  .FHS_image {
+    width: 180px;
+    height: 180px;
+  }
+}

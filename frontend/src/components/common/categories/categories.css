@@ -33,3 +33,21 @@
     flex-wrap: wrap;
     
   }
+
+  @media (max-width: 768px) {
+    .categories-list {
+      flex-direction: column;
+      text-align: left;
+      align-items: start;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .category-text {
+      width: 80%;
+    }
+
+    .category-card {
+      width: 300px;
+    }
+}

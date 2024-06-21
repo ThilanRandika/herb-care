@@ -16,3 +16,9 @@
     width: 300px;
     transition: 0.3s;
   }
+
+  @media (max-width: 768px) {
+    .home-product-cards-container {
+        overflow-x: auto;
+    }
+}

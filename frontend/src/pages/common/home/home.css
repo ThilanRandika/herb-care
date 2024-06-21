@@ -31,3 +31,22 @@
 .seller-request-button:hover {
     background-color: #218838;
 }
+
+@media (max-width: 768px) {
+    
+    .seller-req img {
+        width: 100%;
+        height: 300px;
+        display: block; /* Ensure no extra space below the image */
+    }
+    
+    .seller-request-button {
+        position: absolute;
+        bottom: 40px; /* Adjust this value as needed */
+        right: 30px; /* Adjust this value as needed */
+    }
+    
+    .seller-request-button:hover {
+        background-color: #218838;
+    }
+}
