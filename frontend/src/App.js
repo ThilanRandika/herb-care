@@ -81,7 +81,7 @@ function App() {
           element={<SellerManagerDashboard />}
         />
         <Route
-          path="/sellerStaffDashboard/*"
+          path="/sellerStaff/*"
           element={<SellerStaffDashboard />}
         />
 
