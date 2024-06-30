@@ -54,7 +54,7 @@ function StaffMainSidebar() {
                                 Retail Orders 
                             </MenuItem>
                             <MenuItem 
-                                component={<Link to="/staff/SellerStaffDashboard" />} 
+                                component={<Link to="/staff/SellerStaff/dashboard" />} 
                                 onClick={() => setSelected("Wholesale Orders")}
                                 style={{
                                     backgroundColor: selected === "Wholesale Orders" ? "#c3cdb2" : "transparent",
