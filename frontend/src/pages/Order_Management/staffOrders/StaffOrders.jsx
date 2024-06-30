@@ -6,10 +6,15 @@ import OrderStaffProcessingOrders from '../../../components/order/staff/orderSta
 import OrderStaffReadyToDelivery from '../../../components/order/staff/orderStaffReadyToDelivery/OrderStaffReadyToDelivery';
 import OrderStaffOnDeliveryOrders from '../../../components/order/staff/orderStaffOnDeliveryOrders/OrderStaffOnDeliveryOrders';
 import OrderStaffCompletedOrders from '../../../components/order/staff/orderStaffCompletedOrders/OrderStaffCompletedOrders';
+import StaffOrdersTopNav from '../../../components/common/staff/staffOrdersTopNav/StaffOrdersTopNav';
 
 function StaffOrders() {
   return (
     <div className='staff-orders-allContent'>
+
+      <StaffOrdersTopNav></StaffOrdersTopNav>
+
+      {/* <br /><br /><br /><br /><br /><br />
 
       <div className="staff-orders-allContent-top-nav">
         <div className="seller-staff-sidebar">
@@ -66,7 +71,7 @@ function StaffOrders() {
             
           </ul>
         </div>
-      </div>
+      </div> */}
 
       <Routes>
         <Route>

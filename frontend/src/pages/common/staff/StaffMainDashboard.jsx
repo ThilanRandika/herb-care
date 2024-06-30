@@ -100,7 +100,7 @@ function StaffMainDashboard() {
           <Route path="/" element={<StaffDashboardHome />}></Route>
           <Route path="/staffOrders/*" element={<StaffOrders/>}></Route>
           <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
-          <Route path="/sellerStaffDashboard/*" element={<SellerStaffDashboard/>} />
+          <Route path="/sellerStaff/*" element={<SellerStaffDashboard/>} />
           <Route path="/consultationStaff/*" element={<ConsultationStaffDashboard/>} />
           <Route path="/DisplayFeedbackStaff" element={<DisplayFeedback_staff/>}></Route>
           <Route path="/DisplayComplaintsStaff" element={<Display_Staff/>}></Route>

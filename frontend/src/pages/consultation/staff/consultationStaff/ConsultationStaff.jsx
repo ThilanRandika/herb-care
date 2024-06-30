@@ -2,34 +2,15 @@ import { Link, Route, Routes } from 'react-router-dom';
 import './consultationStaff.css';
 import ConsultationStaffDashboard from '../../consultationStaffDashboard/ConsultationStaffDashboard';
 import StaffRefundRequests from '../staffRefundRequests/StaffRefundRequests';
+import StaffConsultationsTopNav from '../../../../components/common/staff/staffConsultationsTopNav/StaffConsultationsTopNav';
 
 function ConsultationStaff() {
   return (
     <>
 
+      <StaffConsultationsTopNav></StaffConsultationsTopNav>
+
     <div className='consultation-dashboard-container'>
-    <div className="seller-staff-sidebar">
-        <ul className="seller-staff-sidebar-nav">
-          <li className="seller-staff-sidebar-item">
-            <Link
-              className="seller-staff-sidebar-link"
-              to={"/staff/consultationStaff/"}
-              aria-current="page"
-            >
-              consultation Dashboard
-            </Link>
-          </li>
-          <li className="seller-staff-sidebar-item">
-            <Link
-              className="seller-staff-sidebar-link"
-              to={"/staff/consultationStaff/refundRequests/"}
-            >
-              Refund Requests
-            </Link>
-          </li>
-          
-        </ul>
-      </div>
 
       <div className='consultaion-content-container'>
       <Routes>
