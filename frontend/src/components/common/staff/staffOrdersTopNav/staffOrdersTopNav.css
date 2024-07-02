@@ -1,0 +1,9 @@
+.staff-main-top-nav-single-nav-item {
+  margin-right: 20px;
+}
+
+.staff-main-top-nav-navLink {
+  font-weight: bold;
+  background-color: #c3cdb2 !important; /* Use !important to override other styles */
+  border-radius: 5px;
+}
