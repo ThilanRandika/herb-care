@@ -1,5 +1,6 @@
 import React from 'react'
 import './categories.css'
+import { Link } from 'react-router-dom';
 
 function Categories() {
 
@@ -26,8 +27,10 @@ function Categories() {
         </div>
         <div className='category-cards'>
         {categoriesData.map((category, index) => (
-        <div className="category-card" key={index}>
+          <div className="category-card" key={index}>
+            <Link to={'/User_searching'}>
         <img src={require(`../../../Images/home/${category.image}`)} alt={category.name} />
+      </Link>
         <h5>{category.name}</h5>
       </div>
       ))}
