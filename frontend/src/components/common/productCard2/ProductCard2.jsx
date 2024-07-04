@@ -57,11 +57,17 @@ function ProductCard2() {
           {products.map((product, index) => (
             <div className="home-product2-list-card" key={index}>
               <div className="home-product2-list-image">
-                <img
-                  src={require(`../../../../../BACKEND/uploads/${product.image}`)}
-                  className="home-product2-list-image"
-                  alt="Product"
-                />
+              {product.image ? (
+                  <img
+                      src={product.image.startsWith('http') ? product.image : require(`../../../../../BACKEND/uploads/${product.image}`)}
+                      className="customer-product-list-image"
+                      alt="Product"
+                    />
+                  ) : (
+                    <div className="no-image-available">
+                      No Image Available
+                    </div>
+                  )}
               </div>
               <div className="customer-product-list-details">
                   <div className="customer-product-list-info2">

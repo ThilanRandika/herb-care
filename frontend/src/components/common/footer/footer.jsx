@@ -50,7 +50,7 @@ function footer() {
 							<h4>Links</h4>
 						</div>
 						<ul>
-                            <li><Link to="#">About Us</Link></li>
+                            <li><Link to="/aboutUs">About Us</Link></li>
 							<li><Link to="/contactUs">Contact Us</Link></li>
 							<li><Link to="#">Privacy Policy</Link></li>
                             <li><Link to="#">Support</Link></li>

@@ -46,29 +46,35 @@ router.route("/getOngoingOrdersForUser/:userId").get(async (req, res) => {
 });
 
 router.route("/getCompleteOrdersForUser/:userId").get(async (req, res) => {
-
   const userId = req.params.userId;
   try {
-    const orders = await Order.find({
-      userId: userId,
-      status: "completed"
-    });
-    
-    completeOrders = orders.map(order => {
-      return {
-        id: order._id,
-        status: order.status,
-        price: order.totalPrice,
-        paymentMethod: order.payment,
-        date: order.datePlaced
-      }
-    })
-    res.status(200).json(completeOrders);
+      const orders = await Order.find({
+          userId: userId,
+          status: "completed"
+      }).populate('products.product'); // Populate product details
+
+      const completeOrders = orders.map(order => {
+          return {
+              id: order._id,
+              status: order.status,
+              price: order.totalPrice,
+              paymentMethod: order.payment,
+              date: order.datePlaced,
+              products: order.products.map(product => ({
+                  productId: product.product._id,
+                  productName: product.product.name,
+                  image: product.product.image, // Assuming product schema has an image field
+                  quantity: product.quantity
+              }))
+          };
+      });
+      res.status(200).json(completeOrders);
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Failed to retrieve orders" });
+      console.log(err);
+      res.status(500).json({ message: "Failed to retrieve orders" });
   }
 });
+
 
 
 //get one order detail

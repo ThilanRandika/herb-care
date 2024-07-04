@@ -1,17 +1,29 @@
 .userSearchingsearchBarnav {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  background-color: #CAD593;
+  border-radius: 50px;
+  margin-bottom: 30px;
+}
+
+.shop-searchBar-title {
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 40px;
 }
 
 .userSearchingsearchBarnav-container {
   display: flex;
-  align-items: center;
-  width:70%;
+  padding: 8px;
 }
 
-.userSearchingsearchBarnav-search-input {
+.userSearchingsearchBarnav-search-input[type="text"] {
   padding: 12px 20px;
   border: none;
   background: #f7f6f6;
   outline: none;
-  border-radius: 5px;
-  width: 400px; /* Increased width for better visibility */
+  border-radius: 50px;
+  width: 500px; /* Increased width for better visibility */
 }

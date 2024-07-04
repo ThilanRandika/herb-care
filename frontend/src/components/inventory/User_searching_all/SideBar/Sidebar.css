@@ -1,18 +1,17 @@
-.products-userSearchingsidebar {
-  width: 225px;
-  /* position: fixed; */
-  height: 100vh; /* Set height to 100% of viewport height */
-  left: 0; /* Align to the left of the viewport */
-  bottom: 0; /* Align to the bottom of the viewport */
-  z-index: 3;
+.products-user-searching-sidebar {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Optional: Add background color */
-  padding-top: 20px; /* Optional: Add padding to the top */
-  /* border-right: 2px;
-  border-right-style: solid; */
+  gap: 20px;
 }
 
-.products-userSearchingsidebarcontents{
-  margin-top: 100px;
+.customer-product-list-category-filter, .customer-product-list-price-filter {
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.filter-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }

@@ -1,0 +1,34 @@
+.staff-inventory-new-product-add-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .staff-inventory-new-product-add-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .staff-inventory-new-product-add-label {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+  
+  .staff-inventory-new-product-add-input,
+  .staff-inventory-new-product-add-textarea,
+  .staff-inventory-new-product-add-button {
+    flex: 1;
+  }
+  
+  .staff-inventory-new-product-add-button {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .staff-inventory-new-product-add-offset {
+    margin-left: 20%;
+  }
+  
+  .staff-inventory-new-product-add-form-allContent{
+    width: 90%;
+    margin: 0 auto;
+  }

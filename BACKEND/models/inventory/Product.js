@@ -21,7 +21,6 @@ const ProductSchema = new Schema(
     },
     Manufactured_price: {
       type: Number,
-      required: true,
     },
     discount: {
       type: Number,
@@ -36,11 +35,9 @@ const ProductSchema = new Schema(
     },
     expireDate: {
       type: Date,
-      required: true
     },
     manufactureDate: {
       type: Date,
-      required: true
     },
     ingredients: {
       type:String,

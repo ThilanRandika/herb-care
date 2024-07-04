@@ -233,12 +233,16 @@ function Cart() {
                                                                 <td width="90" >
                                                                     <div class="customer-cart-cart-product-imitation">
                                                                         <div className="customer-cart-product-image">
-                                                                            {item.image ? (
-                                                                                <img src={require(`../../../../../BACKEND/uploads/${item.image}`)} 
-                                                                                    alt={item.name} 
-                                                                                    className="siImg" />
+                                                                        {item.image ? (
+                                                                            <img
+                                                                                src={item.image.startsWith('http') ? item.image : require(`../../../../../BACKEND/uploads/${item.image}`)}
+                                                                                className="customer-cart-product-list-image"
+                                                                                alt="Product"
+                                                                                />
                                                                             ) : (
-                                                                                <div className="no-image-placeholder">No Image Available</div>
+                                                                                <div className="no-image-available">
+                                                                                No Image Available
+                                                                                </div>
                                                                             )}
                                                                         </div>
                                                                     </div>

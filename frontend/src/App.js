@@ -52,7 +52,7 @@ import ManageServices from "./components/HolidayPackage/ManageServices";
 
 
 import ContactUs from "./pages/common/contactUs/ContactUs";
-import AboutUs from "./pages/inventory/AboutUs/about_us";
+import AboutUs from "./pages/common/aboutUs/AboutUs";
 import CustomerSingleOrder from "./pages/Order_Management/customerSingleOrder/CutomerSingleOrder";
 import BlogsPage from "./pages/common/Blogs/BlogsPage";
 import SellerRegistrationPage from "./pages/common/sellerRegister/SellerRegistrationPage";
@@ -71,7 +71,6 @@ function App() {
         <Route path="/Producttesting/*" element={<Producttesting />} />
         <Route path="/Product/:id" element={<Product />} />
         <Route path="/Staff_Dashboard/*" element={<Staff_Dashboard/>} />
-        <Route path="/aboutUs" element={<AboutUs/>} />
 
 
 
@@ -126,7 +125,7 @@ function App() {
 
 
         <Route path="/contactUs" element={<ContactUs/>}></Route>
-
+        <Route path="/aboutUs" element={<AboutUs/>}></Route>
 
         <Route path="/cart" element={<Cart/>}></Route>
 

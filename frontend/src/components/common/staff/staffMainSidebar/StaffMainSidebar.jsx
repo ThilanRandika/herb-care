@@ -64,7 +64,7 @@ function StaffMainSidebar() {
                             </MenuItem>
                         </SubMenu>
                         <SubMenu label="Manage" defaultOpen>
-                            <MenuItem 
+                            {/* <MenuItem 
                                 component={<Link to="/staff/Staff_Dashboard" />} 
                                 onClick={() => setSelected("Products")}
                                 style={{
@@ -72,6 +72,15 @@ function StaffMainSidebar() {
                                 }}
                             > 
                                 Products 
+                            </MenuItem> */}
+                            <MenuItem 
+                                component={<Link to="/staff/staffInventoryMainDashBoard" />} 
+                                onClick={() => setSelected("Inventory")}
+                                style={{
+                                    backgroundColor: selected === "Inventory" ? "#c3cdb2" : "transparent",
+                                }}
+                            > 
+                                Inventory 
                             </MenuItem>
                             <MenuItem 
                                 component={<Link to="/staff/staffGift/Default_gift_packages" />} 

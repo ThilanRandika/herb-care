@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -6,9 +6,27 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import './UserDashboard.css';
-import Footer from '../../../components/common/footer/footer'
+import Footer from '../../../components/common/footer/footer';
+import axios from 'axios'; // Import axios for HTTP requests
+import config from '../../../config';
 
 function StaffMainDashboard() {
+  const [customer, setCustomer] = useState(null);
+
+  useEffect(() => {
+    // Fetch customer details when component mounts
+    async function fetchCustomerDetails() {
+      try {
+        const response = await axios.get(`${config.BASE_URL}/customer/customer_details`); // Adjust the API route based on your backend setup
+        setCustomer(response.data);
+      } catch (error) {
+        console.error('Error fetching customer details:', error);
+      }
+    }
+
+    fetchCustomerDetails();
+  }, []);
+
   return (
     <>
       {[false].map((expand) => (
@@ -96,7 +114,7 @@ function StaffMainDashboard() {
                         <div className="m-b-25">
                           <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image"></img> {/* Change the image URL here */}
                         </div>
-                        <h6 className="f-w-600">Harshana</h6> {/* Change the name here */}
+                        <h6 className="f-w-600 naaammmeee">{customer?.customer_name}</h6> {/* Change the name here */}
                         <p>Customer</p>
                         <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                       </div>
@@ -107,19 +125,19 @@ function StaffMainDashboard() {
                         <div className="row">
                           <div className="col-sm-6">
                             <p className="m-b-10 f-w-600">Name</p>
-                            <h6 className="text-muted f-w-400">Harshana</h6> {/* Change the name here */}
+                            <h6 className="text-muted f-w-400">{customer?.customer_name}</h6> {/* Change the name here */}
                           </div>
                           <div className="col-sm-6">
                             <p className="m-b-10 f-w-600">Address</p>
-                            <h6 className="text-muted f-w-400">No-58 Malabe, Colombo</h6>
+                            <h6 className="text-muted f-w-400">{customer?.address}</h6>
                           </div>
                           <div className="col-sm-6">
                             <p className="m-b-10 f-w-600">Email</p>
-                            <h6 className="text-muted f-w-400">john.doe@example.com</h6> {/* Change the email here */}
+                            <h6 className="text-muted f-w-400">{customer?.email}</h6> {/* Change the email here */}
                           </div>
                           <div className="col-sm-6">
                             <p className="m-b-10 f-w-600">Phone</p>
-                            <h6 className="text-muted f-w-400">0765764354</h6> {/* Change the phone number here */}
+                            <h6 className="text-muted f-w-400">{customer?.contact_num}</h6> {/* Change the phone number here */}
                           </div>
                         </div>
                         <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>

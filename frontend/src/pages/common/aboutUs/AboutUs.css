@@ -1,0 +1,131 @@
+.AboutUs_title_card {
+    padding: 70px;
+    background-color: #CAD593;
+    margin-bottom: 100px;
+}
+
+.AboutUs_title {
+    text-align: center;
+    color: #2A3C24;
+}
+
+.aboutUs_description{
+    display: flex;
+    padding-right: 150px;
+    padding-left: 150px;
+}
+
+.aboutUs_image img {
+    height: 600px;  
+}
+
+.aboutUs_details{
+    padding-left: 50px;
+    margin-top: 100px;
+}
+
+.button-aboutUs .btn {
+    padding:10px;
+    font-size: 15px;
+    background: #143109;
+    color:#fff;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.AboutUs_sevices {
+    justify-content: center;
+    background-color: #EFEFEF;
+}
+
+.AboutUs_sevices h2{
+    text-align: center;
+}
+
+.AboutUs_sevices .AboutUs_Containor {
+    display: flex; 
+    padding-left: 250px;
+}
+
+.AboutUs_card1 {
+    width: 350px;
+    background-color: #143109;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.AboutUs_card1 p{
+    color: #CAD593;
+    font-size: medium;
+}
+
+.AboutUs_Services2{
+    padding-left: 100px;
+}
+
+.AboutUs_Services2 .Service_Containor{
+    display: flex; 
+    align-items: center;
+}
+
+.Service_card1,
+.Service_card2,
+.Service_card3,
+.Service_card4 {
+    width: 350px;
+    margin: 10px;
+    padding: 50px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Service_card1 img{
+    width: 70px;
+    height: 80px;
+}
+
+.Service_card2 img{
+    width: 60px;
+    height: 60px;
+}
+
+.Service_card3 img{
+    width: 50px;
+    height: 50px;
+}
+
+.Service_card4 img{
+    width: 50px;
+    height: 50px;
+}
+
+.AboutUs_WhyChooseUs{
+    display: flex;
+    padding: 150px;
+}
+
+.aboutUs_choose_image img {
+    height: 500px;
+    width: 500px;
+}
+
+.aboutUs_choose_details{
+    padding-left: 50px;
+    margin-top: 150px;
+}
+
+.button-aboutUs-choose .btn {
+    padding:10px;
+    font-size: 15px;
+    background: #fff;
+    color:#143109;
+    border: 2px solid #143109;
+    cursor: pointer;
+    border-radius: 10px;
+}

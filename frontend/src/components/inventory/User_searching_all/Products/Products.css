@@ -1,3 +1,5 @@
+
+
 .User-searching-card-container {
   display: flex;
   flex-wrap: wrap;
@@ -275,4 +277,23 @@
 
 .customer-product-list-add-to-cart-cart-button img:hover {
   transform: scale(1.2); /* Scale the image to 120% of its original size */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #ddd;
+  border: none;
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #285b1f;
+  color: white;
 }

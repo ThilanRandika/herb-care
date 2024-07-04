@@ -5,6 +5,7 @@ const path = require('path');
 const { verifyToOther } = require("../../utils/veryfyToken");
 const PDFDocument = require('pdfkit');
 const Product = require('../../models/inventory/Product');
+const mongoose = require('mongoose');
 
 
 // Image uploading
@@ -73,10 +74,82 @@ router.route('/feedbacks/:productId').get(async (req, res) => {
   }
 });
 
+router.route('/ratings-summary/:productId').get(async (req, res) => {
+  try {
+    const productId = req.params.productId;
+
+    // Validate if productId is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      return res.status(400).json({ message: 'Invalid productId' });
+    }
+
+    // Aggregate ratings count for the given product ID
+    const ratingsCount = await Feedback.aggregate([
+      {
+        $match: {
+          Product: new mongoose.Types.ObjectId(productId)
+        }
+      },
+      {
+        $group: {
+          _id: '$ratings',
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $sort: { _id: 1 } // Sort by rating value
+      }
+    ]);
+
+    // If no ratingsCount found, handle gracefully
+    if (!ratingsCount || ratingsCount.length === 0) {
+      return res.status(404).json({ message: 'No ratings found for this product' });
+    }
+
+    // Initialize ratings summary object with default values
+    const ratingsSummary = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0
+    };
+
+    let totalRatings = 0;
+    let ratingsSum = 0;
+
+    // Populate ratings summary and calculate total ratings and sum for average calculation
+    ratingsCount.forEach(rating => {
+      const ratingValue = rating._id; // rating._id is the rating value
+      if (ratingsSummary.hasOwnProperty(ratingValue)) {
+        ratingsSummary[ratingValue] += rating.count; // Increment count for each rating value
+      }
+      totalRatings += rating.count;
+      ratingsSum += ratingValue * rating.count;
+    });
+
+    // Calculate average rating, ensuring toFixed(1) limits to one decimal place
+    const averageRating = totalRatings > 0 ? (ratingsSum / totalRatings).toFixed(1) : 0;
+
+    // Send JSON response with ratings summary, average rating, and total ratings
+    res.status(200).json({
+      ratingsSummary,
+      averageRating,
+      totalRatings
+    });
+  } catch (error) {
+    console.error('Error in ratings summary route:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+
 
 
 //Read - Display staff & manager dashbord
-// http://localhost:8070/feedback/get
+//http://localhost:8070/feedback/get
 router.route('/').get(async (req, res) => {
   try {
     const feedbacks = await Feedback.find().populate('Customer');

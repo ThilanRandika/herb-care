@@ -75,4 +75,117 @@
     margin-right: 10px; /* Add spacing between images */
   }
   
+  .DIUP_container {
+    padding: 20px;
+  }
+  
+  .DIUP_title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .DIUP_ratings_summary {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .DIUP_avg_rating {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .DIUP_avg_rating h1 {
+    font-size: 48px;
+    margin: 0;
+  }
+  
+  .DIUP_avg_rating div {
+    align-items: center;
+    margin-top: 5px;
+    color: #ffc107;
+  }
+  
+  .DIUP_avg_rating p {
+    margin-left: 10px;
+    font-size: 16px;
+    color: black;
+  }
+  
+  .DIUP_ratings_breakdown {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+  }
+  
+  .DIUP_ratings_row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+  }
+  
+  .DIUP_ratings_stars {
+    margin-left: 30px;
+  }
+  
+  .DIUP_ratings_bar {
+    flex: 10;
+    height: 10px;
+    background-color: #e0e0e0;
+    margin: 0 10px;
+    position: relative;
+    border-radius: 10px;
+  }
+  
+  .DIUP_ratings_bar div {
+    height: 100%;
+    background-color: #ffc107;
+    border-radius: 10px;
+  }
+  
+  .DIUP_ratings_count {
+    flex: 1;
+    text-align: right;
+    margin-right: 60px;
+  }
+  
+  .DIUP_UL {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .DIUP_UL li {
+    margin-bottom: 20px;
+  }
+  
+  .DIUP_container2 {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .DIUP_name {
+    font-weight: bold;
+  }
+  
+  .DIUP_rate {
+    margin: 5px 0;
+  }
+  
+  .message {
+    margin: 10px 0;
+  }
+  
+  .DIUP_imag img {
+    max-width: 100px;
+    margin-right: 5px;
+  }
+  
   

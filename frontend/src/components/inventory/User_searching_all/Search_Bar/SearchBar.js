@@ -11,13 +11,16 @@ function SearchBar({ onSearch }) {
 
   return (
     <nav className='userSearchingsearchBarnav'>
+      <div className='shop-searchBar-title'>
+        <h5>Search your favorite item with us...</h5>
+      </div>
       <div className="userSearchingsearchBarnav-container">
         <input
           className="userSearchingsearchBarnav-search-input"
           type="text"
           value={searchText}
           onChange={handleInputChange}
-          placeholder="Enter your search shoes."
+          placeholder="Enter your search product..."
         />
       </div>
     </nav>

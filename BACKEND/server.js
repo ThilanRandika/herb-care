@@ -43,6 +43,7 @@ const SellerProfile = require( "./routes/sellerPartnership/sellerProfile.js" );
 
 const productRouter = require("./routes/inventory/inventoryManagers.js");
 const approvalProcessRouter = require("./routes/inventory/approvalProcess.js");
+const newProductRouter = require("./routes/inventory/newProductRouter.js");
 
 const cartRouter =require("./routes/order/Cart.js")
 
@@ -102,6 +103,7 @@ app.use("/sellerProfile", SellerProfile);
 
 app.use("/product", productRouter);
 app.use("/approvalProcess",approvalProcessRouter);
+app.use("/productNew", newProductRouter);
 
 
 // Routes

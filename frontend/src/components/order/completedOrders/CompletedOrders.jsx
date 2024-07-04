@@ -23,48 +23,51 @@ function CompletedOrders() {
     }, [user._id]);
 
     return (
-        <div className="my-orders-all-contents">
+        <div className="customer-complete-my-orders-all-contents">
             <h2>Completed Orders</h2>
             {completedOrders.length === 0 ? (
-                <p className="no-orders-message">No completed orders</p>
+                <p className="customer-complete-no-orders-message">No completed orders</p>
             ) : (
-                <table className="customer-complete-order-history-table">
-                    <thead>
-                        <tr>
-                            <th className="customer-complete-order-id">Order Id</th>
-                            <th className="customer-complete-order-price">Price</th>
-                            <th className="customer-complete-payment-method">Payment Method</th>
-                            <th className="customer-complete-order-status">Status</th>
-                            <th className="customer-complete-order-date">Date</th>
-                            <th className="customer-complete-order-actions">Invoice</th>
-                            <th className="customer-complete-order-actions">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {completedOrders.map((order, index) => (
-                            <tr key={index} className={`customer-complete-order-row-${index}`}>
-                                <td>{order._id}</td>
-                                <td>{order.price}</td>
-                                <td>{order.paymentMethod}</td>
-                                <td className={`customer-complete-order-status-${order.status.toLowerCase()}`}>{order.status}</td>
-                                <td>{new Date(order.datePlaced).toLocaleDateString()}</td>
-                                <td>
-                                    {/* Add logic for invoice if needed */}
-                                </td>
-                                <td>
-                                    <div className="my-orders-order-actions-fc">
-                                        <Link to={`/Feedback&Complains/Feedback?orderId=${order._id}&productId=${order.productId}`}>
-                                            <button className='FEEDandCOM_Dash4'>Feedback</button>
+                completedOrders.map((order, index) => (
+                    <div key={index} className="customer-complete-order-card">
+                        <div className="customer-complete-order-card-header">
+                            <h3>Order ID: {order.id}</h3>
+                            <span>Status: {order.status}</span>
+                        </div>
+                        <div className="customer-complete-order-card-body">
+                            <p><strong>Price:</strong> {order.price}</p>
+                            <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
+                            <p><strong>Date:</strong> {new Date(order.date).toLocaleDateString()}</p>
+                            {order.products.map((product, idx) => (
+                                <div key={idx} className="customer-complete-order-product">
+                                    {product.image ? (
+                                        <img
+                                            src={product.image.startsWith('http') ? product.image : require(`../../../../../BACKEND/uploads/${product.image}`)}
+                                            className="customer-product-list-image"
+                                            alt="Product"
+                                            />
+                                        ) : (
+                                            <div className="no-image-available">
+                                            No Image Available
+                                            </div>
+                                        )}
+                                    <div className="customer-complete-order-product-details">
+                                        <p><strong>Name:</strong> {product.productName}</p>
+                                        <p><strong>Quantity:</strong> {product.quantity}</p>
+                                    </div>
+                                    <div className="customer-complete-order-card-footer">
+                                        <Link to={`/Feedback&Complains/Feedback?orderId=${order.id}&productId=${product.productId}`}>
+                                            <button className='customer-complete-FEEDandCOM_Dash4'>Feedback</button>
                                         </Link>
-                                        <Link to={`/Feedback&Complains/Complaints?orderId=${order._id}&productId=${order.productId}`}>
-                                            <button className='FEEDandCOM_Dash4'>Complaints</button>
+                                        <Link to={`/Feedback&Complains/Complaints?orderId=${order.id}&productId=${product.productId}`}>
+                                            <button className='customer-complete-FEEDandCOM_Dash4'>Complaints</button>
                                         </Link>
                                     </div>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
             )}
         </div>
     );

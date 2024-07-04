@@ -13,6 +13,7 @@ import StaffOrders from '../../Order_Management/staffOrders/StaffOrders'
 import StaffMainSidebar from '../../../components/common/staff/staffMainSidebar/StaffMainSidebar'
 import StaffDashboard from '../../../components/HolidayPackage/StaffDashboard'
 import StaffInterfaceHolidayPackages from '../../../components/HolidayPackage/StaffInterfaceHolidayPackages'
+import StaffInventoryMainDashBoard from '../../inventory/staffInventoryMainDashBoard/StaffInventoryMainDashBoard'
 
 function StaffMainDashboard() {
   return (
@@ -107,6 +108,7 @@ function StaffMainDashboard() {
           <Route path="/DisplayFeedbackGiftPackageStaff" element={<DisplayGiftPackage_Staff/>}></Route>
           <Route path="/staffGift/*" element={<GiftPackage_manage/>}></Route>
           <Route path="/staffHolidayPackages/*" element={<StaffInterfaceHolidayPackages/>}></Route>
+          <Route path="/staffInventoryMainDashBoard/*" element={<StaffInventoryMainDashBoard/>} />
         </Routes>
       </div>
 
