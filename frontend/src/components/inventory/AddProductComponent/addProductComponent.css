@@ -32,3 +32,8 @@
     width: 90%;
     margin: 0 auto;
   }
+
+  .staff-inventory-new-product-add-form-imageIsUploadingTxt{
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+  }

@@ -16,11 +16,13 @@ function AddProductComponent() {
   const [expireDate, setExpireDate] = useState('');
   const [manufactureDate, setManufactureDate] = useState('');
   const [productImg, setProductImg] = useState(undefined);
-  const [inputs, setInputs] = useState({});
   const [image, setImage] = useState('');
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    productImg && uploadFile(productImg, "imgUrl");
+    if (productImg) {
+      uploadFile(productImg, "imgUrl");
+    }
   }, [productImg]);
 
   const uploadFile = (file, fileType) => {
@@ -28,55 +30,52 @@ function AddProductComponent() {
     const fileName = new Date().getTime() + file.name;
     const storageRef = ref(storage, 'images/' + fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
-  
 
+    setUploading(true);
 
-  // Listen for state changes, errors, and completion of the upload.
-  uploadTask.on(
-    "state_changed",
-    (snapshot) => {
-      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
-      switch (snapshot.state) {
-        case 'paused':
-          console.log('Upload is paused');
-          break;
-        case 'running':
-          console.log('Upload is running');
-          break;
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (error.code) {
+          case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+          case 'storage/canceled':
+            // User canceled the upload
+            break;
+          case 'storage/unknown':
+            // Unknown error occurred, inspect error.serverResponse
+            break;
+        }
+        setUploading(false);
+      },
+      () => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('DownloadURL - ', downloadURL);
+          setImage(downloadURL);
+          setUploading(false);
+          console.log('Uploaded img URL - ', image);
+        });
       }
-    }, 
-    (error) => {
-      // A full list of error codes is available at
-      // https://firebase.google.com/docs/storage/web/handle-errors
-      switch (error.code) {
-        case 'storage/unauthorized':
-          // User doesn't have permission to access the object
-          break;
-        case 'storage/canceled':
-          // User canceled the upload
-          break;
-  
-        // ...
-  
-        case 'storage/unknown':
-          // Unknown error occurred, inspect error.serverResponse
-          break;
-      }
-    }, 
-    () => {
-      // Upload completed successfully, now we can get the download URL
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        console.log('DownloadURL - ', downloadURL);
-        setImage(downloadURL);
-        console.log('Uploaded img URL - ', image);
-      });
-    }
-  );
-
+    );
   }
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -196,13 +195,21 @@ function AddProductComponent() {
         <div className="staff-inventory-new-product-add-form-group staff-inventory-new-product-add-row">
           <label htmlFor="manufactureDate" className="staff-inventory-new-product-add-label">Image:</label>
           <div className="staff-inventory-new-product-add-input">
-            <input type="file" accept='image/' className="form-control" id="manufactureDate" onChange={(e) => setProductImg((prev) => e.target.files[0])} />
+            <input type="file" accept='image/*' className="form-control" id="manufactureDate" onChange={(e) => setProductImg(e.target.files[0])} />
           </div>
         </div>
 
+        {uploading && (
+          <div className="staff-inventory-new-product-add-form-group staff-inventory-new-product-add-row">
+            <div className="staff-inventory-new-product-add-input">
+              <span className='staff-inventory-new-product-add-form-imageIsUploadingTxt'>Please wait. Image is uploading...</span>
+            </div>
+          </div>
+        )}
+
         <div className="staff-inventory-new-product-add-form-group staff-inventory-new-product-add-row">
           <div className="staff-inventory-new-product-add-input staff-inventory-new-product-add-offset">
-            <button type="submit" className="btn btn-primary staff-inventory-new-product-add-button">Submit</button>
+            <button type="submit" className="btn btn-primary staff-inventory-new-product-add-button" disabled={uploading}>Submit</button>
           </div>
         </div>
       </form>
