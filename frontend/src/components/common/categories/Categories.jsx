@@ -23,7 +23,7 @@ function Categories() {
     <div className="categories-list">
         <div className='category-text'>
         <h2>Categories</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, corrupti?</p>
+        <p>Browse our carefully curated collection of authentic Ayurvedic herbs and natural remedies organized by therapeutic benefits.</p>
         </div>
         <div className='category-cards'>
         {categoriesData.map((category, index) => (

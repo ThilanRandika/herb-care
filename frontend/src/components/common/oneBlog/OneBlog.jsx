@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 
 const blog = {
     id: 1,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor velit beatae, animi a quo doloribus explicabo magnam eius atque, voluptates soluta voluptas? At ipsum voluptatibus earum voluptate animi itaque sit cumque ut assumenda aut, esse soluta ratione. Voluptates dolores at harum enim, reiciendis corrupti aspernatur blanditiis expedita amet veritatis doloribus adipisci rerum inventore dolorem. Assumenda, doloremque consectetur quo atque iure minus alias maiores quod deserunt accusantium quibusdam? Laborum quasi quod officiis repellat esse possimus porro maxime. Illum accusamus illo, facere hic itaque iure rem odio nemo in rerum ad sint architecto minus, ut quasi ullam fuga quo reprehenderit deserunt aperiam.',
+    date: 'February 5, 2024',
+    title: 'The Power of Turmeric in Daily Wellness',
+    description: 'Turmeric, known as the "golden spice" of Ayurveda, has been revered for thousands of years as one of nature\'s most powerful healing compounds. This vibrant yellow root contains curcumin, a potent anti-inflammatory compound that offers remarkable health benefits for modern wellness seekers. In traditional Ayurvedic medicine, turmeric is considered a natural purifier that helps balance all three doshas - Vata, Pitta, and Kapha. Scientific research now validates what ancient practitioners have long known: turmeric supports joint health, promotes healthy digestion, and helps maintain a robust immune system. The bioactive compounds in turmeric work synergistically to reduce inflammation at the cellular level, making it an excellent addition to your daily wellness routine. Whether consumed as a warm golden milk before bedtime, added to cooking, or taken as a standardized supplement, turmeric offers a gentle yet effective approach to maintaining optimal health. For best absorption, combine turmeric with black pepper and a healthy fat like coconut oil or ghee. Start with small amounts and gradually increase as your body adapts to this powerful healing spice.',
     imageUrl: 'https://th.bing.com/th?id=OIP.qDvAlhidTBzXiGyDfq_O0gHaE7&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2'
   }
 

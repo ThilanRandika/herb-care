@@ -25,8 +25,8 @@ function Banner() {
     return (
         <div className="banner-container">
             <div className="banner-text">
-                <h1>Neque Quisquam Qui Dolorem</h1>
-                <p>Lorem Ipsum Dolor Sit Amet Consectetur Aliquam Tristique Scelerisque Vulputate. Pellentesque.</p>
+                <h1>Pure Ayurvedic Wellness</h1>
+                <p>Discover ancient healing wisdom through our premium collection of authentic Ayurvedic herbs and natural remedies for complete wellness.</p>
                 <button className="explore-button">Explore More</button>
             </div>
             <div className="banner-slider">
@@ -41,14 +41,14 @@ function Banner() {
                     <div className="product-count top-left">
                         <div className="content">
                             <span className="icon">🌿</span>
-                            <span className="lText">Lorem Ipsum Dolor</span>
+                            <span className="lText">Premium Products</span>
                             <span className="lCount">1260</span>
                         </div>
                     </div>
                     <div className="category-count bottom-right">
                         <div className="content">
                             <span className="icon">🌿</span>
-                            <span className="rText">Lorem Ipsum Dolor</span>
+                            <span className="rText">Herbal Categories</span>
                             <span className="rCount">35</span>
                         </div>
                     </div>

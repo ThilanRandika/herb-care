@@ -11,71 +11,71 @@ const blogs = [
   {
     id: 1,
     date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    title: 'Turmeric: The Golden Spice of Ayurveda',
+    description: 'Discover the incredible healing properties of turmeric and how this ancient spice can transform your health naturally.',
     imageUrl: blogImg1
   },
   {
     id: 2,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    date: 'January 18, 2024',
+    title: 'Understanding Your Dosha Type',
+    description: 'Learn about the three doshas - Vata, Pitta, and Kapha - and how balancing them can optimize your wellbeing.',
     imageUrl: blogImg2
   },
   {
     id: 3,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    date: 'January 20, 2024',
+    title: 'Ashwagandha for Stress Relief',
+    description: 'Explore how this powerful adaptogenic herb helps combat stress and promotes natural energy balance.',
     imageUrl: blogImg3
   },
   {
     id: 4,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    date: 'January 22, 2024',
+    title: 'Morning Rituals for Ayurvedic Living',
+    description: 'Start your day the Ayurvedic way with these simple yet powerful morning practices that align your body and mind with nature\'s rhythms for optimal health and vitality.',
     imageUrl: blogImg1
   },
   {
     id: 5,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    date: 'January 24, 2024',
+    title: 'Triphala: The Three-Fruit Wonder',
+    description: 'Uncover the digestive benefits of this traditional Ayurvedic formula made from three sacred fruits.',
     imageUrl: blogImg2
   },
   {
-    id: 1,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    id: 6,
+    date: 'January 26, 2024',
+    title: 'Neem: Nature\'s Purifier',
+    description: 'Learn about neem\'s powerful detoxifying properties and its role in maintaining healthy skin and immunity.',
     imageUrl: blogImg3
   },
   {
-    id: 2,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    id: 7,
+    date: 'January 28, 2024',
+    title: 'Ayurvedic Diet for Modern Life',
+    description: 'Simple guidelines for incorporating Ayurvedic eating principles into your busy contemporary lifestyle.',
     imageUrl: blogImg1
   },
   {
-    id: 3,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    id: 8,
+    date: 'January 30, 2024',
+    title: 'Meditation and Mindfulness in Ayurveda',
+    description: 'Discover how ancient meditation practices complement herbal remedies for complete mind-body wellness.',
     imageUrl: blogImg2
   },
   {
-    id: 4,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'https://th.bing.com/th?id=OIP.Z_PIeIRDajXPmZHROt-T_QHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2',
+    id: 9,
+    date: 'February 2, 2024',
+    title: 'Seasonal Cleansing with Herbs',
+    description: 'Learn about traditional Ayurvedic detox methods using specific herbs for each season of the year.',
     imageUrl: blogImg3
   },
   {
-    id: 5,
-    date: 'January 16, 2024',
-    title: 'Lorem Ipsum Dolor Sit',
-    description: 'Lorem Ipsum Dolor Sit Amet Consectetur. Varius Faucibus Placerat.',
+    id: 10,
+    date: 'February 4, 2024',
+    title: 'Holy Basil: Sacred Healing Plant',
+    description: 'Explore the spiritual and medicinal significance of Tulsi in Ayurvedic tradition and modern wellness.',
     imageUrl: blogImg1
   }
 ];
@@ -90,8 +90,8 @@ function AllBlogs() {
     return (
       <div className="all-blogs">
         <header>
-          <h3>Lorem Ipsum Dolor Sit</h3>
-          <p>Lorem Ipsum Dolor Sit Amet Consectetur Porttitor Varius Placerat.</p>
+          <h3>Ayurvedic Wisdom & Wellness</h3>
+          <p>Explore ancient healing knowledge, herbal remedies, and holistic wellness practices for modern living.</p>
         </header>
         <div className="blogs-grid">
           {blogs.slice(0, visibleBlogs).map(blog => (
@@ -110,7 +110,7 @@ function AllBlogs() {
           ))}
         </div>
         {visibleBlogs < blogs.length && (
-          <button className="load-more" onClick={loadMoreBlogs}>Load More</button>
+          <button className="load-more">Load More</button>
         )}
       </div>
     );
